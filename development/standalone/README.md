@@ -72,6 +72,11 @@ The default output directory is `development/standalone/out/ram116/`:
 `--output PATH` selects another output directory. Build outputs stay out of
 Git; source files, templates and configuration remain versioned.
 
+Local source-tree consolidation and the two compact retained image bundles
+are documented in [the source layout](../SOURCE-LAYOUT.md). Expanded inputs
+and compiler intermediates can be recreated; unpublished source deltas are
+preserved separately before those trees are removed.
+
 ## Optional SSH access
 
 Without an explicit public key, SSH is disabled in the image. To authorize

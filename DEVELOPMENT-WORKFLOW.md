@@ -6,10 +6,11 @@ For a complete ram116 build from a clean clone, use
 host validation. The incremental builders and device procedures below are
 historical workflows with additional prerequisites.
 
-After the source publication cleanup, only the ram115 and ram116 compiled
-profile directories remain locally. Older images and compiled userspace
-helpers must be rebuilt before running the historical workflows below.
-See [publication and rebuild notes](PUBLICATION.md).
+After source consolidation, compact ram116 and ram117 image bundles remain
+under `development/standalone/out/`. Historical expanded source trees and
+compiled helpers must be restored or rebuilt before using the older
+workflows below. See [the source layout](development/SOURCE-LAYOUT.md) and
+[publication notes](PUBLICATION.md).
 
 The active source and build entry points are in
 [development/kernel](development/kernel/README.md). Kernel trials boot
@@ -65,8 +66,8 @@ DISPC/DSS, mainline sync/clock/porch/pad configuration, generic PHY phases
 and bridge-requested HS clock after reset release. The stopped video VC
 remains disabled while the dedicated command VC is available. It passed
 six display/Qt restarts without host display errors, physical touch and
-brightness checks, and watchdog recovery. Its frozen source is under
-`development/kernel/baselines/ram93`. The active
+brightness checks, and watchdog recovery. Its frozen source is retained in
+Git history; see [the recovery guide](development/SOURCE-LAYOUT.md). The active
 builder may target a later experiment; use its explicitly reviewed profile.
 See [the comparison](development/kernel/display-reduction.md).
 The preserved ram70 fallback is `--profile display-onoff`; ram69 is

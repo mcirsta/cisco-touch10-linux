@@ -4,7 +4,7 @@ Public source repository: [mcirsta/cisco-touch10-linux](https://github.com/mcirs
 See [publication and rebuild notes](PUBLICATION.md) for pinned dependencies,
 local-only artifacts and the current full-image bootstrap requirements.
 
-To build the latest profile, ram116, from a clean clone:
+To build the standalone ram116 profile from a clean clone:
 
 ```sh
 python3 development/standalone/build.py
@@ -14,11 +14,11 @@ The [standalone build guide](development/standalone/README.md) lists host
 dependencies, optional SSH access and output paths. This builds the complete
 image from source without earlier project binaries or private device files.
 
-Only the two newest compiled profiles are retained locally: ram116
-(`cpu-dvfs-mid-trial`) and ram115 (`cpu-dvfs-low-trial`). Older compiled
-images, userspace builds and helpers have been removed; their source and
-validation records remain. Historical commands below may require rebuilding
-their inputs before use.
+Compact ram116 and ram117 image bundles are retained locally
+under `development/standalone/out/`. Duplicate source trees and build caches
+have been consolidated, with unpublished differences preserved. See the
+[source layout and recovery guide](development/SOURCE-LAYOUT.md).
+Historical commands below may require rebuilding their inputs before use.
 
 The active kernel workspace is [development/kernel](development/kernel/README.md).
 It contains normal Linux source paths, a reproducible patch series against

@@ -8,6 +8,11 @@ patch and configuration. Earlier image builders below remain historical
 incremental generators; the standalone builder needs no earlier image,
 rootfs, private key or live-test log.
 
+Superseded checkpoint source copies are now retained in Git history and
+unpublished expanded-tree differences are preserved locally. See the
+[source layout and recovery guide](../SOURCE-LAYOUT.md). Historical reports
+and measured evidence remain available below.
+
 This is the active Linux 6.18.48 board-support workspace. The qualified
 default is `mailbox-audio-dt` ram104, with `native-diagnostics` ram100 as
 the immediate fallback. Ram104 packages upstream ALSA `dmix` for concurrent

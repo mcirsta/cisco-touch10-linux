@@ -73,7 +73,7 @@ download them automatically.
 
 ## Complete image build from a clean clone
 
-Build the latest profile, ram116, with:
+Build the standalone ram116 profile with:
 
 ```sh
 python3 development/standalone/build.py
@@ -103,16 +103,22 @@ except the two newest complete profile directories:
 
 | Retained local profile | Kernel identity |
 | --- | --- |
-| `development/perrier-ramenv/cpu-dvfs-low-trial/` | `6.18.48-perrier-ram115` |
-| `development/perrier-ramenv/cpu-dvfs-mid-trial/` | `6.18.48-perrier-ram116` |
+| `development/standalone/out/ram116/` | `6.18.48-perrier-ram116` |
+| `development/standalone/out/ram117/` | `6.18.48-perrier-ram117` |
 
 Those retained binaries remain excluded from Git. Source, patches,
 configuration and records are preserved. Older reviewed image payloads and
 compiled helpers are no longer kept merely because later scripts check
 their hashes. The existing build chains therefore need their removed
-dependencies reconstructed before they can run again. ADC RAM trials also
-require reconstruction and verification of the compiled postflight helper
-against its recorded approval before use.
+dependencies reconstructed before they can run again. ADC RAM trials require
+the exact approved postflight helper and its standing authorization. The
+current local ram117 bundle retains that helper without a permanent expanded
+compiler tree for repeated recovery cleanup.
+
+Expanded source checkouts and pre-Git checkpoint copies have also been
+consolidated. Unpublished differences and recovery instructions are preserved
+locally, and committed checkpoint sources remain in Git history. See
+[the source layout](development/SOURCE-LAYOUT.md) for the retention policy.
 
 The standalone builder reconstructs the required image inputs from source.
 Its audits check the fresh image, including its embedded initramfs and RAM
