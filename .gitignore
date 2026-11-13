@@ -94,3 +94,4 @@
 # Small captured input fixtures are needed by the offline source tests.
 !/development/kernel/tests/fixtures/*.bin
 !/development/kernel/baselines/*/tests/fixtures/*.bin
+!/development/standalone/templates/rcS

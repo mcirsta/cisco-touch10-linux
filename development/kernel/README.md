@@ -1,5 +1,13 @@
 # Touch 10 kernel development
 
+The complete ram116 image now has a
+[standalone build entry point](../standalone/README.md):
+`python3 development/standalone/build.py` from the repository root. It uses
+the versioned board patch series plus the standalone ram116 CPU-voltage
+patch and configuration. Earlier image builders below remain historical
+incremental generators; the standalone builder needs no earlier image,
+rootfs, private key or live-test log.
+
 This is the active Linux 6.18.48 board-support workspace. The qualified
 default is `mailbox-audio-dt` ram104, with `native-diagnostics` ram100 as
 the immediate fallback. Ram104 packages upstream ALSA `dmix` for concurrent

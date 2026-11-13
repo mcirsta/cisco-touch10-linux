@@ -1,5 +1,11 @@
 # Touch 10 development workflow
 
+For a complete ram116 build from a clean clone, use
+`python3 development/standalone/build.py`. The
+[standalone guide](development/standalone/README.md) covers dependencies and
+host validation. The incremental builders and device procedures below are
+historical workflows with additional prerequisites.
+
 After the source publication cleanup, only the ram115 and ram116 compiled
 profile directories remain locally. Older images and compiled userspace
 helpers must be rebuilt before running the historical workflows below.

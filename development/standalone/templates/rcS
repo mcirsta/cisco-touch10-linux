@@ -1,0 +1,62 @@
+#!/bin/sh
+export PATH=/bin:/sbin:/usr/bin:/usr/sbin
+umask 077
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+mount -t devtmpfs devtmpfs /dev
+mkdir -p /dev/pts
+mount -t devpts -o mode=620 devpts /dev/pts
+mount -t tmpfs -o mode=755,size=16m tmpfs /run
+mount -t tmpfs -o mode=1777,size=192m tmpfs /tmp
+mount -t debugfs debugfs /sys/kernel/debug
+echo perrier-interactive-ram116 > /run/touch10-ram
+cat /proc/sys/kernel/random/boot_id > /run/touch10-ram-boot-id
+echo '4 4 1 7' > /proc/sys/kernel/printk
+echo '/tmp/core.%e.%p' > /proc/sys/kernel/core_pattern
+ulimit -c 65536
+/usr/sbin/ram-guard daemon > /run/guard.log 2>&1 &
+echo $! > /run/guard.pid
+guard_wait=0
+while ! grep -q '"state":"feeding"' /run/guard.json 2>/dev/null; do
+    if [ "$guard_wait" -ge 5 ] || ! kill -0 "$(cat /run/guard.pid)" 2>/dev/null; then
+        echo PERRIER_GUARD_START_FAILED
+        cat /run/guard.log
+        reboot -f
+        while :; do sleep 1; done
+    fi
+    sleep 1
+    guard_wait=$((guard_wait+1))
+done
+ifconfig lo 127.0.0.1 up
+attempt=0
+while [ ! -d /sys/class/net/eth0 ] && [ "$attempt" -lt 15 ]; do
+    sleep 1
+    attempt=$((attempt+1))
+done
+ifconfig eth0 10.77.10.11 netmask 255.255.255.0 up
+if [ -f /etc/dropbear/ssh-enabled ]; then
+    /usr/sbin/dropbear -F -s -p 0.0.0.0:22 \
+        -r /etc/dropbear/ram_host_key > /run/ssh.log 2>&1 &
+    echo $! > /run/ssh.pid
+    echo 'PERRIER_RAM_SSH_STARTED ip=10.77.10.10 version=ram116'
+else
+    echo 'SSH disabled: rebuild with --authorized-key to enable key-only access' > /run/ssh.log
+    echo 'PERRIER_RAM_SSH_DISABLED version=ram116'
+fi
+/bin/udhcpc -f -i eth0 -t 3 -T 2 -s /usr/sbin/perrier-dhcp-apply-route-dns > /run/dhcp.log 2>&1 &
+echo $! > /run/dhcp.pid
+echo native-cyttsp4 > /run/touch-driver
+cat /run/guard.log
+
+# A bounded read-only network/IRQ diagnostic if host SSH cannot connect.
+(
+    for delay in 15 20 20; do
+        sleep "$delay"
+        echo PERRIER_NET_DIAGNOSTIC_BEGIN
+        cat /proc/net/dev
+        cat /proc/net/arp
+        cat /proc/interrupts
+        cat /run/ssh.log
+        echo PERRIER_NET_DIAGNOSTIC_END
+    done
+) > /dev/console 2>&1 &

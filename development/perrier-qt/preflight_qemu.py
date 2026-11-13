@@ -5,8 +5,9 @@ from pathlib import Path
 import subprocess
 
 HERE = Path(__file__).resolve().parent
-RUNTIME = HERE / 'runtime'
-SYSROOT = HERE / 'sources/armv7-eabihf--musl--stable-2026.08-1/arm-buildroot-linux-musleabihf/sysroot'
+RUNTIME = Path(os.environ.get('PERRIER_QT_RUNTIME', HERE / 'runtime')).resolve()
+SYSROOT = Path(os.environ.get('PERRIER_QEMU_SYSROOT',
+    HERE / 'sources/armv7-eabihf--musl--stable-2026.08-1/arm-buildroot-linux-musleabihf/sysroot')).resolve()
 
 def main():
     env = dict(os.environ,

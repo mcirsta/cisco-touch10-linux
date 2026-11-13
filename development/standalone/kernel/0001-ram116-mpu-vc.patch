@@ -1,0 +1,222 @@
+diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+--- a/drivers/regulator/Kconfig
++++ b/drivers/regulator/Kconfig
+@@ -1506,6 +1506,14 @@
+ 
+ 	  To compile this driver as a module, choose M here: the
+ 	  module will be called stpmic1_regulator.
++
++config REGULATOR_CISCO_PERRIER_VC
++	tristate "Cisco Perrier OMAP4 MPU VC bypass regulator"
++	depends on ARCH_OMAP4 && OF
++	help
++	  Exposes the two qualified MPU selectors on Cisco Perrier to the
++	  regulator and OPP frameworks. It requires the board's exact
++	  inherited VC/VP configuration and does not initialize OMAP PM.
+ 
+ config REGULATOR_TI_ABB
+ 	tristate "TI Adaptive Body Bias on-chip LDO"
+diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
+--- a/drivers/regulator/Makefile
++++ b/drivers/regulator/Makefile
+@@ -180,6 +180,7 @@
+ obj-$(CONFIG_REGULATOR_SY8824X) += sy8824x.o
+ obj-$(CONFIG_REGULATOR_SY8827N) += sy8827n.o
+ obj-$(CONFIG_REGULATOR_TI_ABB) += ti-abb-regulator.o
++obj-$(CONFIG_REGULATOR_CISCO_PERRIER_VC) += cisco-perrier-vc.o
+ obj-$(CONFIG_REGULATOR_TPS6105X) += tps6105x-regulator.o
+ obj-$(CONFIG_REGULATOR_TPS62360) += tps62360-regulator.o
+ obj-$(CONFIG_REGULATOR_TPS6286X) += tps6286x-regulator.o
+diff --git a/drivers/regulator/cisco-perrier-vc.c b/drivers/regulator/cisco-perrier-vc.c
+--- /dev/null
++++ b/drivers/regulator/cisco-perrier-vc.c
+@@ -0,0 +1,189 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/* Cisco Perrier OMAP4460 MPU supply through the OMAP4 VC bypass port. */
++#include <linux/bitops.h>
++#include <linux/delay.h>
++#include <linux/err.h>
++#include <linux/io.h>
++#include <linux/iopoll.h>
++#include <linux/module.h>
++#include <linux/mutex.h>
++#include <linux/of.h>
++#include <linux/of_address.h>
++#include <linux/platform_device.h>
++#include <linux/regulator/driver.h>
++#include <linux/regulator/machine.h>
++#include <linux/regulator/of_regulator.h>
++
++#define PERRIER_PRM_BASE 0x4a306000
++#define PERRIER_PRM_SIZE 0x2000
++#define IRQSTATUS_MPU_A9 0x10
++#define VC_VALID BIT(24)
++#define VC_ACK BIT(14)
++#define VC_ERRORS GENMASK(13, 11)
++#define VC_STATUS (VC_ACK | VC_ERRORS)
++#define VC_BYPASS 0x1ba0
++#define VC_COMMAND(vsel) (((vsel) << 16) | (0x55 << 8) | 0x12)
++
++struct perrier_vc {
++	void __iomem *base;
++	struct mutex lock;
++	unsigned int selector;
++};
++
++static const unsigned int perrier_mpu_voltages[] = {
++	1152100, /* TWL6032 selector 0x24, two-second 350 MHz probe passed */
++	1215400, /* TWL6032 selector 0x29, inherited at boot */
++};
++
++static const unsigned int perrier_mpu_selectors[] = { 0x24, 0x29 };
++
++static bool perrier_vc_state_valid(struct perrier_vc *vc)
++{
++	void __iomem *b = vc->base;
++
++	return readl(b + 0x1b10) == 0x00000300 &&
++	       readl(b + 0x1b58) == 0 &&
++	       readl(b + 0x1b64) == 0x00011129 &&
++	       readl(b + 0x1b88) == 0x00121212 &&
++	       readl(b + 0x1b8c) == 0x0055495b &&
++	       readl(b + 0x1b90) == 0x00564a5c &&
++	       readl(b + 0x1b98) == 0x29290500 &&
++	       readl(b + 0x1ba4) == 0x00001717 &&
++	       readl(b + 0x1ba8) == 0 &&
++	       readl(b + 0x1bac) == 0x00006026 &&
++	       !(readl(b + VC_BYPASS) & VC_VALID) &&
++	       !(readl(b + IRQSTATUS_MPU_A9) & VC_ERRORS);
++}
++
++static int perrier_vc_set_voltage_sel(struct regulator_dev *rdev,
++				      unsigned int selector)
++{
++	struct perrier_vc *vc = rdev_get_drvdata(rdev);
++	void __iomem *b = vc->base;
++	u32 command, observed, status;
++	int ret = 0;
++
++	if (selector >= ARRAY_SIZE(perrier_mpu_voltages))
++		return -EINVAL;
++	mutex_lock(&vc->lock);
++	if (vc->selector == selector)
++		goto out;
++	if (!perrier_vc_state_valid(vc)) {
++		ret = -EIO;
++		goto out;
++	}
++	/* Acknowledge only the VC bypass status, leaving other PRM events. */
++	writel(VC_STATUS, b + IRQSTATUS_MPU_A9);
++	if (readl(b + IRQSTATUS_MPU_A9) & VC_STATUS) {
++		ret = -EIO;
++		goto out;
++	}
++	command = VC_COMMAND(perrier_mpu_selectors[selector]);
++	writel(command, b + VC_BYPASS);
++	writel(command | VC_VALID, b + VC_BYPASS);
++	/* OMAP4460 TRM: VALID clears after ACK or error. */
++	ret = readl_poll_timeout(b + VC_BYPASS, observed,
++				 !(observed & VC_VALID), 5, 100000);
++	status = readl(b + IRQSTATUS_MPU_A9);
++	if (ret || (status & VC_STATUS) != VC_ACK ||
++	    (observed & ~VC_VALID) != command) {
++		dev_err(&rdev->dev,
++			"VC bypass failed: selector=%02x value=%08x irq=%08x ret=%d\n",
++			perrier_mpu_selectors[selector], observed, status, ret);
++		ret = ret ?: -EIO;
++		goto out;
++	}
++	udelay(10);
++	vc->selector = selector;
++out:
++	mutex_unlock(&vc->lock);
++	return ret;
++}
++
++static int perrier_vc_get_voltage_sel(struct regulator_dev *rdev)
++{
++	struct perrier_vc *vc = rdev_get_drvdata(rdev);
++
++	return READ_ONCE(vc->selector);
++}
++
++static const struct regulator_ops perrier_vc_ops = {
++	.list_voltage = regulator_list_voltage_table,
++	.set_voltage_sel = perrier_vc_set_voltage_sel,
++	.get_voltage_sel = perrier_vc_get_voltage_sel,
++};
++
++static const struct regulator_desc perrier_vc_desc = {
++	.name = "perrier-vdd-mpu",
++	.type = REGULATOR_VOLTAGE,
++	.owner = THIS_MODULE,
++	.ops = &perrier_vc_ops,
++	.n_voltages = ARRAY_SIZE(perrier_mpu_voltages),
++	.volt_table = perrier_mpu_voltages,
++};
++
++static int perrier_vc_probe(struct platform_device *pdev)
++{
++	struct regulator_config config = { };
++	struct regulator_init_data *init_data;
++	struct regulator_dev *rdev;
++	struct perrier_vc *vc;
++	struct resource res;
++	int ret;
++
++	ret = of_address_to_resource(pdev->dev.of_node, 0, &res);
++	if (ret || res.start != PERRIER_PRM_BASE ||
++	    resource_size(&res) != PERRIER_PRM_SIZE)
++		return dev_err_probe(&pdev->dev, -EINVAL,
++				     "unexpected OMAP4 PRM resource\n");
++	vc = devm_kzalloc(&pdev->dev, sizeof(*vc), GFP_KERNEL);
++	if (!vc)
++		return -ENOMEM;
++	/* PRM already has an SoC owner; map its known subregisters without claiming
++	 * the parent's entire resource. No generic OMAP PM late init is enabled.
++	 */
++	vc->base = devm_ioremap(&pdev->dev, PERRIER_PRM_BASE,
++			       PERRIER_PRM_SIZE);
++	if (!vc->base)
++		return -ENOMEM;
++	if (!perrier_vc_state_valid(vc))
++		return dev_err_probe(&pdev->dev, -EIO,
++				     "inherited VC/VP state is not Perrier policy\n");
++	mutex_init(&vc->lock);
++	vc->selector = 1; /* Inherited selector 0x29, confirmed by VP snapshot. */
++	init_data = of_get_regulator_init_data(&pdev->dev, pdev->dev.of_node,
++					       &perrier_vc_desc);
++	if (!init_data)
++		return -ENOMEM;
++	init_data->constraints.valid_ops_mask |= REGULATOR_CHANGE_VOLTAGE;
++	init_data->constraints.always_on = true;
++	config.dev = &pdev->dev;
++	config.init_data = init_data;
++	config.driver_data = vc;
++	config.of_node = pdev->dev.of_node;
++	rdev = devm_regulator_register(&pdev->dev, &perrier_vc_desc, &config);
++	if (IS_ERR(rdev))
++		return dev_err_probe(&pdev->dev, PTR_ERR(rdev),
++				     "failed to register MPU regulator\n");
++	platform_set_drvdata(pdev, rdev);
++	dev_info(&pdev->dev, "MPU VC bypass rail ready at selector 0x29\n");
++	return 0;
++}
++
++static const struct of_device_id perrier_vc_of_match[] = {
++	{ .compatible = "cisco,perrier-omap4-mpu-vc" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, perrier_vc_of_match);
++
++static struct platform_driver perrier_vc_driver = {
++	.probe = perrier_vc_probe,
++	.driver = {
++		.name = "cisco-perrier-vc",
++		.of_match_table = perrier_vc_of_match,
++	},
++};
++module_platform_driver(perrier_vc_driver);
++
++MODULE_DESCRIPTION("Cisco Perrier OMAP4460 MPU VC bypass supply");
++MODULE_LICENSE("GPL");

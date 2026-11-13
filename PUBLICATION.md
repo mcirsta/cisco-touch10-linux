@@ -71,16 +71,32 @@ early-init tools also use Zig 0.15.2 as described in the existing workflow.
 The preparation scripts expect these inputs to exist locally; they do not
 download them automatically.
 
-## Full image rebuild limitation
+## Complete image build from a clean clone
 
-This publication does **not yet provide a complete image build from an empty
-clone**. The current image builders deliberately verify and reuse earlier
-qualified profiles. For example,
-[`build_image.py`](development/kernel/build_image.py) requires the ram99
-`speaker-audio` reviewed image, its rootfs files, its kernel configuration and
-the native-watchdog proof before creating ram100. Later builders have
-similar dependencies. A new clone lacks those private local artifacts,
-SSH keys and device-specific recovery inputs.
+Build the latest profile, ram116, with:
+
+```sh
+python3 development/standalone/build.py
+```
+
+The [standalone guide](development/standalone/README.md) lists the host
+dependencies and output paths. This entry point fetches pinned upstream
+inputs, compiles Qt, the app, ALSA and RAM tools, assembles a new initramfs,
+then builds and audits the kernel and board DTB. It reads no earlier profile
+images, root filesystems, private access configuration or live-test records.
+The previously unexported ram116 CPU-voltage driver is now a versioned source
+patch, and the kernel configuration is a versioned text input.
+
+SSH is disabled unless a public key is supplied with `--authorized-key`;
+that option generates a new image host key. The external Bootlin compiler,
+its target runtime libraries and gdbserver are fetched upstream inputs.
+The font comes from the host's DejaVu package. These are not old project
+build products.
+
+Historical incremental generators, including
+[`build_image.py`](development/kernel/build_image.py), still describe their
+original staged experiments and retain their historical prerequisites. Use
+the standalone entry point for a complete ram116 build.
 
 At the owner's request, local cleanup deletes source-built binary outputs
 except the two newest complete profile directories:
@@ -98,10 +114,15 @@ dependencies reconstructed before they can run again. ADC RAM trials also
 require reconstruction and verification of the compiled postflight helper
 against its recorded approval before use.
 
-A fresh standalone image builder must reconstruct the required inputs from
-source and receive its own review and qualification. Historical image hashes
-and test results identify the tested artifacts; they do not claim that a new
-build will be byte-identical.
+The standalone builder reconstructs the required image inputs from source.
+Its audits check the fresh image, including its embedded initramfs and RAM
+safeguards. Hardware qualification remains a separate step. Historical image
+hashes and test results identify the tested artifacts; a new build is not
+claimed to be byte-identical.
+
+The [clean-clone verification record](development/standalone/validation-clean-clone.json)
+documents a complete host rebuild with fresh upstream downloads, 43 passing
+tests, Cortex-A9 Qt execution checks and a passing kernel/rootfs audit.
 
 Publishing the sources does not authorize device writes. Current recovery
 work remains read-only investigation, apart from the explicitly recorded,

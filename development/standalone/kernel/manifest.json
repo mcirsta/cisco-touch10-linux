@@ -1,0 +1,28 @@
+{
+  "kernel": "6.18.48-perrier-ram116",
+  "upstream_version": "6.18.48",
+  "base_archive_sha256": "5ebdadb10a4b5708fc6b1c457764a110bc49f8150cc3502c59b921ead8c6fc8c",
+  "supplemental_patch": "0001-ram116-mpu-vc.patch",
+  "supplemental_patch_sha256": "4780538eeff93398faa9b4a75f755ee5c41e3079c47e13225a8c54a9067598cb",
+  "files": {
+    "drivers/regulator/Kconfig": {
+      "before_sha256": "ee58e00ec356113beadaf9ce38731a6fc44ddbfcc14edec0911eea26d04be174",
+      "after_sha256": "536587ffa336ddab8807c6dec507a39fc1eb50955e528de2ecd0a87035a515b9"
+    },
+    "drivers/regulator/Makefile": {
+      "before_sha256": "7bd594dd75b7ba37c45dd89d36a49791beeb574864b7051ed4751a9e21060ad1",
+      "after_sha256": "93c788e539976292c3eb847eb2f1baea891626faa21b4825519702ae52bdf776"
+    },
+    "drivers/regulator/cisco-perrier-vc.c": {
+      "before_sha256": null,
+      "after_sha256": "d225a23b7ecb7bbfa7548f69548a1928dfff3d2422a4fe1173809272b9fd04b8"
+    }
+  },
+  "config_sha256": "8df3c827755676a136b29d2ec9e46bb5c6ca467ba156f077bd285d228b0e2a74",
+  "scope": "Ram116 MPU VC driver and integration after the canonical board-support patch series. No prior image, work tree or live-run record is a build input.",
+  "dt_sources": {
+    "development/kernel/power/omap4-cisco-perrier-cpu-dvfs-mid-ram.dts": "77a6f8342e8b09e303f3e3d0bf456436e468ab5c5b2f50d941030c163f4f6c79",
+    "development/kernel/power/omap4-cisco-perrier-cpu-m2-ram.dts": "bcedd05cc1113a93ac9ccc0af86124aa4c6d86876f31cb98160fa198c3ce0939",
+    "development/kernel/power/omap4-cisco-perrier-thermal-ram.dts": "44fecd45915e0d91fa99c7ee48e659f381f3e7e8ef4307de0e84d498712e5042"
+  }
+}

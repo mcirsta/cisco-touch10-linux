@@ -2,6 +2,7 @@
 """Stage the Touch 10's own Cortex-A9 Qt 6.12 build for RAM trials."""
 import hashlib
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -51,10 +52,24 @@ def main():
                 copy(path, destination / path.name)
             elif path.suffix == '.so':
                 copy(path, destination / path.name, strip=True)
-    copy('/usr/share/fonts/TTF/DejaVuSans.ttf',
-         RUNTIME / 'lib/fonts/DejaVuSans.ttf')
-    copy('/usr/share/licenses/ttf-dejavu/LICENSE',
-         RUNTIME / 'licenses/DejaVu.txt')
+    font_candidates = [Path(os.environ['PERRIER_FONT'])] if 'PERRIER_FONT' in os.environ else [
+        Path('/usr/share/fonts/TTF/DejaVuSans.ttf'),
+        Path('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'),
+    ]
+    font = next((path for path in font_candidates if path.is_file()), None)
+    if font is None:
+        raise SystemExit('Install DejaVu Sans or set PERRIER_FONT to its .ttf file')
+    license_candidates = [Path(os.environ['PERRIER_FONT_LICENSE'])] \
+        if 'PERRIER_FONT_LICENSE' in os.environ else [
+            Path('/usr/share/licenses/ttf-dejavu/LICENSE'),
+            Path('/usr/share/doc/fonts-dejavu-core/copyright'),
+            Path('/usr/share/doc/ttf-dejavu/copyright'),
+        ]
+    license_file = next((path for path in license_candidates if path.is_file()), None)
+    if license_file is None:
+        raise SystemExit('Set PERRIER_FONT_LICENSE to the DejaVu license text')
+    copy(font, RUNTIME / 'lib/fonts/DejaVuSans.ttf')
+    copy(license_file, RUNTIME / 'licenses/DejaVu.txt')
     copy(HERE / 'build-arm-a9-local/perrier-touch-grid',
          RUNTIME / 'bin/perrier-touch-grid', strip=True)
     records = {}

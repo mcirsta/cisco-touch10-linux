@@ -1,0 +1,112 @@
+{
+  "date": "2026-11-13",
+  "kernel": "6.18.48-perrier-ram116",
+  "profile": "cpu-dvfs-mid-trial",
+  "scope": "Complete host build from a Git-only clone with this standalone source change applied.",
+  "base_git_revision": "1494d97a9a6478162424cd526a94665ce574da30",
+  "upstream_inputs": "Fresh downloads from pinned upstream URLs and pinned Git fetches; no source cache supplied.",
+  "previous_project_binaries_or_build_artifacts_used": false,
+  "private_access_files_or_device_backups_used": false,
+  "stages": {
+    "inputs": {
+      "passed": true,
+      "elapsed_seconds": 2.16
+    },
+    "userspace": {
+      "passed": true,
+      "elapsed_seconds": 853.5
+    },
+    "rootfs": {
+      "passed": true,
+      "elapsed_seconds": 4.2
+    },
+    "kernel": {
+      "passed": true,
+      "elapsed_seconds": 63.85
+    }
+  },
+  "host": {
+    "python": "3.14.9",
+    "host_qt": {
+      "Qt6Core": "6.12.0",
+      "Qt6Qml": "6.12.0",
+      "Qt6ShaderTools": "6.12.0"
+    },
+    "clang": "clang version 23.1.4",
+    "cmake": "cmake version 4.4.5",
+    "ninja_parallelism": "Ninja default; no override"
+  },
+  "standalone_tests_passed": 27,
+  "existing_host_tests_passed": 16,
+  "qt_cortex_a9_preflight_passed": true,
+  "packaged_qt_cortex_a9_preflight_passed": true,
+  "ssh_public_key_and_fresh_host_key_integration_passed": true,
+  "kernel_span_bytes": 22558376,
+  "dtb_audit": {
+    "opp_hz_uv": [
+      [
+        350000000,
+        1152100
+      ],
+      [
+        700000000,
+        1215400
+      ]
+    ],
+    "mpu_selectors": [
+      "0x24",
+      "0x29"
+    ],
+    "smp_cpus_enabled": 2,
+    "watchdog_timeout_seconds": 120,
+    "panel_pixels": [
+      1280,
+      800
+    ],
+    "cpu_thermal_passive_critical_millicelsius": [
+      85000,
+      95000
+    ]
+  },
+  "artifacts": {
+    "zImage": {
+      "path": "kernel-build/arch/arm/boot/zImage",
+      "size": 18037856,
+      "sha256": "f1be18cd45f1ed94f1d14ea4597b9bb1712e5c4ca1bf3755959f4b99fd35d297"
+    },
+    "board.dtb": {
+      "path": "board.dtb",
+      "size": 95409,
+      "sha256": "909c824983a0dbf480b7e61b755b30521bbb5fdc4269256fd92c096987039af0"
+    },
+    "kernel.config": {
+      "path": "kernel.config",
+      "size": 114960,
+      "sha256": "abd57c0615f3a25045a2d261c10e404bb12d647a91671a249fd680ff8fd4f021"
+    },
+    "initramfs.cpio": {
+      "path": "initramfs.cpio",
+      "size": 35320336,
+      "sha256": "fb87a63130f6d750b26c9c5790a7bafca0134ffd37c858a402980fbb00e84821"
+    }
+  },
+  "live_tested": false,
+  "validated_changed_source_files": [
+    "development/audio/build_dmix_lib.py",
+    "development/perrier-qt/preflight_qemu.py",
+    "development/perrier-qt/stage_runtime.py",
+    "development/standalone/build.py",
+    "development/standalone/inputs.json",
+    "development/standalone/inputs.py",
+    "development/standalone/kernel.py",
+    "development/standalone/kernel/0001-ram116-mpu-vc.patch",
+    "development/standalone/kernel/manifest.json",
+    "development/standalone/kernel/ram116.config",
+    "development/standalone/rootfs.py",
+    "development/standalone/templates/rcS",
+    "development/standalone/tests/test_build_state.py",
+    "development/standalone/tests/test_inputs.py",
+    "development/standalone/tests/test_kernel.py",
+    "development/standalone/tests/test_rootfs.py"
+  ]
+}

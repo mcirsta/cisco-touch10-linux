@@ -28,6 +28,7 @@ def main():
     assert not subprocess.check_output(["git", "-C", str(HERE / "alsa-lib"),
                                         "diff", "--name-only"], text=True).strip()
     args = json.loads((HERE / "alsa-configure-args.json").read_text())
+    args[0] = str(HERE / "alsa-lib/configure")
     plugins = [arg for arg in args if arg.startswith("--with-pcm-plugins=")]
     assert len(plugins) == 1 and "dmix" not in plugins[0].split("=", 1)[1].split(",")
     args[args.index(plugins[0])] = plugins[0] + ",dmix"

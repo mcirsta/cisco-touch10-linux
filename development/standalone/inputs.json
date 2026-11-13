@@ -1,0 +1,92 @@
+{
+  "format_version": 1,
+  "archives": {
+    "linux": {
+      "filename": "linux-6.18.48.tar.xz",
+      "url": "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.48.tar.xz",
+      "sha256": "5ebdadb10a4b5708fc6b1c457764a110bc49f8150cc3502c59b921ead8c6fc8c",
+      "destination": "development/sources/linux-6.18.48.tar.xz",
+      "extract_to": "development/sources",
+      "top_directory": "linux-6.18.48"
+    },
+    "qtbase": {
+      "filename": "qtbase-everywhere-src-6.12.0.tar.xz",
+      "url": "https://download.qt.io/archive/qt/6.12/6.12.0/submodules/qtbase-everywhere-src-6.12.0.tar.xz",
+      "sha256": "a951bd163c7b80fc6b8c88d7668fb56abf91c152373e13c10666763238131307",
+      "destination": "development/perrier-qt/downloads/qtbase-everywhere-src-6.12.0.tar.xz",
+      "extract_to": "development/perrier-qt/sources",
+      "top_directory": "qtbase-everywhere-src-6.12.0"
+    },
+    "qtdeclarative": {
+      "filename": "qtdeclarative-everywhere-src-6.12.0.tar.xz",
+      "url": "https://download.qt.io/archive/qt/6.12/6.12.0/submodules/qtdeclarative-everywhere-src-6.12.0.tar.xz",
+      "sha256": "311f3a2603e1973bb59baef9dfa740a376de713157d4782ee043681e889c9260",
+      "destination": "development/perrier-qt/downloads/qtdeclarative-everywhere-src-6.12.0.tar.xz",
+      "extract_to": "development/perrier-qt/sources",
+      "top_directory": "qtdeclarative-everywhere-src-6.12.0"
+    },
+    "toolchain": {
+      "filename": "armv7-eabihf--musl--stable-2026.08-1.tar.xz",
+      "url": "https://toolchains.bootlin.com/downloads/releases/toolchains/armv7-eabihf/tarballs/armv7-eabihf--musl--stable-2026.08-1.tar.xz",
+      "sha256": "9147bafae4aa272321a3c6440d04d83b7e23411b2d344f875541d84c4444ba9b",
+      "destination": "development/perrier-qt/downloads/armv7-eabihf--musl--stable-2026.08-1.tar.xz",
+      "extract_to": "development/perrier-qt/sources",
+      "top_directory": "armv7-eabihf--musl--stable-2026.08-1"
+    },
+    "busybox": {
+      "filename": "busybox-1.37.0.tar.bz2",
+      "url": "https://busybox.net/downloads/busybox-1.37.0.tar.bz2",
+      "sha256": "3311dff32e746499f4df0d5df04d7eb396382d7e108bb9250e7b519b837043a4",
+      "destination": "development/perrier-ramenv/downloads/busybox-1.37.0.tar.bz2",
+      "extract_to": "development/perrier-ramenv/sources",
+      "top_directory": "busybox-1.37.0"
+    },
+    "dropbear": {
+      "filename": "dropbear-2026.94.tar.bz2",
+      "url": "https://matt.ucc.asn.au/dropbear/releases/dropbear-2026.94.tar.bz2",
+      "mirrors": ["https://dropbear.nl/mirror/releases/dropbear-2026.94.tar.bz2"],
+      "sha256": "e098034a843699200c8c977a991fff73159735bf795d5f72ef672c41a6b1ae81",
+      "destination": "development/perrier-ramenv/downloads/dropbear-2026.94.tar.bz2",
+      "extract_to": "development/perrier-ramenv/sources",
+      "top_directory": "dropbear-2026.94"
+    },
+    "strace": {
+      "filename": "strace-7.3.tar.xz",
+      "url": "https://strace.io/files/7.3/strace-7.3.tar.xz",
+      "sha256": "529634c40910895a9a1f3c5c1e65da2ca9ed72fb158dfc4bcc89efdf05e39b72",
+      "destination": "development/perrier-ramenv/downloads/strace-7.3.tar.xz",
+      "extract_to": "development/perrier-ramenv/sources",
+      "top_directory": "strace-7.3"
+    }
+  },
+  "git": {
+    "alsa-lib": {
+      "url": "https://github.com/alsa-project/alsa-lib.git",
+      "commit": "f44e0abd5382f519cc6fa69850c34e6e9c09d5f5",
+      "destination": "development/audio/alsa-lib"
+    },
+    "alsa-utils": {
+      "url": "https://github.com/alsa-project/alsa-utils.git",
+      "commit": "f3537ede21d0bc5b34835988752523b08459c532",
+      "destination": "development/audio/alsa-utils"
+    },
+    "tinyalsa": {
+      "url": "https://github.com/tinyalsa/tinyalsa.git",
+      "commit": "a7cd26a17fe2add2ff38d2f281ed0b919187a068",
+      "destination": "development/audio/tinyalsa",
+      "default": false
+    },
+    "kexec-tools": {
+      "url": "https://git.kernel.org/pub/scm/utils/kernel/kexec/kexec-tools.git",
+      "commit": "0fd0d8e9ea975696fdc05ad267a65f3efd415612",
+      "destination": "development/kexec-tools",
+      "default": false
+    }
+  },
+  "patches": {
+    "qtbase": {
+      "path": "development/perrier-qt/patches/qtbase-6.12.0-futex-time64.patch",
+      "sha256": "2dc5ada725dfad23f2cb53373d5dde38e3e0b7c6c7981cbc324880a0f27328d2"
+    }
+  }
+}
