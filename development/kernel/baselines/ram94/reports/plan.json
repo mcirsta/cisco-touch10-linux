@@ -1,0 +1,20 @@
+{
+  "profile": "native-leds",
+  "kernel": "6.18.48-perrier-ram94",
+  "fallback": "display-stop-fix",
+  "parent": "validation-ram93.json",
+  "scope": "Two stock mute indicator LEDs through mainline gpio-leds and DT",
+  "hardware": {
+    "red": {"gpio": 122, "active_high": true, "pad_offset": 278, "pad_value": 11},
+    "green": {"gpio": 119, "active_high": true, "pad_offset": 272, "pad_value": 11},
+    "boot_state": "both off"
+  },
+  "phases": [
+    "Verify stock board data, pad readback and polarity",
+    "Build and audit bounded DT/config/rootfs additions",
+    "U-Boot RAM boot with unchanged watchdog and read-only storage",
+    "Verify LED sysfs and unrelated GPIO preservation; test Qt mute indicators",
+    "Hardware watchdog recovery to stock and immutable validation"
+  ],
+  "excluded": ["PMIC programming", "unmapped expander pins", "audio playback", "SMP", "SGX", "recovery selector changes"]
+}

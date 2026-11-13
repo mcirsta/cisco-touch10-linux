@@ -1,0 +1,25 @@
+{
+  "profile": "peripherals",
+  "kernel": "6.18.48-perrier-ram95",
+  "fallback": "native-leds",
+  "parent": "validation-ram94.json",
+  "scope": ["white system PWM LED", "six INA3221 voltage/current channels", "read-only AT24 board EEPROM"],
+  "drivers": "Unmodified Linux 6.18.48 twl-core, twl-pwm, pwm-leds, ina3221 and at24",
+  "stock_evidence": {
+    "sensors": "stock-sensors-pads.log",
+    "registers": "stock-registers.log",
+    "eeprom": "stock-board-eeprom.json",
+    "pmic_irq": "stock-interrupts.log"
+  },
+  "safety": {
+    "pmic_regulators": "No regulator nodes or driver, no poweroff hook, no fck clock reinitialization",
+    "pmic_irq": "GIC SPI7 from stock IRQ39; core masks/clears interrupt status only",
+    "pmic_clock_child": "CLK_TWL not enabled; unused clock disabling remains suppressed",
+    "pwm": "Stock shared toggle register 0, other PWM channel unused and off; preserve it",
+    "ina3221": "Stock config 0x7127 equals mainline default; stock max channel/sum limits equal reset defaults; summation disabled on every input",
+    "eeprom": "read-only DT property and comparison with exact 256-byte stock baseline",
+    "display": "All display source and DT settings unchanged; no blank/unblank or repeated screen qualification",
+    "watchdog": "Unchanged guard/lease and read-only eMMC RAM policy"
+  },
+  "live_checks": ["enumeration and probe errors", "EEPROM hash/permissions", "six hwmon channels and raw configuration", "unchanged PMIC rail registers", "white LED low/off through standard sysfs", "framebuffer capture without cycling screen", "watchdog stock recovery"]
+}

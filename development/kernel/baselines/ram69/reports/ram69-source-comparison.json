@@ -1,0 +1,8 @@
+{
+  "compared_to": "ram66",
+  "changed_source_files": [
+    "drivers/gpu/drm/omapdrm/dss/pll.c"
+  ],
+  "removed_floor_only": true,
+  "dt_identical": true
+}

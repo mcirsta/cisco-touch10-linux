@@ -1,0 +1,49 @@
+--- a/src/corelib/thread/qfutex_linux_p.h
++++ b/src/corelib/thread/qfutex_linux_p.h
+@@ -40,13 +40,13 @@
+ constexpr inline bool futexAvailable() { return true; }
+ 
+ inline long _q_futex(int *addr, int op, int val, quintptr val2 = 0,
+-                     int *addr2 = nullptr, int val3 = 0) noexcept
++                     int *addr2 = nullptr, int val3 = 0, int number = __NR_futex) noexcept
+ {
+     QtTsan::futexRelease(addr, addr2);
+ 
+     // we use __NR_futex because some libcs (like Android's bionic) don't
+     // provide SYS_futex etc.
+-    long result = syscall(__NR_futex, addr, op | FUTEX_PRIVATE_FLAG, val, val2, addr2, val3);
++    long result = syscall(number, addr, op | FUTEX_PRIVATE_FLAG, val, val2, addr2, val3);
+ 
+     QtTsan::futexAcquire(addr, addr2);
+ 
+@@ -72,9 +72,28 @@
+ {
+     auto timeout = deadline.deadline<std::chrono::steady_clock>().time_since_epoch();
+     struct timespec ts = durationToTimespec(timeout);
+-    long r = _q_futex(addr(&futex), FUTEX_WAIT_BITSET, qintptr(expectedValue), quintptr(&ts),
++    // Raw syscalls use kernel layouts, not libc's timespec. In particular,
++    // 32-bit musl has 64-bit time_t even for the legacy futex syscall.
++#ifdef __NR_futex_time64
++    const struct { qint64 tv_sec; qint64 tv_nsec; } ts64 = {ts.tv_sec, ts.tv_nsec};
++    long r64 = _q_futex(addr(&futex), FUTEX_WAIT_BITSET, qintptr(expectedValue), quintptr(&ts64),
++                       nullptr, FUTEX_BITSET_MATCH_ANY, __NR_futex_time64);
++    if (r64 == 0 || errno != ENOSYS)
++        return r64 == 0 || errno != ETIMEDOUT;
++    // Older kernels lack futex_time64. Bound the legacy wait and let the
++    // caller retry if that bound expires before the actual deadline.
++    const bool capped = ts.tv_sec > LONG_MAX;
++    const struct { long tv_sec; long tv_nsec; } legacy = {
++        capped ? LONG_MAX : static_cast<long>(ts.tv_sec), ts.tv_nsec
++    };
++#else
++    // Architectures with a native 64-bit futex ABI keep their existing path.
++    const auto &legacy = ts;
++    const bool capped = false;
++#endif
++    long r = _q_futex(addr(&futex), FUTEX_WAIT_BITSET, qintptr(expectedValue), quintptr(&legacy),
+                       nullptr, FUTEX_BITSET_MATCH_ANY);
+-    return r == 0 || errno != ETIMEDOUT;
++    return r == 0 || errno != ETIMEDOUT || capped;
+ }
+ template <typename Atomic> inline void futexWakeOne(Atomic &futex)
+ {

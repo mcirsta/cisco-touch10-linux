@@ -1,0 +1,60 @@
+{
+  "kernel": "6.18.48-perrier-ram74",
+  "profile": "dsi-standard-video",
+  "artifacts": {
+    "zImage": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/dsi-standard-video/kernel-build/arch/arm/boot/zImage",
+      "size": 17057432,
+      "sha256": "e9f92494e94568aa554d9f1d8b7f9b46708d4647d2910458e1a33a575b8b6396"
+    },
+    "board.dtb": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/dsi-standard-video/board.dtb",
+      "size": 91634,
+      "sha256": "c1ca5fcaf8fa8137c1ed14b36168fca97f1d5545e162edb3487c8b8438155884"
+    },
+    "kexec": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier/kexec-legacy-fdt",
+      "size": 1660848,
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6"
+    }
+  },
+  "inputs": {
+    "baseline_review": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/dsi-hsync/reviewed-image.json",
+      "sha256": "840b5ad3f6b7d889d0de931931672c7e98584b1abacc91a9ba0ca721437bec04"
+    },
+    "watchdog_proof": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-watchdog/watchdog-proof.json",
+      "sha256": "3f23c890d5d390efa07fd63dd6c4231d0aa0fa0e6f84687e2b82e3a9203f36cf"
+    },
+    "confirmed_baseline": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/validation-ram72.json",
+      "sha256": "83aa848207e0b2f5a68a7fa293591c2dddca2692244c4df11e11f23db8e203bc"
+    },
+    "source_manifest": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/patches/manifest.json",
+      "sha256": "13761d09456ddee8ba1bbefbd5c8594d310ff15e26af533b5833708cfd6fe3ad"
+    },
+    "ram_config": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/configs/perrier-ram.config",
+      "sha256": "5a26a197294437211f417fc371dfc1d6d1909e55bb7f7fe1437a0f3cd3cdc9c8"
+    },
+    "bus_policy": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/configs/bus-layout.json",
+      "sha256": "65797ece8dec28d3608fd07d880f54c8a13f85f50f0893ff0c10122d1fceb2ba"
+    },
+    "hardware_dtsi": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/source/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier.dtsi",
+      "sha256": "179bd8ba3ac847ee1b3770a784b6c11e068c7a12474cfad6a8ba8e052d9abae8"
+    },
+    "ram_dts": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/source/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier-ram.dts",
+      "sha256": "f9b34676d41bd878121d8e144db98c90df9bf7d4de0b8c242f34b9bb3ffe68df"
+    }
+  },
+  "rootfs_manifest_sha256": "f0777cb734961c24080cfe35d9e7d29e962edf8c13c08b858ef224ce2fdf3a79",
+  "initramfs_sha256": "dfba5c5409b98250d6951ac9583715e3d041bb909d8cba65025bd779d0dbcab3",
+  "kernel_config_sha256": "749b1f082d052d5ee22f10d3f25ca3043f5fa224dd14323846a15c8d8e28a7c5",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "watchdog_backend": "linux-watchdog"
+}

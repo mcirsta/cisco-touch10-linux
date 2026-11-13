@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-11-13T18:38:15.958523+00:00",
+  "audit_sha256": "546ac467a80d5013a707287a1941052c3391ff1f5b020bf3bcd6e4653dc164ec",
+  "arm_sha256": "f609c6287bf4eecaff0e3629635c4fd1bd95ccee9099e629c942ec9a8d8bef20",
+  "native_sha256": "14f7d715f8bf003d6502d672d78a7837c3a39e1343800813515bd3fe7aeef233",
+  "calibration_boot_id": "0e6b3c3b-52de-4d29-84d7-17efc82bc3e7",
+  "calibration_iterations": 20000000,
+  "calibration_duration_ms": 1715,
+  "iterations_per_worker": 350000000,
+  "expected_hashes": [
+    "0f1f4b60",
+    "27f18a1a"
+  ],
+  "target_350mhz_duration_ms": 30000
+}

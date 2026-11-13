@@ -1,0 +1,13 @@
+diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+--- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
++++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+@@ -187,6 +187,9 @@
+   "#interrupt-cells":
+     const: 1
+ 
++  "#address-cells":
++    const: 0
++
+   "#clock-cells":
+     const: 1
+ 

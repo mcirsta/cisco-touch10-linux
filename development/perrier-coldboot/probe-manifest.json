@@ -1,0 +1,32 @@
+{
+  "kernel": "6.18.48-perrier-cold01",
+  "source": "development/sources/linux-6.18.48",
+  "baseline_dtb_sha256": "6d71c3d9b6eec8ee05e57b71ef0b85a6f988fd08d42d43ada95f88be8c47f50b",
+  "artifacts": {
+    "zImage": {
+      "path": "development/perrier-coldboot/kernel-build/arch/arm/boot/zImage",
+      "bytes": 1508184,
+      "sha256": "8477a79e0c5eb69f5ec83385d3ce39b35fed9c9e4e9c2c5e92d1163e6d7d64ce"
+    },
+    "board.dtb": {
+      "path": "development/perrier-coldboot/board.dtb",
+      "bytes": 85634,
+      "sha256": "6d71c3d9b6eec8ee05e57b71ef0b85a6f988fd08d42d43ada95f88be8c47f50b"
+    },
+    "init": {
+      "path": "development/perrier-coldboot/init",
+      "bytes": 952388,
+      "sha256": "3a6fda3eeed6fdacb04d10076eee29c590c3beb6eb516eff451819b04725ebd3"
+    },
+    "initramfs.cpio": {
+      "path": "development/perrier-coldboot/initramfs.cpio",
+      "bytes": 953220,
+      "sha256": "1d61ba1e166b33157970fa923b5dc6ab0759fd7c054d47931a15313782e9d2c5"
+    },
+    ".config": {
+      "path": "development/perrier-coldboot/kernel-build/.config",
+      "bytes": 36899,
+      "sha256": "e334da8efea386b6ad0a524416bb4d7c128cd11f9e320322c1c0a1c5ba2c418a"
+    }
+  }
+}

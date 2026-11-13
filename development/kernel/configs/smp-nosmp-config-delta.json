@@ -1,0 +1,210 @@
+{
+  "CONFIG_ARCH_HAS_TICK_BROADCAST": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_ARCH_NEEDS_CPU_IDLE_COUPLED": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_ARCH_SUPPORTS_KEXEC": {
+    "before": "y",
+    "after": "n"
+  },
+  "CONFIG_ARCH_SUPPORTS_SCHED_MC": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_ARCH_SUPPORTS_SCHED_SMT": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_ARM_CPU_TOPOLOGY": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_ARM_ERRATA_643719": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_BROKEN_ON_SMP": {
+    "before": "y",
+    "after": "n"
+  },
+  "CONFIG_CMDLINE": {
+    "before": "\"console=ttyS0,115200 earlycon=omap8250,mmio32,0x48020000 keep_bootcon ignore_loglevel clk_ignore_unused pd_ignore_unused initcall_blacklist=omap2_common_pm_late_init panic=5 omap_wdt.early_enable=1 omap_wdt.timer_margin=120\"",
+    "after": "\"console=ttyS0,115200 earlycon=omap8250,mmio32,0x48020000 keep_bootcon ignore_loglevel clk_ignore_unused pd_ignore_unused initcall_blacklist=omap2_common_pm_late_init panic=5 omap_wdt.early_enable=1 omap_wdt.timer_margin=120 nosmp\""
+  },
+  "CONFIG_CONTEXT_TRACKING": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_CONTEXT_TRACKING_IDLE": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_CPU_ISOLATION": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_CPU_RMAP": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_FORCE_NR_CPUS": {
+    "before": "y",
+    "after": "n"
+  },
+  "CONFIG_GENERIC_ARCH_TOPOLOGY": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_GENERIC_CLOCKEVENTS_BROADCAST": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_GENERIC_IRQ_EFFECTIVE_AFF_MASK": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_GENERIC_IRQ_IPI": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_HAVE_ARM_SCU": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_HAVE_ARM_TWD": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_HAVE_HARDLOCKUP_DETECTOR_BUDDY": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_INITRAMFS_SOURCE": {
+    "before": "\"/home/marius/ext_proj/touch10/development/perrier-ramenv/network-route-dns/initramfs.cpio\"",
+    "after": "\"/home/marius/ext_proj/touch10/development/perrier-ramenv/smp-uboot-nosmp/initramfs.cpio\""
+  },
+  "CONFIG_KVFREE_RCU_BATCHED": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_LOCALVERSION": {
+    "before": "\"-perrier-ram107\"",
+    "after": "\"-perrier-ram108\""
+  },
+  "CONFIG_LOCK_SPIN_ON_OWNER": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_LOG_CPU_MAX_BUF_SHIFT": {
+    "before": "n",
+    "after": "12"
+  },
+  "CONFIG_MUTEX_SPIN_ON_OWNER": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_NEED_PER_CPU_KM": {
+    "before": "y",
+    "after": "n"
+  },
+  "CONFIG_NEED_SRCU_NMI_SAFE": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_NET_FLOW_LIMIT": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_NR_CPUS": {
+    "before": "n",
+    "after": "2"
+  },
+  "CONFIG_PCPU_DEV_REFCNT": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_PER_VMA_LOCK": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_RCU_CPU_STALL_TIMEOUT": {
+    "before": "n",
+    "after": "21"
+  },
+  "CONFIG_RCU_EXP_CPU_STALL_TIMEOUT": {
+    "before": "n",
+    "after": "0"
+  },
+  "CONFIG_RCU_NEED_SEGCBLIST": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_RCU_STALL_COMMON": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_RFS_ACCEL": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_RPS": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_RWSEM_SPIN_ON_OWNER": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_SCHED_MC": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_SCHED_SMT": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_SLUB_CPU_PARTIAL": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_SMP": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_SMP_ON_UP": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_SOCK_RX_QUEUE_MAPPING": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_SWP_EMULATE": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_TINY_RCU": {
+    "before": "y",
+    "after": "n"
+  },
+  "CONFIG_TINY_SRCU": {
+    "before": "y",
+    "after": "n"
+  },
+  "CONFIG_TREE_RCU": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_TREE_SRCU": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_XPS": {
+    "before": "n",
+    "after": "y"
+  }
+}

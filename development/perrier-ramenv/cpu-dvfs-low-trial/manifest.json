@@ -1,0 +1,65 @@
+{
+  "kernel": "6.18.48-perrier-ram115",
+  "profile": "cpu-dvfs-low-trial",
+  "artifacts": {
+    "zImage": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/cpu-dvfs-low-trial/kernel-build/arch/arm/boot/zImage",
+      "size": 18037800,
+      "sha256": "5b16040ce0bc5f62046aa9bd4ffa6c2456037ea8b6b9447df1ff8f5a72948e16"
+    },
+    "board.dtb": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/cpu-dvfs-low-trial/board.dtb",
+      "size": 95409,
+      "sha256": "26ee38690da9baf472a381d2eb8a1063f28985af9d0fb8f33859db1701c6d7ea"
+    }
+  },
+  "inputs": {
+    "base_review": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/cpu-dvfs-trial/reviewed-image.json",
+      "sha256": "0511ed0d1e6d7b32e46cd739cc5542ba55566cfae2ec5240d3526a07d177927b"
+    },
+    "base_validation": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/validation-cpu-dvfs-trial.json",
+      "sha256": "950223d8d6354fdf9473f9b317ad7cbb2f750c3105b3887d306639f444335e79"
+    },
+    "candidate_dts": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/power/omap4-cisco-perrier-cpu-dvfs-low-ram.dts",
+      "sha256": "0ab60cd73ebbba278058cbf1f6e2da39c171ce02f7d89e02ed91c47d010a431d"
+    },
+    "driver": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/work/linux-6.18.48-ram115/drivers/regulator/cisco-perrier-vc.c",
+      "sha256": "a9ae2485f65f4d432f268e4fb90fcd326863e206192d94dc9017a26f0adb3302"
+    },
+    "regulator_kconfig": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/work/linux-6.18.48-ram115/drivers/regulator/Kconfig",
+      "sha256": "536587ffa336ddab8807c6dec507a39fc1eb50955e528de2ecd0a87035a515b9"
+    },
+    "regulator_makefile": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/work/linux-6.18.48-ram115/drivers/regulator/Makefile",
+      "sha256": "93c788e539976292c3eb847eb2f1baea891626faa21b4825519702ae52bdf776"
+    },
+    "low_probe_result": {
+      "path": "/home/marius/ext_proj/touch10/development/runs/20261113T170316Z-mpu-low-selectors/result.json",
+      "sha256": "701dbf0f37832f743d4d0e5bd06c8475770a55870950de65d548a631b45b0c59"
+    },
+    "low_probe_recovery": {
+      "path": "/home/marius/ext_proj/touch10/development/runs/20261113T165933Z-uboot-ram114-1e9865/result.json",
+      "sha256": "f8e339a06c6710b4c11eed597ffe54b8dd28caffcebc08ab30aa78852ac1f713"
+    },
+    "power_baseline": {
+      "path": "/home/marius/ext_proj/touch10/development/runs/20261113T170052Z-cpu-dvfs-power/result.json",
+      "sha256": "d0bddbabe3ad29eb379d52ba915d0ba5d3e40922464d3214ec7c0643b1e9d63f"
+    },
+    "source_manifest": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/patches/manifest.json",
+      "sha256": "51116a3015f9f4a615e8916b7292a4b03c82e0c59fd3fd34d807493e962d835b"
+    }
+  },
+  "rootfs_manifest_sha256": "41546d7a6cdd6ce03032f1909556a97c593cef4dd9cbb08289c0d5de0d9b1bbb",
+  "initramfs_sha256": "195efd56709ee539cdb6b66f5df7ec4a33e0e4bd4d1220886e8b4359fe17f9bf",
+  "kernel_config_sha256": "ad1e4b8ac13337aba5d05bb23cf5b1ca9d8bfff8bc1f1e1eadd69d611be74220",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "watchdog_backend": "linux-watchdog",
+  "voltage_policy": "CPU OPP 350 MHz/1101460 uV and 700 MHz/1215400 uV; VC bypass only",
+  "live_tested": false
+}

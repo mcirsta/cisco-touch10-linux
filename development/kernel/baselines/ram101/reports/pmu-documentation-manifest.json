@@ -1,0 +1,12 @@
+{
+  "omap4460-trm.pdf": {
+    "source": "https://www.ti.com/lit/ug/swpu235ab/swpu235ab.pdf",
+    "bytes": 43166196,
+    "sha256": "9a0d84b1cb10c67d454d5b4a74cad2787c11640489a5ae872d2c7742d5b4aa51"
+  },
+  "cortex-a9-trm.pdf": {
+    "source": "https://documentation-service.arm.com/static/5f0377b2cafe527e86f5c247",
+    "bytes": 1495491,
+    "sha256": "ac31da5b9dccaf2aec4697e1165f28e944f729d2fb6c6534f0f24acebe997f57"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "kernel": "6.18.48-perrier-ram55",
+  "profile": "smp-sync",
+  "artifacts": {
+    "zImage": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-smp-sync/kernel-build/arch/arm/boot/zImage",
+      "sha256": "2c10213b33e655934556aae51e56eff71c8284994fc7cba64c203ba5d982ce34",
+      "size": 17160024
+    },
+    "board.dtb": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-smp-sync/board.dtb",
+      "sha256": "72feaeeb0e2f1eebbf91487234cf7f34558a34a0813f95ea6f2b7533c6e3ea02",
+      "size": 94398
+    },
+    "kexec": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier/kexec-legacy-fdt",
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6",
+      "size": 1660848
+    }
+  },
+  "rootfs_manifest_sha256": "c09db83128c4896287953bf45bcc2fb55b7c953fd1b1958fab7603f7fa69da08",
+  "initramfs_sha256": "dde471b77e8358d1752e7eb099f9f45fb791b744699928fed00c783be5232e48",
+  "kernel_config_sha256": "0358e7832a11d6bb4e300e138ae6f49f692c1a6cf83c1c15ca3e4e8591fc9c64",
+  "guard_sha256": "fa9d43b09f862aa687d809147b3cdc5ef7c19d75413136f1bc3488883728718e",
+  "patch_manifest_sha256": "e0110fb9e076a9795fae41ac8ca3e8fb11ee54b8dcd5c7359fc03d1993ac7abc",
+  "touch_patch_manifest_sha256": "df91ad935c8688a97ce62d405c4d2e305fa91204a5d370e582722b463d169af3",
+  "touch_dts_sha256": "0eb57094b7dac8e405f81623eeed046e9862b88c8f9df1fb6888d7f8a8a66c05",
+  "base_dts_sha256": "cc2b32252ca73a63a9548d7893756c0ce57aa995c199659caa19797f5108c27f",
+  "backlight_dts_sha256": "7ccdca06ce84d99607c575d18e6cada7933a134db20332e33ac93ca4bad0c2f7",
+  "keypad_dts_sha256": "b3c1515077656cd2f50e3100246bc253f946e1fd022e1b083cc52d89c1053b43",
+  "smp_dts_sha256": "368d5798db148faede0a2394f899dbc96fee8bf2bb70f41f5fed9a61bec7a529",
+  "passed": true,
+  "kernel_span_bytes": 21061056,
+  "config_changes": {
+    "CONFIG_CMDLINE": {
+      "before": "\"console=ttyS0,115200 earlycon=omap8250,mmio32,0x48020000 keep_bootcon ignore_loglevel clk_ignore_unused pd_ignore_unused initcall_blacklist=omap2_common_pm_late_init panic=5 maxcpus=1\"",
+      "after": "\"console=ttyS0,115200 earlycon=omap8250,mmio32,0x48020000 keep_bootcon ignore_loglevel clk_ignore_unused pd_ignore_unused initcall_blacklist=omap2_common_pm_late_init panic=5 maxcpus=1 initramfs_async=0\""
+    },
+    "CONFIG_INITRAMFS_SOURCE": {
+      "before": "\"/home/marius/ext_proj/touch10/development/perrier-ramenv/native-smp-onecpu/initramfs.cpio\"",
+      "after": "\"/home/marius/ext_proj/touch10/development/perrier-ramenv/native-smp-sync/initramfs.cpio\""
+    },
+    "CONFIG_LOCALVERSION": {
+      "before": "\"-perrier-ram54\"",
+      "after": "\"-perrier-ram55\""
+    }
+  },
+  "purpose": "SMP with maxcpus=1 and synchronous initramfs unpack"
+}

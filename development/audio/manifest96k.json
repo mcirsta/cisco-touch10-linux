@@ -1,0 +1,26 @@
+{
+  "tinyalsa_upstream": "https://github.com/tinyalsa/tinyalsa",
+  "commit": "a7cd26a17fe2add2ff38d2f281ed0b919187a068",
+  "toolchain": "Bootlin 2026.08 ARMv7 musl GCC 15.3, Cortex-A9 NEON hard-float; static binaries",
+  "plugins": false,
+  "ninja_default_parallelism": true,
+  "waveform": {
+    "rate_hz": 96000,
+    "bits": 32,
+    "channels": 4,
+    "tone_active_slot": 3,
+    "frequency_hz": 660,
+    "peak_amplitude": 134217728,
+    "peak_fraction_fullscale": 0.0625,
+    "ramp_ms": 50,
+    "max_duration_seconds": 2
+  },
+  "files": {
+    "build/tinymix": "0099a630e02615851ea9b0170a86f0fb398451ec8cb4d61ce08b68a1962e1351",
+    "build/tinyplay": "cc8447f93f6f652c31a169b15f0788e530de7bf3b061697952ab575c801216f7",
+    "build/tinypcminfo": "3b5e3392e40f16df0e9e5e877675aed2c67e0f139fd4d56e5c31d7eb2d1b0595",
+    "silence96-4ch.wav": "62749a9dc5d865a357a8c500b8af44332228c3a4c21abd0e60cd38ac3df0e630",
+    "quiet96-hfr-4ch.wav": "10028ccc1146ed5d8e6df8768ecb65742c930f79ecc70f486f33c59f04f978b7"
+  },
+  "supersedes": "manifest.json 48 kHz waveforms: unsupported by native McPDM"
+}

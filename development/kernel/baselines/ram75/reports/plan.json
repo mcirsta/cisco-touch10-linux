@@ -1,0 +1,55 @@
+{
+  "created_at": "2026-11-10T17:59:16.911588+00:00",
+  "task": "Finish review and reduction of the remaining Perrier display deviations",
+  "baseline": {
+    "profile": "dsi-standard-video",
+    "kernel": "ram74",
+    "validation_sha256": "24251baee1f067c1494d81abe2a83853a4bb5fcce0650277321fcd333631ed3f"
+  },
+  "fallback": {
+    "profile": "display-onoff",
+    "kernel": "ram70",
+    "validation_sha256": "022ffac9182eafb9ea0368f66cbe6cd76049f88ea7ee8c864674457f5dfbc520"
+  },
+  "constraints": [
+    "Preserve voltage, GPIO, pinmux, supply, PWM and panel DT properties",
+    "Preserve nowayout watchdog and read-only eMMC policy",
+    "No promotion without relevant physical and recovery checks"
+  ],
+  "phases": [
+    {
+      "name": "exact-line-clock-arithmetic",
+      "candidate": "ram75/dsi-exact-lines",
+      "state": "implemented; host sanitizer tests passed",
+      "goal": "Remove board-name-dependent line rounding and Hz tolerance using common-DCO divisors; keep porch outputs equal to ram74"
+    },
+    {
+      "name": "ordinary-porch-allocation",
+      "state": "pending",
+      "goal": "Test mainline DSI HBP rounding and then DISPC event-mode timing independently"
+    },
+    {
+      "name": "host-pad-and-video-source",
+      "state": "pending",
+      "goal": "Isolate pad mode, preserve HS clock priming, review VC0 L4-to-VP transition"
+    },
+    {
+      "name": "bridge-hardware-description",
+      "state": "source review in progress",
+      "goal": "Separate documented TC358765 format/clock fields from Perrier electrical settings and eliminate stale read/error handling"
+    },
+    {
+      "name": "bridge-reset-and-startup",
+      "state": "pending",
+      "goal": "Compare TI reference sequence and controlled reset behavior without changing verified analog or power settings"
+    },
+    {
+      "name": "qualification-and-cleanup",
+      "state": "pending",
+      "goal": "Repeated display/Qt cycles, visual/touch/brightness, saved framebuffer, watchdog stock return, freeze final sources"
+    }
+  ],
+  "primary_reference": "https://lkml.rescloud.iu.edu/1302.1/00275.html",
+  "current_candidate": "ram75/dsi-exact-lines",
+  "default_profile": "dsi-standard-video"
+}

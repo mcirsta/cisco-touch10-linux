@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "kernel": "6.18.48-perrier-ram107",
+  "boot_id": "7abd0d4e-ffef-4703-9819-279d9f7ef09a",
+  "real_dhcp_address_and_renewal": true,
+  "route_dns_test_event_applied_and_real_renewal_removed_both": true,
+  "rescue_ssh_lease_loss_and_rebind": true,
+  "emmc_readonly_and_unmounted": true,
+  "watchdog_feeding": true,
+  "no_display_reset_or_qt_restart_performed": true,
+  "stock_recovered_and_adc_postflight_passed": true,
+  "route_dns_dhcp_server_delivery_tested": false
+}

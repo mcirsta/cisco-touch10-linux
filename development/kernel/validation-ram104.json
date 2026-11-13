@@ -1,0 +1,80 @@
+{
+  "validated_at": "2026-11-12T14:17:42.406938+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram104",
+  "profile": "mailbox-audio-dt",
+  "default_uboot_profile": true,
+  "details": {
+    "summary": "Upstream OMAP mailbox and hwspinlock providers bind with an isolated L4 DT segment; packaged upstream ALSA dmix serves two concurrent 48 kHz clients.",
+    "hardware_checks": [
+      "4a0f4000.mailbox bound to omap-mailbox; revision 0x400",
+      "4a0f6000.spinlock bound to omap_hwspinlock",
+      "both providers runtime-suspended with no remoteproc started",
+      "eMMC read-only and unmounted",
+      "Qt PID unchanged and watchdog feeding",
+      "packaged two-client silent dmix passed"
+    ],
+    "display_test": "No blank/unblank cycles or Qt restarts were performed; DT display wiring and Qt binary were inherited from ram100.",
+    "recovery": "One-shot U-Boot restored the exact factory p8 before kernel handoff. Software recovery returned to healthy stock; authorized ADC postflight restored three sensing controls.",
+    "limitations": [
+      "No mailbox message or hardware spinlock acquisition was attempted. DSP/IPU remoteproc remains disabled.",
+      "Mainline CPU frequency scaling, PMIC rail policy, suspend, CPU1 and SGX remain unqualified."
+    ],
+    "ram103_intermediate": "Driver Kconfig and packaged audio passed, but mailbox/spinlock did not bind because the baseline RAM DT disabled their parent L4 segment; ram104 isolates and enables both."
+  },
+  "recovery_mode": "requested_reboot",
+  "recovery_elapsed_seconds": 36.7,
+  "stock_recovered": true,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "serial_markers": {
+    "factory_saved_before_handoff": true,
+    "candidate_kernel": true,
+    "mainline_watchdog_ready": true,
+    "ram_ssh_started": true
+  },
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram104/snapshot.json",
+    "sha256": "6b91e1708054e42aafb259cdb8502fecf0877cdc8be82fea32f567dcd5d96aa7"
+  },
+  "source_manifest": {
+    "path": "development/kernel/baselines/ram104/patches/manifest.json",
+    "sha256": "4c9507002b9b667337a30863b4d6847bc06f1acb786f7023b1f26f2c61f74c16"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram104/reports/source-checks.json",
+    "sha256": "2c6bb0464f0ec89c26cb21c51e766b26406c5b28ec62feccdaa08621a9981aeb"
+  },
+  "tests": {},
+  "image_review": {
+    "path": "development/perrier-ramenv/mailbox-audio-dt/reviewed-image.json",
+    "sha256": "54ded38d52376fe96faadb30f4861ae43d15673ed9ddf3e36450ad617c289156"
+  },
+  "live_result": {
+    "path": "development/runs/20261112T141303Z-uboot-ram104-9d19fd/result.json",
+    "sha256": "4df139cce1812395171c8078e84bc0d2e002b51bf11e172f739b240cdb8dbe54"
+  },
+  "physical_confirmations": [],
+  "machine_checks": {
+    "path": "development/runs/20261112T141303Z-uboot-ram104-9d19fd/machine-checks.json",
+    "sha256": "f9f54d4543bd795694b5372aa0d302d51922d8c188439d071e989e08d96288f4"
+  },
+  "evidence": {
+    "diagnostics-adc-restore.log": {
+      "path": "development/runs/20261112T141303Z-uboot-ram104-9d19fd/diagnostics-adc-restore.log",
+      "sha256": "a0330872041173e65d768203368537e984528c4495ddfe3e818c683a299c9961"
+    }
+  },
+  "fallback": {
+    "profile": "native-diagnostics",
+    "kernel": "6.18.48-perrier-ram100",
+    "validation": {
+      "path": "development/kernel/validation-ram100.json",
+      "sha256": "ee0921bc85ef2651917817a47160077d380b55bb5bdcc94bb601b5a0437ba78a"
+    }
+  },
+  "parent_validation": {
+    "path": "development/kernel/validation-ram100.json",
+    "sha256": "ee0921bc85ef2651917817a47160077d380b55bb5bdcc94bb601b5a0437ba78a"
+  }
+}

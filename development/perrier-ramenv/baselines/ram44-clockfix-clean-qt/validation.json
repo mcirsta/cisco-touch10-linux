@@ -1,0 +1,157 @@
+{
+  "created_at": "2026-11-09T14:19:30.101335+00:00",
+  "purpose": "Audited RAM image with the physically confirmed DISPC clock fix and cleaned Qt app",
+  "validation": {
+    "run": "/home/marius/ext_proj/touch10/development/runs/20261109T140725Z-interactive-172d37",
+    "boot_id": "3bd1c2f8-cfda-443c-9162-2986e4618e50",
+    "live_boot_artifacts": {
+      "zImage": {
+        "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/kernel-build/arch/arm/boot/zImage",
+        "sha256": "348dd00da52531a6aadd7140de33c3e15ef8b8b4115d94142fcf005b5b0a1add",
+        "size": 17004920
+      },
+      "board.dtb": {
+        "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/board.dtb",
+        "sha256": "73444e693857d02d5fc134697349a83e22662572f1dc17725e2878f4b90253a0",
+        "size": 92409
+      },
+      "kexec": {
+        "path": "/home/marius/ext_proj/touch10/development/perrier/kexec-legacy-fdt",
+        "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6",
+        "size": 1660848
+      }
+    },
+    "user_confirmation": "Everything aligns",
+    "qt_shift_at_confirmation": 0,
+    "touch_mapping": "direct X/Y, zero offset",
+    "clean_app_restarted_on_same_boot": true,
+    "clean_app_live_sha256": "4e8226033ad44b325b458f1bca5d75d44fd9686436102ab9385e41b1539653f5",
+    "qemu_cortex_a9_start_and_exit": "passed",
+    "interactive_image_audit": "passed",
+    "bounded_native_image_audit": "passed",
+    "recovery_run": "development/runs/20261109T125053Z-interactive-e4a741/result.json",
+    "packaging_note": "This archived zImage was rebuilt after removing the Qt workaround. Its embedded Qt app passed QEMU preflight; the unstripped app ran on the physically confirmed kernel boot. The rebuilt combined image has not been reboot-tested separately."
+  },
+  "files": {
+    "zImage": {
+      "source": "development/perrier-ramenv/kernel-build/arch/arm/boot/zImage",
+      "sha256": "1bd325b7b2260a26ed558bf9e8f7f21ff1b158c20fa29208a50584337e89c89f",
+      "size": 17002248
+    },
+    "board.dtb": {
+      "source": "development/perrier-ramenv/board.dtb",
+      "sha256": "73444e693857d02d5fc134697349a83e22662572f1dc17725e2878f4b90253a0",
+      "size": 92409
+    },
+    "kexec": {
+      "source": "development/perrier/kexec-legacy-fdt",
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6",
+      "size": 1660848
+    },
+    "kernel.config": {
+      "source": "development/perrier-ramenv/kernel-build/.config",
+      "sha256": "367b382b0951fe3f8dd8f4c8b0b66ea5449e1b7cad90f34d20fd4064359c7fff",
+      "size": 74669
+    },
+    "reviewed-image.json": {
+      "source": "development/perrier-ramenv/reviewed-image.json",
+      "sha256": "9f3b1544b54bc7f2270b244cff06c2ceeb1835cbe66c6a290afcacbb6dd6238c",
+      "size": 3190
+    },
+    "rootfs-manifest.json": {
+      "source": "development/perrier-ramenv/rootfs-manifest.json",
+      "sha256": "75193d6053ecacaea92a6737210f1ca57a4df6249aab8799eb7d1f81a8fb0b06",
+      "size": 25826
+    },
+    "watchdog-proof.json": {
+      "source": "development/perrier-ramenv/watchdog-proof.json",
+      "sha256": "760f7594e8d52059a71977c7ed9e53978a1bd89ff72cedb396c038c8773f3820",
+      "size": 3191
+    },
+    "qt-runtime-manifest.json": {
+      "source": "development/perrier-qt/runtime-manifest.json",
+      "sha256": "4ee8213a99620d8a4f5b4f60f6e8319c751eb48a2e4377ffafd626a0c3dab2b9",
+      "size": 4086
+    },
+    "perrier-touch-grid": {
+      "source": "development/perrier-qt/build-arm-a9-local/perrier-touch-grid",
+      "sha256": "4e8226033ad44b325b458f1bca5d75d44fd9686436102ab9385e41b1539653f5",
+      "size": 30200
+    },
+    "app/Main.qml": {
+      "source": "development/perrier-qt/app/Main.qml",
+      "sha256": "5b7e5ab7aa3f69cf4571f37203511793cf376651b2292e10cf50d5141bd9053c",
+      "size": 2946
+    },
+    "app/main.cpp": {
+      "source": "development/perrier-qt/app/main.cpp",
+      "sha256": "dc9df93e492d0657b8a8d68188ab789b6ce1b4cb943e603dd2957e7a5fe7ce63",
+      "size": 5902
+    },
+    "touch10_ram.py": {
+      "source": "tools/touch10_ram.py",
+      "sha256": "aa94ae4a979be79c1ae7025eb676f48d73b16f4c98e275e601e8a12a19040657",
+      "size": 11830
+    },
+    "evidence/clockfix.txt": {
+      "source": "evidence/perrier-clockfix-confirmed-2026-11-09.txt",
+      "sha256": "9fb9291922ee9b9c66be491a91e1310711c02415c9b3195404114af865b718bf",
+      "size": 1047
+    },
+    "evidence/clean-qt.txt": {
+      "source": "evidence/perrier-clockfix-clean-qt-2026-11-09.txt",
+      "sha256": "0faf94c76f6b929ee4d8ab319deebab799885d74e47fc19d69af4ba65be08b37",
+      "size": 727
+    },
+    "kernel-patches/01-preserve-stock-clocks.patch": {
+      "source": "development/perrier-native/kernel-patches/01-preserve-stock-clocks.patch",
+      "sha256": "9e97b6144abbcdd489ba8279a890605b8ab010c873eeb94be4e4301ab9863392",
+      "size": 379
+    },
+    "kernel-patches/02-avoid-stock-pmic-reinit.patch": {
+      "source": "development/perrier-native/kernel-patches/02-avoid-stock-pmic-reinit.patch",
+      "sha256": "375f1e3466bd91b38e6dc11b17052f23814370919f77f23fa2b6a236f80e0792",
+      "size": 307
+    },
+    "kernel-patches/03-force-readonly-emmc.patch": {
+      "source": "development/perrier-native/kernel-patches/03-force-readonly-emmc.patch",
+      "sha256": "cc40fce2261e7a3cf9114c517ed7b9fa99a88788dbe31d37d76434d702f287fe",
+      "size": 582
+    },
+    "kernel-patches/04-tc358765-perrier.patch": {
+      "source": "development/perrier-native/kernel-patches/04-tc358765-perrier.patch",
+      "sha256": "96d7f7a401e053877766df61a852406f088ab85b9bf391b59b72ebd0609c40e9",
+      "size": 7877
+    },
+    "kernel-patches/05-omap-dsi-pll.patch": {
+      "source": "development/perrier-native/kernel-patches/05-omap-dsi-pll.patch",
+      "sha256": "1fef322af3a31256641530b66dc52297cbd7aec7d71aabd6fb700779d94e0eff",
+      "size": 938
+    },
+    "kernel-patches/06-omap-dsi-timing.patch": {
+      "source": "development/perrier-native/kernel-patches/06-omap-dsi-timing.patch",
+      "sha256": "2af5a8cef7841a3a5059d1081d50667693471d83ed305163beba73162fca5433",
+      "size": 3923
+    },
+    "kernel-patches/07-omap-dispc-polarity.patch": {
+      "source": "development/perrier-native/kernel-patches/07-omap-dispc-polarity.patch",
+      "sha256": "baf49399508c2cd2b81cce779f0ffe32393da9ed5b4b3ca1d3baa4fdcd079fd4",
+      "size": 1056
+    },
+    "kernel-patches/08-perrier-dispc-core-clock.patch": {
+      "source": "development/perrier-native/kernel-patches/08-perrier-dispc-core-clock.patch",
+      "sha256": "76c818ee8330c9664be3746191b5807009010abd3b94d25313e249b7a8026a20",
+      "size": 978
+    },
+    "kernel-patches/README.md": {
+      "source": "development/perrier-native/kernel-patches/README.md",
+      "sha256": "6cfa1f0124caa3066e25d52fdc36c84553765f2a940984833291dc4da7842aaf",
+      "size": 2669
+    },
+    "kernel-patches/manifest.json": {
+      "source": "development/perrier-native/kernel-patches/manifest.json",
+      "sha256": "cd205e581caf9733185ed1e078c51733a456d2181a42d5bb326e379769e7d276",
+      "size": 3096
+    }
+  }
+}

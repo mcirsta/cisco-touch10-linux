@@ -1,0 +1,50 @@
+{
+  "validated_at": "2026-11-12T18:03:55.893+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram110",
+  "profile": "smp-boot-two",
+  "default_uboot_profile": false,
+  "scope": "One U-Boot RAM boot with CPU1 released during kernel startup",
+  "result": {
+    "cpu": "Serial reported two CPUs activated at 0.285 seconds; RAM reported online=0-1 and a CPU1-pinned read succeeded",
+    "activity": "Over 25 seconds CPU1 scheduler, function-call and timer-broadcast counts advanced; cpu1 user time rose 169 to 198 ticks",
+    "watchdog": "Mainline nowayout WDT2 fed at 120-second timeout; pings advanced from 9 to 14",
+    "storage": "eMMC stayed read-only and unmounted; factory p8 restored before RAM userspace",
+    "qt": "Started once and remained PID 141; no display cycles or Qt restarts requested",
+    "recovery": "Requested reboot returned stock Linux 3.4.113+ and Phoenix after 36.7 seconds; exact factory p8 and approved ADC postflight passed"
+  },
+  "limits": [
+    "One short run does not establish long-duration dual-core stability or thermal behavior under load.",
+    "U-Boot stops WDT2 and this image starts it at driver probe, leaving a pre-probe hang without proven automatic recovery.",
+    "CPU frequency, voltage, suspend and production power policy remain unqualified.",
+    "The ram104 profile remains the qualified default pending broader ram110 peripheral and network regression."
+  ],
+  "stock_recovered": true,
+  "recovery_mode": "requested_reboot",
+  "recovery_elapsed_seconds": 36.7,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "adc_postflight": true,
+  "parent_validation": {
+    "path": "development/kernel/validation-ram109.json",
+    "sha256": "cd987935173c255acb3ec6df2503790d2a18ac7de47c45e081ff104d36b4605d"
+  },
+  "image_review": {
+    "path": "development/perrier-ramenv/smp-boot-two/reviewed-image.json",
+    "sha256": "5dea6858644cc7c91cedcf8053a2e97696516946a6567373804ef83613bb9626"
+  },
+  "config_delta": {
+    "path": "development/kernel/configs/cpu1-boot-two-config-delta.json",
+    "sha256": "f2bf21886a24094cbe80d296275996cb4fa14cc37edf94c151598bdb0488b3fd"
+  },
+  "live_result": {
+    "path": "development/runs/20261112T180058Z-uboot-ram110-b3b712/result.json",
+    "sha256": "c1e86b0bbd292cf0fd40d2608957a908ac16be5a61e3e5132f0223544906c749"
+  },
+  "evidence": {
+    "serial.raw": "d20d72b13a03d0f8898b525d5a6b192e149aa3d78fca0c81b78564a9dccd9d85",
+    "ram-diagnostics.log": "a2dee9a5ef633e32dd3f367f7ece4e60518de4af22e49e6cce5384c280a78f60",
+    "qt-start.log": "c8caef6da9948255ca4c9e5147634105182f1d46726eb4391d5b9c2b99715496",
+    "cpu1-observation.log": "cc517c7263da984ed26290ebb90eb80bdf4c38903d60ea6c00de0dd48103aa30",
+    "diagnostics-adc-restore.log": "a0330872041173e65d768203368537e984528c4495ddfe3e818c683a299c9961"
+  }
+}

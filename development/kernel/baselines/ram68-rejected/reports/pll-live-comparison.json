@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "checks": {
+    "normal_n19": true,
+    "normal_m211": true,
+    "pixel_clock_identical": true,
+    "byte_clock_identical": true,
+    "bridge_VPCTRL_identical": true,
+    "bridge_HTIM1_identical": true,
+    "bridge_HTIM2_identical": true,
+    "bridge_VTIM1_identical": true,
+    "bridge_VTIM2_identical": true,
+    "bridge_LVCFG_identical": true,
+    "bridge_LVPHY0_identical": true,
+    "bridge_IDREG_identical": true
+  },
+  "expected_cfg1": "14a1a625"
+}

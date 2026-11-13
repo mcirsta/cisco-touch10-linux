@@ -1,0 +1,40 @@
+// SPDX-License-Identifier: GPL-2.0-only
+// RAM trial: use the OMAP4 matrix keypad controller for the three front keys.
+// Stock pinmux is inherited from kexec; no GPIO or rail is changed here.
+#include "../perrier-backlight/omap4-perrier-backlight.dts"
+#include <dt-bindings/input/input.h>
+#include <dt-bindings/input/linux-event-codes.h>
+
+&{/} {
+    target-module@4a31c000 {
+        compatible = "ti,sysc-omap4", "ti,sysc";
+        reg = <0x4a31c000 4>, <0x4a31c010 4>, <0x4a31c014 4>;
+        reg-names = "rev", "sysc", "syss";
+        ti,no-reset-on-init;
+        ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
+                         SYSC_OMAP2_EMUFREE |
+                         SYSC_OMAP2_ENAWAKEUP |
+                         SYSC_OMAP2_SOFTRESET |
+                         SYSC_OMAP2_AUTOIDLE)>;
+        ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+                        <SYSC_IDLE_SMART>;
+        ti,syss-mask = <1>;
+        clocks = <&l4_wkup_clkctrl OMAP4_KBD_CLKCTRL 0>;
+        clock-names = "fck";
+        #address-cells = <1>;
+        #size-cells = <1>;
+        ranges = <0 0x4a31c000 0x1000>;
+
+        perrier_keypad: keypad@0 {
+            compatible = "ti,omap4-keypad";
+            reg = <0 0x80>;
+            reg-names = "mpu";
+            interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
+            keypad,num-rows = <2>;
+            keypad,num-columns = <6>;
+            linux,keymap = <MATRIX_KEY(0, 4, KEY_VOLUMEDOWN)
+                            MATRIX_KEY(1, 4, KEY_MUTE)
+                            MATRIX_KEY(1, 5, KEY_VOLUMEUP)>;
+        };
+    };
+};

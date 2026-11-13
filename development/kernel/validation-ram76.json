@@ -1,0 +1,98 @@
+{
+  "validated_at": "2026-11-10T18:31:21.742674+00:00",
+  "status": "not-promoted",
+  "kernel": "6.18.48-perrier-ram76",
+  "profile": "dsi-command-clock",
+  "default_uboot_profile": false,
+  "visual_status": "passed",
+  "initial_owner_confirmation": "Visible, clean and aligned",
+  "final_owner_confirmation": "Still clean and aligned",
+  "manual_display_cycles": 3,
+  "qt_restarts": 3,
+  "changes": [
+    "Use existing command-channel HS control and bounded NULL send/sync for clock priming",
+    "Restore pristine mainline dsi_setup_dsi_vcs and its VP source for VC_VIDEO",
+    "Fix generic packet completion callbacks to inspect the waited virtual channel"
+  ],
+  "generic_vc_regression_tests": "24 failing baseline cases pass with channel context fix",
+  "cycle_issue": {
+    "bridge_error_count": [
+      "c0800001",
+      "c0800002",
+      "c0800003",
+      "c0800004"
+    ],
+    "DSI_INTSTATUS_before": "00000002",
+    "DSI_INTSTATUS_after": "00000802",
+    "final_idle_counter": "c0800004",
+    "interpretation": "New count at each restart; no observed idle growth; bit-level cause unproven"
+  },
+  "host_irq_note": "DSI_IRQSTATUS=0x80 is PLL_LOCK, not a host error; occupied VP FIFO is not alone a failure indicator",
+  "dtb_byte_identical_to_ram70": true,
+  "gpio_pad_supply_pwm_timing_unchanged": true,
+  "watchdog_expiry_recovery_seconds": 154.9,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "stock_recovered": true,
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram76/snapshot.json",
+    "sha256": "96e1874f2b4ac2b15d4cfe6b9a79759c491601def41d624f34d2839118b6ce8a"
+  },
+  "source_manifest": {
+    "path": "development/kernel/baselines/ram76/patches/manifest.json",
+    "sha256": "26b95eba03c1fb0303a65f38277c60b9c0309780ae16027bc8ce4b8b29480e3d"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram76/reports/source-checks.json",
+    "sha256": "bf9f5a570565c00b37ac15ba5643503bf8660701d7b24f2ceb1a78420c8964f4"
+  },
+  "vc_regression_tests": {
+    "path": "development/kernel/baselines/ram76/reports/dsi-vc-tests.json",
+    "sha256": "d32b39f0877f73c556655aa0f1c4ac81152d4c97d44997ce0d358aa594e3bfb3"
+  },
+  "image_review": {
+    "path": "development/perrier-ramenv/dsi-command-clock/reviewed-image.json",
+    "sha256": "7f5b4461344ef4114875d274a3ae04322a5906bbf31b107e92edbea3f54ad026"
+  },
+  "initial_physical_confirmation": {
+    "path": "development/runs/20261110T181907Z-uboot-ram76-2e9d0d/initial-physical-confirmation.json",
+    "sha256": "550575c8b44ececde9628dfdccf208b9a5239f858e61ba35570b9661e2821ee5"
+  },
+  "final_physical_confirmation": {
+    "path": "development/runs/20261110T181907Z-uboot-ram76-2e9d0d/final-physical-confirmation.json",
+    "sha256": "07164e3f8d78acaf7c9e7e557c451908b8736ad23d93f37260642ed30f59c8b6"
+  },
+  "live_result": {
+    "path": "development/runs/20261110T181907Z-uboot-ram76-2e9d0d/result.json",
+    "sha256": "edaa8c4545ad8623c6342af0ad47944d2c27a031c5316f67bcdce2ef35393544"
+  },
+  "live_diagnostics": {
+    "path": "development/runs/20261110T181907Z-uboot-ram76-2e9d0d/confirmed-after.log",
+    "sha256": "28f79b2c425d7b8049c1284ab8ef2551fbdcc8d490924a7e628b36273d4003c3"
+  },
+  "framebuffer_screenshot": {
+    "path": "development/runs/20261110T181907Z-uboot-ram76-2e9d0d/confirmed-framebuffer.png",
+    "sha256": "33825cc152183cd9434ee7e66e903546a2cdb239087b2bb1b0fcc1f388196383"
+  },
+  "cycle_diagnostics": {
+    "path": "development/runs/20261110T181907Z-uboot-ram76-2e9d0d/three-cycles-after.log",
+    "sha256": "f47e92ef0ea27a2179d00ea19bf4758ba5ef8c16377791e3e186605be096e747"
+  },
+  "register_comparison": {
+    "path": "development/kernel/out/display-finalization/register-comparison-ram75-ram76.json",
+    "sha256": "a2ed65ebcbd38186cc9b36d7919b58e51209ddd08c770b7166742e4d999ec41f"
+  },
+  "previous_qualified": {
+    "path": "development/kernel/validation-ram75.json",
+    "sha256": "3a9cd683763b8f186eebd34201d8ffcc0e108cc5f4c790e60e3c68553987e4f0"
+  },
+  "fallback": {
+    "profile": "display-onoff",
+    "kernel": "6.18.48-perrier-ram70",
+    "validation": {
+      "path": "development/kernel/validation-ram70.json",
+      "sha256": "022ffac9182eafb9ea0368f66cbe6cd76049f88ea7ee8c864674457f5dfbc520"
+    }
+  },
+  "next": "Isolate standard regmap transport, then assert/release the bridge reset and reprogram after the reference delay"
+}

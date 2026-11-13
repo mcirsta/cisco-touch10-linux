@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "kernel": "6.18.48-perrier-ram25",
+  "purpose": "guarded 1280x800 DRM modeset with RAM dumb-buffer pattern for 45 seconds",
+  "limitations": [
+    "bridge and panel physical supplies are inherited; logical regulators have no control GPIO",
+    "only stock GPIO102 reset is controlled; GPIO4 bank is not reset on init",
+    "no backlight driver or panel rail sequencing"
+  ],
+  "artifacts": {
+    "zImage": {
+      "size": 3684944,
+      "sha256": "debc396e211969a18b1f59a12a9dab39dc7da2596082577425e2c39167656057"
+    },
+    "board.dtb": {
+      "size": 91662,
+      "sha256": "87f1371e3c32c0c65c42e7a4b1aafad8085af11d20482089a139bdfc0068bb61"
+    },
+    "kexec": {
+      "size": 1660848,
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6"
+    }
+  }
+}

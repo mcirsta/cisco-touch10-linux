@@ -1,0 +1,52 @@
+{
+  "validated_at": "2026-11-10T13:32:37.159950+00:00",
+  "status": "unqualified-visual-failure",
+  "kernel": "6.18.48-perrier-ram71",
+  "profile": "display-align",
+  "onoff": 0,
+  "align": 1,
+  "pol_freq1_readback": "0x00040000",
+  "owner_confirmation": "red line now",
+  "failure_phase": "initial running Qt screen, before an additional manual blank/unblank test",
+  "red_line_absent_from_framebuffer": true,
+  "touch_reports_in_framebuffer": 0,
+  "pll_n": 19,
+  "pll_m": 211,
+  "bridge_registers_compared_to_ram70": 31,
+  "bridge_readbacks_identical_to_ram70": true,
+  "watchdog_expiry_recovery_seconds": 150.6,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "image_review": {
+    "path": "development/perrier-ramenv/display-align/reviewed-image.json",
+    "sha256": "f9f82236674a973dfa0a84739c0b124a9a9b597ab1cbf4739911982efd1d3a75"
+  },
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram71/snapshot.json",
+    "sha256": "69fe6b5d8843db408b76c61dadc5dc0abd9c627862d383ce4d7cf662cdb292a9"
+  },
+  "physical_confirmation": {
+    "path": "development/runs/20261110T132640Z-uboot-ram71-e8e44b/physical-confirmation.json",
+    "sha256": "5610ef35941b3843fd5ac9884faa63a41a27c0ec31f8825d94e129310238b6f7"
+  },
+  "live_result": {
+    "path": "development/runs/20261110T132640Z-uboot-ram71-e8e44b/result.json",
+    "sha256": "bc0576b91e4e834a60107eb9746c0e47cf944c697fe314cd7b7db08fa8054d80"
+  },
+  "live_diagnostics": {
+    "path": "development/runs/20261110T132640Z-uboot-ram71-e8e44b/red-line-live.log",
+    "sha256": "96a9a118169cf55f80a545cc9bcda5ae4f746ec4122c13a6d3b350bfc5a9770f"
+  },
+  "framebuffer_capture": {
+    "path": "development/runs/20261110T132640Z-uboot-ram71-e8e44b/red-line-framebuffer.png",
+    "sha256": "435ea76ebfaf52b05d7b7c2c95ca09dd4547d435739fdb763ff0157e919b77c6"
+  },
+  "promoted": false,
+  "fallback": {
+    "profile": "display-pll-only",
+    "kernel": "6.18.48-perrier-ram69",
+    "validation": {
+      "path": "development/kernel/validation-ram69.json",
+      "sha256": "60c2f4f95fb407f03da2f67f26d87e5f901ad8bd9ba57cba3e5e37078ae6a179"
+    }
+  }
+}

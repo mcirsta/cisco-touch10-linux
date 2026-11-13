@@ -1,0 +1,117 @@
+{
+  "kernel": "6.18.48-perrier-ram59",
+  "profile": "native-watchdog",
+  "artifacts": {
+    "zImage": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-watchdog/kernel-build/arch/arm/boot/zImage",
+      "sha256": "207acbcbcc5de16cccd79face65d4998b166c6f9f8f1696791e7f8816d503651",
+      "size": 17038240
+    },
+    "board.dtb": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-watchdog/board.dtb",
+      "sha256": "4bc2cf5b9c8d525bfa63f9c568e970d5987b0fa025b937c8b8062a5dcfbb5abf",
+      "size": 95448
+    },
+    "kexec": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier/kexec-legacy-fdt",
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6",
+      "size": 1660848
+    }
+  },
+  "inputs": {
+    "baseline_review": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-thermal/reviewed-image.json",
+      "sha256": "dd44d24f5600b6818de5fa2d4d32aca55231f9554eec5e46d50c54b0fb330f3f"
+    },
+    "guard_source": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-watchdog/ram_guard_device.c",
+      "sha256": "41a5f49b7c79b1e6573143ffb6a4b9d6413c3c6813459f292bba726c59bcf4e9"
+    },
+    "watchdog_dts": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-watchdog/omap4-perrier-watchdog.dts",
+      "sha256": "f561e4c5d03eaf45cd9edffaf45ef5f853788874c95fa84b64acfd5a08c17390"
+    },
+    "omap_wdt_source": {
+      "path": "/home/marius/ext_proj/touch10/development/sources/linux-6.18.48/drivers/watchdog/omap_wdt.c",
+      "sha256": "2893d9231423b182ad2ec5557e8e739ea0ada73824cf193957e0884f340b8338"
+    },
+    "watchdog_core_source": {
+      "path": "/home/marius/ext_proj/touch10/development/sources/linux-6.18.48/drivers/watchdog/watchdog_dev.c",
+      "sha256": "07e4291f639506d558d9eaf0176f7b901ab132580f1800c58dc2340c70814bf2"
+    },
+    "ti_sysc_source": {
+      "path": "/home/marius/ext_proj/touch10/development/sources/linux-6.18.48/drivers/bus/ti-sysc.c",
+      "sha256": "4087a22cf757aa9853b12efe496464778c9b46dc48fa925d6704847ac7b2fa12"
+    },
+    "native_patch_manifest": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-native/kernel-patches/manifest.json",
+      "sha256": "e0110fb9e076a9795fae41ac8ca3e8fb11ee54b8dcd5c7359fc03d1993ac7abc"
+    },
+    "touch_patch_manifest": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-touch/kernel-patches/manifest.json",
+      "sha256": "df91ad935c8688a97ce62d405c4d2e305fa91204a5d370e582722b463d169af3"
+    }
+  },
+  "initramfs_sha256": "324d2d88e6aec66b48024d95438997ba80d138659ded1ce9b4538e28237b54fb",
+  "rootfs_manifest_sha256": "e298afff5d656df6ac8bd69e60c3c4d9b016a0d6c4bb43843d1bbdbb7e9d1be5",
+  "kernel_config_sha256": "9279aa00dbc7c087ff33f356b6711d35f685012d28cc94c4d70a038b20e46869",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "passed": true,
+  "kernel_span_bytes": 20779936,
+  "config_changes": {
+    "CONFIG_WATCHDOG_SYSFS": [
+      null,
+      "y"
+    ],
+    "CONFIG_WATCHDOG_CORE": [
+      null,
+      "y"
+    ],
+    "CONFIG_WATCHDOG_NOWAYOUT": [
+      null,
+      "y"
+    ],
+    "CONFIG_WATCHDOG": [
+      null,
+      "y"
+    ],
+    "CONFIG_CMDLINE": [
+      "\"console=ttyS0,115200 earlycon=omap8250,mmio32,0x48020000 keep_bootcon ignore_loglevel clk_ignore_unused pd_ignore_unused initcall_blacklist=omap2_common_pm_late_init panic=5\"",
+      "\"console=ttyS0,115200 earlycon=omap8250,mmio32,0x48020000 keep_bootcon ignore_loglevel clk_ignore_unused pd_ignore_unused initcall_blacklist=omap2_common_pm_late_init panic=5 omap_wdt.early_enable=1 omap_wdt.timer_margin=120\""
+    ],
+    "CONFIG_WATCHDOG_OPEN_TIMEOUT": [
+      null,
+      "60"
+    ],
+    "CONFIG_OMAP_WATCHDOG": [
+      null,
+      "y"
+    ],
+    "CONFIG_WATCHDOG_HANDLE_BOOT_ENABLED": [
+      null,
+      "y"
+    ],
+    "CONFIG_LOCALVERSION": [
+      "\"-perrier-ram58\"",
+      "\"-perrier-ram59\""
+    ],
+    "CONFIG_INITRAMFS_SOURCE": [
+      "\"/home/marius/ext_proj/touch10/development/perrier-ramenv/native-thermal/initramfs.cpio\"",
+      "\"/home/marius/ext_proj/touch10/development/perrier-ramenv/native-watchdog/initramfs.cpio\""
+    ]
+  },
+  "rootfs_changes": [
+    "etc/init.d/rcS",
+    "usr/sbin/ram-guard"
+  ],
+  "dt_audit": {
+    "new_nodes": [
+      "/target-module@4a314000",
+      "/target-module@4a314000/watchdog@0"
+    ],
+    "other_hardware_properties_unchanged": true
+  },
+  "watchdog_backend": "linux-watchdog",
+  "hardware_expiry_proven": false,
+  "purpose": "Cold-start OMAP WDT2 through mainline driver with bounded host lease"
+}

@@ -1,0 +1,22 @@
+{
+  "include/linux/leds.h": {
+    "url": "https://raw.githubusercontent.com/torvalds/linux/v3.4/include/linux/leds.h",
+    "sha256": "6e16763604c2a2b28cdfd22d69a09ddcdefca0da386d7d44f392fdb1f0ce5e02",
+    "bytes": 6234
+  },
+  "drivers/leds/leds-gpio.c": {
+    "url": "https://raw.githubusercontent.com/torvalds/linux/v3.4/drivers/leds/leds-gpio.c",
+    "sha256": "8f1ca694f846a6657ff5744e51d5e9fb0961a5d10a7b12f24670c9786344356c",
+    "bytes": 7604
+  },
+  "include/linux/leds_pwm.h": {
+    "url": "https://raw.githubusercontent.com/torvalds/linux/v3.4/include/linux/leds_pwm.h",
+    "sha256": "b7888259ec9cd856fbdd14b4a26ab62f6e1a3f4b64184731d9ecbccb07f896d7",
+    "bytes": 355
+  },
+  "drivers/leds/leds-pwm.c": {
+    "url": "https://raw.githubusercontent.com/torvalds/linux/v3.4/drivers/leds/leds-pwm.c",
+    "sha256": "bc9c4dc994aac0ba65a4f95f408ee35f6daf7fe96b1c3c94ac1f5f8d7f77a343",
+    "bytes": 3401
+  }
+}

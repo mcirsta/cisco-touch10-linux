@@ -1,0 +1,605 @@
+{
+  "kernel": "6.18.48-perrier-ram99",
+  "profile": "speaker-audio",
+  "artifacts": {
+    "zImage": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/speaker-audio/kernel-build/arch/arm/boot/zImage",
+      "size": 17533984,
+      "sha256": "049be7d7bc39b413dc4f8c3dfe2249c2c4ed0e8c3c65ce30fe346a3cff0912df"
+    },
+    "board.dtb": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/speaker-audio/board.dtb",
+      "size": 94588,
+      "sha256": "3f01b97ba18d434b46c2575214bd17613eec3fd300a58f5f38d14d112071ab26"
+    },
+    "kexec": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier/kexec-legacy-fdt",
+      "size": 1660848,
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6"
+    }
+  },
+  "inputs": {
+    "baseline_review": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-audio/reviewed-image.json",
+      "sha256": "51639b76af366d8daa7055732cf9a8067860798ee9e32aa889c482a948338790"
+    },
+    "watchdog_proof": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-watchdog/watchdog-proof.json",
+      "sha256": "3f23c890d5d390efa07fd63dd6c4231d0aa0fa0e6f84687e2b82e3a9203f36cf"
+    },
+    "confirmed_baseline": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/validation-ram97.json",
+      "sha256": "abecb4647db4401d75c9ef1b001dec834e9abcfe24e1e79309c9514f5747aac6"
+    },
+    "qt_app_source": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/main.cpp",
+      "sha256": "9fc6e7f536174e021301d350c7fbe80abf2646fb51ed55af9fb6e4995ba38a55"
+    },
+    "qt_ui_source": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/Main.qml",
+      "sha256": "7e38de561b52f26b6aac8270ee0ec8d7567c1910e3fa5f1044d2f5cdf215b3b5"
+    },
+    "qt_audio_source": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/audio_backend.cpp",
+      "sha256": "96cdb2ea9e10570d0e33dd80ca27cddc5444acca0c1d9913695c2ab793338bef"
+    },
+    "qt_audio_header": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/audio_backend.h",
+      "sha256": "766e720d9a4d4e7fe9244dbef0b53a6b435a61019f4b2162ada8a7ca06aef936"
+    },
+    "qt_pcm_setup": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/pcm_setup.h",
+      "sha256": "ae553591dfbe272ee580041c1089964e703b5e1700268960ead3a276a55f3afa"
+    },
+    "alsa_manifest": {
+      "path": "/home/marius/ext_proj/touch10/development/audio/application-manifest.json",
+      "sha256": "1fdcbe85b41b8b3e1e30687506e0b1c8bf09685ce6f03b755a5b0472651ff39d"
+    },
+    "alsa_config": {
+      "path": "/home/marius/ext_proj/touch10/development/audio/asound.conf",
+      "sha256": "b07629d177b6bdbb8f60b674f0476410c174b62f0990364883c4cf21764a5b3c"
+    },
+    "alsa_build_script": {
+      "path": "/home/marius/ext_proj/touch10/development/audio/build_application_audio.py",
+      "sha256": "9a7a5557e8db8f31530ddd64a3c25e9b4d0d2859689da007106e2eb259f5c160"
+    },
+    "conversion_test": {
+      "path": "/home/marius/ext_proj/touch10/development/audio/test_conversion.py",
+      "sha256": "bc4964513afac8493735d2afdd5fba770e53099ca49063634a0531b1af4107a7"
+    },
+    "conversion_checks": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/out/application-audio/conversion-checks.json",
+      "sha256": "9145ac205217ad0fa15f33de50a806cd4ff622757cad933c78a5e59366b07569"
+    },
+    "qt_runtime_manifest": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/runtime-manifest.json",
+      "sha256": "171e52d63cdf2903d5441d1ea491a59809ffd5b5dddc14166ba13f12ae5f4d34"
+    },
+    "source_manifest": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/patches/manifest.json",
+      "sha256": "b636c4d1088d4a1671cb1b782c9b61cd8b30081bf4eac43c7362373f67e8cc7b"
+    },
+    "ram_config": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/configs/perrier-ram.config",
+      "sha256": "32e7929896a746ac53a79c9e6278af64cf5b6f2139dbccf29c4a94c6abd1bbb4"
+    },
+    "bus_policy": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/configs/bus-layout.json",
+      "sha256": "ec657b0890c3a1dd6491ba7e52605ac20e785aa3452151e61493f3c01de01a19"
+    },
+    "hardware_dtsi": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/source/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier.dtsi",
+      "sha256": "fc6b845ecd45e80dd8c11d3e76a68255939705901f11891a081134b9083a25e1"
+    },
+    "ram_dts": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/source/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier-ram.dts",
+      "sha256": "c2a75bec113256fdce5586139a32f3da98dce72f9cdea152179bf8f2c586b4e0"
+    }
+  },
+  "rootfs_manifest_sha256": "77bb480db3015c8246af0925f87ed02c170ac98bf98eb0e6919c985a12c44f9f",
+  "initramfs_sha256": "f6a5d1f3ff7ddd26d404be6ace4838a411fbffc98683a5e074dc9612f4c971a2",
+  "kernel_config_sha256": "29a85c51a8c4e90fe6057de8d44c2ee20bee66c744442a88c0779fef9a35e2d8",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "watchdog_backend": "linux-watchdog",
+  "passed": true,
+  "kernel_span_bytes": 21506528,
+  "dt_audit": {
+    "passed": true,
+    "properties_compared": 406,
+    "physical_register_ranges_compared": 72,
+    "enabled_upstream_targets": [
+      "/ocp/interconnect@40100000/segment@0/target-module@32000",
+      "/ocp/interconnect@48000000/segment@0/target-module@20000",
+      "/ocp/interconnect@48000000/segment@0/target-module@57000",
+      "/ocp/interconnect@48000000/segment@0/target-module@59000",
+      "/ocp/interconnect@48000000/segment@0/target-module@5b000",
+      "/ocp/interconnect@48000000/segment@0/target-module@5d000",
+      "/ocp/interconnect@48000000/segment@0/target-module@60000",
+      "/ocp/interconnect@48000000/segment@0/target-module@70000",
+      "/ocp/interconnect@48000000/segment@0/target-module@72000",
+      "/ocp/interconnect@48000000/segment@0/target-module@86000",
+      "/ocp/interconnect@48000000/segment@0/target-module@b4000",
+      "/ocp/interconnect@48000000/segment@200000/target-module@150000",
+      "/ocp/interconnect@4a000000/segment@0/target-module@2000",
+      "/ocp/interconnect@4a000000/segment@0/target-module@4000",
+      "/ocp/interconnect@4a000000/segment@0/target-module@56000",
+      "/ocp/interconnect@4a000000/segment@0/target-module@64000",
+      "/ocp/interconnect@4a000000/segment@0/target-module@8000",
+      "/ocp/interconnect@4a000000/segment@100000/target-module@0",
+      "/ocp/interconnect@4a300000/segment@0/target-module@4000",
+      "/ocp/interconnect@4a300000/segment@0/target-module@6000",
+      "/ocp/interconnect@4a300000/segment@0/target-module@a000",
+      "/ocp/interconnect@4a300000/segment@10000/target-module@4000",
+      "/ocp/interconnect@4a300000/segment@10000/target-module@8000",
+      "/ocp/interconnect@4a300000/segment@10000/target-module@c000",
+      "/ocp/target-module@58000000",
+      "/ocp/target-module@58000000/dss@0/target-module@1000",
+      "/ocp/target-module@58000000/dss@0/target-module@4000"
+    ],
+    "moved_nodes": [
+      [
+        "/serial@48020000",
+        "/ocp/interconnect@48000000/segment@0/target-module@20000/serial@0"
+      ],
+      [
+        "/target-module@48060000",
+        "/ocp/interconnect@48000000/segment@0/target-module@60000"
+      ],
+      [
+        "/target-module@48060000/i2c@0",
+        "/ocp/interconnect@48000000/segment@0/target-module@60000/i2c@0"
+      ],
+      [
+        "/target-module@48060000/i2c@0/bridge@f",
+        "/ocp/interconnect@48000000/segment@0/target-module@60000/i2c@0/bridge@f"
+      ],
+      [
+        "/target-module@48060000/i2c@0/bridge@f/ports",
+        "/ocp/interconnect@48000000/segment@0/target-module@60000/i2c@0/bridge@f/ports"
+      ],
+      [
+        "/target-module@48060000/i2c@0/bridge@f/ports/port@0",
+        "/ocp/interconnect@48000000/segment@0/target-module@60000/i2c@0/bridge@f/ports/port@0"
+      ],
+      [
+        "/target-module@48060000/i2c@0/bridge@f/ports/port@0/endpoint",
+        "/ocp/interconnect@48000000/segment@0/target-module@60000/i2c@0/bridge@f/ports/port@0/endpoint"
+      ],
+      [
+        "/target-module@48060000/i2c@0/bridge@f/ports/port@1",
+        "/ocp/interconnect@48000000/segment@0/target-module@60000/i2c@0/bridge@f/ports/port@1"
+      ],
+      [
+        "/target-module@48060000/i2c@0/bridge@f/ports/port@1/endpoint",
+        "/ocp/interconnect@48000000/segment@0/target-module@60000/i2c@0/bridge@f/ports/port@1/endpoint"
+      ],
+      [
+        "/target-module@48060000/i2c@0/temperature-sensor@48",
+        "/ocp/interconnect@48000000/segment@0/target-module@60000/i2c@0/temperature-sensor@48"
+      ],
+      [
+        "/target-module@48072000",
+        "/ocp/interconnect@48000000/segment@0/target-module@72000"
+      ],
+      [
+        "/target-module@48072000/i2c@0",
+        "/ocp/interconnect@48000000/segment@0/target-module@72000/i2c@0"
+      ],
+      [
+        "/target-module@48072000/i2c@0/touchscreen@67",
+        "/ocp/interconnect@48000000/segment@0/target-module@72000/i2c@0/touchscreen@67"
+      ],
+      [
+        "/target-module@4a056000",
+        "/ocp/interconnect@4a000000/segment@0/target-module@56000"
+      ],
+      [
+        "/target-module@4a056000/dma-controller@0",
+        "/ocp/interconnect@4a000000/segment@0/target-module@56000/dma-controller@0"
+      ],
+      [
+        "/target-module@480b4000",
+        "/ocp/interconnect@48000000/segment@0/target-module@b4000"
+      ],
+      [
+        "/target-module@480b4000/mmc@0",
+        "/ocp/interconnect@48000000/segment@0/target-module@b4000/mmc@0"
+      ],
+      [
+        "/target-module@4a064000",
+        "/ocp/interconnect@4a000000/segment@0/target-module@64000"
+      ],
+      [
+        "/target-module@4a064000/usbhshost@0",
+        "/ocp/interconnect@4a000000/segment@0/target-module@64000/usbhshost@0"
+      ],
+      [
+        "/target-module@4a064000/usbhshost@0/usb@c00",
+        "/ocp/interconnect@4a000000/segment@0/target-module@64000/usbhshost@0/usb@c00"
+      ],
+      [
+        "/target-module@4a064000/usbhshost@0/usb@c00/ethernet@1",
+        "/ocp/interconnect@4a000000/segment@0/target-module@64000/usbhshost@0/usb@c00/ethernet@1"
+      ],
+      [
+        "/target-module@48059000",
+        "/ocp/interconnect@48000000/segment@0/target-module@59000"
+      ],
+      [
+        "/target-module@48059000/gpio@0",
+        "/ocp/interconnect@48000000/segment@0/target-module@59000/gpio@0"
+      ],
+      [
+        "/target-module@4805d000",
+        "/ocp/interconnect@48000000/segment@0/target-module@5d000"
+      ],
+      [
+        "/target-module@4805d000/gpio@0",
+        "/ocp/interconnect@48000000/segment@0/target-module@5d000/gpio@0"
+      ],
+      [
+        "/target-module@58000000",
+        "/ocp/target-module@58000000"
+      ],
+      [
+        "/target-module@58000000/dss@0",
+        "/ocp/target-module@58000000/dss@0"
+      ],
+      [
+        "/target-module@58000000/dss@0/target-module@1000",
+        "/ocp/target-module@58000000/dss@0/target-module@1000"
+      ],
+      [
+        "/target-module@58000000/dss@0/target-module@1000/dispc@0",
+        "/ocp/target-module@58000000/dss@0/target-module@1000/dispc@0"
+      ],
+      [
+        "/target-module@58000000/dss@0/target-module@4000",
+        "/ocp/target-module@58000000/dss@0/target-module@4000"
+      ],
+      [
+        "/target-module@58000000/dss@0/target-module@4000/encoder@0",
+        "/ocp/target-module@58000000/dss@0/target-module@4000/encoder@0"
+      ],
+      [
+        "/target-module@58000000/dss@0/target-module@4000/encoder@0/port",
+        "/ocp/target-module@58000000/dss@0/target-module@4000/encoder@0/port"
+      ],
+      [
+        "/target-module@58000000/dss@0/target-module@4000/encoder@0/port/endpoint",
+        "/ocp/target-module@58000000/dss@0/target-module@4000/encoder@0/port/endpoint"
+      ],
+      [
+        "/target-module@4805b000",
+        "/ocp/interconnect@48000000/segment@0/target-module@5b000"
+      ],
+      [
+        "/target-module@4805b000/gpio@0",
+        "/ocp/interconnect@48000000/segment@0/target-module@5b000/gpio@0"
+      ],
+      [
+        "/target-module@4805b000/gpio@0/lan-reset-hog",
+        "/ocp/interconnect@48000000/segment@0/target-module@5b000/gpio@0/lan-reset-hog"
+      ],
+      [
+        "/target-module@48086000",
+        "/ocp/interconnect@48000000/segment@0/target-module@86000"
+      ],
+      [
+        "/target-module@48086000/timer@0",
+        "/ocp/interconnect@48000000/segment@0/target-module@86000/timer@0"
+      ],
+      [
+        "/target-module@4a31c000",
+        "/ocp/interconnect@4a300000/segment@10000/target-module@c000"
+      ],
+      [
+        "/target-module@4a31c000/keypad@0",
+        "/ocp/interconnect@4a300000/segment@10000/target-module@c000/keypad@0"
+      ],
+      [
+        "/target-module@48057000",
+        "/ocp/interconnect@48000000/segment@0/target-module@57000"
+      ],
+      [
+        "/target-module@48057000/gpio@0",
+        "/ocp/interconnect@48000000/segment@0/target-module@57000/gpio@0"
+      ],
+      [
+        "/bandgap@4a002260",
+        "/ocp/bandgap@4a002260"
+      ],
+      [
+        "/target-module@4a314000",
+        "/ocp/interconnect@4a300000/segment@10000/target-module@4000"
+      ],
+      [
+        "/target-module@4a314000/watchdog@0",
+        "/ocp/interconnect@4a300000/segment@10000/target-module@4000/wdt@0"
+      ],
+      [
+        "/pinctrl@4a100040",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40"
+      ],
+      [
+        "/pinctrl@4a100040/ethernet-phy-pins",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/ethernet-phy-pins"
+      ],
+      [
+        "/pinctrl@4a100040/lan-reset-pins",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/lan-reset-pins"
+      ],
+      [
+        "/pinctrl@4a100040/backlight-5v-pin",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/backlight-5v-pin"
+      ],
+      [
+        "/pinctrl@4a100040/backlight-pwm-pin",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/backlight-pwm-pin"
+      ],
+      [
+        "/pinctrl@4a100040/backlight-enable-pin",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/backlight-enable-pin"
+      ],
+      [
+        "/pinctrl@4a100040/touch-5v-pin",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/touch-5v-pin"
+      ],
+      [
+        "/pinctrl@4a100040/touch-3v3-pin",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/touch-3v3-pin"
+      ],
+      [
+        "/pinctrl@4a100040/touch-pins",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/touch-pins"
+      ],
+      [
+        "/pinctrl@4a100040/touch-i2c-pins",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/touch-i2c-pins"
+      ]
+    ],
+    "documented_soc_corrections": [
+      "Keypad parent uses the upstream OMAP2 SYSC layout"
+    ],
+    "gpio_regulator_pad_pwm_timing_properties_unchanged": true,
+    "ram_power_domain_policy_preserved": true,
+    "reference_dtb_sha256": "59bc433f7e0a9d9244114159f77bb630828b4c7b5c5a80f6ad9aa6ca9ce84eeb",
+    "candidate_dtb_sha256": "3f01b97ba18d434b46c2575214bd17613eec3fd300a58f5f38d14d112071ab26"
+  },
+  "peripheral_audit": {
+    "passed": true,
+    "pmic_node": "/ocp/interconnect@48000000/segment@0/target-module@70000/i2c@0/pmic@48",
+    "rtc_node": "/ocp/interconnect@48000000/segment@0/target-module@70000/i2c@0/pmic@48/rtc",
+    "gpio_node": "/ocp/interconnect@48000000/segment@200000/target-module@150000/i2c@0/gpio@24",
+    "reference_dtb_sha256": "451e6195abae32a02096f1dcb4ce07ae3e2d2deca3383301faad571246c93d15",
+    "candidate_dtb_sha256": "3f01b97ba18d434b46c2575214bd17613eec3fd300a58f5f38d14d112071ab26",
+    "existing_properties_identical": 3404,
+    "display_unchanged": true,
+    "gpio_consumers_reset_irq_and_initial_output_changes_absent": true,
+    "gpio_state_retained_at_shutdown": true,
+    "clock_consumers_absent": false,
+    "codec_node": "/ocp/interconnect@48000000/segment@0/target-module@70000/i2c@0/audio-codec@4b",
+    "mcpdm_node": "/ocp/interconnect@40100000/segment@0/target-module@32000/mcpdm@0",
+    "audio_control_pins": "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/audio-control-pins",
+    "mcpdm_pins": "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/mcpdm-pins",
+    "display_and_non_audio_wiring_preserved": true,
+    "only_right_handsfree_and_earpiece_routed": true,
+    "physical_supplies_unmanaged_as_stock": true,
+    "audio_clock_consumers_exact": true
+  },
+  "unchanged_kernel_and_hardware_reuse_ram97_checks": true,
+  "application_conversion_checks": {
+    "passed": true,
+    "runner": "qemu-arm cortex-a9",
+    "only_hardware_sink_replaced": true,
+    "asound_conf_sha256": "b07629d177b6bdbb8f60b674f0476410c174b62f0990364883c4cf21764a5b3c",
+    "libasound_sha256": "e0cef33ccf8c278259b5754a97834d9bbc28a3d7c6ad480ed9e2c88b319a85e2",
+    "aplay_sha256": "43a728a92147aa97c5557c2facbc8ea6801f9b4dc593e1fbf1333fc0d406ea6a",
+    "cases": {
+      "mono": {
+        "input_channels": 1,
+        "input_rate": 48000,
+        "input_format": "S16_LE",
+        "output_frames": 10560,
+        "output_rate": 96000,
+        "output_channels": 4,
+        "output_format": "S32_LE",
+        "silent_slots": [
+          0,
+          1,
+          2
+        ],
+        "hfr_peak_ratio": 1.0,
+        "expected_ratio": 1,
+        "capture_sha256": "62649626f62ac18c865024a05f970738226b5bacd33d472d339b59ff438a7d15",
+        "input_sha256": "85c21534927dff65e7b6ca09bae923f076ca02760f0c36646e508f1305f7964f",
+        "config_sha256": "d8738e9fe98915b0b34378ca65a6e1698e40a9a6083e63d2d9ab2408cc2b3ef2"
+      },
+      "stereo": {
+        "input_channels": 2,
+        "input_rate": 48000,
+        "input_format": "S16_LE",
+        "output_frames": 10560,
+        "output_rate": 96000,
+        "output_channels": 4,
+        "output_format": "S32_LE",
+        "silent_slots": [
+          0,
+          1,
+          2
+        ],
+        "hfr_peak_ratio": 1.0,
+        "expected_ratio": 1,
+        "capture_sha256": "62649626f62ac18c865024a05f970738226b5bacd33d472d339b59ff438a7d15",
+        "input_sha256": "82b4e1bb8d9e7e63408662577401f45103ac0eb366cf9821495e5561aca3c4b5",
+        "config_sha256": "61d12f6021e951ebbd5f93f32ac00a0364d2baa105327a08a39c1f9c77001150"
+      },
+      "left": {
+        "input_channels": 2,
+        "input_rate": 48000,
+        "input_format": "S16_LE",
+        "output_frames": 10560,
+        "output_rate": 96000,
+        "output_channels": 4,
+        "output_format": "S32_LE",
+        "silent_slots": [
+          0,
+          1,
+          2
+        ],
+        "hfr_peak_ratio": 0.5,
+        "expected_ratio": 0.5,
+        "capture_sha256": "56104f233fa56f805567fcf2f151852ea5d3a371648c5bf631f1034d3b4a9264",
+        "input_sha256": "1dd78c99b38cb6171e3c80467c647efff7f0017859f2a874b33b63236be7426e",
+        "config_sha256": "c77b0308804959dd0590c798bb88f81106720af0ddc545fae80367099f6ac900"
+      },
+      "right": {
+        "input_channels": 2,
+        "input_rate": 48000,
+        "input_format": "S16_LE",
+        "output_frames": 10560,
+        "output_rate": 96000,
+        "output_channels": 4,
+        "output_format": "S32_LE",
+        "silent_slots": [
+          0,
+          1,
+          2
+        ],
+        "hfr_peak_ratio": 0.5,
+        "expected_ratio": 0.5,
+        "capture_sha256": "56104f233fa56f805567fcf2f151852ea5d3a371648c5bf631f1034d3b4a9264",
+        "input_sha256": "4a8631f1fa62d347ad5b55e5e82b9de66b2c095f1f4415079f8bf585b594dbee",
+        "config_sha256": "44ba5398622ce47ae2a039888787b75a13f4bbea2cd53f81f6c2b270dd236ec0"
+      },
+      "antiphase": {
+        "input_channels": 2,
+        "input_rate": 48000,
+        "input_format": "S16_LE",
+        "output_frames": 10560,
+        "output_rate": 96000,
+        "output_channels": 4,
+        "output_format": "S32_LE",
+        "silent_slots": [
+          0,
+          1,
+          2
+        ],
+        "hfr_peak_ratio": 4.1666666666666665e-05,
+        "expected_ratio": 0,
+        "capture_sha256": "2dcd94500d9020e3b4b55a2dec9ef687cb891ff3d2d8cc7cd83a97ca22b52d7b",
+        "input_sha256": "dfa574fe6fa005c6690e24a0fc1218da360cd338160e1884c82ab28d8c16c449",
+        "config_sha256": "edea0aedae484664e8716e1ac95801dabb356f9f1d81460ce62fd3460997fac6"
+      },
+      "full-scale": {
+        "input_channels": 2,
+        "input_rate": 48000,
+        "input_format": "S16_LE",
+        "output_frames": 10560,
+        "output_rate": 96000,
+        "output_channels": 4,
+        "output_format": "S32_LE",
+        "silent_slots": [
+          0,
+          1,
+          2
+        ],
+        "hfr_peak_ratio": 1.0,
+        "expected_ratio": 1,
+        "capture_sha256": "34a9c3800b330ec7e855d69b315a6b5a610421a450f10831e36e387a2f98518b",
+        "input_sha256": "b0ba5e4dd549e30d6ddc601dac4e49529c569a99cc4ab9decc3564ef64cd10a0",
+        "config_sha256": "faa5871670ee96379a93dc940db727a914a8f24a5590f5951baf4cbe54ca0943"
+      }
+    }
+  },
+  "rootfs_changes": [
+    "etc/alsa/alsa.conf",
+    "etc/alsa/cards/AACI.conf",
+    "etc/alsa/cards/ATIIXP-MODEM.conf",
+    "etc/alsa/cards/ATIIXP-SPDMA.conf",
+    "etc/alsa/cards/ATIIXP.conf",
+    "etc/alsa/cards/AU8810.conf",
+    "etc/alsa/cards/AU8820.conf",
+    "etc/alsa/cards/AU8830.conf",
+    "etc/alsa/cards/Audigy.conf",
+    "etc/alsa/cards/Audigy2.conf",
+    "etc/alsa/cards/Aureon51.conf",
+    "etc/alsa/cards/Aureon71.conf",
+    "etc/alsa/cards/CA0106.conf",
+    "etc/alsa/cards/CMI8338-SWIEC.conf",
+    "etc/alsa/cards/CMI8338.conf",
+    "etc/alsa/cards/CMI8738-MC6.conf",
+    "etc/alsa/cards/CMI8738-MC8.conf",
+    "etc/alsa/cards/CMI8788.conf",
+    "etc/alsa/cards/CS46xx.conf",
+    "etc/alsa/cards/EMU10K1.conf",
+    "etc/alsa/cards/EMU10K1X.conf",
+    "etc/alsa/cards/ENS1370.conf",
+    "etc/alsa/cards/ENS1371.conf",
+    "etc/alsa/cards/ES1968.conf",
+    "etc/alsa/cards/Echo_Echo3G.conf",
+    "etc/alsa/cards/FM801.conf",
+    "etc/alsa/cards/FWSpeakers.conf",
+    "etc/alsa/cards/FireWave.conf",
+    "etc/alsa/cards/GUS.conf",
+    "etc/alsa/cards/HDA-Intel.conf",
+    "etc/alsa/cards/HdmiLpeAudio.conf",
+    "etc/alsa/cards/ICE1712.conf",
+    "etc/alsa/cards/ICE1724.conf",
+    "etc/alsa/cards/ICH-MODEM.conf",
+    "etc/alsa/cards/ICH.conf",
+    "etc/alsa/cards/ICH4.conf",
+    "etc/alsa/cards/Loopback.conf",
+    "etc/alsa/cards/Maestro3.conf",
+    "etc/alsa/cards/NFORCE.conf",
+    "etc/alsa/cards/PC-Speaker.conf",
+    "etc/alsa/cards/PMac.conf",
+    "etc/alsa/cards/PMacToonie.conf",
+    "etc/alsa/cards/PS3.conf",
+    "etc/alsa/cards/RME9636.conf",
+    "etc/alsa/cards/RME9652.conf",
+    "etc/alsa/cards/SB-XFi.conf",
+    "etc/alsa/cards/SI7018.conf",
+    "etc/alsa/cards/TRID4DWAVENX.conf",
+    "etc/alsa/cards/USB-Audio.conf",
+    "etc/alsa/cards/VIA686A.conf",
+    "etc/alsa/cards/VIA8233.conf",
+    "etc/alsa/cards/VIA8233A.conf",
+    "etc/alsa/cards/VIA8237.conf",
+    "etc/alsa/cards/VX222.conf",
+    "etc/alsa/cards/VXPocket.conf",
+    "etc/alsa/cards/VXPocket440.conf",
+    "etc/alsa/cards/YMF744.conf",
+    "etc/alsa/cards/aliases.conf",
+    "etc/alsa/cards/pistachio-card.conf",
+    "etc/alsa/cards/vc4-hdmi.conf",
+    "etc/alsa/ctl/default.conf",
+    "etc/alsa/pcm/center_lfe.conf",
+    "etc/alsa/pcm/default.conf",
+    "etc/alsa/pcm/dmix.conf",
+    "etc/alsa/pcm/dpl.conf",
+    "etc/alsa/pcm/dsnoop.conf",
+    "etc/alsa/pcm/front.conf",
+    "etc/alsa/pcm/hdmi.conf",
+    "etc/alsa/pcm/iec958.conf",
+    "etc/alsa/pcm/modem.conf",
+    "etc/alsa/pcm/rear.conf",
+    "etc/alsa/pcm/side.conf",
+    "etc/alsa/pcm/surround21.conf",
+    "etc/alsa/pcm/surround40.conf",
+    "etc/alsa/pcm/surround41.conf",
+    "etc/alsa/pcm/surround50.conf",
+    "etc/alsa/pcm/surround51.conf",
+    "etc/alsa/pcm/surround71.conf",
+    "etc/asound.conf",
+    "etc/init.d/rcS",
+    "qt/bin/perrier-touch-grid",
+    "qt/lib/libasound.so.2",
+    "qt/licenses/ALSA.txt",
+    "usr/bin/aplay",
+    "usr/share/licenses/alsa-utils.txt"
+  ],
+  "sources_apply_to_pristine_linux": true,
+  "embedded_initramfs_verified": true,
+  "previous_physical_baseline": "/home/marius/ext_proj/touch10/development/kernel/working-baseline.json"
+}

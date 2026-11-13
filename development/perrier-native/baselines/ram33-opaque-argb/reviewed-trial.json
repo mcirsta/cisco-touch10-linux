@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "kernel": "6.18.48-perrier-ram33",
+  "purpose": "test opaque ARGB scanout while capturing bridge and OMAP alpha state during a bounded RAM-only KMS scanout",
+  "limitations": [
+    "bridge and panel physical supplies are inherited; logical regulators have no control GPIO",
+    "only stock GPIO102 reset is controlled; GPIO4 bank is not reset on init",
+    "no backlight driver or panel rail sequencing"
+  ],
+  "artifacts": {
+    "zImage": {
+      "size": 3750728,
+      "sha256": "dfcdaf515424f50c5a8349629d0bffe2b664ef902c515bc98806a5e169d8784d"
+    },
+    "board.dtb": {
+      "size": 91662,
+      "sha256": "25c86131f4a10947171dd76a582b4a89c826386098fc98ca3f68180726e7a0ec"
+    },
+    "kexec": {
+      "size": 1660848,
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6"
+    }
+  }
+}

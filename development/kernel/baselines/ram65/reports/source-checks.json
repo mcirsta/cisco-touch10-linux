@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "patch_style": {
+    "0001-dt-bindings-cyttsp4-perrier.patch": true,
+    "0002-input-restore-cyttsp4-dt.patch": true,
+    "0003-drm-omap-perrier-display.patch": true,
+    "0004-arm-dts-cisco-perrier.patch": true,
+    "ram-only/0001-perrier-ram-safety.patch": true
+  },
+  "binding_schema_valid": true,
+  "actual_touch_node_schema_valid": true,
+  "scope": "Perrier touchscreen binding and node; not full board-schema validation",
+  "source_manifest_sha256": "d3520691c1cca15525323cf172156fc3bbcbe5226a0d4ed5d89f7bcb632ca24f",
+  "board_dtb_sha256": "59bc433f7e0a9d9244114159f77bb630828b4c7b5c5a80f6ad9aa6ca9ce84eeb"
+}

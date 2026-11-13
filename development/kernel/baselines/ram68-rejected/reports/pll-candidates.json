@@ -1,0 +1,30 @@
+{
+  "analysis": "PLL enumeration with the actual OMAP4 limits and current non-burst clock interval; downstream acceptance requires live validation",
+  "input_hz": 38400000,
+  "requested_pck_hz": [
+    71073000,
+    71075000
+  ],
+  "mainline_n_start": {
+    "n": 19,
+    "m": 211,
+    "fint": 2021052,
+    "clkdco": 852883944,
+    "hsdiv": 6,
+    "lckd": 1,
+    "pckd": 2,
+    "pck": 71073662,
+    "byteclk": 53305246
+  },
+  "forced_n38": {
+    "n": 38,
+    "m": 422,
+    "fint": 1010526,
+    "clkdco": 852883944,
+    "hsdiv": 6,
+    "lckd": 1,
+    "pckd": 2,
+    "pck": 71073662,
+    "byteclk": 53305246
+  }
+}

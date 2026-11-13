@@ -1,0 +1,105 @@
+{
+  "validated_at": "2026-11-10T13:38:57.942917+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram70",
+  "profile": "display-onoff",
+  "default_uboot_profile": true,
+  "owner_confirmations": [
+    "all fine now",
+    "all fine, no red line"
+  ],
+  "onoff": 1,
+  "align": 0,
+  "pol_freq1_readback": "0x00020000",
+  "removed_board_quirk": "DISPC ONOFF suppression; now uses mainline ONOFF=1",
+  "retained_board_quirk": "DISPC ALIGN suppression, required by this tested DSI/bridge pipeline",
+  "boots_physically_checked": 2,
+  "total_manual_blank_unblank_cycles": 4,
+  "total_qt_restarts_after_cycles": 4,
+  "repeat_uses_exact_original_image": true,
+  "pll_n": 19,
+  "pll_m": 211,
+  "pixel_clock_hz": 71073662,
+  "dco_hz": 852883944,
+  "byte_clock_hz": 53305246,
+  "dtb_byte_identical_to_ram69": true,
+  "other_kernel_sources_identical_to_ram69": true,
+  "gpio_pad_supply_pwm_timing_unchanged": true,
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "watchdog_expiry_recovery_seconds": 152.8,
+  "repeat_checked_return_seconds": 36.7,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "image_review": {
+    "path": "development/perrier-ramenv/display-onoff/reviewed-image.json",
+    "sha256": "58a9bff0c6541bfea954474e4efabb7d3ce5b82b7146e31bc7bff91ab51b998a"
+  },
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram70/snapshot.json",
+    "sha256": "237884cc3bd768352f5384a16abb73646e13815674681cd6eb8366d2d1a5325d"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram70/reports/source-checks.json",
+    "sha256": "a2603183f879b5e1064e68e61042375678715fa6630a3b66b24869c8bc75ff8e"
+  },
+  "first_run_result": {
+    "path": "development/runs/20261110T132016Z-uboot-ram70-d686fd/result.json",
+    "sha256": "035cdd0b4c2a4ae80d7e7153a59f59a2799d848e89a316d0cf6a5a384ee7a482"
+  },
+  "first_physical_confirmation": {
+    "path": "development/runs/20261110T132016Z-uboot-ram70-d686fd/physical-confirmation.json",
+    "sha256": "2c828938442a4d25fb5d2b21d80a550cb7ef735ef5e141a4fa63230939784149"
+  },
+  "repeat_result": {
+    "path": "development/runs/20261110T133212Z-uboot-ram70-56c71a/result.json",
+    "sha256": "6eb091503d3bac523b36b04690a5ff6a6ea4a1f5702e666679ab3c41ed3e60a4"
+  },
+  "repeat_physical_confirmation": {
+    "path": "development/runs/20261110T133212Z-uboot-ram70-56c71a/physical-confirmation.json",
+    "sha256": "2ce7a08e62ed21126a6f5723cf825734471611714d908bbc151f8ac1d95e5ff2"
+  },
+  "repeat_live_diagnostics": {
+    "path": "development/runs/20261110T133212Z-uboot-ram70-56c71a/after-cycles-live.log",
+    "sha256": "c0d5efdd5e3aaf6183c4906cf276a0443ab8d3a965b9378539129969a5a4503c"
+  },
+  "repeat_framebuffer_screenshot": {
+    "path": "development/runs/20261110T133212Z-uboot-ram70-56c71a/after-three-cycles-framebuffer.png",
+    "sha256": "d09ed8481e847d24c39071fd968aec9c4fd2ce990918899c0a4f54232a671be3"
+  },
+  "rejected_align_trial": {
+    "path": "development/kernel/validation-ram71.json",
+    "sha256": "74fe6a1bd3093c8b67279a20da0359b1b62f113651eb7d011d911e911e0c1f3e"
+  },
+  "comparison": {
+    "path": "development/kernel/out/display-sync-isolation/plan.json",
+    "sha256": "18363412ef81897ee487cf021793ec5665c7e01c29ec599b9980c7a7d4e57965"
+  },
+  "bridge_register_comparison": {
+    "path": "development/kernel/out/display-sync-isolation/bridge-comparison-ram70-ram71.json",
+    "sha256": "2d075457764e8cbc475c875e8f539b881daf9a83e0572a04380d1527fa5bc458"
+  },
+  "dss_register_comparison": {
+    "path": "development/kernel/out/display-sync-isolation/dss-register-comparison.json",
+    "sha256": "0e6799dd66b7becfda8b6812c3cb9d0567e0d8eb29bd2297f95cec657b081841"
+  },
+  "brightness_observation": {
+    "path": "evidence/perrier-brightness-observation-2026-11-10.json",
+    "sha256": "ced21b85a25585382acc67f927a9ff19201c40c12a024125f0e4d8e09fff817f"
+  },
+  "runner_snapshot": {
+    "path": "development/kernel/out/display-sync-isolation/qualified-runner/manifest.json",
+    "sha256": "f3766911787d2503c80042bbde89a2cc0ae2f8deacf7dc637b564c22d7be1f75"
+  },
+  "fallback": {
+    "profile": "display-pll-only",
+    "kernel": "6.18.48-perrier-ram69",
+    "validation": {
+      "path": "development/kernel/validation-ram69.json",
+      "sha256": "60c2f4f95fb407f03da2f67f26d87e5f901ad8bd9ba57cba3e5e37078ae6a179"
+    }
+  },
+  "limits": [
+    "The brightness difference is an unconfirmed owner observation recorded for a separate equal-content comparison",
+    "The precise interaction of ALIGN with the existing DSI sequence remains to be analyzed",
+    "Full-image physical power-removal and production rail power management remain pending"
+  ]
+}

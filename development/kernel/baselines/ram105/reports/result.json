@@ -1,0 +1,115 @@
+{
+  "command": "uboot-interactive",
+  "profile": "network-dualstack",
+  "status": "passed",
+  "test_scope": "kernel handoff, RAM SSH, watchdog, and factory recovery",
+  "started": "2026-11-12T14:46:31.006+00:00",
+  "host_pid": 474437,
+  "directory": "/home/marius/ext_proj/touch10/development/runs/20261112T144631Z-uboot-ram105-72df51",
+  "manifest_sha256": "a46b6dbd237b0036bf24b458186b9a63b38a2633d55d37e23dcfddb234e1cf52",
+  "candidate_p8_sha256": "fac89cebddeb7cd625e68d603e19007a63f3253d2cdba979f23539afc46dba0e",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "proof_run": false,
+  "reset_mode": "software-reboot",
+  "before": {
+    "hostname": "SEP24169DB677BB",
+    "uid": "0",
+    "kernel": "3.4.113+",
+    "arch": "armv7l",
+    "boot_id": "093ef44a-07f3-40c5-a766-c04ec4fb562a",
+    "uptime": "1855.16",
+    "factory_app": "running",
+    "kexec_path": "",
+    "kexec_loaded": "0",
+    "watchdog": "present"
+  },
+  "staged": {
+    "zImage": {
+      "source": "development/perrier-ramenv/network-dualstack/kernel-build/arch/arm/boot/zImage",
+      "target": "/touch10-dev/ram105-580ca33c4546.zImage",
+      "bytes": 17825640,
+      "sha256": "580ca33c45465daaeb4b2a8621fcb0d20275f20303feca5226d216c3f9d6fcc2",
+      "load_address": "0x84000000",
+      "device_path": "/mnt/base/touch10-dev/ram105-580ca33c4546.zImage"
+    },
+    "board.dtb": {
+      "source": "development/perrier-ramenv/network-dualstack/uboot/board-seeded.dtb",
+      "target": "/touch10-dev/ram105-a5c2567ae8a6.dtb",
+      "bytes": 94975,
+      "sha256": "a5c2567ae8a68fca541b0a2911194fbf835be452a30fd8715fdfdfa5383811a4",
+      "load_address": "0x83000000",
+      "device_path": "/mnt/base/touch10-dev/ram105-a5c2567ae8a6.dtb"
+    }
+  },
+  "p8_candidate_verified": true,
+  "reboot_ssh_exit": 0,
+  "reboot_requested": "2026-11-12T14:46:50.019+00:00",
+  "ram": {
+    "marker": "perrier-interactive-ram105",
+    "kernel": "6.18.48-perrier-ram105",
+    "boot_id": "9bdb2819-ed49-4719-8a90-bc13f672bd83",
+    "guard": {
+      "pid": 73,
+      "state": "feeding",
+      "backend": "linux-watchdog",
+      "monotonic": 4.928,
+      "lease_deadline": 94.928,
+      "pings": 1,
+      "timeleft_seconds": 119,
+      "timeout_seconds": 120,
+      "nowayout": true
+    }
+  },
+  "factory_environment_restored_before_userspace": true,
+  "qt_started": true,
+  "ready_at": "2026-11-12T14:47:25.301+00:00",
+  "last_guard": {
+    "pid": 73,
+    "state": "feeding",
+    "backend": "linux-watchdog",
+    "monotonic": 153.176,
+    "lease_deadline": 204.635,
+    "pings": 30,
+    "timeleft_seconds": 119,
+    "timeout_seconds": 120,
+    "nowayout": true
+  },
+  "last_lease_at": "2026-11-12T14:49:48.571+00:00",
+  "recovery_reason": "requested_reboot",
+  "recovery_started": "2026-11-12T14:49:58.571+00:00",
+  "after": {
+    "hostname": "SEP24169DB677BB",
+    "uid": "0",
+    "kernel": "3.4.113+",
+    "arch": "armv7l",
+    "boot_id": "07c809b4-26c0-4b16-91b4-a94d7c07c6f9",
+    "uptime": "33.17",
+    "factory_app": "running",
+    "kexec_path": "",
+    "kexec_loaded": "0",
+    "watchdog": "present"
+  },
+  "recovery_elapsed_seconds": 36.7,
+  "stock_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "adc_postflight": {
+    "passed": true,
+    "helper_sha256": "921a877fcbb0b1f9a711d1c22d5b8db6cabf39df70c8cab96e400a3942cbc6e6",
+    "stock_boot_id": "07c809b4-26c0-4b16-91b4-a94d7c07c6f9",
+    "temporary_helper_removed": true,
+    "restored": {
+      "48:e4": "00",
+      "49:04": "04",
+      "49:06": "14"
+    }
+  },
+  "markers": {
+    "factory_saved_before_handoff": true,
+    "candidate_kernel": true,
+    "mainline_watchdog_ready": true,
+    "ram_ssh_started": true
+  },
+  "serial_markers_reconstructed": [],
+  "stock_recovered": true,
+  "finished": "2026-11-12T14:50:39.309+00:00",
+  "serial_error": null
+}

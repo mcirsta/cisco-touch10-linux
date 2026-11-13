@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "candidate_p8_sha256": "36617f83abf33e1f00079fdbba13e23bdd83a89dda7225230c116315a52a19fb",
+  "source_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "manifest_sha256": "c9ba0b44c7e62644b598dedf98b51b625fd9e581a972db264c086338dc79bdf2",
+  "changed_environment_variables": [
+    "bootcmd"
+  ],
+  "test_files": {
+    "zImage": {
+      "source": "development/perrier-coldboot/kernel-build/arch/arm/boot/zImage",
+      "target": "/touch10-dev/cold01-8477a79e0c5e.zImage",
+      "bytes": 1508184,
+      "sha256": "8477a79e0c5eb69f5ec83385d3ce39b35fed9c9e4e9c2c5e92d1163e6d7d64ce",
+      "load_address": "0x84000000"
+    },
+    "board.dtb": {
+      "source": "development/perrier-coldboot/board.dtb",
+      "target": "/touch10-dev/cold01-6d71c3d9b6ee.dtb",
+      "bytes": 85634,
+      "sha256": "6d71c3d9b6eec8ee05e57b71ef0b85a6f988fd08d42d43ada95f88be8c47f50b",
+      "load_address": "0x83000000"
+    }
+  },
+  "factory_next_boot_requires_saveenv": true,
+  "uboot_saveenv_writes_p8_before_test": true,
+  "test_kernel_has_no_storage_driver": true,
+  "cold_hang_needs_manual_power_cycle_if_watchdog_inactive": true
+}

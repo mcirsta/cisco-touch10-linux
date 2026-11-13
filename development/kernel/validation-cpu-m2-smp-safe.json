@@ -1,0 +1,64 @@
+{
+  "validated_at": "2026-11-13T15:35:28.390+00:00",
+  "status": "passed",
+  "profile": "cpu-m2-smp-safe",
+  "kernel": "6.18.48-perrier-ram113",
+  "scope": "One U-Boot RAM boot of both CPUs at fixed inherited voltage; fixed 350 MHz load and schedutil idle/load transitions; no CPU hotplug or display reset",
+  "observations": {
+    "both_cpus_online_throughout": true,
+    "runtime_cpu_hotplug_disabled": true,
+    "fixed_350_two_core_load_seconds": 80,
+    "initial_fixed_350_load_seconds": 20,
+    "later_sustained_350_load_seconds": 60,
+    "sustained_350_load_peak_cpu_temperature_millicelsius": 59177,
+    "all_tested_cpu_temperatures_below_80000_millicelsius": true,
+    "dynamic_governor": "schedutil",
+    "dynamic_idle_khz": 350000,
+    "dynamic_load_khz": 700000,
+    "idle_350_residency_fraction_60s": 0.969,
+    "parent_dpll_hz": 700000000,
+    "m2_at_low_hz": 350000000,
+    "likely_mpu_voltage_mv_at_350": 1208,
+    "likely_mpu_voltage_mv_at_700_dynamic_load": 1208,
+    "voltage_commanded": false,
+    "watchdog_feeding_nowayout": true,
+    "qt_started_without_display_cycle": true,
+    "factory_environment_restored_before_ram_userspace": true,
+    "factory_environment_restored_after_recovery": true,
+    "stock_kernel_and_phoenix_recovered": true,
+    "adc_postflight_passed": true
+  },
+  "limits": [
+    "This validates clock-only frequency scaling at inherited fixed voltage; voltage scaling and undervolting were not tested.",
+    "The longest fixed-350-MHz two-core load was 60 seconds, not a long-duration stability qualification.",
+    "The likely MPU INA assignment remains software evidence without PCB net tracing.",
+    "Whole-device energy savings, suspend and CPU hotplug are unqualified."
+  ],
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "evidence": {
+    "p14_cleanup": {
+      "path": "development/runs/20261113T152850Z-p14-ram112-cleanup/result.json",
+      "sha256": "0d9ac38646499ee842c6c4b9e34055bed1a1a748e01c56fc1fa2c2433d2d3901"
+    },
+    "runner": {
+      "path": "development/runs/20261113T152910Z-uboot-ram113-707b2f/result.json",
+      "sha256": "17503a3e45a93febf4783e834a5d6a33ddefe780c6bebb3ddd1c7f9df0f050b5"
+    },
+    "two_core_governor_test": {
+      "path": "development/runs/20261113T153030Z-cpu-m2-smp-safe/result.json",
+      "sha256": "37d194e7f5d2963ac8545797fb70e066a8272801fb7deeed53c177bc640a434a"
+    },
+    "idle_residency": {
+      "path": "development/runs/20261113T153201Z-cpu-m2-schedutil-idle/result.json",
+      "sha256": "c22f7d11e2539e7df9388e9a42195a377ada518e6f4754d6f96c1bce80f0f35a"
+    },
+    "sustained_load": {
+      "path": "development/runs/20261113T153328Z-cpu-m2-350-load/result.json",
+      "sha256": "37bce84370c013468d51786ab03657a88e57b1cbabc3904771bdb8b01c3e4cf2"
+    },
+    "serial": {
+      "path": "development/runs/20261113T152910Z-uboot-ram113-707b2f/serial.log",
+      "sha256": "93ece8dd78412c6781699a0802878e3c4f10327e07997c914163933ebecc6f40"
+    }
+  }
+}

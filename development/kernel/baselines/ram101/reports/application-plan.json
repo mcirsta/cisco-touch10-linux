@@ -1,0 +1,11 @@
+{
+  "scope": "Userspace 48 kHz mono/stereo speaker playback and native Qt ALSA controls",
+  "hardware_base": "qualified ram97; exact kernel sources, board.dtb and hardware config unchanged",
+  "alsa": "Pinned unmodified ALSA lib and aplay. plug linear resampler 48k->96k, stereo averaged to HFR slot 3; first 3 slots silent.",
+  "qt": "Native mixer readback. Volume maps 0..100 to HFR gain 0..24; zero or mute disables right route. Nonblocking worker with explicit period1024 and buffer4096 app frames. 30-second bounded -24dBFS signal.",
+  "failure_preserved": "ram98 snd_pcm_set_params period-time ambiguity; fixed over RAM SSH without a kernel reboot or display reset. App clean exit restored original mixer.",
+  "offline": "Real ARM ALSA chain six input cases through file/null sink under QEMU. Qt start/clean exit. Exact setup function also tested in QEMU.",
+  "live": "Owner heard corrected app and confirmed volume/mute. Front up/down hold and mute events verified with independent mixer and hardware PCM observations. Final repeatable image has same app hash.",
+  "recovery": "One-use p8 factory-restore-before-handoff, read-only/unmounted RAM eMMC, unchanged watchdog helper, verified hardware expiry back to stock",
+  "display": "No display reset cycles or unrelated display calibration/restart checks"
+}

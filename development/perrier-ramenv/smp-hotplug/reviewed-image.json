@@ -1,0 +1,168 @@
+{
+  "kernel": "6.18.48-perrier-ram109",
+  "profile": "smp-hotplug",
+  "artifacts": {
+    "zImage": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/smp-hotplug/kernel-build/arch/arm/boot/zImage",
+      "size": 18024400,
+      "sha256": "f70a48995ae1a8820f4f90c8500a61797a0b455157d706d9fb44f03d9f605201"
+    },
+    "board.dtb": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/smp-hotplug/board.dtb",
+      "size": 94886,
+      "sha256": "c44ba41abab163ebc124527172f42678ba2f3eee69f3cbf7164572960c23015c"
+    },
+    "kexec": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier/kexec-legacy-fdt",
+      "size": 1660848,
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6"
+    }
+  },
+  "inputs": {
+    "baseline_review": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/smp-uboot-nosmp/reviewed-image.json",
+      "sha256": "e49a63b12d6a1349749be2f137b34f193210e9250ab7f71397c6efaf4dba5b7f"
+    },
+    "watchdog_proof": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-watchdog/watchdog-proof.json",
+      "sha256": "3f23c890d5d390efa07fd63dd6c4231d0aa0fa0e6f84687e2b82e3a9203f36cf"
+    },
+    "confirmed_baseline": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/validation-ram108.json",
+      "sha256": "bc0bc4459467d6d7188458750f7c86132b0c84135a2f221d799e5bcafccb40df"
+    },
+    "qt_app_source": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/main.cpp",
+      "sha256": "9fc6e7f536174e021301d350c7fbe80abf2646fb51ed55af9fb6e4995ba38a55"
+    },
+    "qt_ui_source": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/Main.qml",
+      "sha256": "7e38de561b52f26b6aac8270ee0ec8d7567c1910e3fa5f1044d2f5cdf215b3b5"
+    },
+    "qt_audio_source": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/audio_backend.cpp",
+      "sha256": "96cdb2ea9e10570d0e33dd80ca27cddc5444acca0c1d9913695c2ab793338bef"
+    },
+    "qt_audio_header": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/audio_backend.h",
+      "sha256": "766e720d9a4d4e7fe9244dbef0b53a6b435a61019f4b2162ada8a7ca06aef936"
+    },
+    "qt_pcm_setup": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/pcm_setup.h",
+      "sha256": "ae553591dfbe272ee580041c1089964e703b5e1700268960ead3a276a55f3afa"
+    },
+    "alsa_config": {
+      "path": "/home/marius/ext_proj/touch10/development/audio/asound-mix.conf",
+      "sha256": "c0f0b990860bd7bd5b42dbef97b2a608e98a3d3e7cf42bbdd94891cbd6a6ed65"
+    },
+    "alsa_library": {
+      "path": "/home/marius/ext_proj/touch10/development/audio/shared-install/libasound-dmix.so.2",
+      "sha256": "e01c0a218e51b28af78f160758171582df1c560c5d6b0b2e4f2f4e6b0deb885a"
+    },
+    "alsa_build_script": {
+      "path": "/home/marius/ext_proj/touch10/development/audio/build_dmix_lib.py",
+      "sha256": "9bbf29ae888ec7879e5dbd8063e8335c6bc3ed7a059303887ee556a2eb895e4b"
+    },
+    "alsa_build_record": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/out/application-audio/dmix-build.json",
+      "sha256": "49b9a5a36dce8de307df1f6b075639ca80973dd4fed29000f1cbf572b6a74c81"
+    },
+    "alsa_live_record": {
+      "path": "/home/marius/ext_proj/touch10/development/audio/shared-playback.md",
+      "sha256": "56976baecdd31658301842afafb03a5a06121a9e1151cfbad4bec6a7544b5e0f"
+    },
+    "qt_runtime_manifest": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/runtime-manifest.json",
+      "sha256": "171e52d63cdf2903d5441d1ea491a59809ffd5b5dddc14166ba13f12ae5f4d34"
+    },
+    "dhcp_apply_script": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/network/dhcp-apply-route-dns.sh",
+      "sha256": "644b43fc60bbbed4979f487690e3dcd5896cae0fdf0517a70a7420d5f91938d3"
+    },
+    "dhcp_script_test": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/network/test_dhcp_apply.py",
+      "sha256": "606b11426f373fc54491b479131f6db0a5fa09ca691c7d62430234147b6f7112"
+    },
+    "test_lan_policy": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/network/isolated-dhcp-policy.json",
+      "sha256": "677f17b65fd2d8c478ae1fae9c5219a91c964b2e0e9278f1aef0225c887f800b"
+    },
+    "source_manifest": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/patches/manifest.json",
+      "sha256": "4c9507002b9b667337a30863b4d6847bc06f1acb786f7023b1f26f2c61f74c16"
+    },
+    "ram_config": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/configs/perrier-ram109.config",
+      "sha256": "45146745a85a92813249c8fc1ce58fc0cb66500bfafd4a78c6ace94caa546df4"
+    },
+    "hotplug_config_delta": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/configs/cpu1-hotplug-config-delta.json",
+      "sha256": "c3e2e41e429d8cbbef1e2d0b9d4120096178bd3aa40ec5a63117309a4109f35c"
+    },
+    "bus_policy": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/configs/bus-layout.json",
+      "sha256": "ec657b0890c3a1dd6491ba7e52605ac20e785aa3452151e61493f3c01de01a19"
+    },
+    "diagnostics_policy": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/configs/diagnostics-layout.json",
+      "sha256": "7c7c1a6d1ab218597cd2827edd8a54376280cf5e7c5972e554d7e92b75483035"
+    },
+    "hardware_dtsi": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/source/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier.dtsi",
+      "sha256": "edc09174b12bcb9fa0f172a1c38ea3f0b3231bcb8bd2c78de400c1925767c6b9"
+    },
+    "ram_dts": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/source/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier-ram.dts",
+      "sha256": "130e3f1d0decff479339077d896b4ef7e15654f1536c5431126f273677ca6a8e"
+    },
+    "mailbox_ram_dts": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/source/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier-mailbox-ram.dts",
+      "sha256": "397c96603e2d8442fce2bbd3eef5520ccfe1a3cec1f252e0ab3d7476ea5c5193"
+    }
+  },
+  "rootfs_manifest_sha256": "c1d7ea6645fd436dd74d670d72bcc09a45cf965314c875bc5bddf96e2a7e69fb",
+  "initramfs_sha256": "95ed76585a21b8efb42a2cbf492ea0e338912e82bc24f1151b5b255a425a05e8",
+  "kernel_config_sha256": "f8ed5191b18a0b65a3179b3dd3e3f559a42d9520263ac235215368f636c87ff2",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "watchdog_backend": "linux-watchdog",
+  "passed": true,
+  "kernel_span_bytes": 22501032,
+  "changed_rootfs": [
+    "etc/init.d/rcS"
+  ],
+  "smp_config_delta": {
+    "CONFIG_CMDLINE": {
+      "before": "\"console=ttyS0,115200 earlycon=omap8250,mmio32,0x48020000 keep_bootcon ignore_loglevel clk_ignore_unused pd_ignore_unused initcall_blacklist=omap2_common_pm_late_init panic=5 omap_wdt.early_enable=1 omap_wdt.timer_margin=120 nosmp\"",
+      "after": "\"console=ttyS0,115200 earlycon=omap8250,mmio32,0x48020000 keep_bootcon ignore_loglevel clk_ignore_unused pd_ignore_unused initcall_blacklist=omap2_common_pm_late_init panic=5 omap_wdt.early_enable=1 omap_wdt.timer_margin=120 maxcpus=1\""
+    },
+    "CONFIG_GENERIC_IRQ_MIGRATION": {
+      "before": "n",
+      "after": "y"
+    },
+    "CONFIG_HOTPLUG_CORE_SYNC": {
+      "before": "n",
+      "after": "y"
+    },
+    "CONFIG_HOTPLUG_CORE_SYNC_DEAD": {
+      "before": "n",
+      "after": "y"
+    },
+    "CONFIG_HOTPLUG_CPU": {
+      "before": "n",
+      "after": "y"
+    },
+    "CONFIG_INITRAMFS_SOURCE": {
+      "before": "\"/home/marius/ext_proj/touch10/development/perrier-ramenv/smp-uboot-nosmp/initramfs.cpio\"",
+      "after": "\"/home/marius/ext_proj/touch10/development/perrier-ramenv/smp-hotplug/initramfs.cpio\""
+    },
+    "CONFIG_LOCALVERSION": {
+      "before": "\"-perrier-ram108\"",
+      "after": "\"-perrier-ram109\""
+    }
+  },
+  "board_dtb_only_cpu1_status_changed": true,
+  "watchdog_proof_preserved": true,
+  "separate_static_rescue_address": true,
+  "smp_boot_maxcpus_one_hotplug": true,
+  "emmc_ram_policy_inherited_from_ram107": true
+}

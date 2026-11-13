@@ -1,0 +1,68 @@
+diff --git a/services4/srvkm/env/linux/dmabuf.c b/services4/srvkm/env/linux/dmabuf.c
+index a1e547b..ab29916 100644
+--- a/services4/srvkm/env/linux/dmabuf.c
++++ b/services4/srvkm/env/linux/dmabuf.c
+@@ -48,9 +48,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ #include <linux/scatterlist.h>
+ #include <linux/version.h>
+ 
+-#if !LINUX_VERSION_CODE < KERNEL_VERSION(5,16,0)
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,16,0)
+ #include <linux/module.h>
+-MODULE_IMPORT_NS(DMA_BUF);
++MODULE_IMPORT_NS("DMA_BUF");
+ #endif
+ 
+ #if defined(SUPPORT_DRI_DRM)
+diff --git a/services4/srvkm/env/linux/mmap.c b/services4/srvkm/env/linux/mmap.c
+index fbf2779..f6d64e6 100644
+--- a/services4/srvkm/env/linux/mmap.c
++++ b/services4/srvkm/env/linux/mmap.c
+@@ -804,10 +804,9 @@ DoMapToUser(LinuxMemArea *psLinuxMemArea,
+ #if defined(PVR_MAKE_ALL_PFNS_SPECIAL)
+ 		    if (bMixedMap)
+ 		    {
+-			pfn_t pfns = { pfn };
+ 			vm_fault_t vmf;
+ 
+-			vmf = vmf_insert_mixed(ps_vma, ulVMAPos, pfns);
++			vmf = vmf_insert_mixed(ps_vma, ulVMAPos, pfn);
+ 			if (vmf & VM_FAULT_ERROR)
+ 				result = vm_fault_to_errno(vmf, 0);
+ 	                if(result != 0)
+diff --git a/services4/srvkm/env/linux/osfunc.c b/services4/srvkm/env/linux/osfunc.c
+index 22b950e..cbdf8ab 100644
+--- a/services4/srvkm/env/linux/osfunc.c
++++ b/services4/srvkm/env/linux/osfunc.c
+@@ -2732,7 +2732,7 @@ static void OSTimerCallbackBody(TIMER_CALLBACK_DATA *psTimerCBData)
+ */ /**************************************************************************/
+ static void OSTimerCallbackWrapper(struct timer_list *psTimer)
+ {
+-	TIMER_CALLBACK_DATA *psTimerCBData = from_timer(psTimerCBData, psTimer, sTimer);
++	TIMER_CALLBACK_DATA *psTimerCBData = container_of(psTimer, TIMER_CALLBACK_DATA, sTimer);
+ 
+ #if defined(PVR_LINUX_TIMERS_USING_WORKQUEUES) || defined(PVR_LINUX_TIMERS_USING_SHARED_WORKQUEUE)
+     int res;
+@@ -2943,7 +2943,7 @@ PVRSRV_ERROR OSDisableTimer (IMG_HANDLE hTimer)
+ #endif
+ 
+     /* remove timer */
+-    del_timer_sync(&psTimerCBData->sTimer);	
++    timer_delete_sync(&psTimerCBData->sTimer);
+     
+ #if defined(PVR_LINUX_TIMERS_USING_WORKQUEUES)
+     /*
+diff --git a/services4/srvkm/env/linux/pvr_drm.c b/services4/srvkm/env/linux/pvr_drm.c
+index 34e7ad7..c68b7eb 100644
+--- a/services4/srvkm/env/linux/pvr_drm.c
++++ b/services4/srvkm/env/linux/pvr_drm.c
+@@ -551,7 +551,9 @@ static struct drm_driver sPVRDrmDriver =
+ 	.fops = &sPVRFileOps,
+ 	.name = "pvr",
+ 	.desc = PVR_DRM_DESC,
++#if LINUX_VERSION_CODE < KERNEL_VERSION(6,18,0)
+ 	.date = PVR_DRM_DATE,
++#endif
+ 	.major = PVRVERSION_MAJ,
+ 	.minor = PVRVERSION_MIN,
+ 	.patchlevel = PVRVERSION_BUILD,

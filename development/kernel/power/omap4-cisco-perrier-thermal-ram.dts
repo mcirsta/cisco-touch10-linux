@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: GPL-2.0-only
+// Temporary Perrier thermal policy on top of the validated ram110 board.
+// This source is compiled separately so the frozen ram110 patch series stays
+// byte-for-byte unchanged. The trip overrides can later move into the board DT.
+#include "../source/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier-mailbox-ram.dts"
+
+// Ram109/110 enable CPU1 in the compiled DTB while keeping the canonical
+// RAM policy source unchanged. Reproduce that known-good board variant.
+&{/cpus/cpu@1} { status = "okay"; };
+
+// The cooling map stays absent while CPUfreq is disabled. This passive trip
+// reports headroom; the critical trip requests a shutdown before TI's 110 C
+// maximum functional junction temperature is reached.
+&cpu_alert0 { temperature = <85000>; };
+&cpu_crit { temperature = <95000>; };

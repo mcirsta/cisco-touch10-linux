@@ -1,0 +1,11 @@
+#!/bin/bash
+set -eu
+task_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+export ZIG_GLOBAL_CACHE_DIR="$task_root/cache/zig-global"
+export ZIG_LOCAL_CACHE_DIR="$task_root/cache/zig-local"
+args=()
+for arg in "$@"; do
+    # Zig 0.15.2 rejects GNU's optional linker-map output flag. No code change.
+    case "$arg" in -Wl,-Map=*) ;; *) args+=("$arg");; esac
+done
+exec /home/marius/.local/bin/zig cc -target arm-linux-musleabihf -mcpu=cortex_a9 "${args[@]}"

@@ -1,0 +1,24 @@
+#!/bin/sh
+export PATH=/bin:/sbin:/usr/bin:/usr/sbin
+export XDG_RUNTIME_DIR=/run/qt
+mkdir -p "$XDG_RUNTIME_DIR"
+chmod 700 "$XDG_RUNTIME_DIR"
+export QT_QPA_PLATFORM=linuxfb:fb=/dev/fb0
+export QT_QPA_FB_HIDECURSOR=1
+export QT_QPA_FB_DISABLE_INPUT=1
+export QT_QPA_NO_SIGNAL_HANDLER=1
+export QT_QPA_FONTDIR=/qt/lib/fonts
+export QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS=${QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS:-/dev/input/event0}
+export QT_QUICK_BACKEND=software
+export QSG_RENDER_LOOP=basic
+export QML_DISABLE_DISK_CACHE=1
+export QT_PLUGIN_PATH=/qt/plugins
+export QML_IMPORT_PATH=/qt/qml
+export QML2_IMPORT_PATH=/qt/qml
+export LD_LIBRARY_PATH=/qt/lib
+export PERRIER_QT_DURATION_MS=${PERRIER_QT_DURATION_MS:-0}
+if [ "${1:-}" = --gdb ]; then
+    shift
+    exec /usr/bin/gdbserver --once - "${PERRIER_QT_APP:-/qt/bin/perrier-touch-grid}" "$@"
+fi
+exec "${PERRIER_QT_APP:-/qt/bin/perrier-touch-grid}" "$@"

@@ -1,0 +1,12 @@
+{
+  "mux44xx.h": {
+    "url": "https://kernel.googlesource.com/pub/scm/linux/kernel/git/torvalds/linux/+/refs/tags/v3.4/arch/arm/mach-omap2/mux44xx.h?format=TEXT",
+    "sha256": "6ce002c6218b9cedf53d1958e9e48f7384068a8429e4e20c28e9bc2f7024ac53",
+    "bytes": 15688
+  },
+  "mux44xx.c": {
+    "url": "https://kernel.googlesource.com/pub/scm/linux/kernel/git/torvalds/linux/+/refs/tags/v3.4/arch/arm/mach-omap2/mux44xx.c?format=TEXT",
+    "sha256": "0136d633833637ac43863568c1fb94477f0f50665ea5227a2a634e90fc9e7f50",
+    "bytes": 63046
+  }
+}

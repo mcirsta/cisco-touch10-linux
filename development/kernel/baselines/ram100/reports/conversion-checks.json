@@ -1,0 +1,124 @@
+{
+  "passed": true,
+  "runner": "qemu-arm cortex-a9",
+  "only_hardware_sink_replaced": true,
+  "asound_conf_sha256": "b07629d177b6bdbb8f60b674f0476410c174b62f0990364883c4cf21764a5b3c",
+  "libasound_sha256": "e0cef33ccf8c278259b5754a97834d9bbc28a3d7c6ad480ed9e2c88b319a85e2",
+  "aplay_sha256": "43a728a92147aa97c5557c2facbc8ea6801f9b4dc593e1fbf1333fc0d406ea6a",
+  "cases": {
+    "mono": {
+      "input_channels": 1,
+      "input_rate": 48000,
+      "input_format": "S16_LE",
+      "output_frames": 10560,
+      "output_rate": 96000,
+      "output_channels": 4,
+      "output_format": "S32_LE",
+      "silent_slots": [
+        0,
+        1,
+        2
+      ],
+      "hfr_peak_ratio": 1.0,
+      "expected_ratio": 1,
+      "capture_sha256": "62649626f62ac18c865024a05f970738226b5bacd33d472d339b59ff438a7d15",
+      "input_sha256": "85c21534927dff65e7b6ca09bae923f076ca02760f0c36646e508f1305f7964f",
+      "config_sha256": "d8738e9fe98915b0b34378ca65a6e1698e40a9a6083e63d2d9ab2408cc2b3ef2"
+    },
+    "stereo": {
+      "input_channels": 2,
+      "input_rate": 48000,
+      "input_format": "S16_LE",
+      "output_frames": 10560,
+      "output_rate": 96000,
+      "output_channels": 4,
+      "output_format": "S32_LE",
+      "silent_slots": [
+        0,
+        1,
+        2
+      ],
+      "hfr_peak_ratio": 1.0,
+      "expected_ratio": 1,
+      "capture_sha256": "62649626f62ac18c865024a05f970738226b5bacd33d472d339b59ff438a7d15",
+      "input_sha256": "82b4e1bb8d9e7e63408662577401f45103ac0eb366cf9821495e5561aca3c4b5",
+      "config_sha256": "61d12f6021e951ebbd5f93f32ac00a0364d2baa105327a08a39c1f9c77001150"
+    },
+    "left": {
+      "input_channels": 2,
+      "input_rate": 48000,
+      "input_format": "S16_LE",
+      "output_frames": 10560,
+      "output_rate": 96000,
+      "output_channels": 4,
+      "output_format": "S32_LE",
+      "silent_slots": [
+        0,
+        1,
+        2
+      ],
+      "hfr_peak_ratio": 0.5,
+      "expected_ratio": 0.5,
+      "capture_sha256": "56104f233fa56f805567fcf2f151852ea5d3a371648c5bf631f1034d3b4a9264",
+      "input_sha256": "1dd78c99b38cb6171e3c80467c647efff7f0017859f2a874b33b63236be7426e",
+      "config_sha256": "c77b0308804959dd0590c798bb88f81106720af0ddc545fae80367099f6ac900"
+    },
+    "right": {
+      "input_channels": 2,
+      "input_rate": 48000,
+      "input_format": "S16_LE",
+      "output_frames": 10560,
+      "output_rate": 96000,
+      "output_channels": 4,
+      "output_format": "S32_LE",
+      "silent_slots": [
+        0,
+        1,
+        2
+      ],
+      "hfr_peak_ratio": 0.5,
+      "expected_ratio": 0.5,
+      "capture_sha256": "56104f233fa56f805567fcf2f151852ea5d3a371648c5bf631f1034d3b4a9264",
+      "input_sha256": "4a8631f1fa62d347ad5b55e5e82b9de66b2c095f1f4415079f8bf585b594dbee",
+      "config_sha256": "44ba5398622ce47ae2a039888787b75a13f4bbea2cd53f81f6c2b270dd236ec0"
+    },
+    "antiphase": {
+      "input_channels": 2,
+      "input_rate": 48000,
+      "input_format": "S16_LE",
+      "output_frames": 10560,
+      "output_rate": 96000,
+      "output_channels": 4,
+      "output_format": "S32_LE",
+      "silent_slots": [
+        0,
+        1,
+        2
+      ],
+      "hfr_peak_ratio": 4.1666666666666665e-05,
+      "expected_ratio": 0,
+      "capture_sha256": "2dcd94500d9020e3b4b55a2dec9ef687cb891ff3d2d8cc7cd83a97ca22b52d7b",
+      "input_sha256": "dfa574fe6fa005c6690e24a0fc1218da360cd338160e1884c82ab28d8c16c449",
+      "config_sha256": "edea0aedae484664e8716e1ac95801dabb356f9f1d81460ce62fd3460997fac6"
+    },
+    "full-scale": {
+      "input_channels": 2,
+      "input_rate": 48000,
+      "input_format": "S16_LE",
+      "output_frames": 10560,
+      "output_rate": 96000,
+      "output_channels": 4,
+      "output_format": "S32_LE",
+      "silent_slots": [
+        0,
+        1,
+        2
+      ],
+      "hfr_peak_ratio": 1.0,
+      "expected_ratio": 1,
+      "capture_sha256": "34a9c3800b330ec7e855d69b315a6b5a610421a450f10831e36e387a2f98518b",
+      "input_sha256": "b0ba5e4dd549e30d6ddc601dac4e49529c569a99cc4ab9decc3564ef64cd10a0",
+      "config_sha256": "faa5871670ee96379a93dc940db727a914a8f24a5590f5951baf4cbe54ca0943"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "device_run": false,
+  "source_sha256": "750e7bbff3997d20194409c8a07df7a098df3cea192eb9532592c1d9bd219edb",
+  "binary_sha256": "7bd788317d69925fad7eb498d02cb38bdf40b40c3e12b8fc24fdb6b5728f5ee8",
+  "binary_size": 114456,
+  "read_only_mmio": true,
+  "sample_count": 200,
+  "sample_period_ms": 100,
+  "kernel": "6.18.48-perrier-ram115"
+}

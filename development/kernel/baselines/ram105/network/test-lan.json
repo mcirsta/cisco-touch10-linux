@@ -1,0 +1,8 @@
+{
+  "interface": "eth0",
+  "mac": "24:16:9d:b6:77:bb",
+  "expected_lease": "10.77.10.10",
+  "netmask": "255.255.255.0",
+  "host_address": "10.77.10.1",
+  "safety": "Keep the established static RAM SSH address; observe the DHCP answer without applying routes, DNS, or interface changes."
+}

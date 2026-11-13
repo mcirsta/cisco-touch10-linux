@@ -1,0 +1,10 @@
+{
+  "development/perrier-native/omap4-perrier-ram.dts": "cc2b32252ca73a63a9548d7893756c0ce57aa995c199659caa19797f5108c27f",
+  "development/perrier-touch/omap4-perrier-touch.dts": "0eb57094b7dac8e405f81623eeed046e9862b88c8f9df1fb6888d7f8a8a66c05",
+  "development/perrier-backlight/omap4-perrier-backlight.dts": "7ccdca06ce84d99607c575d18e6cada7933a134db20332e33ac93ca4bad0c2f7",
+  "development/perrier-keypad/omap4-perrier-keypad.dts": "b3c1515077656cd2f50e3100246bc253f946e1fd022e1b083cc52d89c1053b43",
+  "development/perrier-thermal/omap4-perrier-thermal.dts": "dba85bd136bb78ddf66400ddd60f937d5cadb1f003d971723bd9eedf2ec07d18",
+  "development/perrier-watchdog/omap4-perrier-watchdog.dts": "f561e4c5d03eaf45cd9edffaf45ef5f853788874c95fa84b64acfd5a08c17390",
+  "development/perrier-cold-ethernet/omap4-perrier-cold-ethernet.dts": "fbcafb84f2a3703ad9017f44b277c5105222cdb1f436bc87e091a2ce7261e9d6",
+  "development/perrier-gen4/omap4-perrier-gen4.dts": "bb57b0fd8d458f7c9ab855029735bb8ee8cc79ff9469c216bd1a98461f2d63ef"
+}

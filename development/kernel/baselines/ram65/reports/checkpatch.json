@@ -1,0 +1,22 @@
+{
+  "0001-dt-bindings-cyttsp4-perrier.patch": {
+    "passed": true,
+    "output": ""
+  },
+  "0002-input-restore-cyttsp4-dt.patch": {
+    "passed": true,
+    "output": ""
+  },
+  "0003-drm-omap-perrier-display.patch": {
+    "passed": true,
+    "output": ""
+  },
+  "0004-arm-dts-cisco-perrier.patch": {
+    "passed": true,
+    "output": ""
+  },
+  "ram-only/0001-perrier-ram-safety.patch": {
+    "passed": true,
+    "output": ""
+  }
+}

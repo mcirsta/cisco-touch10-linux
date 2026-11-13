@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "injected_failure_positions": 6,
+  "source": "/home/marius/ext_proj/touch10/development/kernel/source/drivers/gpu/drm/bridge/tc358775.c",
+  "sanitizers": [
+    "address",
+    "undefined"
+  ],
+  "source_sha256": "27dd633748699fcb37dddb7f4e490de4de95101f30d612bb5d7906b6e58eee74",
+  "output": "PASS: six injected I/O failures preserve read outputs and stop later I/O; retries recover"
+}

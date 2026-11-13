@@ -1,0 +1,26 @@
+{
+  "archive_sha256_reads": [
+    "7b598cc6cfd4dc5426e95c84bee4491defb80e4f951de5f6705089ca2f1f4abb",
+    "7b598cc6cfd4dc5426e95c84bee4491defb80e4f951de5f6705089ca2f1f4abb",
+    "7b598cc6cfd4dc5426e95c84bee4491defb80e4f951de5f6705089ca2f1f4abb"
+  ],
+  "bytes": 34463744,
+  "mismatches": [
+    {
+      "file": "qt/lib/libQt6Core.so.6",
+      "expected_sha256": "a82c2368092de92afb3e0bfc5c4d0e65f60b56e311062be74a2dd68773b132d1",
+      "source_sha256": "a82c2368092de92afb3e0bfc5c4d0e65f60b56e311062be74a2dd68773b132d1",
+      "packed_sha256": "c5f381c5a668f33f23502dad80396556545fed7bbe4bdcde0071c444594b1e5f",
+      "differences": [
+        [
+          2042671,
+          231,
+          227
+        ]
+      ],
+      "difference_count": 1
+    }
+  ],
+  "before_device_upload": true,
+  "cause": "not established"
+}

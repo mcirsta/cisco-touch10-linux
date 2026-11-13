@@ -1,0 +1,30 @@
+{
+  "CONFIG_CMDLINE": {
+    "before": "\"console=ttyS0,115200 earlycon=omap8250,mmio32,0x48020000 keep_bootcon ignore_loglevel clk_ignore_unused pd_ignore_unused initcall_blacklist=omap2_common_pm_late_init panic=5 omap_wdt.early_enable=1 omap_wdt.timer_margin=120 nosmp\"",
+    "after": "\"console=ttyS0,115200 earlycon=omap8250,mmio32,0x48020000 keep_bootcon ignore_loglevel clk_ignore_unused pd_ignore_unused initcall_blacklist=omap2_common_pm_late_init panic=5 omap_wdt.early_enable=1 omap_wdt.timer_margin=120 maxcpus=1\""
+  },
+  "CONFIG_GENERIC_IRQ_MIGRATION": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_HOTPLUG_CORE_SYNC": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_HOTPLUG_CORE_SYNC_DEAD": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_HOTPLUG_CPU": {
+    "before": "n",
+    "after": "y"
+  },
+  "CONFIG_INITRAMFS_SOURCE": {
+    "before": "\"/home/marius/ext_proj/touch10/development/perrier-ramenv/smp-uboot-nosmp/initramfs.cpio\"",
+    "after": "\"/home/marius/ext_proj/touch10/development/perrier-ramenv/smp-hotplug/initramfs.cpio\""
+  },
+  "CONFIG_LOCALVERSION": {
+    "before": "\"-perrier-ram108\"",
+    "after": "\"-perrier-ram109\""
+  }
+}

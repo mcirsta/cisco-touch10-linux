@@ -1,0 +1,140 @@
+{
+  "validated_at": "2026-11-10T14:46:02.996956+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram74",
+  "profile": "dsi-standard-video",
+  "default_uboot_profile": true,
+  "owner_confirmations": {
+    "initial": "all fine",
+    "after_three_cycles": "all good"
+  },
+  "physical_test": "Clean aligned initial Qt output and three blank/unblank plus Qt restart cycles; native touch and all brightness stops exercised",
+  "changes": [
+    "Restore mainline active-high VP_HSYNC_POL=1",
+    "Restore pristine Linux 6.18.48 DSI video enable/disable callbacks",
+    "Replace custom early-video state with bounded HS NULL clock priming before bridge programming",
+    "Remove the custom dsi.h override; 47 fewer dsi.c lines than ram70"
+  ],
+  "canonical_source_override_count": 17,
+  "dsi_ctrl": "0x00eaee9f",
+  "onoff": 1,
+  "align": 0,
+  "pll_n": 19,
+  "pll_m": 211,
+  "dtb_byte_identical_to_ram70": true,
+  "gpio_pad_supply_pwm_timing_unchanged": true,
+  "manual_display_cycles": 3,
+  "qt_restarts": 3,
+  "native_touch_reports_in_final_log": 138,
+  "backlight_levels_exercised": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "bridge_latched_status": {
+    "DSI_INTSTATUS": "0x00000002",
+    "DSIERRCNT": "0xc0800001",
+    "observation": "Stable during idle and all three cycles; no sampled growth",
+    "limit": "Bit-level interpretation not established; this is not a claim of zero startup errors"
+  },
+  "watchdog_backend": "linux-watchdog",
+  "watchdog_nowayout": true,
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "watchdog_expiry_recovery_seconds": 155.8,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "stock_recovered": true,
+  "serial_markers": {
+    "factory_saved_before_handoff": true,
+    "candidate_kernel": true,
+    "mainline_watchdog_ready": true,
+    "ram_ssh_started": true
+  },
+  "serial_markers_reconstructed": [],
+  "image_review": {
+    "path": "development/perrier-ramenv/dsi-standard-video/reviewed-image.json",
+    "sha256": "60cf3971d6e2ab99b293105cde80c6eb697d2c1280a6f21d8281d4c54b04bace"
+  },
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram74/snapshot.json",
+    "sha256": "e6a69fbc387aed2840ffa6d0dfe7ba093ac2e3cbb15a10cecc455651c98c6aa3"
+  },
+  "source_manifest": {
+    "path": "development/kernel/baselines/ram74/patches/manifest.json",
+    "sha256": "13761d09456ddee8ba1bbefbd5c8594d310ff15e26af533b5833708cfd6fe3ad"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram74/reports/source-checks.json",
+    "sha256": "273890e8c49042f9a8ee2fb3989dc77cbb4115d96cdfdf75ed40014d3c76b1ea"
+  },
+  "initial_physical_confirmation": {
+    "path": "development/runs/20261110T142257Z-uboot-ram74-f6fc0d/initial-physical-confirmation.json",
+    "sha256": "35d4bd5f60e0932929e45d294ec8a1111eaf8762eead6aa762be915b6dbf4403"
+  },
+  "final_physical_confirmation": {
+    "path": "development/runs/20261110T142257Z-uboot-ram74-f6fc0d/final-physical-confirmation.json",
+    "sha256": "3ad2d1423f18d2940ffa870bfad178c334ce107150b0543f88a1bbb783847d61"
+  },
+  "cycle_checks": {
+    "path": "development/runs/20261110T142257Z-uboot-ram74-f6fc0d/cycle-checks.json",
+    "sha256": "b27ef1cf7ee452ce55305e8aede898e79467c0744f85a8b7ae06d734d397ee80"
+  },
+  "live_result": {
+    "path": "development/runs/20261110T142257Z-uboot-ram74-f6fc0d/result.json",
+    "sha256": "a7978af268337eafd99a46a23b01211ac434d7e08ebedfe7cb398da2db53b685"
+  },
+  "initial_diagnostics": {
+    "path": "development/runs/20261110T142257Z-uboot-ram74-f6fc0d/initial-live.log",
+    "sha256": "785564bc3bb61f1fcb2a793c582b4de027b4e4ba73cac8dcab0d2797f6eec53c"
+  },
+  "idle_status_sample": {
+    "path": "development/runs/20261110T142257Z-uboot-ram74-f6fc0d/stable-bridge-sample.log",
+    "sha256": "8f88ec50aa72af57a31c5d71eabead8627f913300b593d4b5928d643ce76efc7"
+  },
+  "after_cycle_diagnostics": {
+    "path": "development/runs/20261110T142257Z-uboot-ram74-f6fc0d/after-cycles-live.log",
+    "sha256": "e091d1ac9d2c4141514a0f0662e9b25cefdb5ace6e2e1c6abaf7d21a59e0ba2f"
+  },
+  "final_live_diagnostics": {
+    "path": "development/runs/20261110T142257Z-uboot-ram74-f6fc0d/confirmed-live.log",
+    "sha256": "800f7f4442cb5588a12df9702e74d53fd4144bb8e68fcf8c7ceb101ed7788f8b"
+  },
+  "framebuffer_screenshot": {
+    "path": "development/runs/20261110T142257Z-uboot-ram74-f6fc0d/after-three-cycles-framebuffer.png",
+    "sha256": "4dfb3ac6f4c21b36fa747c5c79a18b7369db5c38bbe8affef5a7875b3a7ca80c"
+  },
+  "register_comparison": {
+    "path": "development/kernel/out/dsi-bridge-reduction/register-comparison-ram70-ram74-initial.json",
+    "sha256": "94b8a79092fb5a0400248745b4c0223092793f2fc76dee9838afd858d8671c70"
+  },
+  "parent_validation": {
+    "path": "development/kernel/validation-ram72.json",
+    "sha256": "83aa848207e0b2f5a68a7fa293591c2dddca2692244c4df11e11f23db8e203bc"
+  },
+  "rejected_phy_only_trial": {
+    "path": "development/kernel/validation-ram73.json",
+    "sha256": "f69f889de3b3361225ec1c73f78aa7e92fcc36abbf6fb9541f0814ddbb70c1c1"
+  },
+  "uart_marker_regression_tests": {
+    "path": "development/kernel/out/dsi-bridge-reduction/uart-marker-tests.log",
+    "sha256": "e6ec182765cd965f2837d8eeaef5a64af48a104f245cd1a0b7281559194c57c1"
+  },
+  "runner_snapshot": {
+    "path": "development/kernel/out/dsi-bridge-reduction/qualified-runner/manifest.json",
+    "sha256": "87e0eb71f1188a9871775937473b767ff38728cf036d95313557227b8f2e2051"
+  },
+  "fallback": {
+    "profile": "display-onoff",
+    "kernel": "6.18.48-perrier-ram70",
+    "validation": {
+      "path": "development/kernel/validation-ram70.json",
+      "sha256": "022ffac9182eafb9ea0368f66cbe6cd76049f88ea7ee8c864674457f5dfbc520"
+    }
+  },
+  "limits": [
+    "Retained VC0 L4 source is used by HS command-mode clock priming; pad mode, DSI timing and bridge PHY/reset profile still require separate review",
+    "The ALIGN failure was isolated on the earlier HSYNC=0 pipeline; its necessity with ram74 is not established",
+    "Full-image physical power-removal, production rail power management, and SMP remain pending",
+    "Maximum brightness relative to stock remains an unconfirmed earlier observation"
+  ]
+}

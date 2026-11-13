@@ -1,0 +1,10 @@
+{
+  "interface": "eth0",
+  "mac": "24:16:9d:b6:77:bb",
+  "dhcp_address": "10.77.10.10/24",
+  "rescue_address": "10.77.10.11/24",
+  "server": "10.77.10.1",
+  "router": "none",
+  "dns": "none",
+  "purpose": "Prove that udhcpc applies and renews the PC's isolated lease while the independent RAM rescue address stays available."
+}

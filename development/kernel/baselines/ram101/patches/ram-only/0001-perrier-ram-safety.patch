@@ -1,0 +1,134 @@
+diff --git a/arch/arm/mach-omap2/io.c b/arch/arm/mach-omap2/io.c
+--- a/arch/arm/mach-omap2/io.c
++++ b/arch/arm/mach-omap2/io.c
+@@ -21,6 +21,7 @@
+ 
+ #include <asm/tlb.h>
+ #include <asm/mach/map.h>
++#include <asm/traps.h>
+ 
+ #include <linux/omap-dma.h>
+ 
+@@ -49,6 +50,65 @@
+ #include "prm44xx.h"
+ #include "opp2xxx.h"
+ #include "omap-secure.h"
++#include "perrier-pmu-probe.h"
++
++/* Temporary, read-only RAM probe; remove after identifying the PMU gate. */
++static bool perrier_sder_fault __initdata;
++static bool perrier_auth_fault __initdata;
++
++static int __init perrier_pmu_undef(struct pt_regs *regs, unsigned int instr)
++{
++	if (regs->ARM_pc == (unsigned long)perrier_sder_read_insn)
++		perrier_sder_fault = true;
++	else if (regs->ARM_pc == (unsigned long)perrier_auth_read_insn)
++		perrier_auth_fault = true;
++	else
++		return 1;
++	regs->ARM_pc += 4;
++	return 0;
++}
++
++static struct undef_hook perrier_sder_hook __initdata = {
++	.instr_mask = 0x0fff0fff,
++	.instr_val = 0x0e110f31,
++	.cpsr_mask = MODE_MASK,
++	.cpsr_val = SVC_MODE,
++	.fn = perrier_pmu_undef,
++};
++
++static struct undef_hook perrier_auth_hook __initdata = {
++	.instr_mask = 0x0fff0fff,
++	.instr_val = 0x0e170ede,
++	.cpsr_mask = MODE_MASK,
++	.cpsr_val = SVC_MODE,
++	.fn = perrier_pmu_undef,
++};
++
++static int __init perrier_pmu_read_security(void)
++{
++	unsigned long flags;
++	u32 sder = 0, auth = 0, pmcr;
++
++	if (!of_machine_is_compatible("cisco,perrier-ram"))
++		return 0;
++	register_undef_hook(&perrier_sder_hook);
++	register_undef_hook(&perrier_auth_hook);
++	local_irq_save(flags);
++	asm volatile(".global perrier_sder_read_insn\n"
++		     "perrier_sder_read_insn: mrc p15, 0, %0, c1, c1, 1\n"
++		     : "+r" (sder));
++	asm volatile(".global perrier_auth_read_insn\n"
++		     "perrier_auth_read_insn: mrc p14, 0, %0, c7, c14, 6\n"
++		     : "+r" (auth));
++	asm volatile("mrc p15, 0, %0, c9, c12, 0" : "=r" (pmcr));
++	local_irq_restore(flags);
++	unregister_undef_hook(&perrier_auth_hook);
++	unregister_undef_hook(&perrier_sder_hook);
++	pr_info("PERRIER_PMU_SECURITY sder=%08x sder_fault=%d auth=%08x auth_fault=%d pmcr=%08x\n",
++		sder, perrier_sder_fault, auth, perrier_auth_fault, pmcr);
++	return 0;
++}
++late_initcall(perrier_pmu_read_security);
+ 
+ /*
+  * omap_clk_soc_init: points to a function that does the SoC-specific
+@@ -609,6 +669,9 @@
+ 
+ void __init omap4430_init_late(void)
+ {
++	/* No PMIC, voltage or low-power policy changes in the RAM trial. */
++	if (of_machine_is_compatible("cisco,perrier-ram"))
++		return;
+ 	omap_pm_soc_init = omap4_pm_init;
+ }
+ #endif
+diff --git a/arch/arm/mach-omap2/perrier-pmu-probe.h b/arch/arm/mach-omap2/perrier-pmu-probe.h
+--- /dev/null
++++ b/arch/arm/mach-omap2/perrier-pmu-probe.h
+@@ -0,0 +1,8 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++#ifndef __OMAP2_PERRIER_PMU_PROBE_H
++#define __OMAP2_PERRIER_PMU_PROBE_H
++
++extern char perrier_sder_read_insn[];
++extern char perrier_auth_read_insn[];
++
++#endif
+diff --git a/drivers/clk/ti/clk-44xx.c b/drivers/clk/ti/clk-44xx.c
+--- a/drivers/clk/ti/clk-44xx.c
++++ b/drivers/clk/ti/clk-44xx.c
+@@ -802,6 +802,10 @@
+ 
+ 	ti_clk_add_aliases();
+ 
++	/* Perrier RAM trial: retain stock USB/audio PLL configuration. */
++	if (of_machine_is_compatible("cisco,perrier-ram"))
++		return 0;
++
+ 	/*
+ 	 * Lock USB DPLL on OMAP4 devices so that the L3INIT power
+ 	 * domain can transition to retention state when not in use.
+diff --git a/drivers/mmc/core/block.c b/drivers/mmc/core/block.c
+--- a/drivers/mmc/core/block.c
++++ b/drivers/mmc/core/block.c
+@@ -42,6 +42,7 @@
+ #include <linux/idr.h>
+ #include <linux/debugfs.h>
+ #include <linux/rpmb.h>
++#include <linux/of.h>
+ 
+ #include <linux/mmc/ioctl.h>
+ #include <linux/mmc/card.h>
+@@ -2586,6 +2587,9 @@
+ 	 * and the write protect switch.
+ 	 */
+ 	md->read_only = mmc_blk_readonly(card);
++	/* Perrier RAM trial: all eMMC areas reject write opens. */
++	if (of_machine_is_compatible("cisco,perrier-ram"))
++		md->read_only = 1;
+ 
+ 	if (mmc_host_can_cmd23(card->host) && mmc_card_can_cmd23(card))
+ 		md->flags |= MMC_BLK_CMD23;

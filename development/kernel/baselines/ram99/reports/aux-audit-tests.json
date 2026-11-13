@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "unsafe_mutations_rejected": [
+    "wrong RTC IRQ",
+    "wrong RTC type",
+    "GPIO shutdown release",
+    "GPIO output initialization",
+    "unmapped GPIO reset",
+    "wrong GPIO cell count",
+    "wrong GPIO address",
+    "wrong clock provider",
+    "PMIC clock reinit",
+    "display timing altered",
+    "rail voltage altered",
+    "CPU1 enabled"
+  ]
+}

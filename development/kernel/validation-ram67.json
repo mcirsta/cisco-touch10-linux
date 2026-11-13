@@ -1,0 +1,38 @@
+{
+  "status": "unqualified-display-cycle",
+  "kernel": "6.18.48-perrier-ram67",
+  "profile": "display-dispc",
+  "owner_confirmation": "Visible and aligned; touch works",
+  "removed": "Entire Perrier DISPC POL_FREQ override; pristine mainline dispc.c restored",
+  "dispc_pol_freq_lcd": "0x00060000",
+  "pll_n": 38,
+  "pll_m": 422,
+  "pixel_clock_hz": 71073662,
+  "dtb_identical_to_ram66": true,
+  "blank_unblank_drm_and_bridge_verified": true,
+  "qualification_note": "Initial visible alignment and touch passed, but the matched blank/unblank and Qt restart recheck produced a red vertical line. Register readback alone did not establish correct physical output.",
+  "matched_cycle_run": "development/runs/20261110T123838Z-uboot-ram67-c9f1d0",
+  "matched_cycle_owner_confirmation": "The red line is still there",
+  "watchdog_recovery_seconds": 153.9,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "image_review": {
+    "path": "development/perrier-ramenv/display-dispc/reviewed-image.json",
+    "sha256": "f7f5640be7c51e762602ce8b2f487f1f162c81ac0af47f9696662cb9a3436f3e"
+  },
+  "live_result": {
+    "path": "development/runs/20261110T122124Z-uboot-ram67-84188c/result.json",
+    "sha256": "61e2e62af1c30e3b8d87b903235e77ec51213ca37f8deb0254f4e9a6e0232dc7"
+  },
+  "display_readback": {
+    "path": "development/runs/20261110T122124Z-uboot-ram67-84188c/display-readback.log",
+    "sha256": "77b9cde91cf65266aff65a9f410a4bc16ca61ac4e670616f4be85b0a5dda6826"
+  },
+  "display_cycle": {
+    "path": "development/runs/20261110T122124Z-uboot-ram67-84188c/display-cycle.log",
+    "sha256": "86677620dcc29786675d65c5c11a672b96ba87ef6e3d2d989f05b1951360e708"
+  },
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram67/snapshot.json",
+    "sha256": "be8bf7cfce7184c75777c6848f3752309e9df9200e77f00a3e9bb6005f4e59f3"
+  }
+}

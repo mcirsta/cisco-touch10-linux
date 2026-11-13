@@ -1,0 +1,11 @@
+{
+  "kernel": "6.18.48-perrier-ram104",
+  "packaged": {
+    "first_exit": 0,
+    "second_exit": 0,
+    "elapsed_seconds": 9.3,
+    "first_output": "",
+    "second_output": ""
+  },
+  "passed": true
+}

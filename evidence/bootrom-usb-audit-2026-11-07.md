@@ -1,0 +1,27 @@
+# Exact OMAP4460 Boot ROM USB receive and EP0 audit
+
+Offline analysis only. Source: `analysis/bootrom/omap4460-bootrom-lowalias.bin`, a 49,152-byte low alias of this panel's dumped ROM, SHA-256 `7fd0176dbdf06cfa42f147a5c0a923abb1f2fa269b82d0352fa02a5bd3b8efff`. Addresses below are ROM execution addresses. No device command or USB test was run for this review.
+
+## Bulk receive: where host length reaches memory
+
+The ROM peripheral image path at `0x33092` gets its transport from the fixed `A`–`G` table via `0x30e0a`. Entries `E`–`G` at `0x37730`–`0x37758` have the same USB receive function pointer `0x34289` (Thumb entry for `0x34288`); `A`–`D` point to a different transport. At `0x3317e`–`0x3318c`, the caller arms a four-byte receive into its fixed header buffer. At `0x33254`–`0x3325e`, it rejects a zero declared length or one greater than `0x4030bfff - R7`. `R7` is set at `0x330d6`–`0x330e0`: `0x40304000` for type 2, `0x40300000` for type 3. Thus the largest accepted image receive is **32,767** or **49,151** bytes respectively. Only after this check does `0x33260`–`0x33270` arm the body receive into that fixed destination.
+
+`0x34288` copies the ROM caller's buffer pointer and requested count from its transfer descriptor into USB state at `0x4030dbec + 0x14/+0x18/+0x1c`, sets state 4, and starts the endpoint at `0x351f6`. The host supplies image bytes and the four-byte length, but cannot supply this state pointer or a destination address through USB setup packets. The ROM API could be called by subsequently executed trusted code with another descriptor; that is outside this pre-authentication host path.
+
+The bulk receive interrupt calls `0x354dc` from `0x35bd8` (its only direct call). At `0x35514` it reads the controller's 16-bit RX count. `0x35518`–`0x35520` computes `(current - start + packet_count) & 0xffff`; `0x35522`–`0x35530` stalls when that value exceeds the requested count. Otherwise `0x35536`–`0x3554c` copies `packet_count` bytes from the FIFO to the current pointer and advances that pointer. The FIFO copy at `0x3541a` has no own bounds check, so the preceding state and comparison matter.
+
+The narrowing at `0x35520` is real, but **does not wrap on the identified pre-authentication image path**. The endpoint is configured for a 512-byte high-speed or 64-byte full-speed maximum packet at `0x3571e`/`0x3572c`, stored in TXMAXP/RXMAXP at `0x3572e`–`0x35732`. Even at the larger type-3 request, the next compliant packet gives at most `49,151 + 512 = 49,663`, below 65,536. Once a packet would exceed the request, the handler stalls before the FIFO copy. This conclusion assumes the USB controller reports no more than its configured endpoint packet size in RXCOUNT; this audit does not independently characterize malformed electrical USB packets or a controller erratum.
+
+The alternate DMA completion at `0x35454`, called from `0x35c00`, also narrows `(DMA current address - start + RX count)` at `0x35498`. It copies the residual FIFO bytes at `0x354b2` only when the narrowed value **equals** the requested count. The DMA path is armed with the same checked count at `0x351f6`/`0x35226`–`0x3522e`. With a count below 49,152 and a compliant packet of at most 512 bytes, this equality cannot be reached through a 16-bit wrap. A separate arbitrary-size ROM API caller could make the narrowing relevant, but no such caller is visible before image authentication.
+
+## EP0 setup and descriptor responses
+
+`0x35ab0`–`0x35aea` copies exactly two 32-bit setup words from the controller FIFO into the eight-byte setup area at `0x4030dc3e`; it does not use `wLength` as a copy size. The dispatcher at `0x35a00` branches by transfer direction and request number. Its IN handlers are requests 0, 6, 8, and 10; OUT handlers are 1, 3, 5, 9, and 11. Unhandled requests take a stall path. The OUT handlers update bounded USB status/configuration fields or controller registers, not a host-chosen memory address. For example, SET_ADDRESS accepts zero or 1–127 at `0x356a0`–`0x356d6`, and SET_CONFIGURATION accepts only zero or one at `0x356e2`–`0x357e6`.
+
+GET_DESCRIPTOR at `0x35900` selects fixed ROM/RAM descriptors by descriptor type. The string lookup at `0x358aa` bounds the host's low-byte string index to three four-entry ranges (`0x20`–`0x2b`). The corresponding 50-byte slots at `0x37bf4`–`0x37e4b` have leading lengths 8, 36, 12, 18, 18, 18, 28, 34, 8, 8, 0, 0; every nonzero length fits its slot. Other string indexes use a fixed fallback descriptor. At `0x359c2`–`0x359ca`, the reply length is further clamped to host `wLength`. EP0 transmission at `0x3556e` sends at most 64 bytes per call and decrements that already bounded reply length. No setup-controlled descriptor pointer or overlong EP0 memory read was found.
+
+The code appears to dispatch some request numbers without checking every `bmRequestType` type/recipient bit. That can make USB protocol behavior permissive, but the reviewed handlers still operate on fixed state and registers; it does not establish an arbitrary read or write.
+
+## Result and ranking
+
+No additional pre-authentication memory corruption or ROM readout candidate was established in the EP0 or bulk paths. The 16-bit completion narrowing at `0x35498`/`0x35520` is a **latent API concern** if code already executing on the target can arm a receive of at least 64 KiB, but the identified ROM host path caps requests below 49 KiB. It ranks below the storage-image clamp candidate and does not provide a reversible USB-only test of that candidate's memory overwrite.

@@ -1,0 +1,254 @@
+{
+  "validated_at": "2026-11-12T11:33:14.863022+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram99",
+  "profile": "speaker-audio",
+  "default_uboot_profile": true,
+  "details": {
+    "change": "48 kHz mono/stereo ALSA application playback and real Qt speaker controls",
+    "kernel_hardware_base": "ram97; exact patched sources, board.dtb and hardware configuration unchanged",
+    "userspace": "Unmodified pinned upstream ALSA lib and aplay; same Cortex-A9 GCC 15.3 musl ABI as Qt",
+    "mapping": {
+      "application": "48000 Hz S16_LE mono/stereo",
+      "hardware": "96000 Hz S32_LE, four channels",
+      "hfr_slot": 3,
+      "stereo": "L/R averaged; mono unity gain",
+      "other_slots": "zero"
+    },
+    "offline_conversion_cases": 6,
+    "qt_controls": {
+      "api": "Native ALSA controls with type/range/state validation and readback",
+      "gain_range_used": [
+        0,
+        24
+      ],
+      "volume_zero_and_mute": "HFR route Off",
+      "unmute": "HF DAC with current gain",
+      "unrelated_outputs": "HFL and EP remain off",
+      "normal_exit": "Original mixer gains/route restored and independently verified",
+      "test_signal": "Faded 660 Hz low-level 30 second 48 kHz mono stream on nonblocking worker"
+    },
+    "initial_failure": "ram98 snd_pcm_set_params period-time ambiguity; original package not promoted",
+    "correction": "Explicit period1024/buffer4096 app frames; corrected over RAM SSH with one clean Qt restart, no kernel reboot or display reset for the fix",
+    "owner_confirmation": {
+      "quote": "Tones, volume and mute work",
+      "run": "development/runs/20261112T111512Z-uboot-ram98-dc6330",
+      "reused_in_final_by_exact_app_sha256": "384466222476f0b631ecc318117cf0716caacde07ebdbb4d9d51346b71929eb8"
+    },
+    "owner_test_software_evidence": {
+      "qt_frames": 1440000,
+      "qt_recoveries": 0,
+      "stable_independent_mixer_samples": 124,
+      "active_pcm_samples": 26,
+      "mute_with_continuing_dma": true,
+      "front_up_down_hold_and_mute_events": true
+    },
+    "final_image_verification": [
+      "U-Boot RAM boot",
+      "same corrected Qt binary read back from panel",
+      "mono and stereo 48 kHz application PCM",
+      "native 96k/4ch/S32 DMA progression",
+      "exact shared Qt setup function, 144000 silent frames",
+      "65 PMIC fields unchanged from ram97",
+      "GPIO port 0x11",
+      "hardware-watchdog recovery and stock postchecks"
+    ],
+    "display_reset_cycles": 0,
+    "qt_restarts_final_ram99": 0,
+    "qt_clean_restarts_initial_debug_ram98": 1,
+    "combined_ram_boots": 2,
+    "kexec_used": false,
+    "kernel_or_rootfs_installed_as_persistent_boot_target": false,
+    "retained_fallback": "native-audio ram97",
+    "remaining_audio_work": [
+      "simultaneous-client mixing",
+      "stock ABE DSP effects",
+      "production power policy"
+    ],
+    "ep_output": "Unqualified and unused; no physical earpiece inferred"
+  },
+  "recovery_mode": "hardware_expiry",
+  "recovery_elapsed_seconds": 150.8,
+  "stock_recovered": true,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "serial_markers": {
+    "factory_saved_before_handoff": true,
+    "candidate_kernel": true,
+    "mainline_watchdog_ready": true,
+    "ram_ssh_started": true
+  },
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram99/snapshot.json",
+    "sha256": "b655ef16b71c253101f5c8e52a9c307151255d4dde3f2e121275191f35ae1207"
+  },
+  "source_manifest": {
+    "path": "development/kernel/baselines/ram99/patches/manifest.json",
+    "sha256": "b636c4d1088d4a1671cb1b782c9b61cd8b30081bf4eac43c7362373f67e8cc7b"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram99/reports/source-checks.json",
+    "sha256": "971f8963d45458d3449828c24e0df5e862ca4225b52060b0a2ed2d1b081d3884"
+  },
+  "tests": {
+    "audio-audit-tests": {
+      "path": "development/kernel/baselines/ram99/reports/audio-audit-tests.json",
+      "sha256": "a070dd3eb83fa9d0995da84cb4d49a12404f47df84ad9f0dc351c97a921e80ab"
+    },
+    "aux-audit-tests": {
+      "path": "development/kernel/baselines/ram99/reports/aux-audit-tests.json",
+      "sha256": "711eb612ad4b802a5fbeb75dd9696b86f9027872e63fa7293822c17873441943"
+    },
+    "bridge-regmap-tests": {
+      "path": "development/kernel/baselines/ram99/reports/bridge-regmap-tests.json",
+      "sha256": "de5ab6625c121cee42fa9aae4e9998ade67c6fcf209461efa1cf256cff137429"
+    },
+    "bus-audit-tests": {
+      "path": "development/kernel/baselines/ram99/reports/bus-audit-tests.json",
+      "sha256": "de1a3289c0714aaef3717248aeaf3181b4d62b5ca146271862971560913d5b68"
+    },
+    "dsi-null-tests": {
+      "path": "development/kernel/baselines/ram99/reports/dsi-null-tests.json",
+      "sha256": "099c03eb8bada5921d51dc7fec8fd2dee9d4daf88bd6d6dd8615a068c7a1851a"
+    },
+    "dsi-power-tests": {
+      "path": "development/kernel/baselines/ram99/reports/dsi-power-tests.json",
+      "sha256": "cfaa4dea48acfc48ba727ca86722d92e1885583c7dff4f2e27aa6c8ed4e590ce"
+    },
+    "dsi-timing-tests": {
+      "path": "development/kernel/baselines/ram99/reports/dsi-timing-tests.json",
+      "sha256": "f84046446b23c5beb9c5182529fc0a7d6bfec7c83eeb638bb8e1e42e4337cda7"
+    },
+    "dsi-vc-tests": {
+      "path": "development/kernel/baselines/ram99/reports/dsi-vc-tests.json",
+      "sha256": "01193e3455920bb0d63334a0447f67fa9e7122e6eef3105785769d928ad96185"
+    },
+    "led-audit-tests": {
+      "path": "development/kernel/baselines/ram99/reports/led-audit-tests.json",
+      "sha256": "188f2103991c35bdc5057c9772090f7ffc44b267623dd6358dc5d4375f600a81"
+    },
+    "pcf-shutdown-tests": {
+      "path": "development/kernel/baselines/ram99/reports/pcf-shutdown-tests.json",
+      "sha256": "f49e690d7cb609cf4a91232187ba54b55365169babf106657d005428df28b645"
+    },
+    "peripheral-audit-tests": {
+      "path": "development/kernel/baselines/ram99/reports/peripheral-audit-tests.json",
+      "sha256": "c12fb1bdccf5a12af7226e4e9fb5a6f5669003e83c6b200537651a07f3e0588b"
+    }
+  },
+  "image_review": {
+    "path": "development/perrier-ramenv/speaker-audio/reviewed-image.json",
+    "sha256": "6bf461fbc0959bce8d2b367299a780028a9ee2059a6abd05d9029829bb97d025"
+  },
+  "live_result": {
+    "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/result.json",
+    "sha256": "60058e4a5ea955db189683b9a3bcbd137087aa8e440631a0a2aebd4ca7aff3fc"
+  },
+  "physical_confirmations": [],
+  "machine_checks": {
+    "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-final-checks.json",
+    "sha256": "3176ac86d0cf9e9c29fd355847b4d421da2d2135aab86276856456385fd8001a"
+  },
+  "evidence": {
+    "audio-app-equivalence.json": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-app-equivalence.json",
+      "sha256": "8c44d58b385c436c7cfd8088c969db4fce434af19257080016af44bd832c16ed"
+    },
+    "audio-application-1ch.log": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-application-1ch.log",
+      "sha256": "84868978b302689da8ca20448f0f3d66a1d5935c5827815837e5de15fe7adc0a"
+    },
+    "audio-application-2ch.log": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-application-2ch.log",
+      "sha256": "da4d2af838dd78a4e1e0da042cd208ef0fd34546eb57aebd7f4c7e5fc3bfa4e2"
+    },
+    "audio-application-after.log": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-application-after.log",
+      "sha256": "0e431d919a59afe6e45046749436eaafcbca9f34b7510a1ae7441380160815b4"
+    },
+    "audio-application-before.log": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-application-before.log",
+      "sha256": "4a9708e056888c9497c304f5c0f7b8e8154df87b9b83c3483847608c73a82b2a"
+    },
+    "audio-application-check-executed.py": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-application-check-executed.py",
+      "sha256": "1aee31805e8cdc1c95ca8bad4c4090b7e89e181bdb493b578e209d5456f327ca"
+    },
+    "audio-application-checks.json": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-application-checks.json",
+      "sha256": "dd3a2ce04a20ea9cf94320847934cea194076fdb042d66cb977686684038ccdc"
+    },
+    "audio-application-framebuffer.png": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-application-framebuffer.png",
+      "sha256": "9482a1e2d57c0e5563d9f53af1e486635073160a2b9f37a6c7228deebcb814b8"
+    },
+    "audio-application-notes.md": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-application-notes.md",
+      "sha256": "12e00ac2fc2694d47247003cd0be5f2175e9f3b3d8ade51014b172973d1aa214"
+    },
+    "audio-final-checks.json": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-final-checks.json",
+      "sha256": "3176ac86d0cf9e9c29fd355847b4d421da2d2135aab86276856456385fd8001a"
+    },
+    "audio-qt-initial.json": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-qt-initial.json",
+      "sha256": "9d52badc8732f24dd09871e88bdd2cfe165af4b2e071fbb8ce99c1e1d16193e4"
+    },
+    "audio-qt-pcm-setup.log": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-qt-pcm-setup.log",
+      "sha256": "aac709c36f9c4d3191140253dede230c8df896ae5e81341d617931ac0e8fdc53"
+    },
+    "audio-qt-pid-after.log": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-qt-pid-after.log",
+      "sha256": "6df9d0a6ea8e120e383e708daf48c33d8f6d0f79b42bfc2a0fefbb2d092cadee"
+    },
+    "audio-qt-pid-before.log": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-qt-pid-before.log",
+      "sha256": "6df9d0a6ea8e120e383e708daf48c33d8f6d0f79b42bfc2a0fefbb2d092cadee"
+    },
+    "audio-qt-startup-confirmed.log": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-qt-startup-confirmed.log",
+      "sha256": "1ca7257e610bcbd117c4874443a2fc2bea6bf5be7cfec68fe48f4263d1d7d51c"
+    },
+    "audio-silence48-1ch.wav": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-silence48-1ch.wav",
+      "sha256": "5cffdd4793d2c7986a33d893ef9f6e29f84420b47f145c3669ecc971581941e7"
+    },
+    "audio-silence48-2ch.wav": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-silence48-2ch.wav",
+      "sha256": "ec3650bd450cebe9985c1d4d4b59749debe34301f9f9e889171d0e49a316c89c"
+    },
+    "audio-staging-pruned-ram98.json": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-staging-pruned-ram98.json",
+      "sha256": "936b5643408416c433b2d9943015e228aebe8559495772f3f64099621d725114"
+    },
+    "audio-staging-pruned.json": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/audio-staging-pruned.json",
+      "sha256": "1ac70ec94391509934eb6ffc6aa42fc43d2eb326a8f24b9ca57d806f1ab44ad8"
+    },
+    "stock-audio-after.log": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/stock-audio-after.log",
+      "sha256": "8ba357ad2067d44ebdf8dbbeb9afd508bd36bea767da9c0af658bf5cf776965a"
+    },
+    "stock-audio-check-executed.py": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/stock-audio-check-executed.py",
+      "sha256": "ad6fb7f3c69fa7c9d93c453fad0df7ac1fdbdbb3e1cbbcddd835321e520aa8a2"
+    },
+    "stock-audio-checks.json": {
+      "path": "development/runs/20261112T112823Z-uboot-ram99-c29ec2/stock-audio-checks.json",
+      "sha256": "6e47d51f7cd641bf40d407de35ab6b0c48303763b4ce7d1623eaf82fe3d3c3a9"
+    }
+  },
+  "fallback": {
+    "profile": "native-audio",
+    "kernel": "6.18.48-perrier-ram97",
+    "validation": {
+      "path": "development/kernel/validation-ram97.json",
+      "sha256": "abecb4647db4401d75c9ef1b001dec834e9abcfe24e1e79309c9514f5747aac6"
+    }
+  },
+  "parent_validation": {
+    "path": "development/kernel/validation-ram97.json",
+    "sha256": "abecb4647db4401d75c9ef1b001dec834e9abcfe24e1e79309c9514f5747aac6"
+  }
+}

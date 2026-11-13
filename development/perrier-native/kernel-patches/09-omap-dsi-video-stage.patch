@@ -1,0 +1,10 @@
+--- a/drivers/gpu/drm/omapdrm/dss/dsi.h
++++ b/drivers/gpu/drm/omapdrm/dss/dsi.h
+@@ -396,6 +396,7 @@
+ 	bool te_enabled;
+ 	bool iface_enabled;
+ 	bool video_enabled;
++	bool perrier_video_prepared;
+ 
+ 	struct delayed_work framedone_timeout_work;
+ 

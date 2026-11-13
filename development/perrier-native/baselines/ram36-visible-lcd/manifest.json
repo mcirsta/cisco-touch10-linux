@@ -1,0 +1,47 @@
+{
+  "kernel": "6.18.48-perrier-ram36",
+  "source_sha256": "5ebdadb10a4b5708fc6b1c457764a110bc49f8150cc3502c59b921ead8c6fc8c",
+  "source_signature_key": "647F28654894E3BD457199BE38DBBDC86092693E",
+  "files": {
+    "development/perrier-native/build/arch/arm/boot/zImage": {
+      "size": 3750736,
+      "sha256": "093074eb1e520f3c32bfeb01ecca47d4398e2fa7195de20d30b1e25052b3e80a"
+    },
+    "development/perrier-native/build/vmlinux": {
+      "size": 8166128,
+      "sha256": "4fc034b5323b630082344e3ebf5b8171a4524a48ff60b25b17ca5f56c1d61f05"
+    },
+    "development/perrier-native/build/System.map": {
+      "size": 898694,
+      "sha256": "eec73d3253687d41cc97d11b2cf30467aaae5cc4f1ed5cc01e519bf79ee9566b"
+    },
+    "development/perrier-native/build/.config": {
+      "size": 72375,
+      "sha256": "fd2cc2f654c2d1015f7a74d10daeef0f418ce33275e1beca4cce5ae51d042588"
+    },
+    "development/perrier-native/build/omap4-perrier-ram.dtb": {
+      "size": 92409,
+      "sha256": "73444e693857d02d5fc134697349a83e22662572f1dc17725e2878f4b90253a0"
+    },
+    "development/perrier-native/initramfs.cpio": {
+      "size": 3131896,
+      "sha256": "d52605d119d686811ed511fad93e349973fbaedb7331539fdbe1f18617464be2"
+    },
+    "development/perrier-native/init": {
+      "size": 1108764,
+      "sha256": "be33305a06b3bac2443a3c29b8ef764f6c3867aeedfe66f463a2ae74045a99de"
+    },
+    "development/perrier-native/kms-probe": {
+      "size": 918628,
+      "sha256": "e82442c9e99c1efc7bd5e10eeb292aeea11d3b50151c1d184ba9c20ae0883928"
+    },
+    "development/perrier-native/kms-pattern": {
+      "size": 1081660,
+      "sha256": "da677fcf14d8223e565a98a33ccd578b537e1db48df3d35d360186f65890005d"
+    },
+    "development/perrier-native/backlight-state": {
+      "size": 21056,
+      "sha256": "bdc8ccedd9ac734f62971fa2b6cc20023f53ed85a068d30cbed6f075e316a396"
+    }
+  }
+}

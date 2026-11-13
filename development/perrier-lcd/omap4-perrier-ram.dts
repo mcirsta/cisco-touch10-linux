@@ -1,0 +1,276 @@
+// SPDX-License-Identifier: GPL-2.0-only
+// RAM trial: passive simpledrm handoff, UART, USB Ethernet, MMC2, and I2C.
+/dts-v1/;
+#include "omap4460.dtsi"
+
+/ {
+    model = "Cisco Touch 10 Perrier RAM trial";
+    compatible = "cisco,perrier-ram", "ti,omap4460", "ti,omap4";
+    memory@80000000 {
+        device_type = "memory";
+        reg = <0x80000000 0x19000000>; // observed low 400 MiB only
+    };
+    chosen {
+        #address-cells = <1>;
+        #size-cells = <1>;
+        ranges;
+        stdout-path = "serial0:115200n8";
+
+        // Stock Phoenix rotates among three contiguous 1280x800 AR24 TILER
+        // views. Map the complete inherited pool so userspace can address
+        // the current scanout without changing any display hardware state.
+        // simpledrm registration only: no fbdev client, console, or pixel write.
+        framebuffer@7ec78000 {
+            compatible = "simple-framebuffer";
+            reg = <0x7ec78000 0x00bb8000>;
+            width = <1280>;
+            height = <800>;
+            stride = <5120>;
+            format = "a8r8g8b8";
+        };
+    };
+    aliases {
+        serial0 = &perrier_uart;
+        mmc0 = &perrier_mmc2;
+        i2c1 = &perrier_i2c2;
+        i2c2 = &perrier_i2c3;
+        /delete-property/ i2c0;
+        /delete-property/ i2c3;
+        /delete-property/ serial1;
+        /delete-property/ serial2;
+        /delete-property/ serial3;
+        /delete-property/ mmc1;
+        /delete-property/ mmc2;
+        /delete-property/ mmc3;
+        /delete-property/ mmc4;
+    };
+    // Stock UART3 is already muxed and clocked at 48 MHz. No pad/GPIO writes.
+    perrier_uart: serial@48020000 {
+        compatible = "ti,omap4-uart";
+        reg = <0x48020000 0x100>;
+        interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
+        interrupt-parent = <&gic>;
+        clock-frequency = <48000000>;
+    };
+
+    // Stock board data advertises OCR bit 0x20000 (2.9-3.0 V) for MMC2.
+    // This fixed-regulator declaration has no enable GPIO and cannot change
+    // the physical rail. The real board power sequence is still inherited.
+    perrier_emmc_vcc: regulator-emmc-vcc {
+        compatible = "regulator-fixed";
+        regulator-name = "perrier-emmc-vcc";
+        regulator-min-microvolt = <2950000>;
+        regulator-max-microvolt = <2950000>;
+        regulator-always-on;
+    };
+
+    // OMAP I2C3 is the stock display bridge bus at 0x48060000. Register
+    // only the controller; do not instantiate the bridge or issue transfers.
+    target-module@48060000 {
+        compatible = "ti,sysc-omap2", "ti,sysc";
+        reg = <0x48060000 0x8>, <0x48060010 0x8>, <0x48060090 0x8>;
+        reg-names = "rev", "sysc", "syss";
+        ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
+                         SYSC_OMAP2_ENAWAKEUP |
+                         SYSC_OMAP2_SOFTRESET |
+                         SYSC_OMAP2_AUTOIDLE)>;
+        ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+                        <SYSC_IDLE_SMART>, <SYSC_IDLE_SMART_WKUP>;
+        ti,syss-mask = <1>;
+        clocks = <&l4_per_clkctrl OMAP4_I2C3_CLKCTRL 0>;
+        clock-names = "fck";
+        #address-cells = <1>;
+        #size-cells = <1>;
+        ranges = <0 0x48060000 0x1000>;
+
+        perrier_i2c3: i2c@0 {
+            compatible = "ti,omap4-i2c";
+            reg = <0 0x100>;
+            interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
+            clock-frequency = <100000>;
+            #address-cells = <1>;
+            #size-cells = <0>;
+        };
+    };
+
+    // OMAP I2C2 is the stock touchscreen bus at 0x48072000. Probe only the
+    // controller: no child device, GPIO, pinmux or regulator is present.
+    target-module@48072000 {
+        compatible = "ti,sysc-omap2", "ti,sysc";
+        reg = <0x48072000 0x8>, <0x48072010 0x8>, <0x48072090 0x8>;
+        reg-names = "rev", "sysc", "syss";
+        ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
+                         SYSC_OMAP2_ENAWAKEUP |
+                         SYSC_OMAP2_SOFTRESET |
+                         SYSC_OMAP2_AUTOIDLE)>;
+        ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+                        <SYSC_IDLE_SMART>, <SYSC_IDLE_SMART_WKUP>;
+        ti,syss-mask = <1>;
+        clocks = <&l4_per_clkctrl OMAP4_I2C2_CLKCTRL 0>;
+        clock-names = "fck";
+        #address-cells = <1>;
+        #size-cells = <1>;
+        ranges = <0 0x48072000 0x1000>;
+
+        perrier_i2c2: i2c@0 {
+            compatible = "ti,omap4-i2c";
+            reg = <0 0x100>;
+            interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
+            clock-frequency = <100000>;
+            #address-cells = <1>;
+            #size-cells = <0>;
+        };
+    };
+
+    // MMC2 requires the OMAP system DMA controller in Linux 6.18.
+    target-module@4a056000 {
+        compatible = "ti,sysc-omap2", "ti,sysc";
+        reg = <0x4a056000 0x4>, <0x4a05602c 0x4>, <0x4a056028 0x4>;
+        reg-names = "rev", "sysc", "syss";
+        ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
+                         SYSC_OMAP2_EMUFREE |
+                         SYSC_OMAP2_SOFTRESET |
+                         SYSC_OMAP2_AUTOIDLE)>;
+        ti,sysc-midle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>, <SYSC_IDLE_SMART>;
+        ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>, <SYSC_IDLE_SMART>;
+        ti,syss-mask = <1>;
+        clocks = <&l3_dma_clkctrl OMAP4_DMA_SYSTEM_CLKCTRL 0>;
+        clock-names = "fck";
+        #address-cells = <1>;
+        #size-cells = <1>;
+        ranges = <0 0x4a056000 0x1000>;
+
+        perrier_sdma: dma-controller@0 {
+            compatible = "ti,omap4430-sdma", "ti,omap-sdma";
+            reg = <0 0x1000>;
+            interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
+                         <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
+                         <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
+                         <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
+            #dma-cells = <1>;
+            dma-channels = <32>;
+            dma-requests = <127>;
+        };
+    };
+
+    target-module@480b4000 {
+        compatible = "ti,sysc-omap4", "ti,sysc";
+        reg = <0x480b4000 0x4>, <0x480b4010 0x4>;
+        reg-names = "rev", "sysc";
+        ti,sysc-mask = <(SYSC_OMAP4_FREEEMU | SYSC_OMAP4_SOFTRESET)>;
+        ti,sysc-midle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+                         <SYSC_IDLE_SMART>, <SYSC_IDLE_SMART_WKUP>;
+        ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+                         <SYSC_IDLE_SMART>, <SYSC_IDLE_SMART_WKUP>;
+        clocks = <&l3_init_clkctrl OMAP4_MMC2_CLKCTRL 0>;
+        clock-names = "fck";
+        #address-cells = <1>;
+        #size-cells = <1>;
+        ranges = <0 0x480b4000 0x1000>;
+
+        perrier_mmc2: mmc@0 {
+            compatible = "ti,omap4-hsmmc";
+            reg = <0 0x400>;
+            interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
+            ti,needs-special-reset;
+            non-removable;
+            ti,non-removable;
+            bus-width = <8>;
+            max-frequency = <26000000>;
+            vmmc-supply = <&perrier_emmc_vcc>;
+            dmas = <&perrier_sdma 47>, <&perrier_sdma 48>;
+            dma-names = "tx", "rx";
+        };
+    };
+
+    // Only the OMAP USB host target is populated. Its port 1 connects to the
+    // board's already powered external PHY and SMSC95xx LAN chip. The stock
+    // GPIO/pad state is inherited across kexec; this DT makes no GPIO writes.
+    target-module@4a064000 {
+        compatible = "ti,sysc-omap4", "ti,sysc";
+        reg = <0x4a064000 0x4>, <0x4a064010 0x4>, <0x4a064014 0x4>;
+        reg-names = "rev", "sysc", "syss";
+        ti,sysc-mask = <SYSC_OMAP4_SOFTRESET>;
+        ti,sysc-midle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+                         <SYSC_IDLE_SMART>, <SYSC_IDLE_SMART_WKUP>;
+        ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+                         <SYSC_IDLE_SMART>, <SYSC_IDLE_SMART_WKUP>;
+        clocks = <&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 0>;
+        clock-names = "fck";
+        #address-cells = <1>;
+        #size-cells = <1>;
+        ranges = <0 0x4a064000 0x1000>;
+
+        usbhshost@0 {
+            compatible = "ti,usbhs-host";
+            reg = <0 0x800>;
+            num-ports = <2>;
+            port1-mode = "ehci-phy";
+            #address-cells = <1>;
+            #size-cells = <1>;
+            ranges = <0 0 0x1000>;
+            clocks = <&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 24>,
+                     <&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 25>,
+                     <&xclk60mhsp1_ck>, <&xclk60mhsp2_ck>,
+                     <&init_60m_fclk>,
+                     <&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 8>,
+                     <&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 9>,
+                     <&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 13>,
+                     <&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 14>,
+                     <&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 11>,
+                     <&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 12>;
+            clock-names = "utmi_p1_gfclk", "utmi_p2_gfclk",
+                          "refclk_60m_ext_p1", "refclk_60m_ext_p2",
+                          "refclk_60m_int",
+                          "usb_host_hs_utmi_p1_clk", "usb_host_hs_utmi_p2_clk",
+                          "usb_host_hs_hsic480m_p1_clk", "usb_host_hs_hsic480m_p2_clk",
+                          "usb_host_hs_hsic60m_p1_clk", "usb_host_hs_hsic60m_p2_clk";
+
+            usb@c00 {
+                compatible = "ti,ehci-omap";
+                reg = <0xc00 0x400>;
+                interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>;
+                #address-cells = <1>;
+                #size-cells = <0>;
+
+                ethernet@1 {
+                    compatible = "usb424,9e00";
+                    reg = <1>;
+                    local-mac-address = [24 16 9d b6 77 bb];
+                };
+            };
+        };
+    };
+};
+
+// Do not populate generic peripheral targets. Early OF clock and timer
+// initialization uses the retained SoC descriptions independently of this bus.
+&{/ocp} { status = "disabled"; };
+&cpu0 { /delete-property/ operating-points; };
+&{/cpus/cpu@1} { status = "disabled"; };
+&abb_mpu { status = "disabled"; };
+&abb_iva { status = "disabled"; };
+&bandgap { status = "disabled"; };
+&{/thermal-zones} { status = "disabled"; };
+&{/local-timer@48240600} { status = "disabled"; };
+
+// Both watchdog targets must be invisible to ti-sysc and watchdog drivers.
+&wdt2 { status = "disabled"; };
+&wdt3 { status = "disabled"; };
+&{/ocp/interconnect@4a300000/segment@10000/target-module@4000} {
+    status = "disabled";
+};
+&{/ocp/interconnect@40100000/segment@0/target-module@30000} {
+    status = "disabled";
+};
+// Prevent early timer discovery from choosing another board's peripheral.
+&timer2 { status = "disabled"; };
+&timer3 { status = "disabled"; };
+&timer4 { status = "disabled"; };
+&timer5 { status = "disabled"; };
+&timer6 { status = "disabled"; };
+&timer7 { status = "disabled"; };
+&timer8 { status = "disabled"; };
+&timer9 { status = "disabled"; };
+&timer10 { status = "disabled"; };
+&timer11 { status = "disabled"; };

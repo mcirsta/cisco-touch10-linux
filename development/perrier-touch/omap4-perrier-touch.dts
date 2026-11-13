@@ -1,0 +1,46 @@
+// SPDX-License-Identifier: GPL-2.0-only
+// Extend the verified RAM board with native Gen4 input and its existing IRQ.
+#include "../perrier-native/omap4-perrier-ram.dts"
+
+&{/} {
+    // GPIO5 also holds reset/backlight pins. Preserve all stock output latches.
+    target-module@4805b000 {
+        compatible = "ti,sysc-omap2", "ti,sysc";
+        reg = <0x4805b000 4>, <0x4805b010 4>, <0x4805b114 4>;
+        reg-names = "rev", "sysc", "syss";
+        ti,no-reset-on-init;
+        ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
+                         SYSC_OMAP2_SOFTRESET |
+                         SYSC_OMAP2_AUTOIDLE)>;
+        ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+                        <SYSC_IDLE_SMART>, <SYSC_IDLE_SMART_WKUP>;
+        ti,syss-mask = <1>;
+        clocks = <&l4_per_clkctrl OMAP4_GPIO5_CLKCTRL 0>,
+                 <&l4_per_clkctrl OMAP4_GPIO5_CLKCTRL 8>;
+        clock-names = "fck", "dbclk";
+        #address-cells = <1>;
+        #size-cells = <1>;
+        ranges = <0 0x4805b000 0x1000>;
+
+        perrier_gpio5: gpio@0 {
+            compatible = "ti,omap4-gpio";
+            reg = <0 0x200>;
+            interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
+            gpio-controller;
+            #gpio-cells = <2>;
+            interrupt-controller;
+            #interrupt-cells = <2>;
+        };
+    };
+};
+
+&perrier_i2c2 {
+    touchscreen@67 {
+        compatible = "cisco,perrier-cyttsp4";
+        reg = <0x67>;
+        interrupt-parent = <&perrier_gpio5>;
+        interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
+        touchscreen-size-x = <1280>;
+        touchscreen-size-y = <800>;
+    };
+};

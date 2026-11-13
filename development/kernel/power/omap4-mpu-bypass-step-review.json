@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "device_run": false,
+  "source_sha256": "21abb1587882400953cbece63a44ff56c707214ea3fbe4d144e2d07af0ba888c",
+  "binary_sha256": "b7c31d5205b11b40906242825233a9e7578142dfdf201b24c7596733224860c9",
+  "binary_size": 111396,
+  "kernel": "6.18.48-perrier-ram113",
+  "scope": "same selector 0x29, one step to 0x28, restore 0x29",
+  "max_low_voltage_dwell_seconds": 0.6,
+  "prm_mapping": "0x4a306000..0x4a307fff",
+  "only_voltage_target": "TWL6032 slave 0x12 register 0x55",
+  "qemu_denied_before_mmio": true
+}

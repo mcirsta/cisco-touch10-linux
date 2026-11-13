@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "archive_sha256": "5ebdadb10a4b5708fc6b1c457764a110bc49f8150cc3502c59b921ead8c6fc8c",
+  "source_manifest_sha256": "fcad67d2b48713d392b96f65067abbe928f41f0bb41bf79ac80c385754a40911",
+  "pristine_files_checked": 91120,
+  "canonical_overrides": 21,
+  "unrecorded_code_files": []
+}

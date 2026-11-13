@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "scope": "generic Cortex-A9 built-in archive parser only",
+  "board_emulation": false,
+  "archive_sha256": "502d072867663a3a455358a71d412286ab3963ced665c4288ba428fcc791bf64",
+  "kernel_zimage_sha256": "3d203c24adcc2a6999229646ffb2f57268214e72dbe60dbadf59f1f734a68450",
+  "dtb_sha256": "cb35d197143510bcdadf022f925c23735c4e453f4aa7a207cfbc2b6fb99cb24d",
+  "kernel_config_sha256": "069f4fa5658255faa72378fb07d14fc300c5786079999e1ba7d7d7b2daf3540e",
+  "qemu_timeout": true,
+  "qemu_exit_code": -9,
+  "markers": {
+    "two_cpus_online": true,
+    "initramfs_unpacked": true,
+    "shell_entered": true,
+    "archive_panic": false
+  },
+  "serial_log": "/home/marius/ext_proj/touch10/development/perrier-smp/qemu-ram56-archive/serial.log"
+}

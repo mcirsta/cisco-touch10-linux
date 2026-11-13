@@ -1,0 +1,60 @@
+{
+  "validated_at": "2026-11-10T14:10:19.228118+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram72",
+  "profile": "dsi-hsync",
+  "default_uboot_profile": false,
+  "owner_confirmation": "all fine",
+  "physical_test": "clean aligned Qt after matched blank/unblank and Qt restart",
+  "change": "Restore mainline VP_HSYNC_POL=1",
+  "dsi_ctrl": "0x00eaee9f",
+  "onoff": 1,
+  "align": 0,
+  "pll_n": 19,
+  "pll_m": 211,
+  "dtb_byte_identical_to_ram70": true,
+  "gpio_pad_supply_pwm_timing_unchanged": true,
+  "watchdog_expiry_recovery_seconds": 154.8,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "image_review": {
+    "path": "development/perrier-ramenv/dsi-hsync/reviewed-image.json",
+    "sha256": "840b5ad3f6b7d889d0de931931672c7e98584b1abacc91a9ba0ca721437bec04"
+  },
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram72/snapshot.json",
+    "sha256": "a1d3392ad7594f359354a99e5e5ac27da38f96657334072783c813b8cfd25455"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram72/reports/source-checks.json",
+    "sha256": "aad56c38ebb41297958105f815dd3e7428e49fa661edf415f812ea7076028a5c"
+  },
+  "physical_confirmation": {
+    "path": "development/runs/20261110T140258Z-uboot-ram72-8d777b/physical-confirmation.json",
+    "sha256": "9fa049da9a3b14062468ae6e0268300550b7fe3067aee9550b93ae2d90ae9b0d"
+  },
+  "live_result": {
+    "path": "development/runs/20261110T140258Z-uboot-ram72-8d777b/result.json",
+    "sha256": "31d1549c237ddfba447dfca6e9df331a278b1d37e6a0b215904b1bf0b5b424ef"
+  },
+  "live_diagnostics": {
+    "path": "development/runs/20261110T140258Z-uboot-ram72-8d777b/qualified-live.log",
+    "sha256": "f392bad01dc0df9efa59cf0380a56417997a34bf2c9b25c8ce2ca6f939f8afb6"
+  },
+  "framebuffer_screenshot": {
+    "path": "development/runs/20261110T140258Z-uboot-ram72-8d777b/after-cycle-framebuffer.png",
+    "sha256": "0721cc084ba892c19dc57deb265ca1d4257f8b40278d5207fcead50b42761725"
+  },
+  "register_comparison": {
+    "path": "development/kernel/out/dsi-bridge-reduction/register-comparison-ram70-ram72.json",
+    "sha256": "168e4c9c59e0e41ed42daa5548e9831a72e80757ffc21344ec67942f7964be85"
+  },
+  "fallback": {
+    "profile": "display-onoff",
+    "kernel": "6.18.48-perrier-ram70",
+    "validation": {
+      "path": "development/kernel/validation-ram70.json",
+      "sha256": "022ffac9182eafb9ea0368f66cbe6cd76049f88ea7ee8c864674457f5dfbc520"
+    }
+  },
+  "scope": "One physically checked software-reset boot, one manual display cycle and hardware-watchdog recovery"
+}

@@ -1,0 +1,100 @@
+{
+  "base_version": "6.18.48",
+  "base_archive": "/home/marius/ext_proj/touch10/development/sources/linux-6.18.48.tar.xz",
+  "base_archive_sha256": "5ebdadb10a4b5708fc6b1c457764a110bc49f8150cc3502c59b921ead8c6fc8c",
+  "patches": {
+    "0001-dt-bindings-cyttsp4-perrier.patch": "2d53acaf14ff92f37dd7006f80f2902401174124d97388a23a9766caa329c089",
+    "0002-input-restore-cyttsp4-dt.patch": "1cfe5dc540874def4ccfeaa5e8e7c32992e85eb8da5ade2b816b1e2e2559d58a",
+    "0003-drm-omap-pll-search.patch": "9a6b004c8ffc0ec24ae9828f014436b66c4c526da493dd714f856b445fe24cdb",
+    "0004-drm-omap-perrier-display.patch": "478b86b6cb955fcaa1ada3560a30602aee8493dae8325dfff1987dcd4af2926a",
+    "0005-arm-dts-cisco-perrier.patch": "969967edf02d2625ae561047c1eda0a49e11f76ef6f83304478ffd35e52bd113",
+    "ram-only/0001-perrier-ram-safety.patch": "318d93e6183021d7565cb14abe8d44686a2d7ca432ab463ad0d3448f7807cc5d"
+  },
+  "files": {
+    "Documentation/devicetree/bindings/input/touchscreen/cisco,perrier-cyttsp4.yaml": {
+      "before_sha256": null,
+      "after_sha256": "080bf31350dc0164b988a3e10a6e77262f3e0184e97ddfc44d53c0edc98bdfa1",
+      "patch": "0001-dt-bindings-cyttsp4-perrier.patch"
+    },
+    "arch/arm/boot/dts/ti/omap/Makefile": {
+      "before_sha256": "376fa61485e50fd80c4de9541bb163609df513a03bad61b0d681e276036b55bf",
+      "after_sha256": "0fb5cd6b211554250972277b4f2bb9357742b7b6a43860d33f5b6af6aab233f3",
+      "patch": "0005-arm-dts-cisco-perrier.patch"
+    },
+    "arch/arm/boot/dts/ti/omap/omap4-cisco-perrier-ram.dts": {
+      "before_sha256": null,
+      "after_sha256": "f9b34676d41bd878121d8e144db98c90df9bf7d4de0b8c242f34b9bb3ffe68df",
+      "patch": "0005-arm-dts-cisco-perrier.patch"
+    },
+    "arch/arm/boot/dts/ti/omap/omap4-cisco-perrier.dtsi": {
+      "before_sha256": null,
+      "after_sha256": "179bd8ba3ac847ee1b3770a784b6c11e068c7a12474cfad6a8ba8e052d9abae8",
+      "patch": "0005-arm-dts-cisco-perrier.patch"
+    },
+    "arch/arm/mach-omap2/io.c": {
+      "before_sha256": "75c79878568742ef8e2c384abd843d99e7643cb02ab09e222a085ee2f00b747f",
+      "after_sha256": "ac8ccc39bd1848eedbfc3de81fea53ac5401489884a1ef53fbf9c9ef308250ad",
+      "patch": "ram-only/0001-perrier-ram-safety.patch"
+    },
+    "drivers/clk/ti/clk-44xx.c": {
+      "before_sha256": "ae46c75153a6cd724eca54e2bde79aa0a8e7da6700e690f5bd1a88d109d103f9",
+      "after_sha256": "c4b98cc950f98475d83e28ef1f7cc345762707da0b00f9fbfca6e75943aebffc",
+      "patch": "ram-only/0001-perrier-ram-safety.patch"
+    },
+    "drivers/gpu/drm/bridge/tc358775.c": {
+      "before_sha256": "044dea54bd62ccb0530469ef7a9f4be512694d7cb237b718812a42bdbd4d188e",
+      "after_sha256": "4b8826b98aeb0a38e564feae279d7e658e99fa68fa37ca20b8036f965e818380",
+      "patch": "0004-drm-omap-perrier-display.patch"
+    },
+    "drivers/gpu/drm/omapdrm/dss/dispc.c": {
+      "before_sha256": "ef07998537447ade2b8407f400e35abe351a7463590f8110f7e893328f8dfbaa",
+      "after_sha256": "8554e4334f241ae2d11af4eed79d112cafee2aba35fc425770a6a1ea431bb7b4",
+      "patch": "0004-drm-omap-perrier-display.patch"
+    },
+    "drivers/gpu/drm/omapdrm/dss/dsi.c": {
+      "before_sha256": "bae8d0c962b2c0093fb474171638b4b6f09a94604df6fc670759b7b8a9c846f4",
+      "after_sha256": "61c47390b3d18bec3cd5ce4f9d6f378e2a1b9647f2f7d00351bcff9b27618ab6",
+      "patch": "0004-drm-omap-perrier-display.patch"
+    },
+    "drivers/gpu/drm/omapdrm/dss/dsi.h": {
+      "before_sha256": "c4002c79650a3abbd213dd786ece7340482d6db9978f5f6bf53634ca4166eac6",
+      "after_sha256": "17eca8fcb781bf3b8da1eb3be6ebd070cf037fc85dffe250d08377d99449e5a4",
+      "patch": "0004-drm-omap-perrier-display.patch"
+    },
+    "drivers/gpu/drm/omapdrm/dss/pll.c": {
+      "before_sha256": "0e6e65bf8a59dfda12cdc97fbf251f1f85ab2043f27a9895ba1e24068366ab9e",
+      "after_sha256": "047c1eb7f8a9d222c48f43abbe70c8a15c67433e5fe21d195dd2577046b70d77",
+      "patch": "0003-drm-omap-pll-search.patch"
+    },
+    "drivers/input/touchscreen/Kconfig": {
+      "before_sha256": "bf03db99b0af02915f107064044e00234fedd36cc66a21cf98b80b23a8f1801e",
+      "after_sha256": "ac2b0fac661b6c3c4d753dc5a6b0f385e5d0851cca1ad582ddbc893ae37bf4e9",
+      "patch": "0002-input-restore-cyttsp4-dt.patch"
+    },
+    "drivers/input/touchscreen/Makefile": {
+      "before_sha256": "3015b84e184bdf4656dbdb28d372be5f775fc3abaae3629b676287d34ed1cf98",
+      "after_sha256": "b1f88233d227b5635d9a853e2509d2cfe6f410408a8b8476c11a33a563fe8f17",
+      "patch": "0002-input-restore-cyttsp4-dt.patch"
+    },
+    "drivers/input/touchscreen/cyttsp4_core.c": {
+      "before_sha256": null,
+      "after_sha256": "6387695a66455346de89f9d66894bb1c291e371b688042de171ef5c4b02d3e0e",
+      "patch": "0002-input-restore-cyttsp4-dt.patch"
+    },
+    "drivers/input/touchscreen/cyttsp4_core.h": {
+      "before_sha256": null,
+      "after_sha256": "bc0eb8a176be96336b473f1d3b66450e21fe7342e6e2f45a786f989f5bb7265d",
+      "patch": "0002-input-restore-cyttsp4-dt.patch"
+    },
+    "drivers/input/touchscreen/cyttsp4_i2c.c": {
+      "before_sha256": null,
+      "after_sha256": "0010d6a1dbddb81e8aa5801191ae34ec913e47f755be343a74cf5423a2256ab6",
+      "patch": "0002-input-restore-cyttsp4-dt.patch"
+    },
+    "drivers/mmc/core/block.c": {
+      "before_sha256": "a671a8347246591a2589e10f6f25ca5d638b30d27430bb3528d484831b44bd42",
+      "after_sha256": "de53e2e58c68d909b234910317c3ae498ba578a9ca1bd0c447ecc4031768c9f7",
+      "patch": "ram-only/0001-perrier-ram-safety.patch"
+    }
+  }
+}

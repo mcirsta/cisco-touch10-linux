@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "kernel": "6.18.48-perrier-ram106",
+  "boot_id": "f7900652-42c2-4409-99ad-328fc7510cfa",
+  "dhcp_address_applied_and_renewed": true,
+  "independent_rescue_ssh_passed": true,
+  "no_router_or_dns_accepted_on_isolated_link": true,
+  "emmc_readonly_and_unmounted": true,
+  "qt_pid_stable": true,
+  "watchdog_feeding": true,
+  "no_display_reset_or_qt_restart_performed": true,
+  "stock_recovered_and_adc_postflight_passed": true
+}

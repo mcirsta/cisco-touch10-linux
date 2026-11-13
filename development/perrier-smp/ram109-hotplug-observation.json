@@ -1,0 +1,48 @@
+{
+  "kernel": "6.18.48-perrier-ram109",
+  "run": "development/runs/20261112T174753Z-uboot-ram109-345284/result.json",
+  "preflight": {
+    "cmdline_ends_with": "maxcpus=1",
+    "cpu_online": "0",
+    "cpu_present": "0-1",
+    "cpu1_online": "0",
+    "emmc_read_only": "1",
+    "emmc_mounted": false,
+    "watchdog": "feeding, linux-watchdog, nowayout, 120-second timeout",
+    "qt_pid": 123
+  },
+  "single_hotplug_request": {
+    "command": "echo 1 > /sys/devices/system/cpu/cpu1/online",
+    "exit_code": 0,
+    "cpu_online_after": "0-1",
+    "cpu1_online_after": "1",
+    "serial_marker": "[   46.580047] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001"
+  },
+  "stable_observation": {
+    "uptime_seconds": 112.425,
+    "cpu_online": "0-1",
+    "cpu1_pinned_read_succeeded": true,
+    "cpu1_stat": "cpu1 112 0 30 6449 0 0 0 0 0 0",
+    "cpu1_timer_broadcast_interrupts": 2683,
+    "watchdog_pings": 22,
+    "watchdog_timeleft_seconds": 119,
+    "emmc_read_only": "1",
+    "qt_pid": 123,
+    "thermal_millicelsius": 56751
+  },
+  "recovery": {
+    "mode": "requested_reboot",
+    "stock_kernel": "3.4.113+",
+    "phoenix": "running",
+    "elapsed_seconds": 36.7,
+    "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+    "adc_postflight": "passed"
+  },
+  "display_cycles": 0,
+  "qt_restarts": 0,
+  "notes": [
+    "The first staging preflight stopped before a p8 write because p14 was low on space.",
+    "A hash-verified obsolete ram59 staged zImage was removed from p14; factory p8 matched its saved hash before and after the successful run.",
+    "CPU1 was released only after the RAM watchdog was feeding; this trial does not establish safe CPU1 release before watchdog probe."
+  ]
+}

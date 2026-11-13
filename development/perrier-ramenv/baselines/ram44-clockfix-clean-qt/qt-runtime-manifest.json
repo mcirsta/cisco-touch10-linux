@@ -1,0 +1,116 @@
+{
+  "qt": "6.12.0",
+  "cpu": "cortex-a9",
+  "fpu": "neon-vfpv3",
+  "source": "/home/marius/ext_proj/touch10/development/perrier-qt/qt-arm",
+  "files": {
+    "bin/perrier-touch-grid": {
+      "size": 22004,
+      "sha256": "04c66e6fa614401dc3c189eadd628b7f6b89140a71b34f46d6d8fb9d2354bdd5"
+    },
+    "lib/fonts/DejaVuSans.ttf": {
+      "size": 759720,
+      "sha256": "6038a160b491e121c1f12c7bccb4a9c8730296e3adc1086a059404ed84b7451c"
+    },
+    "lib/ld-musl-armhf.so.1": {
+      "size": 702128,
+      "sha256": "cf8828d2e99bc6da0fb184f257dcd913fd9b028a485194f914b977088060b014"
+    },
+    "lib/libQt6Core.so.6": {
+      "size": 9329668,
+      "sha256": "a82c2368092de92afb3e0bfc5c4d0e65f60b56e311062be74a2dd68773b132d1"
+    },
+    "lib/libQt6Gui.so.6": {
+      "size": 6320704,
+      "sha256": "8a18ef4a4e237dfaebe4a86dce2a5412d3b8db54d2493aca9927578ebe3d614f"
+    },
+    "lib/libQt6Qml.so.6": {
+      "size": 4141428,
+      "sha256": "8fcda6ff5a540e05fef1aa5c296c7d9afdcf56e48f6f33136ac574494e3d7eb4"
+    },
+    "lib/libQt6QmlMeta.so.6": {
+      "size": 121296,
+      "sha256": "481da7714b7496477271185fb58e7fe1ec02922e7d41309bfce20507d502c216"
+    },
+    "lib/libQt6QmlModels.so.6": {
+      "size": 855504,
+      "sha256": "3fec67c83f59b61f3c7d1fadde00a3614e1ffc5f7fe8ee3eff2be8814553ed28"
+    },
+    "lib/libQt6QmlWorkerScript.so.6": {
+      "size": 59348,
+      "sha256": "5b0a9ff94a8e56f5ccb58f8b1f189e4a691e1f39ea32464690faa01baf267b1d"
+    },
+    "lib/libQt6Quick.so.6": {
+      "size": 5703932,
+      "sha256": "89575582d8d7e814dcbe00aa78a2628119883e9cf7db4bd8e7440efd85176cd0"
+    },
+    "lib/libatomic.so.1": {
+      "size": 17700,
+      "sha256": "993f682ddd430ec9824c56be692f7d08f17077de66c45964724ad68505e71ba6"
+    },
+    "lib/libgcc_s.so.1": {
+      "size": 120344,
+      "sha256": "340ff5527cab2bd8741f76ce15cdaef97cc3bec776bda9428a4335a76859b0b2"
+    },
+    "lib/libstdc++.so.6": {
+      "size": 2068968,
+      "sha256": "165dc059a5aa982a27fcb84d333bc5e3ddf2b79caadb0d1466dd80fcfc9bd8a4"
+    },
+    "licenses/DejaVu.txt": {
+      "size": 8816,
+      "sha256": "7a083b136e64d064794c3419751e5c7dd10d2f64c108fe5ba161eae5e5958a93"
+    },
+    "plugins/platforms/libqlinuxfb.so": {
+      "size": 178760,
+      "sha256": "5a080428a4941216cf72f0bbe1f2da00aff8b982c0d258d7e847a23dd706b813"
+    },
+    "plugins/platforms/libqoffscreen.so": {
+      "size": 71180,
+      "sha256": "4606315d9eb01621ea83b07b11d4f575ab549185169357235b92a9be6f7b4774"
+    },
+    "qml/QML/qmldir": {
+      "size": 107,
+      "sha256": "e7f96a2ecf537ff772872b3da26a77712c659c15328e77c5426e5d2f0d633114"
+    },
+    "qml/QtQml/Models/libmodelsplugin.so": {
+      "size": 9740,
+      "sha256": "a84e0b4f72d5e1f30a8d7b837690c661360982bfc11dea616de4ff31d0f9d8c3"
+    },
+    "qml/QtQml/Models/qmldir": {
+      "size": 213,
+      "sha256": "4abed3b5d84d4252f6bb292998a566b09a21ae4f2a435e6807cf7047fe14c58a"
+    },
+    "qml/QtQml/WorkerScript/libworkerscriptplugin.so": {
+      "size": 9740,
+      "sha256": "8d64f86decfdbdad95268bb3927832585b21a82df06ef9d4387a15cbda4454a2"
+    },
+    "qml/QtQml/WorkerScript/qmldir": {
+      "size": 243,
+      "sha256": "4ed1b6b0ad3980ae5c882f5c0a4eea8a84bcca35c300f0eec430b89cd30ff768"
+    },
+    "qml/QtQml/libqmlplugin.so": {
+      "size": 9740,
+      "sha256": "5f99067fe911ecbf10d4f42d3bef2452551411d735470ae1e3e8906ed5560935"
+    },
+    "qml/QtQml/qmldir": {
+      "size": 242,
+      "sha256": "ff1b83e0cfee28b7dfc809f2acf8d1281e31f037481e80570ad4d23badbc67e2"
+    },
+    "qml/QtQuick/Window/libquickwindowplugin.so": {
+      "size": 9740,
+      "sha256": "32dd8ced321630e091873f458cf64dc0133dd8cdec6d2439deb6840ace7d5247"
+    },
+    "qml/QtQuick/Window/qmldir": {
+      "size": 205,
+      "sha256": "c0509023b1bcce5f27262aa84f3a6016fb188971fecc58eea98b897a9aa42eb5"
+    },
+    "qml/QtQuick/libqtquick2plugin.so": {
+      "size": 9740,
+      "sha256": "40926c235fdc6d81a59dccc732c65551e1e39ab95534619f4fbe36fc134ba190"
+    },
+    "qml/QtQuick/qmldir": {
+      "size": 206,
+      "sha256": "c2fa2b26d9f8094c6eeb6ff924b18088ddcd512e133524e55b13fa3e5e70350b"
+    }
+  }
+}

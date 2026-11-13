@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "kernel": "6.18.48-perrier-ram36",
+  "purpose": "restore the stock-high GPIO163 LCD 3.3 V rail through a fixed regulator and repeat the last stock-matching bridge configuration in a bounded RAM-only KMS test",
+  "limitations": [
+    "bridge vdd/vddio logical regulators have no control GPIO",
+    "only stock GPIO102 reset and stock-high GPIO163 panel rail are controlled; GPIO4/GPIO6 banks are not reset on init",
+    "backlight PWM and GPIO157 remain inherited and are not reprogrammed"
+  ],
+  "artifacts": {
+    "zImage": {
+      "size": 3750688,
+      "sha256": "e064f30f26fa47ad7c4faaf4487b7c10e2fc6d892e9c93e49f6dedc57fe382c9"
+    },
+    "board.dtb": {
+      "size": 92409,
+      "sha256": "73444e693857d02d5fc134697349a83e22662572f1dc17725e2878f4b90253a0"
+    },
+    "kexec": {
+      "size": 1660848,
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6"
+    }
+  }
+}

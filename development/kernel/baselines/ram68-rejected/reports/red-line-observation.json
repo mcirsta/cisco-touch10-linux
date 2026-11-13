@@ -1,0 +1,16 @@
+{
+  "status": "unqualified",
+  "owner_observation": "red vertical line near the right edge",
+  "photo": ".codex-attachments/c457b5cb-aa45-42b1-ac37-f3aa33c0939c/caa99ef4-a377-4355-b796-f0aa80d82f85/1000166397.jpg",
+  "framebuffer_line_absent": true,
+  "touch_reports_at_capture": 0,
+  "normal_pll_n": 19,
+  "normal_pll_m": 211,
+  "output_rates_match_forced_n38": true,
+  "cause": "unestablished: PLL change versus display disable/enable sequence must be separated",
+  "evidence": {
+    "development/runs/20261110T123004Z-uboot-ram68-6b3c40/red-line-framebuffer.raw": "985c1a8435d9d6fa12be9d301261ffaa2f02216a60d9c2cfc32229f280237377",
+    "development/runs/20261110T123004Z-uboot-ram68-6b3c40/red-line-framebuffer.png": "b41edb06866e72cafa079a8dad5bc92b98d2c7361731c056bbb2ccb851638831",
+    "development/runs/20261110T123004Z-uboot-ram68-6b3c40/red-line-diagnostics.log": "e1e544fb9f73211bcb6e06c8e80cf880a9df3c02251e6b0964e486fbde695c6b"
+  }
+}

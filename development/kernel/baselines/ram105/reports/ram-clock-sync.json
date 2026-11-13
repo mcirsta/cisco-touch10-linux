@@ -1,0 +1,39 @@
+{
+  "before": {
+    "kernel": "6.18.48-perrier-ram105",
+    "system_epoch": 59,
+    "rtc_epoch": 946705300,
+    "qt_pid": 120,
+    "guard": {
+      "pid": 73,
+      "state": "feeding",
+      "backend": "linux-watchdog",
+      "monotonic": 56.186,
+      "lease_deadline": 112.668,
+      "pings": 11,
+      "timeleft_seconds": 119,
+      "timeout_seconds": 120,
+      "nowayout": true
+    }
+  },
+  "after": {
+    "kernel": "6.18.48-perrier-ram105",
+    "system_epoch": 1794494893,
+    "rtc_epoch": 946705300,
+    "qt_pid": 120,
+    "guard": {
+      "pid": 73,
+      "state": "feeding",
+      "backend": "linux-watchdog",
+      "monotonic": 56.186,
+      "lease_deadline": 112.668,
+      "pings": 11,
+      "timeleft_seconds": 119,
+      "timeout_seconds": 120,
+      "nowayout": true
+    }
+  },
+  "host_epoch_sent": 1794494893,
+  "host_epoch_after": 1794494893,
+  "passed": true
+}

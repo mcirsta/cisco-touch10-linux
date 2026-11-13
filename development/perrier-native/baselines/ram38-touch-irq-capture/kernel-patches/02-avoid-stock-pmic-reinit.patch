@@ -1,0 +1,12 @@
+--- a/arch/arm/mach-omap2/io.c
++++ b/arch/arm/mach-omap2/io.c
+@@ -609,6 +609,9 @@
+ 
+ void __init omap4430_init_late(void)
+ {
++	/* No PMIC, voltage or low-power policy changes in the RAM trial. */
++	if (of_machine_is_compatible("cisco,perrier-ram"))
++		return;
+ 	omap_pm_soc_init = omap4_pm_init;
+ }
+ #endif

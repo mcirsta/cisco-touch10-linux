@@ -1,0 +1,99 @@
+{
+  "validated_at": "2026-11-10T12:09:47.731735+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram66",
+  "profile": "mainline-bus",
+  "default_uboot_profile": true,
+  "owner_confirmation": "Everything works normally",
+  "visible_aligned_display_confirmed": true,
+  "native_touch_and_brightness_confirmed": true,
+  "native_direct_touch_reports": 38,
+  "front_key_events_observed": true,
+  "physical_register_ranges_compared": 72,
+  "hardware_properties_compared": 406,
+  "enabled_upstream_targets": [
+    "/ocp/interconnect@48000000/segment@0/target-module@20000",
+    "/ocp/interconnect@48000000/segment@0/target-module@57000",
+    "/ocp/interconnect@48000000/segment@0/target-module@59000",
+    "/ocp/interconnect@48000000/segment@0/target-module@5b000",
+    "/ocp/interconnect@48000000/segment@0/target-module@5d000",
+    "/ocp/interconnect@48000000/segment@0/target-module@60000",
+    "/ocp/interconnect@48000000/segment@0/target-module@72000",
+    "/ocp/interconnect@48000000/segment@0/target-module@86000",
+    "/ocp/interconnect@48000000/segment@0/target-module@b4000",
+    "/ocp/interconnect@4a000000/segment@0/target-module@2000",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000",
+    "/ocp/interconnect@4a000000/segment@0/target-module@56000",
+    "/ocp/interconnect@4a000000/segment@0/target-module@64000",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000",
+    "/ocp/interconnect@4a000000/segment@100000/target-module@0",
+    "/ocp/interconnect@4a300000/segment@0/target-module@4000",
+    "/ocp/interconnect@4a300000/segment@0/target-module@6000",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000",
+    "/ocp/interconnect@4a300000/segment@10000/target-module@4000",
+    "/ocp/interconnect@4a300000/segment@10000/target-module@8000",
+    "/ocp/interconnect@4a300000/segment@10000/target-module@c000",
+    "/ocp/target-module@58000000",
+    "/ocp/target-module@58000000/dss@0/target-module@1000",
+    "/ocp/target-module@58000000/dss@0/target-module@4000"
+  ],
+  "normal_kbuild_dtb_byte_identical": true,
+  "gpio_pad_supply_pwm_timing_preserved": true,
+  "watchdog_expiry_recovery_seconds": 155.8,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "image_review": {
+    "path": "development/perrier-ramenv/mainline-bus/reviewed-image.json",
+    "sha256": "7066aef1fff90f994001096a061c5deaed4516f8819464fb79e98b72a7074456"
+  },
+  "live_result": {
+    "path": "development/runs/20261110T120143Z-uboot-ram66-25e9df/result.json",
+    "sha256": "0698c8283657af07e61789be2ce6e80f5436d453ad2feb988956b8be5caf1c0c"
+  },
+  "live_diagnostics": {
+    "path": "development/runs/20261110T120143Z-uboot-ram66-25e9df/mainline-bus-live.log",
+    "sha256": "c0b3eb1d4c5ed562aaca56e26e5f9cc1c9d219ec5f0ce9a4d90767a8441fae9f"
+  },
+  "confirmed_input": {
+    "path": "development/runs/20261110T120143Z-uboot-ram66-25e9df/confirmed-qt-input.log",
+    "sha256": "219b227d7481c73d43226f5c326d7abfe830043142c610fd22ea2ae8f62f6db7"
+  },
+  "qt_reopen": {
+    "path": "development/runs/20261110T120143Z-uboot-ram66-25e9df/qt-reopen.log",
+    "sha256": "996d6c9b7bb90930bdc6025dce4bb4add38eec582cbce2423f9ac91e5970b884"
+  },
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram66/snapshot.json",
+    "sha256": "07136984dd64b0548af958df4bfabb4174964e68c203a20e809b297b9b2dbfd1"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram66/reports/source-checks.json",
+    "sha256": "db7b95ff99e34966ae3369b902ff6fbbd2f862ad282905deeaaa2e8f813a5357"
+  },
+  "bus_audit_negative_tests": {
+    "path": "development/kernel/baselines/ram66/reports/bus-audit-tests.json",
+    "sha256": "de1a3289c0714aaef3717248aeaf3181b4d62b5ca146271862971560913d5b68"
+  },
+  "ram65_fallback": {
+    "profile": "mainline-ram",
+    "sources": {
+      "path": "development/kernel/baselines/ram65/snapshot.json",
+      "sha256": "421cbb8db70779a50122098e18066ad898acc8c246cff6df0cdab95921d134ae"
+    },
+    "image_review": {
+      "path": "development/perrier-ramenv/mainline-ram/reviewed-image.json",
+      "sha256": "c20fb987b4490b1a9151e4489582375aa1f1842b0154d82fdb7a0a3e193ef877"
+    }
+  },
+  "unchanged_guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "remaining_work": [
+    "Board-specific display quirk reduction",
+    "Runtime power-domain integration and production power management",
+    "SMP",
+    "Full-image physical power-removal qualification"
+  ],
+  "observations": [
+    "GPIO chip numbers changed with probe order; physical GPIO banks/offsets did not",
+    "Timer1 target returns EBUSY by design because the clockevent owns it",
+    "The SRAM-pool/I688 warning predates this migration"
+  ]
+}

@@ -1,0 +1,30 @@
+// SPDX-License-Identifier: GPL-2.0-only
+// Isolated ram116 350 MHz intermediate-voltage OPP, retaining ram114's 700 MHz point.
+#include "omap4-cisco-perrier-cpu-m2-ram.dts"
+
+/ {
+	perrier_vdd_mpu: regulator@4a306000 {
+		compatible = "cisco,perrier-omap4-mpu-vc";
+		reg = <0x4a306000 0x2000>;
+		regulator-name = "perrier-vdd-mpu";
+		regulator-min-microvolt = <1152100>;
+		regulator-max-microvolt = <1215400>;
+		regulator-always-on;
+	};
+};
+
+&cpu0 {
+	cpu-supply = <&perrier_vdd_mpu>;
+};
+
+&{/cpus/cpu@1} {
+	cpu-supply = <&perrier_vdd_mpu>;
+};
+
+&{/opp-table-cpu/opp-350000000} {
+	opp-microvolt = <1152100>;
+};
+
+&{/opp-table-cpu/opp-700000000} {
+	opp-microvolt = <1215400>;
+};

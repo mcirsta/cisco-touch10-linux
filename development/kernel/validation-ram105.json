@@ -1,0 +1,79 @@
+{
+  "validated_at": "2026-11-12T14:54:11.032026+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram105",
+  "profile": "network-dualstack",
+  "default_uboot_profile": false,
+  "details": {
+    "summary": "Mainline IPv6 link-local networking works on the Touch 10 Ethernet interface; BusyBox obtained the PC's fixed DHCP lease in RAM while the known SSH address stayed intact.",
+    "hardware_checks": [
+      "eth0 MAC 24:16:9d:b6:77:bb matched stock and the host reservation",
+      "IPv6 fe80::2616:9dff:feb6:77bb matched the stock address",
+      "IPv6 loopback and two host link-local ping replies passed",
+      "udhcpc selected 10.77.10.10/24 from 10.77.10.1 and exited zero",
+      "Qt PID stayed unchanged, the nowayout watchdog fed, and eMMC remained read-only and unmounted",
+      "Host time was set in the volatile system clock; the unconfigured TWL RTC was not written"
+    ],
+    "display_test": "No display blank/unblank cycles or Qt restarts were performed; the display DTB and Qt binary were inherited from ram104.",
+    "recovery": "One-shot U-Boot restored the factory environment before kernel handoff. Requested recovery returned to healthy stock, and the authorized ADC postflight restored three sensing controls.",
+    "limitations": [
+      "DHCP was observed but did not replace the static rescue address or apply routes and DNS; ram104 remains the default until normal lease management is qualified.",
+      "CPU1/SMP, rail policy, suspend, remote cores and SGX remain unqualified; SGX work is parked."
+    ]
+  },
+  "recovery_mode": "requested_reboot",
+  "recovery_elapsed_seconds": 36.7,
+  "stock_recovered": true,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "serial_markers": {
+    "factory_saved_before_handoff": true,
+    "candidate_kernel": true,
+    "mainline_watchdog_ready": true,
+    "ram_ssh_started": true
+  },
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram105/snapshot.json",
+    "sha256": "53221160284a8c80188831bffe98f326bc374d77bc2fc793c3729910e97af677"
+  },
+  "source_manifest": {
+    "path": "development/kernel/baselines/ram105/patches/manifest.json",
+    "sha256": "4c9507002b9b667337a30863b4d6847bc06f1acb786f7023b1f26f2c61f74c16"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram105/reports/source-checks.json",
+    "sha256": "aff633dc50de5e97324146416a3e963e9b39b01c0603904da9a6a8ec12655d25"
+  },
+  "tests": {},
+  "image_review": {
+    "path": "development/perrier-ramenv/network-dualstack/reviewed-image.json",
+    "sha256": "cfffde3c92e0196ccc688a33e885c0a0a0a509a8ff221cf6affbc160b40460ef"
+  },
+  "live_result": {
+    "path": "development/runs/20261112T144631Z-uboot-ram105-72df51/result.json",
+    "sha256": "0ef85b53f38cd158f7dd559e3c5ab8245b0478aa365fc9e830cb970051c38c09"
+  },
+  "physical_confirmations": [],
+  "machine_checks": {
+    "path": "development/runs/20261112T144631Z-uboot-ram105-72df51/machine-checks.json",
+    "sha256": "22e71763cc9bb5166d6b81e5b36a79c51fb9298ca9c221a887bc2b966e5841b8"
+  },
+  "evidence": {
+    "diagnostics-adc-restore.log": {
+      "path": "development/runs/20261112T144631Z-uboot-ram105-72df51/diagnostics-adc-restore.log",
+      "sha256": "a0330872041173e65d768203368537e984528c4495ddfe3e818c683a299c9961"
+    }
+  },
+  "fallback": {
+    "profile": "mailbox-audio-dt",
+    "kernel": "6.18.48-perrier-ram104",
+    "validation": {
+      "path": "development/kernel/validation-ram104.json",
+      "sha256": "9cd73878f235dddf25af030394d6a662d7d08c97632713d54509b620d7788f9f"
+    }
+  },
+  "parent_validation": {
+    "path": "development/kernel/validation-ram104.json",
+    "sha256": "9cd73878f235dddf25af030394d6a662d7d08c97632713d54509b620d7788f9f"
+  }
+}

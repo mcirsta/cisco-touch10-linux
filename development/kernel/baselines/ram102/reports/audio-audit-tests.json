@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "unsafe_mutations_rejected": [
+    "wrong power GPIO",
+    "inverted power GPIO",
+    "wrong codec IRQ",
+    "wrong codec address",
+    "wrong reference clock",
+    "unreviewed supply control",
+    "unconnected left speaker",
+    "unconnected microphone",
+    "nonexistent jack",
+    "wrong MCLK",
+    "wrong McPDM pad",
+    "wrong codec power pad",
+    "wrong DMA request",
+    "wrong MMIO"
+  ]
+}

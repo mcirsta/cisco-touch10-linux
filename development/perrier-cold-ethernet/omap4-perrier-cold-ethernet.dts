@@ -1,0 +1,71 @@
+// SPDX-License-Identifier: GPL-2.0-only
+// Ethernet cold-start settings verified from this unit's stock board code
+// and pad/clock readback in perrier-stock-coldinit-gpio-clock-2026-11-10.txt.
+#include "../perrier-watchdog/omap4-perrier-watchdog.dts"
+
+&{/} {
+    // The legacy /ocp pin controller is not populated. This controller owns
+    // only the explicitly requested Ethernet pads; it has no default state.
+    perrier_core_pins: pinctrl@4a100040 {
+        compatible = "pinctrl-single";
+        reg = <0x4a100040 0x196>;
+        #address-cells = <1>;
+        #size-cells = <0>;
+        #pinctrl-cells = <1>;
+        pinctrl-single,register-width = <16>;
+        pinctrl-single,function-mask = <0x7fff>;
+
+        perrier_ethernet_phy_pins: ethernet-phy-pins {
+                pinctrl-single,pins = <
+                    OMAP4_IOPAD(0x0c2, 0x010c) // ULPI CLK, input/pulldown, mode 4
+                    OMAP4_IOPAD(0x0c4, 0x0004) // ULPI STP, output, mode 4
+                    OMAP4_IOPAD(0x0c6, 0x010c) // ULPI DIR
+                    OMAP4_IOPAD(0x0c8, 0x010c) // ULPI NXT
+                    OMAP4_IOPAD(0x0ca, 0x010c) // ULPI DAT0
+                    OMAP4_IOPAD(0x0cc, 0x010c) // ULPI DAT1
+                    OMAP4_IOPAD(0x0ce, 0x010c) // ULPI DAT2
+                    OMAP4_IOPAD(0x0d0, 0x010c) // ULPI DAT3
+                    OMAP4_IOPAD(0x0d2, 0x010c) // ULPI DAT4
+                    OMAP4_IOPAD(0x0d4, 0x010c) // ULPI DAT5
+                    OMAP4_IOPAD(0x0d6, 0x010c) // ULPI DAT6
+                    OMAP4_IOPAD(0x0d8, 0x010c) // ULPI DAT7
+                    OMAP4_IOPAD(0x0f6, 0x0003) // GPIO110 USB PHY reset, output mode 3
+                    OMAP4_IOPAD(0x19a, 0x0118) // FREF_CLK1_OUT, stock mode 0/pullup
+                >;
+        };
+
+        perrier_lan_reset_pin: lan-reset-pins {
+            pinctrl-single,pins = <OMAP4_IOPAD(0x162, 0x0003)>;
+        };
+    };
+
+    perrier_usb_phy: usb-phy {
+        compatible = "usb-nop-xceiv";
+        #phy-cells = <0>;
+        pinctrl-names = "default";
+        pinctrl-0 = <&perrier_ethernet_phy_pins>;
+        reset-gpios = <&perrier_gpio4 14 GPIO_ACTIVE_LOW>; // GPIO110, stock high = released
+        clocks = <&auxclk1_ck>;
+        clock-names = "main_clk";
+        clock-frequency = <19200000>;
+        // Select the same fixed 38.4 MHz parent as stock, then divide by 2.
+        // No shared DPLL is retuned.
+        assigned-clocks = <&auxclk1_src_ck>;
+        assigned-clock-parents = <&sys_clkin_ck>;
+    };
+};
+
+&perrier_gpio5 {
+    pinctrl-names = "default";
+    pinctrl-0 = <&perrier_lan_reset_pin>;
+    lan-reset-hog {
+        gpio-hog;
+        gpios = <30 GPIO_ACTIVE_HIGH>; // GPIO158, stock output high
+        output-high;
+        line-name = "lan-reset-released";
+    };
+};
+
+&{/target-module@4a064000/usbhshost@0/usb@c00} {
+    phys = <&perrier_usb_phy>;
+};

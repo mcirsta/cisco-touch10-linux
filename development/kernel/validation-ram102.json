@@ -1,0 +1,221 @@
+{
+  "validated_at": "2026-11-12T12:58:20.954884+00:00",
+  "status": "not-promoted",
+  "kernel": "6.18.48-perrier-ram102",
+  "profile": "pmu-selftest",
+  "default_uboot_profile": false,
+  "details": {
+    "passed": true,
+    "kernel": "6.18.48-perrier-ram102",
+    "boot_id": "5824788b-b899-4745-bae6-6c6f41f629fc",
+    "security": {
+      "sder_fault": true,
+      "auth": 170,
+      "nonsecure_noninvasive_debug_enabled": false
+    },
+    "direct_counter": {
+      "event_readback": 104,
+      "hardware_count": 0,
+      "software_count": 0,
+      "registers_restored": true
+    },
+    "perf": {
+      "cycles": 50580647,
+      "instructions": 0,
+      "elapsed_ns": 72235108,
+      "samples": 50,
+      "lost": 0,
+      "head": 800,
+      "enabled_ns": 72296142,
+      "running_ns": 72296142,
+      "checksum": 1727380929
+    },
+    "raw_events": {
+      "1": 0,
+      "3": 0,
+      "4": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "12": 0,
+      "17": 0,
+      "104": 0
+    },
+    "pmic_fields_preserved": 65,
+    "gpio_raw": "11",
+    "qt_pid_unchanged": "114",
+    "display_cycles": 0,
+    "qt_restarts": 0,
+    "emmc_readonly": true,
+    "guard": {
+      "pid": 71,
+      "state": "feeding",
+      "backend": "linux-watchdog",
+      "monotonic": 127.322,
+      "lease_deadline": 186.812,
+      "pings": 25,
+      "timeleft_seconds": 119,
+      "timeout_seconds": 120,
+      "nowayout": true
+    },
+    "helpers": {
+      "perf-check": "37706d69a51fdb9e1469a448f53d5fffdf53dd62fd51060d5d63c63cf9c47a38",
+      "pmu-event-matrix": "7c04de0ac75a2636073b0034ed5da4a16281202ed75bb10d81ad462de5d69c72",
+      "pmic-adc-read": "3a7fe83f4d2fbc3e9346e73c4dbbe86af159bf68e1a38f5554795f4cccc96acd",
+      "peripheral-read": "c80c922bb12f3c4390f066a61f9c754d06e90863e059e7b7bd049d267e615e9a",
+      "audio-read": "7838260dc029418c2a9d0729615ade44afda09ac7f163d64f897433591c5a4f5"
+    }
+  },
+  "recovery_mode": "hardware_expiry",
+  "recovery_elapsed_seconds": 151.8,
+  "stock_recovered": true,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "serial_markers": {
+    "factory_saved_before_handoff": true,
+    "candidate_kernel": true,
+    "mainline_watchdog_ready": true,
+    "ram_ssh_started": true
+  },
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram102/snapshot.json",
+    "sha256": "e6a92be5108da9089cffcdce5a19b4902377f31e11a57edf216af958d4ad055c"
+  },
+  "source_manifest": {
+    "path": "development/kernel/baselines/ram102/patches/manifest.json",
+    "sha256": "fcad67d2b48713d392b96f65067abbe928f41f0bb41bf79ac80c385754a40911"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram102/reports/source-checks.json",
+    "sha256": "877586dbd08e33ebebb29b365b553c10de036089e616c99571421af2fc4482e4"
+  },
+  "tests": {
+    "audio-audit-tests": {
+      "path": "development/kernel/baselines/ram102/reports/audio-audit-tests.json",
+      "sha256": "a070dd3eb83fa9d0995da84cb4d49a12404f47df84ad9f0dc351c97a921e80ab"
+    },
+    "aux-audit-tests": {
+      "path": "development/kernel/baselines/ram102/reports/aux-audit-tests.json",
+      "sha256": "711eb612ad4b802a5fbeb75dd9696b86f9027872e63fa7293822c17873441943"
+    },
+    "bridge-regmap-tests": {
+      "path": "development/kernel/baselines/ram102/reports/bridge-regmap-tests.json",
+      "sha256": "de5ab6625c121cee42fa9aae4e9998ade67c6fcf209461efa1cf256cff137429"
+    },
+    "bus-audit-tests": {
+      "path": "development/kernel/baselines/ram102/reports/bus-audit-tests.json",
+      "sha256": "de1a3289c0714aaef3717248aeaf3181b4d62b5ca146271862971560913d5b68"
+    },
+    "diagnostics-audit-tests": {
+      "path": "development/kernel/baselines/ram102/reports/diagnostics-audit-tests.json",
+      "sha256": "7f172cabafed46d2f90ce8d36942421e8ed94edb96b2b1e8602ad4af22b89c4c"
+    },
+    "dsi-null-tests": {
+      "path": "development/kernel/baselines/ram102/reports/dsi-null-tests.json",
+      "sha256": "099c03eb8bada5921d51dc7fec8fd2dee9d4daf88bd6d6dd8615a068c7a1851a"
+    },
+    "dsi-power-tests": {
+      "path": "development/kernel/baselines/ram102/reports/dsi-power-tests.json",
+      "sha256": "cfaa4dea48acfc48ba727ca86722d92e1885583c7dff4f2e27aa6c8ed4e590ce"
+    },
+    "dsi-timing-tests": {
+      "path": "development/kernel/baselines/ram102/reports/dsi-timing-tests.json",
+      "sha256": "f84046446b23c5beb9c5182529fc0a7d6bfec7c83eeb638bb8e1e42e4337cda7"
+    },
+    "dsi-vc-tests": {
+      "path": "development/kernel/baselines/ram102/reports/dsi-vc-tests.json",
+      "sha256": "01193e3455920bb0d63334a0447f67fa9e7122e6eef3105785769d928ad96185"
+    },
+    "led-audit-tests": {
+      "path": "development/kernel/baselines/ram102/reports/led-audit-tests.json",
+      "sha256": "188f2103991c35bdc5057c9772090f7ffc44b267623dd6358dc5d4375f600a81"
+    },
+    "pcf-shutdown-tests": {
+      "path": "development/kernel/baselines/ram102/reports/pcf-shutdown-tests.json",
+      "sha256": "f49e690d7cb609cf4a91232187ba54b55365169babf106657d005428df28b645"
+    },
+    "peripheral-audit-tests": {
+      "path": "development/kernel/baselines/ram102/reports/peripheral-audit-tests.json",
+      "sha256": "c12fb1bdccf5a12af7226e4e9fb5a6f5669003e83c6b200537651a07f3e0588b"
+    }
+  },
+  "image_review": {
+    "path": "development/perrier-ramenv/pmu-selftest/reviewed-image.json",
+    "sha256": "98d18a255b8fde4c82f80860407420d076edefb43a6f9033adc9c2d3695c214b"
+  },
+  "live_result": {
+    "path": "development/runs/20261112T124954Z-uboot-ram102-d8fc19/result.json",
+    "sha256": "e19e8c68006040b1cdac902c553396d5d11d54110aa7915fba25e5a564b9fc79"
+  },
+  "physical_confirmations": [],
+  "machine_checks": {
+    "path": "development/runs/20261112T124954Z-uboot-ram102-d8fc19/diagnostics-pmu-selftest-checks.json",
+    "sha256": "aa5e0f84429ccc848eb3734251bea8d92ffb59a3304dcc7ce446d44db6032afb"
+  },
+  "evidence": {
+    "stock-audio-after.log": {
+      "path": "development/runs/20261112T124954Z-uboot-ram102-d8fc19/stock-audio-after.log",
+      "sha256": "212faa3b28b4ac913a584bead9e78c05de467a8e08f060ef19152b47e4bf5955"
+    },
+    "stock-audio-check-executed.py": {
+      "path": "development/runs/20261112T124954Z-uboot-ram102-d8fc19/stock-audio-check-executed.py",
+      "sha256": "19733f06a51bbd0a92c8b3257b23b52e4b4f73b4c4c1e07e32a585f14dbaee98"
+    },
+    "stock-audio-checks.json": {
+      "path": "development/runs/20261112T124954Z-uboot-ram102-d8fc19/stock-audio-checks.json",
+      "sha256": "334f1e164184d5473f88bccd0aaaf6345bebd2f77b2238aff0e7751a3a2bdcf5"
+    },
+    "diagnostics-adc-restore.log": {
+      "path": "development/runs/20261112T124954Z-uboot-ram102-d8fc19/diagnostics-adc-restore.log",
+      "sha256": "a0330872041173e65d768203368537e984528c4495ddfe3e818c683a299c9961"
+    },
+    "diagnostics-pmu-selftest-after.log": {
+      "path": "development/runs/20261112T124954Z-uboot-ram102-d8fc19/diagnostics-pmu-selftest-after.log",
+      "sha256": "50e15ef2fce05ada39f70bbf73e07f7baf6b144e1e0b34cf5b7d049d080a2700"
+    },
+    "diagnostics-pmu-selftest-before.log": {
+      "path": "development/runs/20261112T124954Z-uboot-ram102-d8fc19/diagnostics-pmu-selftest-before.log",
+      "sha256": "900e6392014c7fe23786659735f3c11c61ff552c9e6b6d10972e6d2a97d12a06"
+    },
+    "diagnostics-pmu-selftest-checks.json": {
+      "path": "development/runs/20261112T124954Z-uboot-ram102-d8fc19/diagnostics-pmu-selftest-checks.json",
+      "sha256": "aa5e0f84429ccc848eb3734251bea8d92ffb59a3304dcc7ce446d44db6032afb"
+    },
+    "diagnostics-pmu-selftest-dmesg.log": {
+      "path": "development/runs/20261112T124954Z-uboot-ram102-d8fc19/diagnostics-pmu-selftest-dmesg.log",
+      "sha256": "9fe9ebf4049c31fe3964d320526e798c4d90ea8c0f5a202a19b7b666ebe6a950"
+    },
+    "diagnostics-pmu-selftest-matrix.log": {
+      "path": "development/runs/20261112T124954Z-uboot-ram102-d8fc19/diagnostics-pmu-selftest-matrix.log",
+      "sha256": "0f46e2ac13f511dd425e34a676b2b43f2c410d07cddee3ad44fc46224466576b"
+    },
+    "diagnostics-pmu-selftest-perf.log": {
+      "path": "development/runs/20261112T124954Z-uboot-ram102-d8fc19/diagnostics-pmu-selftest-perf.log",
+      "sha256": "cecb24f43c6e4b89922bba658d727a54d24253e3ed965f36f5a10f9af2dd4a69"
+    },
+    "diagnostics-stock-after.log": {
+      "path": "development/runs/20261112T124954Z-uboot-ram102-d8fc19/diagnostics-stock-after.log",
+      "sha256": "41eda54e2ead34413702794632670425cd0a4636396cc54d1c75ec5a109d0951"
+    },
+    "diagnostics-stock-check-executed.py": {
+      "path": "development/runs/20261112T124954Z-uboot-ram102-d8fc19/diagnostics-stock-check-executed.py",
+      "sha256": "f98ee138677bdd84ad5a810e7cf5d63bfd2e797d50c669da056632016460c0a9"
+    },
+    "diagnostics-stock-checks.json": {
+      "path": "development/runs/20261112T124954Z-uboot-ram102-d8fc19/diagnostics-stock-checks.json",
+      "sha256": "c54491c79b7dd35f079f2600ffa626eaa906d1e108a4dd56868be0dc5fc4fa1d"
+    }
+  },
+  "fallback": {
+    "profile": "native-diagnostics",
+    "kernel": "6.18.48-perrier-ram100",
+    "validation": {
+      "path": "development/kernel/validation-ram100.json",
+      "sha256": "ee0921bc85ef2651917817a47160077d380b55bb5bdcc94bb601b5a0437ba78a"
+    }
+  },
+  "parent_validation": {
+    "path": "development/kernel/validation-ram101.json",
+    "sha256": "14a45bbfe7750a34ceee5b1955cbe66c8c2f431fa17ea3c3ec936c80b28305aa"
+  }
+}

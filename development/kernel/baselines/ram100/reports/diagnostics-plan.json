@@ -1,0 +1,39 @@
+{
+  "phase": "ram100 native diagnostics",
+  "parent": "qualified speaker-audio ram99",
+  "features": [
+    "Unmodified mainline TWL6032 GPADC IIO driver",
+    "Unmodified mainline Cortex-A9 PMU/perf"
+  ],
+  "dt_changes": [
+    "One PMIC gpadc child, ti,twl6032-gpadc, logical IRQ3, io-channel-cells1",
+    "Enable existing OMAP4460 PMU wrapper and retain its debug-clock branch; preserve native IRQ54/55; CPU1 stays disabled"
+  ],
+  "hardware_changes": "ADC measurement-input enables, ADC EOC masks and the debug clock branch only. No regulator/GPIO/rate policy changes.",
+  "stock_observations": {
+    "pmic_misc1": "0x00: internal VBAT/backup/VAC voltage paths disabled; calibrated internal voltages cannot be compared directly to this state",
+    "usb_vbus_id_control": "0x04/0x14; upstream uses SET aliases with bit0 only",
+    "adc_otp": "16 nonzero per-chip trim bytes saved, read-only",
+    "pmu": "Cycle counting works in stock; instructions and overflow samples zero. Per-mode exclusions rejected on Cortex-A9. No secure-debug bypass planned."
+  },
+  "test_scope": {
+    "adc_channels": [
+      7,
+      8,
+      9,
+      10,
+      18
+    ],
+    "adc_api": "IIO processed millivolts, EOC IRQ progress, OTP-derived calibration, repeat conversions",
+    "pmu": "Cycle/instruction count and overflow sample records; report any stock-like hardware limitations explicitly",
+    "integrity": "65 sampled supply fields, GPIO port, clock fields, Qt PID/display/audio binary, no eMMC mounts/writes",
+    "recovery": "Hardware-watchdog expiry to healthy stock; exact factory p8 and original measurement registers after boot"
+  },
+  "display": "Reuse ram99 display/input/audio qualification; no blank/unblank or Qt restart tests",
+  "fallback": "speaker-audio ram99",
+  "references": [
+    "https://www.ti.com/product/TWL6032",
+    "Linux 6.18.48 drivers/iio/adc/twl6030-gpadc.c",
+    "Linux 6.18.48 drivers/perf/arm_pmu_platform.c and arm_v7_pmu.c"
+  ]
+}

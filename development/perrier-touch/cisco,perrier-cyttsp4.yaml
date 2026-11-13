@@ -1,0 +1,39 @@
+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+%YAML 1.2
+---
+$id: http://devicetree.org/schemas/input/touchscreen/cisco,perrier-cyttsp4.yaml#
+$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+title: Cisco Perrier Cypress Gen4 touchscreen operational handoff
+
+description: |
+  Local RAM-development binding for the Perrier Touch 10. The stock kernel
+  leaves the controller powered and running firmware 1.1 before kexec.
+  The driver discovers the Gen4 report descriptor through the volatile
+  system-information mode, then uses operational reports and handshakes.
+  Power, reset, bootloader recovery and cold-start initialization are not
+  described by this binding. This is not an upstream submission.
+
+allOf:
+  - $ref: touchscreen.yaml#
+
+properties:
+  compatible:
+    const: cisco,perrier-cyttsp4
+  reg:
+    maxItems: 1
+  interrupts:
+    maxItems: 1
+  touchscreen-size-x:
+    const: 1280
+  touchscreen-size-y:
+    const: 800
+
+required:
+  - compatible
+  - reg
+  - interrupts
+  - touchscreen-size-x
+  - touchscreen-size-y
+
+unevaluatedProperties: false

@@ -1,0 +1,10 @@
+{
+  "source": "https://lkml.rescloud.iu.edu/1302.1/00275.html",
+  "author": "Tomi Valkeinen / TI contributors; posted by Ruslan Bilovol 2013-02-08",
+  "status": "Historical upstream mailing-list submission, not an accepted modern driver",
+  "files": {
+    "submission.html": "ff239fefd4ba27b977ad2d499af692e69de2688961bf3e24239c4016ca86ce52",
+    "submission.txt": "d39ebeaf4ca340470483e04d67e2fa33cfd60d3c1f229c91c116a442343f2cb4",
+    "submission.patch": "b3bbfa6e7b270af4eec81ba996b93f8f10d9d29f8a8ce14656c93249fb07447f"
+  }
+}

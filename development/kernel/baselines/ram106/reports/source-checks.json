@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "kernel": "6.18.48-perrier-ram106",
+  "source_manifest_sha256": "4c9507002b9b667337a30863b4d6847bc06f1acb786f7023b1f26f2c61f74c16",
+  "board_dtb_sha256": "f71369b3edacf141a20d221de9b455fd92efabfb0413cee7b915a0074e6d15f4",
+  "source_tree_verification_sha256": "4cddbb41115837b6ca9f04d694149eb79654bed3214bbf3a5f3eadea3488402c",
+  "dt_identical_to_ram105": true,
+  "unmodified_upstream_ipv6": true
+}

@@ -1,0 +1,18 @@
+--- a/drivers/input/touchscreen/Kconfig
++++ b/drivers/input/touchscreen/Kconfig
+@@ -265,6 +265,15 @@
+ 
+ 	  To compile this driver as a module, choose M here: the
+ 	  module will be called cyttsp_spi.
++
++config TOUCHSCREEN_CYTTSP4
++	tristate "Cypress Gen4 operational handoff for Cisco Perrier"
++	depends on I2C
++	help
++	  Native input for the already-running Gen4 firmware inherited across
++	  stock kexec on Cisco Perrier. Uses the report descriptor and threaded
++	  IRQs, with no power/reset or firmware-update commands. This driver
++	  currently does not support cold-starting the controller.
+ 
+ config TOUCHSCREEN_CYTTSP5
+ 	tristate "Cypress TrueTouch Gen5 Touchscreen Driver"

@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "stock": {
+    "hostname": "SEP24169DB677BB",
+    "uid": "0",
+    "kernel": "3.4.113+",
+    "arch": "armv7l",
+    "boot_id": "ec165955-5fbd-4127-8817-edfc6c25a880",
+    "uptime": "623.85",
+    "factory_app": "running",
+    "kexec_path": "",
+    "kexec_loaded": "0",
+    "watchdog": "present"
+  },
+  "stock_audio_controls": 83,
+  "stock_hfr_route_selected": true,
+  "stock_ep_route_disabled": true,
+  "all_65_sampled_pmic_rail_fields_match_stock_baseline": true,
+  "codec_id_and_revision": [
+    "0x4b",
+    "0x02"
+  ],
+  "gpio_port": "0x11",
+  "temporary_helpers_removed": true,
+  "helper_sha256": {
+    "audio-read": "7838260dc029418c2a9d0729615ade44afda09ac7f163d64f897433591c5a4f5",
+    "peripheral-read": "c80c922bb12f3c4390f066a61f9c754d06e90863e059e7b7bd049d267e615e9a",
+    "alsa-controls-read": "7478cac1297cbee693026cf143f68327aa2c91d97e48a1731b3e8046cff60d5b"
+  },
+  "executed_script_sha256": "82df2df9ff505a36ea60545e33f17a3e253dc4f1ca9d02938f9369669dd345d3"
+}

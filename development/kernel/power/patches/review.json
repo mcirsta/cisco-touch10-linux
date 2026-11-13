@@ -1,0 +1,18 @@
+{
+  "status": "offline_candidate",
+  "activated_in_kernel": false,
+  "base_path": "/home/marius/ext_proj/touch10/development/sources/linux-6.18.48/arch/arm/mach-omap2/omap_twl.c",
+  "base_sha256": "39ccbbcb8b9c346ee7f4b595cd9c1f26080cdbf82f4c45fed9c8e1f06c97f74b",
+  "patched_sha256": "719b6aeadbf7c5bf057012ccb98139a0cc1f5e0625d93e1ef9d80f7ad742c83d",
+  "patch_sha256": "11d249af3f22d6c1d2ff5464bde47c1f7e33464d4a7ea2fbcae19f0c2bc55486",
+  "twl6030_mapping_unchanged": true,
+  "twl6032_vc": {
+    "mpu": "55/56",
+    "core": "5b/5c",
+    "iva": "49/4a"
+  },
+  "pm_late_init_blacklisted_in_validated_ram110": true,
+  "requires_full_vc_vp_init_write_review": true,
+  "compiled_with_ram110_arm_config": true,
+  "compiled_object_only_offline": true
+}

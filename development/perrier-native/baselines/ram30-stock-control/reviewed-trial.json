@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "kernel": "6.18.48-perrier-ram30",
+  "purpose": "test stock DSI polarity and pad state with read-only bridge and DISPC capture",
+  "limitations": [
+    "bridge and panel physical supplies are inherited; logical regulators have no control GPIO",
+    "only stock GPIO102 reset is controlled; GPIO4 bank is not reset on init",
+    "no backlight driver or panel rail sequencing"
+  ],
+  "artifacts": {
+    "zImage": {
+      "size": 3749816,
+      "sha256": "e245a9fb8af92ebe52e5e22da479a55d72947553e0ff76608121172f1c276e65"
+    },
+    "board.dtb": {
+      "size": 91662,
+      "sha256": "25c86131f4a10947171dd76a582b4a89c826386098fc98ca3f68180726e7a0ec"
+    },
+    "kexec": {
+      "size": 1660848,
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6"
+    }
+  }
+}

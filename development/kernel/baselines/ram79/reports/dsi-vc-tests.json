@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "baseline_failures": 24,
+  "candidate_failures": 0,
+  "cases": 24,
+  "sanitizers": [
+    "address",
+    "undefined"
+  ],
+  "source": "/home/marius/ext_proj/touch10/development/kernel/source/drivers/gpu/drm/omapdrm/dss/dsi.c",
+  "source_sha256": "153fbfa85ccecbe59a4ae22d61cf84caac70b7435ba0ddc31fd7614e565d63eb"
+}

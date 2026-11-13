@@ -1,0 +1,80 @@
+{
+  "validated_at": "2026-11-12T15:47:14.516141+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram107",
+  "profile": "network-route-dns",
+  "default_uboot_profile": false,
+  "details": {
+    "summary": "Ram107 applied the isolated DHCP lease, accepted a temporary gateway/DNS test event, removed that state on real renewal, preserved rescue SSH through lease-loss cleanup, and returned to stock.",
+    "hardware_checks": [
+      "Real DHCP bound and renewed 10.77.10.10/24 from 10.77.10.1",
+      "Temporary RAM event installed default route via 10.77.10.1 metric 100 and two resolver entries; interactive SSH output was observed but not saved as a raw command log",
+      "Real DHCP renewal from the unchanged server cleared that route and resolver file",
+      "Deconfig removed the managed address while preserving 10.77.10.11/24; rescue SSH stayed connected",
+      "A later real renewal restored the managed address with no route or DNS",
+      "Qt started once; no display blank/unblank or Qt restart was requested",
+      "eMMC stayed read-only and the nowayout watchdog kept feeding"
+    ],
+    "recovery": "One-shot U-Boot restored factory p8 before RAM kernel handoff; requested reboot returned stock in 36.8 seconds, with exact p8 and approved ADC postflight.",
+    "limitations": [
+      "The isolated DHCP server advertises no router/DNS; live route/DNS handling was tested by a temporary script event, not by a server-supplied option.",
+      "DNS resolution and arbitrary production leases remain untested.",
+      "CPU1/SMP, power and suspend policy, remote cores and full-image eMMC boot remain pending; 3D remains parked."
+    ]
+  },
+  "recovery_mode": "requested_reboot",
+  "recovery_elapsed_seconds": 36.8,
+  "stock_recovered": true,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "serial_markers": {
+    "factory_saved_before_handoff": true,
+    "candidate_kernel": true,
+    "mainline_watchdog_ready": true,
+    "ram_ssh_started": true
+  },
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram107/snapshot.json",
+    "sha256": "6cb3cbad86869f04c13b6b5732c3e822f4b5dac503723e6cd2a7b959a700234a"
+  },
+  "source_manifest": {
+    "path": "development/kernel/baselines/ram107/patches/manifest.json",
+    "sha256": "4c9507002b9b667337a30863b4d6847bc06f1acb786f7023b1f26f2c61f74c16"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram107/reports/source-checks.json",
+    "sha256": "d81c5c0e80209e90037aae05d0c8fff442eae982de030ce0d1cd97e5615c0721"
+  },
+  "tests": {},
+  "image_review": {
+    "path": "development/perrier-ramenv/network-route-dns/reviewed-image.json",
+    "sha256": "775b58856284e1a40cf807f2d4905ffe6429b9809c2651bd2467d9df2d8f4996"
+  },
+  "live_result": {
+    "path": "development/runs/20261112T154108Z-uboot-ram107-80e01b/result.json",
+    "sha256": "b2b385ff1b9450cfec856ed46bac352d5042e550d196a9c4d8718399b2215fcd"
+  },
+  "physical_confirmations": [],
+  "machine_checks": {
+    "path": "development/runs/20261112T154108Z-uboot-ram107-80e01b/machine-checks.json",
+    "sha256": "2b8b511dc0dba57cb22ee2af91933c8c994e1f7e333f1a884c5b26ee9e78c235"
+  },
+  "evidence": {
+    "diagnostics-adc-restore.log": {
+      "path": "development/runs/20261112T154108Z-uboot-ram107-80e01b/diagnostics-adc-restore.log",
+      "sha256": "a0330872041173e65d768203368537e984528c4495ddfe3e818c683a299c9961"
+    }
+  },
+  "fallback": {
+    "profile": "network-dhcp",
+    "kernel": "6.18.48-perrier-ram106",
+    "validation": {
+      "path": "development/kernel/validation-ram106.json",
+      "sha256": "6b56a31c2b1d6f848b0f8ec7abc62f404628a69a09b4528a581443314ed20241"
+    }
+  },
+  "parent_validation": {
+    "path": "development/kernel/validation-ram106.json",
+    "sha256": "6b56a31c2b1d6f848b0f8ec7abc62f404628a69a09b4528a581443314ed20241"
+  }
+}

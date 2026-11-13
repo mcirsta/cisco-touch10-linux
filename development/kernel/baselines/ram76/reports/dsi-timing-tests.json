@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "sanitizers": [
+    "address",
+    "undefined"
+  ],
+  "source_sha256": "af61e2fffb27624ab3b11d300d54d3fe3b1ac966bc3a3c2f33c7625bac8e39e4",
+  "captured_timing_equivalent_to_ram74": true,
+  "output": "PASS: captured ram74 timing unchanged; 6859 divider cases accepted, 341 rejected"
+}

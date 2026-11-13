@@ -1,0 +1,52 @@
+{
+  "validated_at": "2026-11-12T17:51:26.385+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram109",
+  "profile": "smp-hotplug",
+  "default_uboot_profile": false,
+  "scope": "One U-Boot RAM boot with maxcpus=1, then one CPU1 hotplug request after watchdog readiness",
+  "result": {
+    "cpu": "CPU1 present but offline at boot, then online=0-1 after one hotplug write; CPU1-pinned command and timer/scheduler activity observed",
+    "watchdog": "Mainline nowayout WDT2 fed at 120-second timeout; pings advanced from 6 to 22 after hotplug",
+    "storage": "eMMC stayed read-only and unmounted; factory p8 restored before RAM userspace",
+    "qt": "Started once and remained PID 123; no display cycles or Qt restarts requested",
+    "recovery": "Requested reboot returned stock Linux 3.4.113+ and Phoenix after 36.7 seconds; exact factory p8 and approved ADC postflight passed"
+  },
+  "limits": [
+    "CPU1 was released after watchdog startup, so boot-time dual-core release is not yet validated.",
+    "U-Boot stops WDT2 and this image starts it at driver probe, leaving a pre-probe hang without proven automatic recovery.",
+    "CPU frequency, voltage, suspend and production power policy remain unqualified.",
+    "One run does not establish long-duration dual-core stability."
+  ],
+  "stock_recovered": true,
+  "recovery_mode": "requested_reboot",
+  "recovery_elapsed_seconds": 36.7,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "adc_postflight": true,
+  "parent_validation": {
+    "path": "development/kernel/validation-ram108.json",
+    "sha256": "bc0bc4459467d6d7188458750f7c86132b0c84135a2f221d799e5bcafccb40df"
+  },
+  "image_review": {
+    "path": "development/perrier-ramenv/smp-hotplug/reviewed-image.json",
+    "sha256": "dd14d3f0f2aec2da5f957acf54c7a38aa6f20e2949eb682a425c6e10ec767817"
+  },
+  "config_delta": {
+    "path": "development/kernel/configs/cpu1-hotplug-config-delta.json",
+    "sha256": "c3e2e41e429d8cbbef1e2d0b9d4120096178bd3aa40ec5a63117309a4109f35c"
+  },
+  "live_result": {
+    "path": "development/runs/20261112T174753Z-uboot-ram109-345284/result.json",
+    "sha256": "8e762a7c1362e0a2d90772f3e2e567ebf74c263db2bc90ceecb0ff196bc737d1"
+  },
+  "hotplug_observation": {
+    "path": "development/perrier-smp/ram109-hotplug-observation.json",
+    "sha256": "c805acbdba3203110a55b7a0192922772d4cfd97c1b7b2b626cb833e45e9737d"
+  },
+  "evidence": {
+    "serial.raw": "1246aa21478e94f3c3fab1bf955c08dd69026525bd1b74440dfe99e17d159a17",
+    "ram-diagnostics.log": "95c3f4f8196d616f2ebe6f8a2565eb025801f64295a58d314bd1f4ec453030c3",
+    "qt-start.log": "cb002352e2508bbfe0363249b407cb6e712f30a271622e0f089c0dbddac36626",
+    "diagnostics-adc-restore.log": "a0330872041173e65d768203368537e984528c4495ddfe3e818c683a299c9961"
+  }
+}

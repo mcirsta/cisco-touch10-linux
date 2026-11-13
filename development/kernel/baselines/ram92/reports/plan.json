@@ -1,0 +1,192 @@
+{
+  "created_at": "2026-11-10T17:59:16.911588+00:00",
+  "task": "Finish review and reduction of the remaining Perrier display deviations",
+  "baseline": {
+    "profile": "dsi-standard-video",
+    "kernel": "ram74",
+    "validation_sha256": "24251baee1f067c1494d81abe2a83853a4bb5fcce0650277321fcd333631ed3f"
+  },
+  "fallback": {
+    "profile": "display-onoff",
+    "kernel": "ram70",
+    "validation_sha256": "022ffac9182eafb9ea0368f66cbe6cd76049f88ea7ee8c864674457f5dfbc520"
+  },
+  "constraints": [
+    "Preserve voltage, GPIO, pinmux, supply, PWM and panel DT properties",
+    "Preserve nowayout watchdog and read-only eMMC policy",
+    "No promotion without relevant physical and recovery checks"
+  ],
+  "phases": [
+    {
+      "name": "exact-line-clock-arithmetic",
+      "candidate": "ram75/dsi-exact-lines",
+      "state": "qualified",
+      "goal": "Remove board-name-dependent line rounding and Hz tolerance using common-DCO divisors; keep porch outputs equal to ram74",
+      "watchdog_recovery_seconds": 150.5,
+      "validation": "development/kernel/validation-ram75.json"
+    },
+    {
+      "name": "ordinary-porch-allocation",
+      "state": "qualified: ordinary DSI HBP and DISPC event-mode porches",
+      "goal": "Test mainline DSI HBP rounding and then DISPC event-mode timing independently",
+      "candidate": "ram86/display-hbp",
+      "expected": {
+        "DSI_HBP": 59,
+        "DSI_HFP": 58,
+        "DSI_HTOTAL": 1080,
+        "DISPC_HTOTAL": 1440
+      },
+      "next_candidate": {
+        "kernel": "ram87",
+        "profile": "display-porches",
+        "change": "Remove original-DISPC-porch exception; keep generic exact line clocks and constrain nearest choice to feasible interval",
+        "expected_dispc": {
+          "hsync": 1,
+          "hbp": 78,
+          "hfp": 81,
+          "htotal": 1440
+        },
+        "external_panel_timing": "unchanged",
+        "status": "pending ram86 qualification"
+      },
+      "old_drafts": "ram79\u201381 superseded, unrun",
+      "ram86_validation": "development/kernel/validation-ram86.json",
+      "ram86_watchdog_recovery_seconds": 154.9,
+      "ram87_validation": "development/kernel/validation-ram87.json",
+      "ram87_watchdog_recovery_seconds": 152.6
+    },
+    {
+      "name": "host-pad-and-video-source",
+      "state": "qualified: mainline video VC and pad-mode setup",
+      "goal": "Isolate pad mode, preserve HS clock priming, review VC0 L4-to-VP transition",
+      "candidate": "ram76/dsi-command-clock",
+      "run": "development/runs/20261110T181907Z-uboot-ram76-2e9d0d",
+      "bridge_counter": [
+        "c0800001",
+        "c0800002",
+        "c0800003",
+        "c0800004"
+      ],
+      "watchdog_recovery_seconds": 154.9,
+      "validation": "development/kernel/validation-ram76.json",
+      "final_physical": "Still clean and aligned",
+      "pad_candidate": {
+        "kernel": "ram88",
+        "profile": "display-pads",
+        "change": "Ordinary BYPASS selector",
+        "expected_dispc_control": "0x00018309",
+        "status": "built, audited, frozen and prepared; not uploaded"
+      },
+      "previous_counter_issue": "ram76 counter increment resolved by ram85 physical reset and corrected host/bridge clock order",
+      "ram88_validation": "development/kernel/validation-ram88.json",
+      "ram88_watchdog_recovery_seconds": 153.5
+    },
+    {
+      "name": "bridge-hardware-description",
+      "state": "regmap transport qualified in ram85; inherited counter increment resolved by physical reset sequence",
+      "goal": "Separate documented TC358765 format/clock fields from Perrier electrical settings and eliminate stale read/error handling",
+      "transport_candidate": "ram77/bridge-regmap",
+      "watchdog_recovery_seconds": 150.7,
+      "validation": "development/kernel/validation-ram77.json",
+      "latest_validation": "development/kernel/validation-ram85.json"
+    },
+    {
+      "name": "bridge-reset-and-startup",
+      "state": "qualified",
+      "goal": "Compare TI reference sequence and controlled reset behavior without changing verified analog or power settings",
+      "candidate": "ram85/bridge-clock-order",
+      "change": "Release physical reset and wait before bridge-initiated HS NULL on the ordinary host transfer path; remove custom OMAP pre-enable hook",
+      "next": "Start HS clock through normal host transfer after bridge reset release",
+      "tests": {
+        "null_transfer_cases": 7,
+        "power_lifecycle_cycles": 2
+      },
+      "rejected_ram78_recovery_seconds": 36.1,
+      "run": "development/runs/20261110T191332Z-uboot-ram85-4a0ea6",
+      "bridge_counter_each_cycle": "c0800001",
+      "bridge_status_each_cycle": "00000002",
+      "post_cycle_physical": "Everything still works normally",
+      "watchdog_recovery_seconds": 155.0,
+      "validation": "development/kernel/validation-ram85.json"
+    },
+    {
+      "name": "qualification-and-cleanup",
+      "state": "pending",
+      "goal": "Repeated display/Qt cycles, visual/touch/brightness, saved framebuffer, watchdog stock return, freeze final sources"
+    }
+  ],
+  "primary_reference": "https://lkml.rescloud.iu.edu/1302.1/00275.html",
+  "current_candidate": "ram91 combined owner-confirmed and recovering; ram92 diagnostic audited",
+  "default_profile": "bridge-clock-order",
+  "remaining_matrix": [
+    {
+      "kernel": "ram87",
+      "profile": "display-porches",
+      "change": "Mainline DISPC event-mode porches 1/78/81",
+      "gate": "ram86 qualification"
+    },
+    {
+      "kernel": "ram88",
+      "profile": "display-pads",
+      "change": "Ordinary DSS_IO_PAD_MODE_BYPASS",
+      "gate": "porch qualification"
+    },
+    {
+      "kernel": "ram89",
+      "profile": "display-sync-align",
+      "align": 1,
+      "core_clock": "DSI PLL1:1",
+      "change": "ALIGN-only control"
+    },
+    {
+      "kernel": "ram90",
+      "profile": "display-core-fck",
+      "align": 0,
+      "core_clock": "mainline PRCM FCK",
+      "change": "core-source-only control"
+    },
+    {
+      "kernel": "ram91",
+      "profile": "display-mainline-sync",
+      "align": 1,
+      "core_clock": "mainline PRCM FCK",
+      "change": "coupled mainline control; only after independent results"
+    }
+  ],
+  "queued_candidates_79_80_81": "superseded offline drafts based on rejected reset ordering; do not upload",
+  "remaining_matrix_after_corrected_reset": [
+    "Reapply DSI HBP-only rounding",
+    "Reapply ordinary DISPC event-mode porches and feasible line interval",
+    "Test ordinary pad selector",
+    "Test ALIGN and core-clock controls independently, then their full-mainline combination"
+  ],
+  "host_shutdown_issue": "Phase-marked HS_TX_TIMEOUT inside some blank calls; investigate stop/drain ordering; keep true error reporting",
+  "ram90_review": "out/display-finalization/ram90-source-independence.json",
+  "shutdown_trace_proposal": "out/display-finalization/proposals/dsi-stop-trace.json",
+  "sync_clock_results": {
+    "ram89_ALIGN_only": {
+      "state": "qualified",
+      "owner": "Clean and aligned; touch and brightness work",
+      "watchdog_recovery_seconds": 153.8,
+      "validation": "development/kernel/validation-ram89.json"
+    },
+    "ram90_core_only": {
+      "state": "qualified",
+      "DSS_CONTROL": "0x00000003",
+      "watchdog_recovery_seconds": 153.0,
+      "validation": "development/kernel/validation-ram90.json"
+    },
+    "ram91_combined": {
+      "state": "owner and three-cycle checks passed; awaiting watchdog return",
+      "DISPC_POL_FREQ_LCD": "0x00060000",
+      "DSS_CONTROL": "0x00000003"
+    }
+  },
+  "shutdown_diagnostic": {
+    "kernel": "ram92",
+    "profile": "display-stop-trace",
+    "state": "audited; hardware and lock call order compared equal",
+    "call_order_proof": "out/display-finalization/ram92-hardware-call-order.json",
+    "qualification": "Temporary diagnostic only; remove instrumentation before final functional image"
+  }
+}

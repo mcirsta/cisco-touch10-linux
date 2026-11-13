@@ -1,0 +1,18 @@
+[
+  "/home/marius/ext_proj/touch10/development/audio/alsa-lib/configure",
+  "--host=arm-buildroot-linux-musleabihf",
+  "--prefix=/usr",
+  "--libdir=/usr/lib",
+  "--with-configdir=/etc/alsa",
+  "--disable-python",
+  "--disable-topology",
+  "--disable-seq",
+  "--disable-rawmidi",
+  "--disable-hwdep",
+  "--disable-ucm",
+  "--disable-aload",
+  "--disable-old-symbols",
+  "--enable-shared",
+  "--disable-static",
+  "--with-pcm-plugins=hw,plug,rate,linear,lfloat,route,asym,file,null,copy,empty,mmap_emul"
+]

@@ -1,0 +1,63 @@
+{
+  "validated_at": "2026-11-12T19:07:54.938+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram110",
+  "profile": "smp-boot-two",
+  "scope": "Real DHCP router/DNS option delivery, DNS resolution and renewal cleanup on the isolated direct link",
+  "default_uboot_profile": false,
+  "unchanged_kernel_zimage_sha256": "96149c53cc1e435bab823bd18cee2006609fddfea9e14eb0356d6ad5bf79e7bb",
+  "one_shot_environment_sha256": "e6301aaefd43a4dd1aa295138520838eb43dfce9eb9826dbf47d27c2520873e0",
+  "host_fixture_sha256": "5a00e0e89d06ac2532eb1b94a4467d6c75cb813ac1332978014f9cc5cd8acf94",
+  "normal_host_config_sha256": "7bb6ad2f4856ffda481e8ec1f115956deacb35d539c0bd1a6f1dc6f4a9ad97c8",
+  "observations": {
+    "bound": "Real DHCPACK delivered 10.77.10.10/24, router 10.77.10.1 and DNS 10.77.10.1; the RAM image installed a metric-100 default route and resolver.",
+    "dns": "BusyBox nslookup on the panel resolved probe.touch10-validation.test through 10.77.10.1 to 10.77.10.1.",
+    "renew": "After the host service returned to no-router/no-DNS mode, SIGUSR1 renewal kept 10.77.10.10/24 and independent rescue 10.77.10.11/24 but removed the default route and resolver file.",
+    "health": "Both CPUs online; eMMC read-only; Qt started once and watchdog remained feeding. No display cycle or Qt restart requested.",
+    "recovery": "Requested reboot restored stock Linux/Phoenix, exact factory p8 and approved ADC sensing state in 36.7 seconds.",
+    "host_cleanup": "Original dnsmasq unit/config restored; no temporary override or rollback timer remained."
+  },
+  "limits": [
+    "Fixed isolated /24 lease only; arbitrary production DHCP networks and routing remain unqualified.",
+    "DNS resolution was a local .test record; upstream Internet DNS was intentionally unavailable.",
+    "No physical display/touch observation requested in this network regression."
+  ],
+  "stock_recovered": true,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "adc_postflight": true,
+  "recovery_elapsed_seconds": 36.7,
+  "evidence": {
+    "result.json": {
+      "path": "development/runs/20261112T190431Z-uboot-ram110-ec4294/result.json",
+      "sha256": "f9548c44c9d2b538c8dd3bd1bff78495cba7a6b477c6867fc2ccb917eb36e24d"
+    },
+    "serial.raw": {
+      "path": "development/runs/20261112T190431Z-uboot-ram110-ec4294/serial.raw",
+      "sha256": "141bee3e1778ceac62cb35712d9121836f482e75c9ccc5219ec9be866a388a5c"
+    },
+    "ram-diagnostics.log": {
+      "path": "development/runs/20261112T190431Z-uboot-ram110-ec4294/ram-diagnostics.log",
+      "sha256": "de2b88efcd6efc8aef6181318c3f594bf5ba5a8a8f3abc9a46318663407a302a"
+    },
+    "qt-start.log": {
+      "path": "development/runs/20261112T190431Z-uboot-ram110-ec4294/qt-start.log",
+      "sha256": "82cf0531d4a0accf513ab9affeb2bae969d96fdb52778e6a215d9bad0aac8a24"
+    },
+    "network-router-dns-first.log": {
+      "path": "development/runs/20261112T190431Z-uboot-ram110-ec4294/network-router-dns-first.log",
+      "sha256": "9ebc6ed54ec62b73dc94f829a171f7bbf346e5343ede42e48d6f270ceb60f574"
+    },
+    "network-router-dns-renew.log": {
+      "path": "development/runs/20261112T190431Z-uboot-ram110-ec4294/network-router-dns-renew.log",
+      "sha256": "964eab21cf4b8ccbce619b7dbc10dc628768f4c3ec7d9df4b6256dd542194cec"
+    },
+    "host-dnsmasq.log": {
+      "path": "development/runs/20261112T190431Z-uboot-ram110-ec4294/host-dnsmasq.log",
+      "sha256": "8c8ac3e1caa9d7708a7bf4d79af2bc0e3dcd76656f256450eb829415059fc0fd"
+    },
+    "diagnostics-adc-restore.log": {
+      "path": "development/runs/20261112T190431Z-uboot-ram110-ec4294/diagnostics-adc-restore.log",
+      "sha256": "a0330872041173e65d768203368537e984528c4495ddfe3e818c683a299c9961"
+    }
+  }
+}

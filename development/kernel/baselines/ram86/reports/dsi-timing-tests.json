@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "sanitizers": [
+    "address",
+    "undefined"
+  ],
+  "source_sha256": "67089c122b57811255253386e3e4245b265b57e57a6eee6c5ddd9bf9c43e2aa5",
+  "captured_line_totals_unchanged": true,
+  "dsi_hbp": 59,
+  "dsi_hfp": 58,
+  "dispc_timing_unchanged": true,
+  "feasible_neighbor_boundary_case": true,
+  "output": "PASS: captured line clocks unchanged; mainline DSI HBP; DISPC porches retained; feasible neighbor checked; 6859 divider cases accepted, 341 rejected"
+}

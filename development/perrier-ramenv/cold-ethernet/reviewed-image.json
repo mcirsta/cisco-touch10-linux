@@ -1,0 +1,167 @@
+{
+  "kernel": "6.18.48-perrier-ram60",
+  "profile": "cold-ethernet",
+  "artifacts": {
+    "zImage": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/cold-ethernet/kernel-build/arch/arm/boot/zImage",
+      "size": 17051440,
+      "sha256": "8712ab110ee63550b8f12ae7ddfaf7b6308acfdc73d944228b7972c9605d0f2d"
+    },
+    "board.dtb": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/cold-ethernet/board.dtb",
+      "size": 96283,
+      "sha256": "b6e159523e867a0c08ac063d37e65a58cbd311d90cfa0d74394ca4088c18e2fe"
+    },
+    "kexec": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier/kexec-legacy-fdt",
+      "size": 1660848,
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6"
+    }
+  },
+  "inputs": {
+    "baseline_review": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-watchdog/reviewed-image.json",
+      "sha256": "58404007a7bb5c7b021b190efe607652ae4d43e8fc2c90565ade0113e306f926"
+    },
+    "watchdog_proof": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-watchdog/watchdog-proof.json",
+      "sha256": "3f23c890d5d390efa07fd63dd6c4231d0aa0fa0e6f84687e2b82e3a9203f36cf"
+    },
+    "ethernet_dts": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-cold-ethernet/omap4-perrier-cold-ethernet.dts",
+      "sha256": "fbcafb84f2a3703ad9017f44b277c5105222cdb1f436bc87e091a2ce7261e9d6"
+    },
+    "stock_gpio_pad_clock": {
+      "path": "/home/marius/ext_proj/touch10/evidence/perrier-stock-coldinit-gpio-clock-2026-11-10.txt",
+      "sha256": "4b67ec22bfdbacc64f3208b6d3dabaea0be1dd2795422b65b866fc3574395a91"
+    },
+    "generic_phy_source": {
+      "path": "/home/marius/ext_proj/touch10/development/sources/linux-6.18.48/drivers/usb/phy/phy-generic.c",
+      "sha256": "80a16370036fae7a8fb64aa01968a233728bdf35bb702c52b14c943fff3951d1"
+    },
+    "ehci_source": {
+      "path": "/home/marius/ext_proj/touch10/development/sources/linux-6.18.48/drivers/usb/host/ehci-omap.c",
+      "sha256": "0339c018d8cdc4c8d24749b4c99773a19c7dfc08dccac7132c3a2b55d017a0d4"
+    },
+    "pinctrl_source": {
+      "path": "/home/marius/ext_proj/touch10/development/sources/linux-6.18.48/drivers/pinctrl/pinctrl-single.c",
+      "sha256": "4128c6d67ac435ac82e99e52f92ea6156138dd39c136c1d5646f9488c97f1d00"
+    }
+  },
+  "rootfs_manifest_sha256": "e279f5a57c2f5dc8086011a38f50b521531310d7618700a382bd90de71c91e51",
+  "initramfs_sha256": "8cf766734848fa928109421a97cb8b7c996f0ff5a84f9219ea16f83babdc3d63",
+  "kernel_config_sha256": "b40cc659c0fc1387646c1e9337a994c67b3f8d7bb58cf6cb17ce5181f82042e8",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "watchdog_backend": "linux-watchdog",
+  "passed": true,
+  "kernel_span_bytes": 20812704,
+  "config_changes": {
+    "CONFIG_INITRAMFS_SOURCE": [
+      "\"/home/marius/ext_proj/touch10/development/perrier-ramenv/native-watchdog/initramfs.cpio\"",
+      "\"/home/marius/ext_proj/touch10/development/perrier-ramenv/cold-ethernet/initramfs.cpio\""
+    ],
+    "CONFIG_PINCONF": [
+      null,
+      "y"
+    ],
+    "CONFIG_GENERIC_PINMUX_FUNCTIONS": [
+      null,
+      "y"
+    ],
+    "CONFIG_PINCTRL_SINGLE": [
+      null,
+      "y"
+    ],
+    "CONFIG_GENERIC_PINCONF": [
+      null,
+      "y"
+    ],
+    "CONFIG_PINMUX": [
+      null,
+      "y"
+    ],
+    "CONFIG_LOCALVERSION": [
+      "\"-perrier-ram59\"",
+      "\"-perrier-ram60\""
+    ],
+    "CONFIG_GENERIC_PINCTRL_GROUPS": [
+      null,
+      "y"
+    ]
+  },
+  "dt_audit": {
+    "physical_gpio_outputs": [
+      110,
+      158
+    ],
+    "clock_hz": 19200000,
+    "physical_pad_values": [
+      [
+        194,
+        268
+      ],
+      [
+        196,
+        4
+      ],
+      [
+        198,
+        268
+      ],
+      [
+        200,
+        268
+      ],
+      [
+        202,
+        268
+      ],
+      [
+        204,
+        268
+      ],
+      [
+        206,
+        268
+      ],
+      [
+        208,
+        268
+      ],
+      [
+        210,
+        268
+      ],
+      [
+        212,
+        268
+      ],
+      [
+        214,
+        268
+      ],
+      [
+        216,
+        268
+      ],
+      [
+        246,
+        3
+      ],
+      [
+        410,
+        280
+      ],
+      [
+        354,
+        3
+      ]
+    ],
+    "shared_pll_retuned": false,
+    "other_hardware_properties_unchanged": true
+  },
+  "rootfs_changes": [
+    "etc/init.d/rcS"
+  ],
+  "cold_ethernet_hardware_verified": false
+}

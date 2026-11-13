@@ -1,0 +1,52 @@
+{
+  "validated_at": "2026-11-10T19:00:44.690338+00:00",
+  "status": "rejected",
+  "kernel": "6.18.48-perrier-ram78",
+  "profile": "bridge-reset",
+  "default_uboot_profile": false,
+  "failure": "Bridge ID and diagnostic reads NACK after GPIO reset with HS clock primed before reset release",
+  "driver_error": "Cannot read bridge ID: -121",
+  "physical_visual_check_requested": false,
+  "normal_reboot_recovery_seconds": 36.1,
+  "recovery_mode": "requested_reboot",
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "stock_recovered": true,
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram78/snapshot.json",
+    "sha256": "a4356d3e2d76de0cd8b19508497d6255f7ea8f65f71b594d90e686410f44ac63"
+  },
+  "source_manifest": {
+    "path": "development/kernel/baselines/ram78/patches/manifest.json",
+    "sha256": "8d7d70bf911b1a5202442882ab591160155f79ffd8333f8d8aa864669f5becd1"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram78/reports/source-checks.json",
+    "sha256": "4d47346b4d10a612060d89b75683733b71b707c3df1b1521f7b639d3306c6e97"
+  },
+  "image_review": {
+    "path": "development/perrier-ramenv/bridge-reset/reviewed-image.json",
+    "sha256": "0dfc630de760e37fd05b0f443913b7e7287691719dd62c41015001ecc66b4320"
+  },
+  "live_result": {
+    "path": "development/runs/20261110T184429Z-uboot-ram78-428e0e/result.json",
+    "sha256": "c10bddaa37721aa7468662226d301b5c8bc4a7975667fbebe10605989dc6a58c"
+  },
+  "failure_observation": {
+    "path": "development/runs/20261110T184429Z-uboot-ram78-428e0e/failure-observation.json",
+    "sha256": "951ed96f5de0689fb060cf4c0f3845f3256748d00b73b69f57567a18a2df8471"
+  },
+  "initial_diagnostics": {
+    "path": "development/runs/20261110T184429Z-uboot-ram78-428e0e/initial-before.log",
+    "sha256": "a37eadecbd5de05b37c1506b526676688435f60dc630de2ff30296f4ed0ffffc"
+  },
+  "next": "ram85 prepares PHY in ordinary host pre-enable, then releases reset, waits, and starts HS via a no-response NULL transfer; host PHY shutdown moves to post-disable",
+  "fallback": {
+    "profile": "display-onoff",
+    "kernel": "6.18.48-perrier-ram70",
+    "validation": {
+      "path": "development/kernel/validation-ram70.json",
+      "sha256": "022ffac9182eafb9ea0368f66cbe6cd76049f88ea7ee8c864674457f5dfbc520"
+    }
+  }
+}

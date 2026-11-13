@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "unsafe_changes_rejected": [
+    "wrong GPIO bank",
+    "wrong GPIO offset",
+    "inverted LED polarity",
+    "LED enabled at startup",
+    "unreviewed LED trigger",
+    "wrong LED pad",
+    "changed LED pull",
+    "changed existing rail",
+    "new existing-device property"
+  ]
+}

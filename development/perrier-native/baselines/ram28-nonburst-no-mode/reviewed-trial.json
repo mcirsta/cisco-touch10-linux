@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "kernel": "6.18.48-perrier-ram28",
+  "purpose": "test stock-matched non-burst DSI video mode with read-only bridge, DSI, DISPC and backlight capture",
+  "limitations": [
+    "bridge and panel physical supplies are inherited; logical regulators have no control GPIO",
+    "only stock GPIO102 reset is controlled; GPIO4 bank is not reset on init",
+    "no backlight driver or panel rail sequencing"
+  ],
+  "artifacts": {
+    "zImage": {
+      "size": 3750120,
+      "sha256": "19ef1c7a1670cf23f32c0199bbfd2727284dc79faac3678842421ee310441c34"
+    },
+    "board.dtb": {
+      "size": 91662,
+      "sha256": "87f1371e3c32c0c65c42e7a4b1aafad8085af11d20482089a139bdfc0068bb61"
+    },
+    "kexec": {
+      "size": 1660848,
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6"
+    }
+  }
+}

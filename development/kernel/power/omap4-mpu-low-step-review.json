@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "device_run": false,
+  "source_sha256": "4785d8fde1f8dd1ead6fc7c2d3fe9e86e12d163b3c864439ba9d751f86f16871",
+  "kernel": "6.18.48-perrier-ram114",
+  "initial_selector": "0x28",
+  "restore_selector": "0x28",
+  "fixed_frequency_khz": 350000,
+  "low_dwell_seconds": 2,
+  "binaries": {
+    "0x24": {
+      "sha256": "7ebe6370dd77afe0a53da12f632494b8651829414506ed5a2b3b16d191e85540",
+      "size": 107080,
+      "nominal_microvolts": 1152100
+    },
+    "0x20": {
+      "sha256": "79fa526d224e7bccbba5719eb078b4431d7405ef93b4ba95f9724b8fc73e99e1",
+      "size": 107080,
+      "nominal_microvolts": 1101460
+    }
+  },
+  "persistent_storage_write": false
+}

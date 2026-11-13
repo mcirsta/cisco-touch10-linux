@@ -1,0 +1,20 @@
+{
+  "status": "staged-and-readback-verified",
+  "before_boot_id": "c45ec29e-f705-4cb8-8dfe-658bc38827af",
+  "factory_kernel": "3.4.113+",
+  "factory_app": "running",
+  "p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "oneshot_manifest_sha256": "0c002e5f036dc174ca3e1b6d087b6e6879ef411b6fa5c510c29fd856f0f29daa",
+  "files": {
+    "zImage": {
+      "path": "/mnt/base/touch10-dev/cold01-8477a79e0c5e.zImage",
+      "bytes": 1508184,
+      "sha256": "8477a79e0c5eb69f5ec83385d3ce39b35fed9c9e4e9c2c5e92d1163e6d7d64ce"
+    },
+    "board.dtb": {
+      "path": "/mnt/base/touch10-dev/cold01-6d71c3d9b6ee.dtb",
+      "bytes": 85634,
+      "sha256": "6d71c3d9b6eec8ee05e57b71ef0b85a6f988fd08d42d43ada95f88be8c47f50b"
+    }
+  }
+}

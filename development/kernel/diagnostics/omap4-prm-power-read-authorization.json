@@ -1,0 +1,5 @@
+{
+  "authorized": true,
+  "binary_sha256": "4579e0a1c39338f170d8fca2c08042f26584462f179cfc3e67af92f7751aa11d",
+  "scope": "one RAM-only upload, one read-only PRM snapshot, removal"
+}

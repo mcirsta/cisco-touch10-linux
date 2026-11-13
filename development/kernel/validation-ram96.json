@@ -1,0 +1,255 @@
+{
+  "validated_at": "2026-11-12T09:56:00.433468+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram96",
+  "profile": "rtc-gpio",
+  "default_uboot_profile": true,
+  "details": {
+    "change": "Combined native TWL RTC, PCF8574-compatible GPIO provider and TWL 32 kHz clock providers",
+    "source_changes": [
+      "board DTS: RTC IRQ 11, expander and PMIC clock provider",
+      "optional generic PCF retain-state-shutdown binding and guard"
+    ],
+    "rtc_and_clock_drivers_unmodified": true,
+    "display_source_and_existing_wiring_preserved": true,
+    "display_validation_inherited_from": "validation-ram95.json -> validation-ram93.json",
+    "combined_ram_boots": 1,
+    "display_cycles": 0,
+    "qt_restarts": 0,
+    "rtc": {
+      "native_counter_advances": true,
+      "alarm_fired": true,
+      "alarm_irq_count_change": [
+        0,
+        1
+      ],
+      "parent_irq_count_change": [
+        0,
+        1
+      ],
+      "alarm_elapsed_seconds": 4.238,
+      "original_cache_and_exact_hardware_alarm_and_irq_bytes_restored": true,
+      "calendar_time_not_set": true,
+      "hctosys_systohc_nvmem_disabled": true,
+      "suspend_wakeup_not_tested": true
+    },
+    "gpio": {
+      "address": "I2C4/0x24",
+      "lines": 8,
+      "native_asis_flags": 0,
+      "native_and_raw_value": "0x11",
+      "ownership_direction_and_levels_identical_before_after": true,
+      "no_direction_bias_drive_or_latch_writes": true,
+      "pin_functions_and_output_latches_not_mapped": true,
+      "optional_shutdown_retention_verified_offline": true,
+      "retained_8bit_states_tested": 256,
+      "orderly_shutdown_not_live_tested": true
+    },
+    "clock_providers": {
+      "rates_and_counts": {
+        "clk32kg/clk_rate": 32768,
+        "clk32kg/clk_prepare_count": 0,
+        "clk32kg/clk_enable_count": 0,
+        "clk32kaudio/clk_rate": 32768,
+        "clk32kaudio/clk_prepare_count": 0,
+        "clk32kaudio/clk_enable_count": 0
+      },
+      "registers_bc_through_c1": [
+        "00",
+        "01",
+        "01",
+        "00",
+        "01",
+        "01"
+      ],
+      "registers_match_stock_before_during_and_after": true,
+      "no_enable_disable_or_rate_change_test": true,
+      "frequency_from_driver_no_physical_waveform_measurement": true
+    },
+    "qt": {
+      "new_readouts": [
+        "RTC",
+        "GPIO expander byte and binary"
+      ],
+      "same_pid_through_checks": "110"
+    },
+    "stock_audio_investigation": {
+      "alsa_controls_saved": 83,
+      "mcpdm_pad_and_gpio127_readback_saved": true,
+      "playback_capture_or_gain_writes": false,
+      "next": "Map codec supplies, machine routes, MCLK and power/IRQ sequencing before mainline TWL6040 probe"
+    },
+    "negative_dt_mutations_rejected": 44,
+    "image_watchdog_and_read_only_storage_safeguards_unchanged": true,
+    "post_recovery_stock_checks": {
+      "passed": true,
+      "stock": {
+        "hostname": "SEP24169DB677BB",
+        "uid": "0",
+        "kernel": "3.4.113+",
+        "arch": "armv7l",
+        "boot_id": "30b340ff-443a-41e9-b754-158b9247822a",
+        "uptime": "98.08",
+        "factory_app": "running",
+        "kexec_path": "",
+        "kexec_loaded": "0",
+        "watchdog": "present"
+      },
+      "gpio_value_matches_stock_before_test": "0x11",
+      "all_sampled_pmic_clock_registers_match_stock_before_test": true,
+      "rtc_advances_and_alarm_disabled": true,
+      "tmpfs_helper_removed": true,
+      "helper_sha256": "b57a9a7c8c7c5e01693d4260e415cb3c1b2f37adbf272815cd12a17ce00ace6d",
+      "executed_script_sha256": "14509204677e733ac0866c2aa13905762feca7b5c93b8aa58a04f613deb99199"
+    },
+    "limitations": [
+      "GPIO outputs and pin functions not qualified",
+      "Suspend, DVFS and production PM policy pending",
+      "SMP deferred and SGX parked by owner"
+    ]
+  },
+  "recovery_mode": "hardware_expiry",
+  "recovery_elapsed_seconds": 151.8,
+  "stock_recovered": true,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "serial_markers": {
+    "factory_saved_before_handoff": true,
+    "candidate_kernel": true,
+    "mainline_watchdog_ready": true,
+    "ram_ssh_started": true
+  },
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram96/snapshot.json",
+    "sha256": "260f4610e4fd1ca9f76a8b1ec9c93b36100b63315c3d211670c5cffcbe448892"
+  },
+  "source_manifest": {
+    "path": "development/kernel/baselines/ram96/patches/manifest.json",
+    "sha256": "025e190e9b467dfae2f23280c803f2d2dd1f9a593c5945b842014ac3eb513500"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram96/reports/source-checks.json",
+    "sha256": "75ec96faa2644cbf977e24419fb07cff2e112e3c2d607ee64cddd42690dfc731"
+  },
+  "tests": {
+    "aux-audit-tests": {
+      "path": "development/kernel/baselines/ram96/reports/aux-audit-tests.json",
+      "sha256": "711eb612ad4b802a5fbeb75dd9696b86f9027872e63fa7293822c17873441943"
+    },
+    "bridge-regmap-tests": {
+      "path": "development/kernel/baselines/ram96/reports/bridge-regmap-tests.json",
+      "sha256": "de5ab6625c121cee42fa9aae4e9998ade67c6fcf209461efa1cf256cff137429"
+    },
+    "bus-audit-tests": {
+      "path": "development/kernel/baselines/ram96/reports/bus-audit-tests.json",
+      "sha256": "de1a3289c0714aaef3717248aeaf3181b4d62b5ca146271862971560913d5b68"
+    },
+    "dsi-null-tests": {
+      "path": "development/kernel/baselines/ram96/reports/dsi-null-tests.json",
+      "sha256": "099c03eb8bada5921d51dc7fec8fd2dee9d4daf88bd6d6dd8615a068c7a1851a"
+    },
+    "dsi-power-tests": {
+      "path": "development/kernel/baselines/ram96/reports/dsi-power-tests.json",
+      "sha256": "cfaa4dea48acfc48ba727ca86722d92e1885583c7dff4f2e27aa6c8ed4e590ce"
+    },
+    "dsi-timing-tests": {
+      "path": "development/kernel/baselines/ram96/reports/dsi-timing-tests.json",
+      "sha256": "f84046446b23c5beb9c5182529fc0a7d6bfec7c83eeb638bb8e1e42e4337cda7"
+    },
+    "dsi-vc-tests": {
+      "path": "development/kernel/baselines/ram96/reports/dsi-vc-tests.json",
+      "sha256": "01193e3455920bb0d63334a0447f67fa9e7122e6eef3105785769d928ad96185"
+    },
+    "led-audit-tests": {
+      "path": "development/kernel/baselines/ram96/reports/led-audit-tests.json",
+      "sha256": "188f2103991c35bdc5057c9772090f7ffc44b267623dd6358dc5d4375f600a81"
+    },
+    "pcf-shutdown-tests": {
+      "path": "development/kernel/baselines/ram96/reports/pcf-shutdown-tests.json",
+      "sha256": "f49e690d7cb609cf4a91232187ba54b55365169babf106657d005428df28b645"
+    },
+    "peripheral-audit-tests": {
+      "path": "development/kernel/baselines/ram96/reports/peripheral-audit-tests.json",
+      "sha256": "c12fb1bdccf5a12af7226e4e9fb5a6f5669003e83c6b200537651a07f3e0588b"
+    }
+  },
+  "image_review": {
+    "path": "development/perrier-ramenv/rtc-gpio/reviewed-image.json",
+    "sha256": "03a2650da76f568ef0d5650a3ea54a650bf3737c332482c5816b8fe0d554d952"
+  },
+  "live_result": {
+    "path": "development/runs/20261112T094548Z-uboot-ram96-0df43b/result.json",
+    "sha256": "4faa6e70a988d65a8e8f2d3c4f15cf676574871b9c8d8dc6420387e553f4f69f"
+  },
+  "physical_confirmations": [],
+  "machine_checks": {
+    "path": "development/runs/20261112T094548Z-uboot-ram96-0df43b/aux-checks.json",
+    "sha256": "a0122c552fa4def11f01e50f6b6641111f11fa582fda77b11af3f12d225f5094"
+  },
+  "evidence": {
+    "aux-checks.json": {
+      "path": "development/runs/20261112T094548Z-uboot-ram96-0df43b/aux-checks.json",
+      "sha256": "a0122c552fa4def11f01e50f6b6641111f11fa582fda77b11af3f12d225f5094"
+    },
+    "aux-analysis.json": {
+      "path": "development/runs/20261112T094548Z-uboot-ram96-0df43b/aux-analysis.json",
+      "sha256": "8edbc18e5a44bb81b487c9f3aea72238a0a85760a373cfa6bb26b981de835229"
+    },
+    "check-aux-executed.py": {
+      "path": "development/runs/20261112T094548Z-uboot-ram96-0df43b/check-aux-executed.py",
+      "sha256": "a60db3e3de42717181a4bc0b307c4f5e6ba7f6a5953ea118732b0d36869eed43"
+    },
+    "aux-before.log": {
+      "path": "development/runs/20261112T094548Z-uboot-ram96-0df43b/aux-before.log",
+      "sha256": "bb23508c529e4c12ef90d0ef0bdca0329aad316d2646f7eb97ba2362fb9e8a52"
+    },
+    "aux-read-0.log": {
+      "path": "development/runs/20261112T094548Z-uboot-ram96-0df43b/aux-read-0.log",
+      "sha256": "e4f2a70196c89f045513552fab80bff2286deba772b4819faa2b10ea83bccfb6"
+    },
+    "aux-read.strace": {
+      "path": "development/runs/20261112T094548Z-uboot-ram96-0df43b/aux-read.strace",
+      "sha256": "26f43872efe7ea851f6624fa6031cce35b6d5196ce258f9e8a0bfb5580d7b510"
+    },
+    "rtc-alarm.log": {
+      "path": "development/runs/20261112T094548Z-uboot-ram96-0df43b/rtc-alarm.log",
+      "sha256": "882effda368e0618a60908d65031e530f2ddbd6148eb0b0fe554a1d9569bcbee"
+    },
+    "aux-after.log": {
+      "path": "development/runs/20261112T094548Z-uboot-ram96-0df43b/aux-after.log",
+      "sha256": "cf5f92f9dfccb67cab502545517857fb477332341d760eba0f01d639175601e0"
+    },
+    "aux-qt-pid.log": {
+      "path": "development/runs/20261112T094548Z-uboot-ram96-0df43b/aux-qt-pid.log",
+      "sha256": "e00e6031fc5e7ef95c526573343419859e112cebd550f10e2089bf393f5ed2bd"
+    },
+    "aux-framebuffer.png": {
+      "path": "development/runs/20261112T094548Z-uboot-ram96-0df43b/aux-framebuffer.png",
+      "sha256": "9c810a98e2eb9050d1d7bcddfb7ed48a5edc2109a6ea87467ccc5c64762d49ab"
+    },
+    "check-aux-stock-executed.py": {
+      "path": "development/runs/20261112T094548Z-uboot-ram96-0df43b/check-aux-stock-executed.py",
+      "sha256": "14509204677e733ac0866c2aa13905762feca7b5c93b8aa58a04f613deb99199"
+    },
+    "stock-after-aux.log": {
+      "path": "development/runs/20261112T094548Z-uboot-ram96-0df43b/stock-after-aux.log",
+      "sha256": "8b93e83792a0919e420c94137660a002a34f7f523954b04fe7d759c8c3eda491"
+    },
+    "stock-after-aux-checks.json": {
+      "path": "development/runs/20261112T094548Z-uboot-ram96-0df43b/stock-after-aux-checks.json",
+      "sha256": "afd3f6f1aa0353b721c61c93d9d7b36f58842dc81aa873601c1b8a724ff70920"
+    }
+  },
+  "fallback": {
+    "profile": "peripherals",
+    "kernel": "6.18.48-perrier-ram95",
+    "validation": {
+      "path": "development/kernel/validation-ram95.json",
+      "sha256": "03e2bbd7e668b36ebf81c4d563aa3323e9775dfaad4c24ca16b8404dbe26a2ca"
+    }
+  },
+  "parent_validation": {
+    "path": "development/kernel/validation-ram95.json",
+    "sha256": "03e2bbd7e668b36ebf81c4d563aa3323e9775dfaad4c24ca16b8404dbe26a2ca"
+  }
+}

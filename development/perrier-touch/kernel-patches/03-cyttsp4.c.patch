@@ -1,0 +1,231 @@
+--- /dev/null
++++ b/drivers/input/touchscreen/cyttsp4.c
+@@ -0,0 +1,228 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Cypress TrueTouch Gen4 operational handoff driver for Cisco Perrier.
++ * Protocol reference: Cypress's upstream Linux v6.10 cyttsp4_core.[ch],
++ * Copyright (C) 2012 Cypress Semiconductor.
++ *
++ * Uses firmware already running after stock kexec. No reset, supply,
++ * bootloader, calibration, parameter-save, or firmware-update commands.
++ */
++#include <linux/delay.h>
++#include <linux/i2c.h>
++#include <linux/input.h>
++#include <linux/input/mt.h>
++#include <linux/input/touchscreen.h>
++#include <linux/interrupt.h>
++#include <linux/module.h>
++#include <linux/mutex.h>
++#include <linux/of.h>
++#include <linux/slab.h>
++
++#include "cyttsp4_protocol.h"
++
++struct cy4 {
++	struct i2c_client *client;
++	struct input_dev *input;
++	struct touchscreen_properties prop;
++	struct mutex lock;
++	struct cy4_layout layout;
++	u8 data[CY4_MAP_SIZE];
++};
++
++static int cy4_read(struct cy4 *ts, u8 reg, void *buffer, u16 len)
++{
++	struct i2c_msg msgs[] = {
++		{ .addr = ts->client->addr, .len = 1, .buf = &reg },
++		{ .addr = ts->client->addr, .flags = I2C_M_RD,
++		  .len = len, .buf = buffer },
++	};
++	int ret = i2c_transfer(ts->client->adapter, msgs, ARRAY_SIZE(msgs));
++
++	return ret == ARRAY_SIZE(msgs) ? 0 : ret < 0 ? ret : -EIO;
++}
++
++static int cy4_write_host_mode(struct cy4 *ts, u8 mode)
++{
++	u8 data[] = { 0, mode };
++	int ret = i2c_master_send(ts->client, data, sizeof(data));
++
++	return ret == sizeof(data) ? 0 : ret < 0 ? ret : -EIO;
++}
++
++/* Used only at probe, before requesting the IRQ. Both transitions are volatile. */
++static int cy4_set_mode(struct cy4 *ts, u8 requested)
++{
++	u8 mode;
++	int ret, i;
++
++	ret = cy4_read(ts, 0, &mode, 1);
++	if (ret)
++		return ret;
++	if ((mode & 7) || ((mode & 0x70) != 0 && (mode & 0x70) != 0x10))
++		return -EPROTO;
++	ret = cy4_write_host_mode(ts, (mode & 0x80) | requested | 8);
++	if (ret)
++		return ret;
++	for (i = 0; i < 100; i++) {
++		usleep_range(10000, 12000);
++		ret = cy4_read(ts, 0, &mode, 1);
++		if (ret)
++			return ret;
++		if ((mode & 0x7f) == requested)
++			return 0;
++	}
++	return -ETIMEDOUT;
++}
++
++static int cy4_read_sysinfo(struct cy4 *ts)
++{
++	u8 mode;
++	int ret, restore;
++
++	ret = cy4_read(ts, 0, &mode, 1);
++	if (ret)
++		return ret;
++	if (mode & 0x7f)
++		return -EPROTO;
++	ret = cy4_set_mode(ts, 0x10);
++	if (!ret)
++		ret = cy4_read(ts, 0, ts->data, sizeof(ts->data));
++	if (!ret)
++		ret = cy4_parse_sysinfo(ts->data, sizeof(ts->data), &ts->layout);
++	if (!ret)
++		ret = cy4_write_host_mode(ts, ts->data[0] ^ 0x80);
++	/* Restore operational mode even when the descriptor is unsupported. */
++	restore = cy4_set_mode(ts, 0);
++	if (!restore)
++		restore = cy4_read(ts, 0, &mode, 1);
++	if (!restore)
++		restore = cy4_write_host_mode(ts, mode ^ 0x80);
++	return restore ?: ret;
++}
++
++static void cy4_receive(struct cy4 *ts)
++{
++	struct cy4_contact contacts[CY4_MAX_CONTACTS];
++	int count, i, slot, ret;
++
++	ret = cy4_read(ts, 0, ts->data, ts->layout.frame_size);
++	if (ret) {
++		dev_warn_ratelimited(&ts->client->dev, "report read failed: %d\n", ret);
++		goto release;
++	}
++	count = cy4_parse_report(&ts->layout, ts->data, ts->layout.frame_size,
++				 contacts);
++	/* Acknowledge only an operational report, never a mode/reset request. */
++	if (!(ts->data[0] & 0x7f)) {
++		ret = cy4_write_host_mode(ts, ts->data[0] ^ 0x80);
++		if (ret)
++			dev_warn_ratelimited(&ts->client->dev, "report ack failed: %d\n", ret);
++	}
++	if (count < 0) {
++		dev_warn_ratelimited(&ts->client->dev, "invalid Gen4 report: %d\n", count);
++		goto release;
++	}
++	for (i = 0; i < count; i++) {
++		const struct cy4_contact *c = &contacts[i];
++
++		slot = input_mt_get_slot_by_key(ts->input, c->id);
++		if (slot < 0)
++			continue;
++		input_mt_slot(ts->input, slot);
++		input_mt_report_slot_state(ts->input, MT_TOOL_FINGER, true);
++		touchscreen_report_pos(ts->input, &ts->prop, c->x, c->y, true);
++		input_report_abs(ts->input, ABS_MT_PRESSURE, c->pressure);
++		input_report_abs(ts->input, ABS_MT_TOUCH_MAJOR, c->width);
++	}
++release:
++	input_mt_sync_frame(ts->input);
++	input_sync(ts->input);
++}
++
++static irqreturn_t cy4_irq(int irq, void *data)
++{
++	struct cy4 *ts = data;
++
++	mutex_lock(&ts->lock);
++	cy4_receive(ts);
++	mutex_unlock(&ts->lock);
++	return IRQ_HANDLED;
++}
++
++static int cy4_probe(struct i2c_client *client)
++{
++	struct device *dev = &client->dev;
++	struct cy4 *ts;
++	struct input_dev *input;
++	int ret;
++
++	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
++		return -EOPNOTSUPP;
++	if (client->irq <= 0)
++		return dev_err_probe(dev, -EINVAL, "an interrupt is required\n");
++	ts = devm_kzalloc(dev, sizeof(*ts), GFP_KERNEL);
++	if (!ts)
++		return -ENOMEM;
++	ts->client = client;
++	mutex_init(&ts->lock);
++	ret = cy4_read_sysinfo(ts);
++	if (ret)
++		return dev_err_probe(dev, ret, "cannot read operational Gen4 descriptor\n");
++	/* This compatible represents the measured Perrier controller profile. */
++	if (ts->layout.product != 1 || ts->layout.fw_major != 1 ||
++	    ts->layout.fw_minor != 1 || ts->layout.max_x != 1280 ||
++	    ts->layout.max_y != 800 || ts->layout.record_size != 7)
++		return dev_err_probe(dev, -ENODEV, "unsupported Perrier touch firmware\n");
++	input = devm_input_allocate_device(dev);
++	if (!input)
++		return -ENOMEM;
++	ts->input = input;
++	input->name = "Cypress CYTTSP4";
++	input->id.bustype = BUS_I2C;
++	input->id.vendor = 0x04b4;
++	input->id.product = ts->layout.product;
++	input->id.version = ts->layout.fw_major << 8 | ts->layout.fw_minor;
++	input_set_abs_params(input, ABS_MT_POSITION_X, 0, ts->layout.max_x - 1, 0, 0);
++	input_set_abs_params(input, ABS_MT_POSITION_Y, 0, ts->layout.max_y - 1, 0, 0);
++	input_set_abs_params(input, ABS_MT_PRESSURE, 0, 255, 0, 0);
++	input_set_abs_params(input, ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0);
++	touchscreen_parse_properties(input, true, &ts->prop);
++	ret = input_mt_init_slots(input, ts->layout.max_contacts,
++				 INPUT_MT_DIRECT | INPUT_MT_DROP_UNUSED);
++	if (ret)
++		return ret;
++	ret = input_register_device(input);
++	if (ret)
++		return ret;
++	/* OMAP GPIO and the DT own IRQ polarity; board rails and reset stay inherited. */
++	ret = devm_request_threaded_irq(dev, client->irq, NULL, cy4_irq,
++					IRQF_ONESHOT, dev_name(dev), ts);
++	if (ret)
++		return dev_err_probe(dev, ret, "cannot request touch interrupt\n");
++	/* Drain a report that was pending before interrupt registration. */
++	mutex_lock(&ts->lock);
++	cy4_receive(ts);
++	mutex_unlock(&ts->lock);
++	dev_info(dev, "Gen4 operational handoff: %ux%u, %u contacts, %u-byte records, %u-byte frame, irq %d\n",
++		 ts->layout.max_x, ts->layout.max_y, ts->layout.max_contacts,
++		 ts->layout.record_size, ts->layout.frame_size, client->irq);
++	return 0;
++}
++
++static const struct of_device_id cy4_of_match[] = {
++	{ .compatible = "cisco,perrier-cyttsp4" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, cy4_of_match);
++
++static struct i2c_driver cy4_driver = {
++	.driver = {
++		.name = "cyttsp4",
++		.of_match_table = cy4_of_match,
++	},
++	.probe = cy4_probe,
++};
++module_i2c_driver(cy4_driver);
++
++MODULE_DESCRIPTION("Cypress Gen4 operational handoff touchscreen driver");
++MODULE_LICENSE("GPL");

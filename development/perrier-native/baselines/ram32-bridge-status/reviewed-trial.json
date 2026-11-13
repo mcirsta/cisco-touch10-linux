@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "kernel": "6.18.48-perrier-ram32",
+  "purpose": "capture full stock-comparable bridge registers during a bounded RAM-only KMS scanout",
+  "limitations": [
+    "bridge and panel physical supplies are inherited; logical regulators have no control GPIO",
+    "only stock GPIO102 reset is controlled; GPIO4 bank is not reset on init",
+    "no backlight driver or panel rail sequencing"
+  ],
+  "artifacts": {
+    "zImage": {
+      "size": 3750728,
+      "sha256": "305ce957bc0e0474830c7b135e41e9617e76b0757047ceeec133f066de783e38"
+    },
+    "board.dtb": {
+      "size": 91662,
+      "sha256": "25c86131f4a10947171dd76a582b4a89c826386098fc98ca3f68180726e7a0ec"
+    },
+    "kexec": {
+      "size": 1660848,
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+[Unit]
+Description=DHCP for the directly connected Cisco Touch 10
+After=NetworkManager.service
+Wants=NetworkManager.service
+
+[Service]
+Type=simple
+DynamicUser=yes
+RuntimeDirectory=touch10-dev-dhcp
+ExecStart=/usr/bin/dnsmasq --keep-in-foreground --conf-file=/etc/touch10-dev/dnsmasq.conf
+Restart=on-failure
+RestartSec=5
+AmbientCapabilities=CAP_NET_BIND_SERVICE CAP_NET_RAW CAP_NET_ADMIN
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE CAP_NET_RAW CAP_NET_ADMIN
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

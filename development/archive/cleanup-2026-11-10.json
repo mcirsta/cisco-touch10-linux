@@ -1,0 +1,18 @@
+{
+  "archived_gen4": "development/archive/2026-11-10-gen4-bringup",
+  "compatibility_symlink": "development/perrier-gen4",
+  "removed_redundant_verified_archives": [
+    {
+      "path": "development/perrier-ramenv/gen4-touch/archive-check-0.cpio",
+      "sha256": "1f6ff0ca5c4e42b9c74e737869010f35f2d11c0e5f24c650238ffd79e3221b5b",
+      "bytes": 34463744
+    },
+    {
+      "path": "development/perrier-ramenv/gen4-touch/archive-check-1.cpio",
+      "sha256": "1f6ff0ca5c4e42b9c74e737869010f35f2d11c0e5f24c650238ffd79e3221b5b",
+      "bytes": 34463744
+    }
+  ],
+  "preserved_working_image": "development/perrier-ramenv/gen4-touch",
+  "preserved_backups": "backups/"
+}

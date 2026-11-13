@@ -1,0 +1,23 @@
+// SPDX-License-Identifier: GPL-2.0-only
+// Isolated OMAP mailbox and hardware-spinlock provider trial.
+#include "omap4-cisco-perrier-ram.dts"
+
+// The baseline RAM policy disables this entire L4 segment. Enable only the
+// two provider target modules; every other child remains explicitly off.
+&{/ocp/interconnect@4a000000/segment@80000} { status = "okay"; };
+&{/ocp/interconnect@4a000000/segment@80000/target-module@2b000} { status = "disabled"; };
+&{/ocp/interconnect@4a000000/segment@80000/target-module@2d000} { status = "disabled"; };
+&{/ocp/interconnect@4a000000/segment@80000/target-module@36000} { status = "disabled"; };
+&{/ocp/interconnect@4a000000/segment@80000/target-module@4d000} { status = "disabled"; };
+&{/ocp/interconnect@4a000000/segment@80000/target-module@59000} { status = "disabled"; };
+&{/ocp/interconnect@4a000000/segment@80000/target-module@5b000} { status = "disabled"; };
+&{/ocp/interconnect@4a000000/segment@80000/target-module@5d000} { status = "disabled"; };
+
+&{/ocp/interconnect@4a000000/segment@80000/target-module@74000} {
+	status = "okay";
+	ti,no-reset-on-init;
+};
+&{/ocp/interconnect@4a000000/segment@80000/target-module@76000} {
+	status = "okay";
+	ti,no-reset-on-init;
+};

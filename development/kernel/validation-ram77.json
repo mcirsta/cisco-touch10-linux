@@ -1,0 +1,81 @@
+{
+  "validated_at": "2026-11-10T18:44:25.331783+00:00",
+  "status": "transport-passed; not-promoted",
+  "kernel": "6.18.48-perrier-ram77",
+  "profile": "bridge-regmap",
+  "default_uboot_profile": false,
+  "owner_confirmation": "Still clean and aligned",
+  "manual_display_cycles": 3,
+  "qt_restarts": 3,
+  "change": "Standard uncached REGMAP_I2C with 16-bit BE register addresses and 32-bit LE values; latch I/O errors and stop subsequent accesses",
+  "registers_matching_control": 31,
+  "fault_injection_cases": 6,
+  "i2c_programming_errors_observed": false,
+  "remaining_issue": "Same one-count-per-restart bridge status change as ram76; reset initialization is next",
+  "dtb_byte_identical_to_ram70": true,
+  "gpio_pad_supply_pwm_timing_unchanged": true,
+  "watchdog_expiry_recovery_seconds": 150.7,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "stock_recovered": true,
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram77/snapshot.json",
+    "sha256": "70079392825d0510ee7c66146e8b2cac0186dc38cadfde13d857191f77835a27"
+  },
+  "source_manifest": {
+    "path": "development/kernel/baselines/ram77/patches/manifest.json",
+    "sha256": "5e6f543c221bf40dfbfa1705526e2aa94265c1abbe98f29a86296d1752b68413"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram77/reports/source-checks.json",
+    "sha256": "7215435530d3cd7229c320421df18a740228adabea1400636041c6ac2ba5e46d"
+  },
+  "regmap_fault_injection_tests": {
+    "path": "development/kernel/baselines/ram77/reports/bridge-regmap-tests.json",
+    "sha256": "7b50e2e0cd64a13bd6a11ca742b122b5cb10cfac42418e59875e296d61c7c932"
+  },
+  "image_review": {
+    "path": "development/perrier-ramenv/bridge-regmap/reviewed-image.json",
+    "sha256": "43ea54a07639b51b7c7a1833b1ef422750cae2a3b83ec91d649672318119687f"
+  },
+  "physical_confirmation": {
+    "path": "development/runs/20261110T183125Z-uboot-ram77-7a8f26/physical-confirmation.json",
+    "sha256": "460a3181edd47f033b083ef140fd2e70af8cecdd210fa5827606a27b265703a3"
+  },
+  "transport_checks": {
+    "path": "development/runs/20261110T183125Z-uboot-ram77-7a8f26/transport-checks.json",
+    "sha256": "52714f70e2627df19e4dd3f98338530c98b571b6a1750b8f682a56e42d329326"
+  },
+  "live_result": {
+    "path": "development/runs/20261110T183125Z-uboot-ram77-7a8f26/result.json",
+    "sha256": "b6a052b9aef5044afc1889273f79d0b66c1447c6f6650c1627fc6645c82c744f"
+  },
+  "live_diagnostics": {
+    "path": "development/runs/20261110T183125Z-uboot-ram77-7a8f26/confirmed-after.log",
+    "sha256": "4d1bd268cf69613a7d216cff3eb455c2506a32fe8e0378bc68744a9b6a8cabb0"
+  },
+  "framebuffer_screenshot": {
+    "path": "development/runs/20261110T183125Z-uboot-ram77-7a8f26/confirmed-framebuffer.png",
+    "sha256": "1eab76fb8e521583d22f01f8a78077bbe971e4514ef9475e9a12e1ff6627959b"
+  },
+  "cycle_diagnostics": {
+    "path": "development/runs/20261110T183125Z-uboot-ram77-7a8f26/transport-after.log",
+    "sha256": "1bebc1d3fdf1c468a62b9a2c9636a1d15e43ebf167ac3a55cc78b4bd95f76b5e"
+  },
+  "register_comparison": {
+    "path": "development/kernel/out/display-finalization/register-comparison-ram76-ram77.json",
+    "sha256": "a0bc1740d32af9119e96bfdc8cab17e479a69bcc354579a36e0c70201dbf22de"
+  },
+  "previous_qualified": {
+    "path": "development/kernel/validation-ram75.json",
+    "sha256": "3a9cd683763b8f186eebd34201d8ffcc0e108cc5f4c790e60e3c68553987e4f0"
+  },
+  "fallback": {
+    "profile": "display-onoff",
+    "kernel": "6.18.48-perrier-ram70",
+    "validation": {
+      "path": "development/kernel/validation-ram70.json",
+      "sha256": "022ffac9182eafb9ea0368f66cbe6cd76049f88ea7ee8c864674457f5dfbc520"
+    }
+  }
+}

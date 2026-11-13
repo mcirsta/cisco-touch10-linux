@@ -1,0 +1,12 @@
+{
+  "title": "OMAP4460 Multimedia Device Silicon Revision 1.x Technical Reference Manual",
+  "document": "SWPU235AB",
+  "source": "https://www.ti.com/lit/ug/swpu235ab/swpu235ab.pdf",
+  "sha256": "9a0d84b1cb10c67d454d5b4a74cad2787c11640489a5ae872d2c7742d5b4aa51",
+  "reviewed_table": "10-167, DISPC_POL_FREQ1",
+  "reviewed_pages_printed": [
+    2624,
+    2625
+  ],
+  "fetched": "2026-11-10"
+}

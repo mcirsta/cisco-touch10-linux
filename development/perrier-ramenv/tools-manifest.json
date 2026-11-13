@@ -1,0 +1,35 @@
+{
+  "cpu": "cortex-a9",
+  "compiler": "GCC 15.3.0",
+  "sources": {
+    "busybox-1.37.0.tar.bz2": "3311dff32e746499f4df0d5df04d7eb396382d7e108bb9250e7b519b837043a4",
+    "dropbear-2026.94.tar.bz2": "e098034a843699200c8c977a991fff73159735bf795d5f72ef672c41a6b1ae81",
+    "strace-7.3.tar.xz": "529634c40910895a9a1f3c5c1e65da2ca9ed72fb158dfc4bcc89efdf05e39b72"
+  },
+  "artifacts": {
+    "busybox": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/sources/busybox-1.37.0/busybox",
+      "sha256": "fbb121e62946a68893e7934f19198ce9b61d0d255a47354dec9ab4b0c8cd824d"
+    },
+    "dropbear": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/sources/dropbear-2026.94/dropbear",
+      "sha256": "93739b37a880360c971baccb717b3cb9065d34d30146f86cc609f33b13ea3a81"
+    },
+    "dropbearkey": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/sources/dropbear-2026.94/dropbearkey",
+      "sha256": "2f15f7d31822f18960dc84a6202a92fa16314c348b7dbb8c1d8a10a090f5111d"
+    },
+    "scp": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/sources/dropbear-2026.94/scp",
+      "sha256": "c7da190d0f0802b0d83094ed63270b19435fbaf25722a13e68f4f0a73d7e7577"
+    },
+    "strace": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/sources/strace-7.3/src/strace",
+      "sha256": "080c0ad436ab473bfbcd1ab4c6c81fd7157a2fde61d1ec9faae91e326e93701a"
+    },
+    "gdbserver": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/sources/armv7-eabihf--musl--stable-2026.08-1/arm-buildroot-linux-musleabihf/debug-root/usr/bin/gdbserver",
+      "sha256": "5b31e3aa5ba7b11417d3ba5d145fbb64736b185ecaa02123169348bc84b47ec3"
+    }
+  }
+}

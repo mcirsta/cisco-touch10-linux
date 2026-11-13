@@ -1,0 +1,62 @@
+{
+  "validated_at": "2026-11-13T17:40:58.380155+00:00",
+  "status": "passed_bounded_ram_test",
+  "profile": "cpu-dvfs-mid-trial",
+  "kernel": "6.18.48-perrier-ram116",
+  "scope": "350 MHz/1.1521 V intermediate OPP, 700 MHz/1.2154 V unchanged; 20-second two-core test, 96 guarded power samples and watchdog stock recovery",
+  "observations": {
+    "fixed_rate_measured_drop_mv": 56,
+    "fixed_load_sampled_cpu_millicelsius": 58099,
+    "power": {
+      "nominal_uv": 1152100,
+      "kernel": "6.18.48-perrier-ram116",
+      "peak_cpu_millicelsius": 63760,
+      "idle_likely_mpu_mw": 213.12,
+      "load_likely_mpu_mw": 357.7,
+      "idle_5v_channel_mw": 5536.04,
+      "load_5v_channel_mw": 5661.84
+    },
+    "reduction_vs_0x28": {
+      "idle": {
+        "likely_mpu_mw": {
+          "delta_mw": 27.15,
+          "percent": 11.3,
+          "equivalent_joules_per_300_seconds": 8.15
+        },
+        "5v_channel_mw": {
+          "delta_mw": 31.87,
+          "percent": 0.57,
+          "equivalent_joules_per_300_seconds": 9.56
+        }
+      },
+      "load": {
+        "likely_mpu_mw": {
+          "delta_mw": 48.05,
+          "percent": 11.84,
+          "equivalent_joules_per_300_seconds": 14.42
+        },
+        "5v_channel_mw": {
+          "delta_mw": 39.42,
+          "percent": 0.69,
+          "equivalent_joules_per_300_seconds": 11.83
+        }
+      }
+    },
+    "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+    "stock_recovered": true,
+    "adc_postflight_passed": true
+  },
+  "limits": [
+    "The 1.1521 V point had a 20-second loaded transition and power phases, not a five-minute hold.",
+    "INA channels are identified from stock software and load response, without PCB net confirmation.",
+    "The 5 V channel is not verified whole-device input and must not be summed with nested rails.",
+    "Power points were measured in separate RAM boots; ambient and workload variation remain."
+  ],
+  "evidence": {
+    "image_audit": "development/perrier-ramenv/cpu-dvfs-mid-trial/reviewed-image.json",
+    "fixed_rate": "development/runs/20261113T173426Z-cpu-dvfs-mid-trial/result.json",
+    "power": "development/runs/20261113T173500Z-cpu-dvfs-mid-power/result.json",
+    "recovery": "development/runs/20261113T173319Z-uboot-ram116-a247ae/result.json",
+    "postflight_cleanup": "development/runs/20261113T174033Z-p14-ram116-cleanup/result.json"
+  }
+}

@@ -1,0 +1,31 @@
+// SPDX-License-Identifier: GPL-2.0-only
+// Isolated clock-only CPUfreq trial. The stock firmware does not offer 350 MHz.
+// Keep the MPU rail at the voltage inherited from MLO; no CPU regulator is
+// exposed here and no voltage transition is requested by this OPP table.
+#include "omap4-cisco-perrier-thermal-ram.dts"
+
+/ {
+	perrier_cpu_opp: opp-table-cpu {
+		compatible = "operating-points-v2";
+		opp-shared;
+
+		opp-350000000 {
+			opp-hz = /bits/ 64 <350000000>;
+		};
+
+		opp-700000000 {
+			opp-hz = /bits/ 64 <700000000>;
+		};
+	};
+};
+
+// MPUSS is already downstream of M2. Point CPUfreq at that divider so a
+// 350/700 MHz transition does not request a parent DPLL reprogramming.
+&cpu0 {
+	clocks = <&dpll_mpu_m2_ck>;
+	operating-points-v2 = <&perrier_cpu_opp>;
+};
+
+&{/cpus/cpu@1} {
+	operating-points-v2 = <&perrier_cpu_opp>;
+};

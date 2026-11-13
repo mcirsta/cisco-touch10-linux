@@ -1,0 +1,45 @@
+{
+  "validated_at": "2026-11-10T14:23:38.388467+00:00",
+  "status": "unqualified-visual-failure",
+  "kernel": "6.18.48-perrier-ram73",
+  "profile": "dsi-late-video",
+  "owner_confirmation": "no image at all, backlight is on though",
+  "failure": "Bridge ID read NACK before video; bridge programming skipped and readback remains at reset defaults",
+  "watchdog_recovery_verified": true,
+  "watchdog_expiry_recovery_seconds": 155.8,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "controller_status": "failed",
+  "controller_error": "Serial handoff evidence is incomplete",
+  "serial_marker_note": "Guard marker was split by kernel printk records; original result retained and separately reviewed",
+  "serial_marker_review": {
+    "path": "development/runs/20261110T140908Z-uboot-ram73-81c03c/serial-marker-review.json",
+    "sha256": "47bab02bcefb30dc5bb73e86b37c4cc1e4332346a32c5086657e35b33b681cc9"
+  },
+  "live_result": {
+    "path": "development/runs/20261110T140908Z-uboot-ram73-81c03c/result.json",
+    "sha256": "9f0e476f66037b5065e7213ab65852dfa0e6e8a9f2c76bfd960d26cc2e456ea1"
+  },
+  "failure_diagnostics": {
+    "path": "development/runs/20261110T140908Z-uboot-ram73-81c03c/failure-live.log",
+    "sha256": "3a04bc21daa558384e43f84c39c1bd8822dfad47fd312ce5143cb425f77fe535"
+  },
+  "physical_confirmation": {
+    "path": "development/runs/20261110T140908Z-uboot-ram73-81c03c/physical-confirmation.json",
+    "sha256": "7105bbae6fa1e7b873c08be434164dbcb7c80815fb525ea81666a8d8b300e2dd"
+  },
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram73/snapshot.json",
+    "sha256": "6317767ca5a06cc9a849e18552b6721fe4aee3e22ac82ea2c3a5802b7b4f9c72"
+  },
+  "image_review": {
+    "path": "development/perrier-ramenv/dsi-late-video/reviewed-image.json",
+    "sha256": "236cd035cf56898c83ff33b34fe54e195318262f010dcd14f3bae4412b16d3a6"
+  },
+  "fallback": {
+    "profile": "display-onoff",
+    "validation": {
+      "path": "development/kernel/validation-ram70.json",
+      "sha256": "022ffac9182eafb9ea0368f66cbe6cd76049f88ea7ee8c864674457f5dfbc520"
+    }
+  }
+}

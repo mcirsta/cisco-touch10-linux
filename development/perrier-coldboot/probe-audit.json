@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "kernel": "6.18.48-perrier-cold01",
+  "manifest_sha256": "3203dec2e5dd887b2104cc3b9cdef245f34272c561236c00e5b24aa71cc73801",
+  "decompressed_kernel_bss_end": "0x80331bf0",
+  "kernel_span_bytes": 3349488,
+  "initramfs_entries": [
+    "dev",
+    "dev/console",
+    "dev/null",
+    "init",
+    "proc",
+    "sys"
+  ],
+  "bootargs": "\"console=ttyS0,115200 earlycon=omap8250,mmio32,0x48020000 keep_bootcon ignore_loglevel clk_ignore_unused pd_ignore_unused initcall_blacklist=omap2_common_pm_late_init panic=5\""
+}

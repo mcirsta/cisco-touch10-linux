@@ -1,0 +1,53 @@
+{
+  "validated_at": "2026-11-12T17:04:01.581+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram108",
+  "profile": "smp-uboot-nosmp",
+  "default_uboot_profile": false,
+  "scope": "SMP-built kernel with nosmp and cpu@1 disabled, loaded by one-shot U-Boot",
+  "result": {
+    "archive_parser": "Reached /init without a broken-padding or compressed-archive error",
+    "cpu": "Serial reported one processor activated; RAM SSH reported online=0 and present=0",
+    "watchdog": "Mainline nowayout WDT2 fed at 120-second timeout; host lease remained active",
+    "storage": "eMMC stayed read-only and unmounted; factory p8 was restored before RAM userspace",
+    "qt": "Started once and reported evdev, backlight, thermal, keypad and ALSA ready; no display cycling or Qt restart requested",
+    "recovery": "Requested reboot returned stock Linux 3.4.113+ and Phoenix after 36.7 seconds; exact factory p8 and approved ADC postflight passed"
+  },
+  "limits": [
+    "CPU1 did not start, so this does not validate dual-core operation.",
+    "The pass narrows the earlier kexec parser failures to that route or another image/configuration difference; it does not identify the cause.",
+    "U-Boot stops WDT2 and this image starts it at driver probe, leaving a pre-probe hang without proven automatic recovery.",
+    "The generic QEMU archive run checks cpio parsing, not OMAP4460 board behavior."
+  ],
+  "stock_recovered": true,
+  "recovery_mode": "requested_reboot",
+  "recovery_elapsed_seconds": 36.7,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "adc_postflight": true,
+  "parent_validation": {
+    "path": "development/kernel/validation-ram107.json",
+    "sha256": "cc909886af7345ba0b828934ca85e553b1d7cf07a35bf271177712db3c3848f8"
+  },
+  "image_review": {
+    "path": "development/perrier-ramenv/smp-uboot-nosmp/reviewed-image.json",
+    "sha256": "e49a63b12d6a1349749be2f137b34f193210e9250ab7f71397c6efaf4dba5b7f"
+  },
+  "config_delta": {
+    "path": "development/kernel/configs/smp-nosmp-config-delta.json",
+    "sha256": "82cb11c6495616135876281a9d6a0e1d6c4f4384a70f44f1c391f01b8224155e"
+  },
+  "generic_qemu_archive_result": {
+    "path": "development/perrier-smp/qemu-ram108-archive/result.json",
+    "sha256": "fe124ba26387b2f9ad8f5abf1930fd1b9791f197774e629fa12a29dcd5043542"
+  },
+  "live_result": {
+    "path": "development/runs/20261112T170131Z-uboot-ram108-580977/result.json",
+    "sha256": "b1854758dfaed1cacb7bbf30666a05813de91c49feb1ee675acb7000dab434e8"
+  },
+  "evidence": {
+    "serial.raw": "f92a37452a97876ce2b531f36d26654b24ef7cd9d8c4087cf7ccb404bc380b43",
+    "ram-diagnostics.log": "938121fb4552ef18105cc95b93e24e919f9cd2ddaa1b662e066e7d9e3da4565c",
+    "qt-start.log": "fa1daceb4992935d7648bdaf113099ed4df01f14a0e586e50d77384363d2a919",
+    "diagnostics-adc-restore.log": "a0330872041173e65d768203368537e984528c4495ddfe3e818c683a299c9961"
+  }
+}

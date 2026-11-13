@@ -1,0 +1,50 @@
+{
+  "validated_at": "2026-11-13T16:46:44.997Z",
+  "status": "passed_bounded_ram_test",
+  "profile": "cpu-dvfs-trial",
+  "kernel": "6.18.48-perrier-ram114",
+  "scope": "One 350/700 MHz two-selector VC regulator with mainline cpufreq-dt and OPP; both CPUs online, no hotplug, U-Boot RAM boot, watchdog recovery, no display cycling",
+  "observations": {
+    "fixed_frequency_mhz": [700, 350, 700],
+    "fixed_selector_hex": ["29", "28", "29"],
+    "fixed_regulator_nominal_microvolts": [1215400, 1202740, 1215400],
+    "likely_mpu_ina_millivolts": [1208, 1200, 1216],
+    "fixed_350_mhz_two_core_load_seconds": 20,
+    "fixed_load_peak_cpu_temperature_millicelsius": 58638,
+    "extended_350_mhz_two_core_load_seconds": 300,
+    "extended_load_samples": 31,
+    "extended_load_peak_cpu_temperature_millicelsius": 59716,
+    "extended_load_likely_mpu_millivolts_range": [1200, 1208],
+    "extended_load_likely_mpu_milliamps_range": [260, 412],
+    "schedutil_idle_before_low_clock_and_selector_samples": 187,
+    "schedutil_idle_before_total_samples": 200,
+    "schedutil_two_core_load_high_clock_and_selector_samples": 200,
+    "schedutil_two_core_load_total_samples": 200,
+    "schedutil_idle_after_low_clock_and_selector_samples": 185,
+    "schedutil_idle_after_total_samples": 200,
+    "hardware_700_mhz_with_stable_low_vc_selector_samples": 0,
+    "vc_error_irq_samples": 0,
+    "all_four_ram_sessions_stock_recovered": true,
+    "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+    "adc_postflight_passed_all_sessions": true
+  },
+  "interpretation": "Sequential sysfs and VC reads can straddle transitions. The first schedutil script required an impossible atomic snapshot and reported an assertion failure even though its shell test completed. A second sampler bracketed the hardware clock read with VC reads. No sampled interval showed actual 700 MHz with a stable low VC selector; mainline OPP code orders voltage before clock when scaling up and clock before voltage when scaling down.",
+  "limits": [
+    "The small 12.66 mV nominal step does not qualify lower voltage or higher frequency settings.",
+    "Five minutes of two-core load passed at the tested 350 MHz point, but overnight stability and whole-device energy remain unmeasured.",
+    "The likely MPU INA channel is identified by stock software and load response, without PCB net tracing.",
+    "CPU hotplug remains disabled because its earlier OMAP4 PM path panicked.",
+    "The voltage provider relies on the inherited Cisco VC/VP register state; full PM/AVS integration, failure rollback, thermal cooling and persistent installation remain pending."
+  ],
+  "evidence": {
+    "image_audit": "development/perrier-ramenv/cpu-dvfs-trial/reviewed-image.json",
+    "fixed_rate_test": "development/runs/20261113T161454Z-cpu-dvfs-trial/result.json",
+    "first_sampler": "development/runs/20261113T162759Z-cpu-dvfs-sampler/result.json",
+    "hardware_clock_sampler": "development/runs/20261113T163330Z-cpu-dvfs-sampler/result.json",
+    "extended_load": "development/runs/20261113T164048Z-cpu-dvfs-endurance/result.json",
+    "first_recovery": "development/runs/20261113T161152Z-uboot-ram114-a652a6/result.json",
+    "second_recovery": "development/runs/20261113T162642Z-uboot-ram114-17c4b1/result.json",
+    "third_recovery": "development/runs/20261113T163229Z-uboot-ram114-4c4b6a/result.json",
+    "fourth_recovery": "development/runs/20261113T163933Z-uboot-ram114-5ab8c6/result.json"
+  }
+}

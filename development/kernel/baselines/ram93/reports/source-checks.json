@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "patch_style": {
+    "0001-dt-bindings-cyttsp4-perrier.patch": true,
+    "0002-input-restore-cyttsp4-dt.patch": true,
+    "0003-drm-omap-pll-search.patch": true,
+    "0004-drm-omap-dsi-host.patch": true,
+    "0005-drm-bridge-tc358765.patch": true,
+    "0007-arm-dts-cisco-perrier.patch": true,
+    "ram-only/0001-perrier-ram-safety.patch": true
+  },
+  "binding_schema_valid": true,
+  "actual_touch_node_schema_valid": true,
+  "schema_tools": {
+    "dt-doc-validate": "/home/marius/ext_proj/touch10/development/kernel/.venv-dtschema/bin/dt-doc-validate",
+    "dt-mk-schema": "/home/marius/ext_proj/touch10/development/kernel/.venv-dtschema/bin/dt-mk-schema",
+    "dt-validate": "/home/marius/ext_proj/touch10/development/kernel/.venv-dtschema/bin/dt-validate"
+  },
+  "scope": "Perrier touchscreen binding and node; not full board-schema validation",
+  "source_manifest_sha256": "27c5c1044886b1e60aebcbd4a84651311ae6e4665fb9425c9a6c410d247d4f17",
+  "board_dtb_sha256": "c1ca5fcaf8fa8137c1ed14b36168fca97f1d5545e162edb3487c8b8438155884"
+}

@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "patch_style": {
+    "0001-dt-bindings-cyttsp4-perrier.patch": true,
+    "0002-input-restore-cyttsp4-dt.patch": true,
+    "0003-drm-omap-pll-search.patch": true,
+    "0004-drm-omap-dsi-host.patch": true,
+    "0005-drm-bridge-tc358765.patch": true,
+    "0007-arm-dts-cisco-perrier.patch": true,
+    "0008-dt-bindings-twl-irq.patch": true,
+    "0009-dt-bindings-pcf-retain-state.patch": true,
+    "0010-gpio-pcf857x-retain-state.patch": true,
+    "0011-asoc-twl6040-dt-routes.patch": true,
+    "ram-only/0001-perrier-ram-safety.patch": true
+  },
+  "binding_schema_valid": true,
+  "actual_touch_node_schema_valid": true,
+  "actual_led_nodes_schema_valid": true,
+  "actual_peripheral_nodes_schema_valid": true,
+  "actual_pmic_adc_and_pmu_nodes_schema_valid": true,
+  "schema_tools": {
+    "dt-doc-validate": "/home/marius/ext_proj/touch10/development/kernel/.venv-dtschema/bin/dt-doc-validate",
+    "dt-mk-schema": "/home/marius/ext_proj/touch10/development/kernel/.venv-dtschema/bin/dt-mk-schema",
+    "dt-validate": "/home/marius/ext_proj/touch10/development/kernel/.venv-dtschema/bin/dt-validate"
+  },
+  "scope": "Touchscreen, GPIO/PWM LEDs, PMIC, INA3221, AT24, PCF857x, PMIC ADC and ARM PMU nodes; not full board schema",
+  "source_manifest_sha256": "fcad67d2b48713d392b96f65067abbe928f41f0bb41bf79ac80c385754a40911",
+  "board_dtb_sha256": "c200cc7ea7ae1229d128eed837f6cb09b7ebd2f2e268b5aeb6d613e93afe3a98"
+}

@@ -1,0 +1,10 @@
+{
+  "sysinfo.bin": {
+    "source": "evidence/perrier-touch-sysinfo-2026-11-09.txt",
+    "sha256": "2fb5032e9317d0070362be68faae6d4c5972c706fab117e77efbb961b3bd88b9"
+  },
+  "reports.bin": {
+    "source": "development/runs/20261109T092412Z-perrier-simpledrm-trial-237d0c/serial.log",
+    "sha256": "dfe2a771cb9f725027760d4ed99a1b4a624c8c2f4149b87b85e177d935bf1844"
+  }
+}

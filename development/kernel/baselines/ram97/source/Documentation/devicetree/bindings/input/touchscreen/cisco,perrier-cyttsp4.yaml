@@ -1,0 +1,49 @@
+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+%YAML 1.2
+---
+$id: http://devicetree.org/schemas/input/touchscreen/cisco,perrier-cyttsp4.yaml#
+$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+title: Cisco Perrier Cypress TrueTouch Gen4 touchscreen
+
+maintainers:
+  - Marius Cirsta <mforce2@gmail.com>
+
+description: |
+  Perrier's older Cypress Gen4 controller uses firmware 1.1, seven-byte
+  contact records, application address 0x67 and raw bootloader address 0x69.
+  The compatible selects this protocol profile and the stock reset timing.
+  VDD is the board's GPIO120 tp_5v_en supply; VDDIO is GPIO121 tp_3v3_en.
+  The driver enables VDD before VDDIO and resets through active-low GPIO141.
+  This local development binding has not been submitted upstream.
+
+allOf:
+  - $ref: touchscreen.yaml#
+
+properties:
+  compatible:
+    const: cisco,perrier-cyttsp4
+  reg:
+    const: 0x67
+  interrupts:
+    maxItems: 1
+  reset-gpios:
+    maxItems: 1
+  vdd-supply: true
+  vddio-supply: true
+  touchscreen-size-x:
+    const: 1280
+  touchscreen-size-y:
+    const: 800
+
+required:
+  - compatible
+  - reg
+  - interrupts
+  - reset-gpios
+  - vdd-supply
+  - vddio-supply
+  - touchscreen-size-x
+  - touchscreen-size-y
+
+unevaluatedProperties: false

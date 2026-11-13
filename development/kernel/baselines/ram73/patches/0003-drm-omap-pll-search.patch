@@ -1,0 +1,15 @@
+diff --git a/drivers/gpu/drm/omapdrm/dss/pll.c b/drivers/gpu/drm/omapdrm/dss/pll.c
+--- a/drivers/gpu/drm/omapdrm/dss/pll.c
++++ b/drivers/gpu/drm/omapdrm/dss/pll.c
+@@ -250,7 +250,10 @@
+ 			m_inc = -1;
+ 		}
+ 
+-		for (m = m_start; m != m_stop; m += m_inc) {
++		/* m_stop is inclusive: a narrow non-burst range can contain
++		 * exactly one valid multiplier.
++		 */
++		for (m = m_start; m != m_stop + m_inc; m += m_inc) {
+ 			clkdco = 2 * m * fint;
+ 
+ 			if (func(n, m, fint, clkdco, data))

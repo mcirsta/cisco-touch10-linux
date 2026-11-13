@@ -1,0 +1,62 @@
+// SPDX-License-Identifier: GPL-2.0-only
+// First RAM trial: early OMAP clocks/timer infrastructure, one known UART.
+/dts-v1/;
+#include "omap4460.dtsi"
+
+/ {
+    model = "Cisco Touch 10 Perrier RAM trial";
+    compatible = "cisco,perrier-ram", "ti,omap4460", "ti,omap4";
+    memory@80000000 {
+        device_type = "memory";
+        reg = <0x80000000 0x19000000>; // observed low 400 MiB only
+    };
+    chosen {
+        stdout-path = "serial0:115200n8";
+    };
+    aliases {
+        serial0 = &perrier_uart;
+        /delete-property/ serial1;
+        /delete-property/ serial2;
+        /delete-property/ serial3;
+    };
+    // Stock UART3 is already muxed and clocked at 48 MHz. No pad/GPIO writes.
+    perrier_uart: serial@48020000 {
+        compatible = "ti,omap4-uart";
+        reg = <0x48020000 0x100>;
+        interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
+        interrupt-parent = <&gic>;
+        clock-frequency = <48000000>;
+    };
+};
+
+// Do not populate generic peripheral targets. Early OF clock and timer
+// initialization uses the retained SoC descriptions independently of this bus.
+&{/ocp} { status = "disabled"; };
+&cpu0 { /delete-property/ operating-points; };
+&{/cpus/cpu@1} { status = "disabled"; };
+&abb_mpu { status = "disabled"; };
+&abb_iva { status = "disabled"; };
+&bandgap { status = "disabled"; };
+&{/thermal-zones} { status = "disabled"; };
+&{/local-timer@48240600} { status = "disabled"; };
+
+// Both watchdog targets must be invisible to ti-sysc and watchdog drivers.
+&wdt2 { status = "disabled"; };
+&wdt3 { status = "disabled"; };
+&{/ocp/interconnect@4a300000/segment@10000/target-module@4000} {
+    status = "disabled";
+};
+&{/ocp/interconnect@40100000/segment@0/target-module@30000} {
+    status = "disabled";
+};
+// Prevent early timer discovery from choosing another board's peripheral.
+&timer2 { status = "disabled"; };
+&timer3 { status = "disabled"; };
+&timer4 { status = "disabled"; };
+&timer5 { status = "disabled"; };
+&timer6 { status = "disabled"; };
+&timer7 { status = "disabled"; };
+&timer8 { status = "disabled"; };
+&timer9 { status = "disabled"; };
+&timer10 { status = "disabled"; };
+&timer11 { status = "disabled"; };

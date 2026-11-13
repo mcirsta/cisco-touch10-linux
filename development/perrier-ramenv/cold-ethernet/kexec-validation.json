@@ -1,0 +1,19 @@
+{
+  "result": "/home/marius/ext_proj/touch10/development/runs/20261110T094711Z-interactive-c8d1fe/result.json",
+  "result_sha256": "deb7b30d8b719dc59f093ddd9ccfd1ae159dea9217be83e629e00b52b874d847",
+  "evidence": "/home/marius/ext_proj/touch10/development/runs/20261110T094711Z-interactive-c8d1fe/ethernet-live-check.log",
+  "evidence_sha256": "14eec5a4321170e716d3c85ac62380120e3b1cc234b58647dd7d277bd785887a",
+  "verified": true,
+  "usb_id": "0424:9e00",
+  "usb_speed_mbps": 480,
+  "ethernet_carrier": true,
+  "phy_clock_hz": 19200000,
+  "phy_parent_clock_hz": 38400000,
+  "selected_pad_values_verified": 15,
+  "reset_lines_released": [
+    110,
+    158
+  ],
+  "factory_environment_unchanged": true,
+  "scope": "kexec Ethernet initialization; U-Boot Ethernet still pending"
+}

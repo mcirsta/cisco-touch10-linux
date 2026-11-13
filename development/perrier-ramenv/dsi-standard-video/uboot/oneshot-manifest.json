@@ -1,0 +1,49 @@
+{
+  "profile": "dsi-standard-video",
+  "kernel": "6.18.48-perrier-ram74",
+  "source_p8": "development/perrier-coldboot/stock-p8-before.bin",
+  "source_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "candidate_bytes": 262144,
+  "candidate_p8_sha256": "563bbf2ed940869b4e0aeaff78f8b0e8ba7d07ea7c9c876cc875db0769d6eb15",
+  "candidate_p8_crc32": "fd420fe4",
+  "image_review_sha256": "60cf3971d6e2ab99b293105cde80c6eb697d2c1280a6f21d8281d4c54b04bace",
+  "watchdog_proof_sha256": "3f23c890d5d390efa07fd63dd6c4231d0aa0fa0e6f84687e2b82e3a9203f36cf",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "bootcmd": "if setenv bootcmd run normalboot; then if saveenv; then echo PERRIER_ONESHOT_SAVED; if ext4load mmc 1:e 0x84000000 /touch10-dev/ram74-e9f92494e945.zImage; then if ext4load mmc 1:e 0x83000000 /touch10-dev/ram74-00cffc21ce66.dtb; then bootz 0x84000000 - 0x83000000; fi; fi; fi; fi; run normalboot",
+  "test_command": "if ext4load mmc 1:e 0x84000000 /touch10-dev/ram74-e9f92494e945.zImage; then if ext4load mmc 1:e 0x83000000 /touch10-dev/ram74-00cffc21ce66.dtb; then bootz 0x84000000 - 0x83000000; fi; fi",
+  "test_files": {
+    "zImage": {
+      "source": "development/perrier-ramenv/dsi-standard-video/kernel-build/arch/arm/boot/zImage",
+      "target": "/touch10-dev/ram74-e9f92494e945.zImage",
+      "bytes": 17057432,
+      "sha256": "e9f92494e94568aa554d9f1d8b7f9b46708d4647d2910458e1a33a575b8b6396",
+      "load_address": "0x84000000"
+    },
+    "board.dtb": {
+      "source": "development/perrier-ramenv/dsi-standard-video/uboot/board-seeded.dtb",
+      "target": "/touch10-dev/ram74-00cffc21ce66.dtb",
+      "bytes": 91719,
+      "sha256": "00cffc21ce66013d4b1140fcdf9887b62590531f4e8b97c02a03d08f70ee95f8",
+      "load_address": "0x83000000"
+    }
+  },
+  "ranges": [
+    [
+      2147483648,
+      2168304544,
+      "uncompressed kernel"
+    ],
+    [
+      2214592512,
+      2231649944,
+      "zImage"
+    ],
+    [
+      2197815296,
+      2197907015,
+      "board.dtb"
+    ]
+  ],
+  "rng_seed": "fresh host getrandom(64), one use per manifest",
+  "factory_next_boot": "U-Boot saves normalboot before loading the candidate"
+}

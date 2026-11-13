@@ -1,0 +1,30 @@
+{
+  "status": "prepared-offline; not staged or flashed by this builder",
+  "source_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "candidate_p8_sha256": "36617f83abf33e1f00079fdbba13e23bdd83a89dda7225230c116315a52a19fb",
+  "candidate_p8_crc32": "507f1c83",
+  "candidate_bytes": 262144,
+  "bootcmd": "if setenv bootcmd run normalboot; then if saveenv; then echo PERRIER_ONESHOT_SAVED; if ext4load mmc 1:e 0x84000000 /touch10-dev/cold01-8477a79e0c5e.zImage; then if ext4load mmc 1:e 0x83000000 /touch10-dev/cold01-6d71c3d9b6ee.dtb; then bootz 0x84000000 - 0x83000000; fi; fi; fi; fi; run normalboot",
+  "test_command": "if ext4load mmc 1:e 0x84000000 /touch10-dev/cold01-8477a79e0c5e.zImage; then if ext4load mmc 1:e 0x83000000 /touch10-dev/cold01-6d71c3d9b6ee.dtb; then bootz 0x84000000 - 0x83000000; fi; fi",
+  "factory_bootcmd_sha256": "b6331f61bddb912d874518713df0dffb6b15140f468ceea864478c2e1f272fba",
+  "factory_bootcmd_preserved": true,
+  "test_files": {
+    "zImage": {
+      "source": "development/perrier-coldboot/kernel-build/arch/arm/boot/zImage",
+      "target": "/touch10-dev/cold01-8477a79e0c5e.zImage",
+      "bytes": 1508184,
+      "sha256": "8477a79e0c5eb69f5ec83385d3ce39b35fed9c9e4e9c2c5e92d1163e6d7d64ce",
+      "load_address": "0x84000000"
+    },
+    "board.dtb": {
+      "source": "development/perrier-coldboot/board.dtb",
+      "target": "/touch10-dev/cold01-6d71c3d9b6ee.dtb",
+      "bytes": 85634,
+      "sha256": "6d71c3d9b6eec8ee05e57b71ef0b85a6f988fd08d42d43ada95f88be8c47f50b",
+      "load_address": "0x83000000"
+    }
+  },
+  "decompressed_kernel_bss_end": "0x80331bf0",
+  "normal_boot_on_next_reset": "U-Boot saveenv must succeed before testboot",
+  "hang_recovery": "cold power cycle may be required if no watchdog is running"
+}

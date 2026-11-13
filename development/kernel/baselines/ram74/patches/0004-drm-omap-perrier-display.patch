@@ -1,0 +1,535 @@
+diff --git a/drivers/gpu/drm/bridge/tc358775.c b/drivers/gpu/drm/bridge/tc358775.c
+--- a/drivers/gpu/drm/bridge/tc358775.c
++++ b/drivers/gpu/drm/bridge/tc358775.c
+@@ -8,6 +8,8 @@
+  */
+ /* #define DEBUG */
+ #include <linux/bitfield.h>
++#include <linux/delay.h>
++#include <linux/of.h>
+ #include <linux/clk.h>
+ #include <linux/device.h>
+ #include <linux/gpio/consumer.h>
+@@ -281,10 +283,19 @@
+ 	enum tc3587x5_type	type;
+ };
+ 
++static bool tc_is_perrier(const struct tc_data *tc)
++{
++	return tc->type == TC358765 &&
++		of_machine_is_compatible("cisco,perrier-ram");
++}
++
+ static inline struct tc_data *bridge_to_tc(struct drm_bridge *b)
+ {
+ 	return container_of(b, struct tc_data, bridge);
+ }
++
++static void tc_bridge_program(struct drm_bridge *bridge,
++			      struct drm_atomic_state *state);
+ 
+ static void tc_bridge_atomic_pre_enable(struct drm_bridge *bridge,
+ 					struct drm_atomic_state *state)
+@@ -306,8 +317,25 @@
+ 	gpiod_set_value(tc->stby_gpio, 0);
+ 	usleep_range(10000, 11000);
+ 
+-	gpiod_set_value(tc->reset_gpio, 0);
+-	usleep_range(10, 20);
++	if (tc_is_perrier(tc)) {
++		/* The RAM trial inherits a running bridge from stock. Keep its
++		 * physical reset line deasserted while DSI is reconfigured.
++		 */
++		gpiod_set_value(tc->reset_gpio, 0);
++		usleep_range(10000, 11000);
++	} else {
++		gpiod_set_value(tc->reset_gpio, 0);
++		usleep_range(10, 20);
++	}
++
++	/* Program the running TC358765 before starting DSI video. The usual
++	 * upstream-first enable order starts video ahead of the bridge setup.
++	 */
++	if (tc_is_perrier(tc)) {
++		dev_info(tc->dev, "Perrier bridge pre-program reset_raw=%d\n",
++			 gpiod_get_raw_value_cansleep(tc->reset_gpio));
++		tc_bridge_program(bridge, state);
++	}
+ }
+ 
+ static void tc_bridge_atomic_post_disable(struct drm_bridge *bridge,
+@@ -317,8 +345,11 @@
+ 	struct device *dev = &tc->dsi->dev;
+ 	int ret;
+ 
+-	gpiod_set_value(tc->reset_gpio, 1);
+-	usleep_range(10, 20);
++	/* Keep the stock-initialized bridge out of reset across RAM modesets. */
++	if (!tc_is_perrier(tc)) {
++		gpiod_set_value(tc->reset_gpio, 1);
++		usleep_range(10, 20);
++	}
+ 
+ 	gpiod_set_value(tc->stby_gpio, 1);
+ 	usleep_range(10000, 11000);
+@@ -370,8 +401,8 @@
+ 			ret, addr);
+ }
+ 
+-static void tc_bridge_atomic_enable(struct drm_bridge *bridge,
+-				    struct drm_atomic_state *state)
++static void tc_bridge_program(struct drm_bridge *bridge,
++			      struct drm_atomic_state *state)
+ {
+ 	struct tc_data *tc = bridge_to_tc(bridge);
+ 	u32 hback_porch, hsync_len, hfront_porch, hactive, htime1, htime2;
+@@ -403,13 +434,22 @@
+ 	vtime2 = (vfront_porch << 16) + vactive;
+ 
+ 	d2l_read(tc->i2c, IDREG, &val);
++	if (tc_is_perrier(tc) && val != 0x00006500) {
++		dev_err(tc->dev, "Perrier bridge not ready; skip programming\n");
++		return;
++	}
+ 
+ 	dev_info(tc->dev, "DSI2LVDS Chip ID.%02x Revision ID. %02x **\n",
+ 		 (val >> 8) & 0xFF, val & 0xFF);
+ 
+-	d2l_write(tc->i2c, SYSRST, SYS_RST_REG | SYS_RST_DSIRX | SYS_RST_BM |
+-		  SYS_RST_LCD | SYS_RST_I2CM);
+-	usleep_range(30000, 40000);
++	/* Perrier's stock driver uses the physical reset and does not reset
++	 * the full bridge register block here.
++	 */
++	if (!tc_is_perrier(tc)) {
++		d2l_write(tc->i2c, SYSRST, SYS_RST_REG | SYS_RST_DSIRX |
++			  SYS_RST_BM | SYS_RST_LCD | SYS_RST_I2CM);
++		usleep_range(30000, 40000);
++	}
+ 
+ 	d2l_write(tc->i2c, PPI_TX_RX_TA, TTA_GET | TTA_SURE);
+ 	d2l_write(tc->i2c, PPI_LPTXTIMECNT, LPX_PERIOD);
+@@ -425,28 +465,48 @@
+ 	d2l_write(tc->i2c, PPI_STARTPPI, PPI_START_FUNCTION);
+ 	d2l_write(tc->i2c, DSI_STARTDSI, DSI_RX_START);
+ 
+-	/* Video event mode vs pulse mode bit, does not exist for tc358775 */
+-	if (tc->type == TC358765)
+-		val = EVTMODE;
+-	else
+-		val = 0;
+-
+-	if (tc->bpc == 8)
+-		val |= TC358775_VPCTRL_OPXLFMT(1);
+-	else /* bpc = 6; */
+-		val |= TC358775_VPCTRL_MSF(1);
+-
+-	dsiclk = mode->crtc_clock * 3 * tc->bpc / tc->num_dsi_lanes / 1000;
+-	clkdiv = dsiclk / (tc->lvds_link == DUAL_LINK ? DIVIDE_BY_6 : DIVIDE_BY_3);
+-	byteclk = dsiclk / 4;
+-	t1 = hactive * (tc->bpc * 3 / 8) / tc->num_dsi_lanes;
+-	t2 = ((100000 / clkdiv)) * (hactive + hback_porch + hsync_len + hfront_porch) / 1000;
+-	t3 = ((t2 * byteclk) / 100) - (hactive * (tc->bpc * 3 / 8) /
+-		tc->num_dsi_lanes);
+-
+-	vsdelay = (clkdiv * (t1 + t3) / byteclk) - hback_porch - hsync_len - hactive;
+-
+-	val |= TC358775_VPCTRL_VSDELAY(vsdelay);
++	if (tc_is_perrier(tc)) {
++		/* CE9.9.0 TC358765: reset LVDS PHY, then IS=1 and ND=6.
++		 * Keep the other bits returned by the chip, including PRBS off.
++		 */
++		d2l_write(tc->i2c, LVPHY0, LV_PHY0_RST(1));
++		usleep_range(2000, 3000);
++		d2l_read(tc->i2c, LVPHY0, &val);
++		val &= ~(LV_PHY0_RST(1) | LV_PHY0_IS(3) | LV_PHY0_ND(31));
++		val |= LV_PHY0_IS(1) | LV_PHY0_ND(6);
++		d2l_write(tc->i2c, LVPHY0, val);
++	}
++
++	if (tc_is_perrier(tc)) {
++		/* Stock readback: 0x00f02110. Preserve unrelated chip bits. */
++		d2l_read(tc->i2c, VPCTRL, &val);
++		val &= ~(TC358775_VPCTRL_VSDELAY__MASK | BIT(8) |
++			 BIT(5) | BIT(4) | BIT(0));
++		val |= TC358775_VPCTRL_VSDELAY(15) | BIT(8) | BIT(4);
++	} else {
++		/* Video event mode vs pulse mode bit, does not exist for tc358775 */
++		if (tc->type == TC358765)
++			val = EVTMODE;
++		else
++			val = 0;
++
++		if (tc->bpc == 8)
++			val |= TC358775_VPCTRL_OPXLFMT(1);
++		else /* bpc = 6; */
++			val |= TC358775_VPCTRL_MSF(1);
++
++		dsiclk = mode->crtc_clock * 3 * tc->bpc / tc->num_dsi_lanes / 1000;
++		clkdiv = dsiclk / (tc->lvds_link == DUAL_LINK ? DIVIDE_BY_6 : DIVIDE_BY_3);
++		byteclk = dsiclk / 4;
++		t1 = hactive * (tc->bpc * 3 / 8) / tc->num_dsi_lanes;
++		t2 = ((100000 / clkdiv)) *
++			(hactive + hback_porch + hsync_len + hfront_porch) / 1000;
++		t3 = ((t2 * byteclk) / 100) - (hactive * (tc->bpc * 3 / 8) /
++			tc->num_dsi_lanes);
++
++		vsdelay = (clkdiv * (t1 + t3) / byteclk) - hback_porch - hsync_len - hactive;
++		val |= TC358775_VPCTRL_VSDELAY(vsdelay);
++	}
+ 	d2l_write(tc->i2c, VPCTRL, val);
+ 
+ 	d2l_write(tc->i2c, HTIM1, htime1);
+@@ -454,9 +514,12 @@
+ 	d2l_write(tc->i2c, HTIM2, htime2);
+ 	d2l_write(tc->i2c, VTIM2, vtime2);
+ 
+-	d2l_write(tc->i2c, VFUEN, VFUEN_EN);
+-	d2l_write(tc->i2c, SYSRST, SYS_RST_LCD);
+-	d2l_write(tc->i2c, LVPHY0, LV_PHY0_PRBS_ON(4) | LV_PHY0_ND(6));
++	if (!tc_is_perrier(tc)) {
++		d2l_write(tc->i2c, VFUEN, VFUEN_EN);
++		d2l_write(tc->i2c, SYSRST, SYS_RST_LCD);
++		d2l_write(tc->i2c, LVPHY0,
++			  LV_PHY0_PRBS_ON(4) | LV_PHY0_ND(6));
++	}
+ 
+ 	dev_dbg(tc->dev, "bus_formats %04x bpc %d\n",
+ 		connector->display_info.bus_formats[0],
+@@ -482,16 +545,32 @@
+ 		d2l_write(tc->i2c, LV_MX2427, LV_MX(LVI_HS, LVI_VS, LVI_DE, LVI_R0));
+ 	}
+ 
+-	d2l_write(tc->i2c, VFUEN, VFUEN_EN);
+-
+-	val = LVCFG_LVEN_BIT;
+-	if (tc->lvds_link == DUAL_LINK) {
+-		val |= TC358775_LVCFG_LVDLINK(1);
+-		val |= TC358775_LVCFG_PCLKDIV(DIVIDE_BY_6);
++	if (tc_is_perrier(tc)) {
++		/* TC358765 uses PCLKDIV in bits 9:8, unlike TC358775. */
++		d2l_read(tc->i2c, LVCFG, &val);
++		val &= ~(GENMASK(9, 8) | GENMASK(11, 10) | BIT(1));
++		val |= LVCFG_LVEN_BIT;
++		d2l_write(tc->i2c, LVCFG, val);
++		d2l_write(tc->i2c, SYSRST, SYS_RST_LCD);
++		d2l_write(tc->i2c, VFUEN, VFUEN_EN);
+ 	} else {
+-		val |= TC358775_LVCFG_PCLKDIV(DIVIDE_BY_3);
+-	}
+-	d2l_write(tc->i2c, LVCFG, val);
++		d2l_write(tc->i2c, VFUEN, VFUEN_EN);
++		val = LVCFG_LVEN_BIT;
++		if (tc->lvds_link == DUAL_LINK) {
++			val |= TC358775_LVCFG_LVDLINK(1);
++			val |= TC358775_LVCFG_PCLKDIV(DIVIDE_BY_6);
++		} else {
++			val |= TC358775_LVCFG_PCLKDIV(DIVIDE_BY_3);
++		}
++		d2l_write(tc->i2c, LVCFG, val);
++	}
++}
++
++static void tc_bridge_atomic_enable(struct drm_bridge *bridge,
++				    struct drm_atomic_state *state)
++{
++	if (!tc_is_perrier(bridge_to_tc(bridge)))
++		tc_bridge_program(bridge, state);
+ }
+ 
+ static enum drm_mode_status
+@@ -581,11 +660,21 @@
+ 	return 0;
+ }
+ 
++static int tc_attach_host(struct tc_data *tc);
++
+ static int tc_bridge_attach(struct drm_bridge *bridge,
+ 			    struct drm_encoder *encoder,
+ 			    enum drm_bridge_attach_flags flags)
+ {
+ 	struct tc_data *tc = bridge_to_tc(bridge);
++	int ret;
++
++	/* Break the I2C bridge / DSI host probe-order cycle. */
++	if (!tc->dsi) {
++		ret = tc_attach_host(tc);
++		if (ret)
++			return ret;
++	}
+ 
+ 	/* Attach the panel-bridge to the dsi bridge */
+ 	return drm_bridge_attach(encoder, tc->panel_bridge,
+@@ -628,8 +717,12 @@
+ 
+ 	dsi->lanes = tc->num_dsi_lanes;
+ 	dsi->format = MIPI_DSI_FMT_RGB888;
+-	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
+-			  MIPI_DSI_MODE_LPM;
++	/* Stock Perrier uses a 1080-byte-clock line at 53.3 MHz. The
++	 * generic burst mode picked 1173 cycles at 57.9 MHz instead.
++	 */
++	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_LPM;
++	if (!tc_is_perrier(tc))
++		dsi->mode_flags |= MIPI_DSI_MODE_VIDEO_BURST;
+ 
+ 	/*
+ 	 * The hs_rate and lp_rate are data rate values. The HS mode is
+@@ -677,14 +770,14 @@
+ 	if (ret)
+ 		return ret;
+ 
+-	tc->vddio = devm_regulator_get(dev, "vddio-supply");
++	tc->vddio = devm_regulator_get(dev, "vddio");
+ 	if (IS_ERR(tc->vddio)) {
+ 		ret = PTR_ERR(tc->vddio);
+ 		dev_err(dev, "vddio-supply not found\n");
+ 		return ret;
+ 	}
+ 
+-	tc->vdd = devm_regulator_get(dev, "vdd-supply");
++	tc->vdd = devm_regulator_get(dev, "vdd");
+ 	if (IS_ERR(tc->vdd)) {
+ 		ret = PTR_ERR(tc->vdd);
+ 		dev_err(dev, "vdd-supply not found\n");
+@@ -695,7 +788,8 @@
+ 	if (IS_ERR(tc->stby_gpio))
+ 		return PTR_ERR(tc->stby_gpio);
+ 
+-	tc->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
++	tc->reset_gpio = devm_gpiod_get(dev, "reset",
++					tc_is_perrier(tc) ? GPIOD_OUT_LOW : GPIOD_OUT_HIGH);
+ 	if (IS_ERR(tc->reset_gpio)) {
+ 		ret = PTR_ERR(tc->reset_gpio);
+ 		dev_err(dev, "cannot get reset-gpios %d\n", ret);
+@@ -708,15 +802,8 @@
+ 
+ 	i2c_set_clientdata(client, tc);
+ 
+-	ret = tc_attach_host(tc);
+-	if (ret)
+-		goto err_bridge_remove;
+-
++	/* DSI host attach occurs from bridge .attach. */
+ 	return 0;
+-
+-err_bridge_remove:
+-	drm_bridge_remove(&tc->bridge);
+-	return ret;
+ }
+ 
+ static void tc_remove(struct i2c_client *client)
+diff --git a/drivers/gpu/drm/omapdrm/dss/dispc.c b/drivers/gpu/drm/omapdrm/dss/dispc.c
+--- a/drivers/gpu/drm/omapdrm/dss/dispc.c
++++ b/drivers/gpu/drm/omapdrm/dss/dispc.c
+@@ -3024,6 +3024,8 @@
+ {
+ 	u32 timing_h, timing_v, l;
+ 	bool onoff, rf, ipc, vs, hs, de;
++	bool perrier_dsi = channel == OMAP_DSS_CHANNEL_LCD &&
++		of_machine_is_compatible("cisco,perrier-ram");
+ 
+ 	timing_h = FLD_VAL(vm->hsync_len - 1, dispc->feat->sw_start, 0) |
+ 		   FLD_VAL(vm->hfront_porch - 1, dispc->feat->fp_start, 8) |
+@@ -3039,7 +3041,8 @@
+ 	hs = !!(vm->flags & DISPLAY_FLAGS_HSYNC_LOW);
+ 	de = !!(vm->flags & DISPLAY_FLAGS_DE_LOW);
+ 	ipc = !!(vm->flags & DISPLAY_FLAGS_PIXDATA_NEGEDGE);
+-	onoff = true; /* always use the 'rf' setting */
++	/* always use the 'rf' setting */
++	onoff = true;
+ 	rf = !!(vm->flags & DISPLAY_FLAGS_SYNC_POSEDGE);
+ 
+ 	l = FLD_VAL(onoff, 17, 17) |
+@@ -3050,7 +3053,7 @@
+ 		FLD_VAL(vs, 12, 12);
+ 
+ 	/* always set ALIGN bit when available */
+-	if (dispc->feat->supports_sync_align)
++	if (dispc->feat->supports_sync_align && !perrier_dsi)
+ 		l |= (1 << 18);
+ 
+ 	dispc_write_reg(dispc, DISPC_POL_FREQ(channel), l);
+diff --git a/drivers/gpu/drm/omapdrm/dss/dsi.c b/drivers/gpu/drm/omapdrm/dss/dsi.c
+--- a/drivers/gpu/drm/omapdrm/dss/dsi.c
++++ b/drivers/gpu/drm/omapdrm/dss/dsi.c
+@@ -3352,7 +3352,10 @@
+ 	if (r)
+ 		goto err1;
+ 
+-	dsi->mgr_config.io_pad_mode = DSS_IO_PAD_MODE_BYPASS;
++	/* Perrier uses the DSI path with GP_OUT0/1 low in stock. */
++	dsi->mgr_config.io_pad_mode =
++		of_machine_is_compatible("cisco,perrier-ram") ?
++		DSS_IO_PAD_MODE_RESET : DSS_IO_PAD_MODE_BYPASS;
+ 	dsi->mgr_config.video_port_width =
+ 			mipi_dsi_pixel_format_to_bpp(dsi->pix_fmt);
+ 	dsi->mgr_config.lcden_sig_polarity = 0;
+@@ -3407,8 +3410,13 @@
+ 	/* Setup VC_VIDEO for HS and dispc transfers */
+ 	REG_FLD_MOD(dsi, DSI_VC_CTRL(VC_VIDEO), 1, 9, 9); /* HS */
+ 
+-	REG_FLD_MOD(dsi, DSI_VC_CTRL(VC_VIDEO), 1, 1, 1); /* SOURCE_VP */
+-	dsi->vc[VC_VIDEO].source = DSI_VC_SOURCE_VP;
++	/* Stock Perrier video mode leaves VC0 on L4. The mainline VP
++	 * setting leaves its transmit FIFO full on this board.
++	 */
++	if (!of_machine_is_compatible("cisco,perrier-ram")) {
++		REG_FLD_MOD(dsi, DSI_VC_CTRL(VC_VIDEO), 1, 1, 1); /* SOURCE_VP */
++		dsi->vc[VC_VIDEO].source = DSI_VC_SOURCE_VP;
++	}
+ 
+ 	if ((dsi->data->quirks & DSI_QUIRK_DCS_CMD_CONFIG_VC) &&
+ 	    !(dsi->dsidev->mode_flags & MIPI_DSI_MODE_VIDEO))
+@@ -3765,7 +3773,9 @@
+ 	const struct videomode *req_vm;
+ 	struct videomode *dispc_vm;
+ 	struct omap_dss_dsi_videomode_timings *dsi_vm;
+-	u64 dsi_tput, dispc_tput;
++	u64 dsi_tput, dispc_tput, line_a, line_b;
++	bool stock_timing = of_machine_is_compatible("cisco,perrier-ram") &&
++		cfg->trans_mode == OMAP_DSS_DSI_EVENT_MODE;
+ 
+ 	dsi_tput = (u64)byteclk * ndl * 8;
+ 
+@@ -3819,7 +3829,11 @@
+ 	}
+ 
+ 	/* DSI htot to match the panel's nominal pck */
+-	dsi_htot = div64_u64((u64)panel_htot * byteclk, req_pck_nom);
++	if (stock_timing)
++		dsi_htot = DIV_ROUND_CLOSEST_ULL((u64)panel_htot * byteclk,
++					  req_pck_nom);
++	else
++		dsi_htot = div64_u64((u64)panel_htot * byteclk, req_pck_nom);
+ 
+ 	/* fail if there would be no time for blanking */
+ 	if (dsi_htot < hss + hse + dsi_hact)
+@@ -3829,10 +3843,19 @@
+ 	dsi_hbl = dsi_htot - dsi_hact;
+ 
+ 	/* DISPC htot to match the DSI TL */
+-	dispc_htot = div64_u64((u64)dsi_htot * dispc_pck, byteclk);
+-
+-	/* verify that the DSI and DISPC TLs are the same */
+-	if ((u64)dsi_htot * dispc_pck != (u64)dispc_htot * byteclk)
++	if (stock_timing)
++		dispc_htot = DIV_ROUND_CLOSEST_ULL((u64)dsi_htot * dispc_pck,
++					    byteclk);
++	else
++		dispc_htot = div64_u64((u64)dsi_htot * dispc_pck, byteclk);
++
++	/* The stock PLL integer divides differ by 720 Hz-cycles per
++	 * 1440-pixel line. That is under 0.001 pixel per line.
++	 */
++	line_a = (u64)dsi_htot * dispc_pck;
++	line_b = (u64)dispc_htot * byteclk;
++	if (line_a != line_b &&
++	    (!stock_timing || abs_diff(line_a, line_b) > dispc_pck / 1000))
+ 		return false;
+ 
+ 	dispc_hbl = dispc_htot - xres;
+@@ -3856,7 +3879,11 @@
+ 		hsa = max(hsa - hse, 1);
+ 	}
+ 
+-	hbp = div64_u64((u64)req_vm->hback_porch * byteclk, req_pck_nom);
++	if (stock_timing)
++		hbp = DIV_ROUND_UP_ULL((u64)req_vm->hback_porch * byteclk,
++				       req_pck_nom);
++	else
++		hbp = div64_u64((u64)req_vm->hback_porch * byteclk, req_pck_nom);
+ 	hbp = max(hbp, 1);
+ 
+ 	hfp = dsi_hbl - (hss + hsa + hse + hbp);
+@@ -3905,6 +3932,9 @@
+ 	dispc_vm = &ctx->vm;
+ 	*dispc_vm = *req_vm;
+ 	dispc_vm->pixelclock = dispc_pck;
++	/* The stock DISPC uses the panel's original H timings. */
++	if (stock_timing)
++		return true;
+ 
+ 	if (cfg->trans_mode == OMAP_DSS_DSI_PULSE_MODE) {
+ 		hsa = div64_u64((u64)req_vm->hsync_len * dispc_pck,
+@@ -4654,6 +4684,42 @@
+ 	dsi_set_config(&dsi->output, adjusted_mode);
+ }
+ 
++static void dsi_bridge_pre_enable(struct drm_bridge *bridge)
++{
++	struct dsi_data *dsi = drm_bridge_to_dsi(bridge);
++	int r;
++
++	if (!of_machine_is_compatible("cisco,perrier-ram"))
++		return;
++
++	cancel_delayed_work_sync(&dsi->dsi_disable_work);
++	dsi_bus_lock(dsi);
++	if (!dsi->iface_enabled)
++		dsi_enable(dsi);
++	if (!dsi->iface_enabled) {
++		r = -EIO;
++		goto err;
++	}
++
++	/* OMAP4460 i422: continuous clock starts with the first HS packet.
++	 * VC_CMD is LP; prime the clock using the HS video channel while it
++	 * is still in command mode, before the downstream bridge setup.
++	 */
++	r = dsi_vc_send_null(dsi, VC_VIDEO, dsi->dsidev->channel);
++	if (!r)
++		r = dsi_sync_vc(dsi, VC_VIDEO);
++	if (r)
++		goto err;
++
++	dev_info(dsi->dev, "Perrier HS clock primed, vc=%08x\n",
++		 dsi_read_reg(dsi, DSI_VC_CTRL(VC_VIDEO)));
++	goto out;
++err:
++	dev_err(dsi->dev, "Perrier DSI clock pre-enable failed: %d\n", r);
++out:
++	dsi_bus_unlock(dsi);
++}
++
+ static void dsi_bridge_enable(struct drm_bridge *bridge)
+ {
+ 	struct dsi_data *dsi = drm_bridge_to_dsi(bridge);
+@@ -4695,6 +4761,7 @@
+ 	.attach = dsi_bridge_attach,
+ 	.mode_valid = dsi_bridge_mode_valid,
+ 	.mode_set = dsi_bridge_mode_set,
++	.pre_enable = dsi_bridge_pre_enable,
+ 	.enable = dsi_bridge_enable,
+ 	.disable = dsi_bridge_disable,
+ };
+diff --git a/drivers/gpu/drm/omapdrm/dss/dss.c b/drivers/gpu/drm/omapdrm/dss/dss.c
+--- a/drivers/gpu/drm/omapdrm/dss/dss.c
++++ b/drivers/gpu/drm/omapdrm/dss/dss.c
+@@ -407,11 +407,12 @@
+ {
+ 	int b;
+ 
+-	/*
+-	 * We always use PRCM clock as the DISPC func clock, except on DSS3,
+-	 * where we don't have separate DISPC and LCD clock sources.
++	/* Perrier's stock video path uses PLL1:1 for both DISPC core and LCD.
++	 * Keeping the core on PRCM FCK shifts the 1280-pixel LVDS line by 214 px.
+ 	 */
+-	if (WARN_ON(dss->feat->has_lcd_clk_src && clk_src != DSS_CLK_SRC_FCK))
++	if (WARN_ON(dss->feat->has_lcd_clk_src && clk_src != DSS_CLK_SRC_FCK &&
++		    !(of_machine_is_compatible("cisco,perrier-ram") &&
++		      clk_src == DSS_CLK_SRC_PLL1_1)))
+ 		return;
+ 
+ 	switch (clk_src) {
+@@ -570,6 +571,9 @@
+ 		return;
+ 
+ 	dss->lcd_clk_source[idx] = clk_src;
++	if (of_machine_is_compatible("cisco,perrier-ram") &&
++	    channel == OMAP_DSS_CHANNEL_LCD)
++		dss_select_dispc_clk_source(dss, clk_src);
+ }
+ 
+ enum dss_clk_source dss_get_dispc_clk_source(struct dss_device *dss)

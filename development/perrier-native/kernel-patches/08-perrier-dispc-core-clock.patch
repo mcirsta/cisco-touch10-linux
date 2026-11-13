@@ -1,0 +1,29 @@
+--- a/drivers/gpu/drm/omapdrm/dss/dss.c
++++ b/drivers/gpu/drm/omapdrm/dss/dss.c
+@@ -407,11 +407,12 @@
+ {
+ 	int b;
+ 
+-	/*
+-	 * We always use PRCM clock as the DISPC func clock, except on DSS3,
+-	 * where we don't have separate DISPC and LCD clock sources.
++	/* Perrier's stock video path uses PLL1:1 for both DISPC core and LCD.
++	 * Keeping the core on PRCM FCK shifts the 1280-pixel LVDS line by 214 px.
+ 	 */
+-	if (WARN_ON(dss->feat->has_lcd_clk_src && clk_src != DSS_CLK_SRC_FCK))
++	if (WARN_ON(dss->feat->has_lcd_clk_src && clk_src != DSS_CLK_SRC_FCK &&
++		    !(of_machine_is_compatible("cisco,perrier-ram") &&
++		      clk_src == DSS_CLK_SRC_PLL1_1)))
+ 		return;
+ 
+ 	switch (clk_src) {
+@@ -570,6 +571,9 @@
+ 		return;
+ 
+ 	dss->lcd_clk_source[idx] = clk_src;
++	if (of_machine_is_compatible("cisco,perrier-ram") &&
++	    channel == OMAP_DSS_CHANNEL_LCD)
++		dss_select_dispc_clk_source(dss, clk_src);
+ }
+ 
+ enum dss_clk_source dss_get_dispc_clk_source(struct dss_device *dss)

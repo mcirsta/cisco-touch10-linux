@@ -1,0 +1,114 @@
+{
+  "status": "physical_display_and_native_touch_verified",
+  "run": "development/runs/20261109T170550Z-interactive-4217fa",
+  "files": {
+    "zImage": {
+      "sha256": "43dc70ea27d66d5ced2cbaa8e5a8f5c25d712cb56ff941127a9fe4790ad0efb6",
+      "size": 16988672
+    },
+    "board.dtb": {
+      "sha256": "188bb5ea211215468762867ff1e2905497ffd9fd77102643019695286fb7200b",
+      "size": 93071
+    },
+    "kernel.config": {
+      "sha256": "26a004ca7a546acf4c557c788ba09031c07f7dabf01178d297eb06ca63de2fa6",
+      "size": 77491
+    },
+    "manifest.json": {
+      "sha256": "21827b44dc1fe81cd63a17058b4e979e40af4be4a43453f086c8be654076a442",
+      "size": 1521
+    },
+    "reviewed-image.json": {
+      "sha256": "92b4c96d22b41c04e6fc322d4d33ee8686f2faf0c7e410bf6dd1ab3533a39e62",
+      "size": 2279
+    },
+    "rootfs-manifest.json": {
+      "sha256": "012dbc01577c5fbe9b38681f28185432c079e77c0f08a98095debf89a010a828",
+      "size": 25692
+    },
+    "touch-patches.json": {
+      "sha256": "df91ad935c8688a97ce62d405c4d2e305fa91204a5d370e582722b463d169af3",
+      "size": 1817
+    },
+    "base-patches.json": {
+      "sha256": "e0110fb9e076a9795fae41ac8ca3e8fb11ee54b8dcd5c7359fc03d1993ac7abc",
+      "size": 3481
+    }
+  },
+  "user_observation": "All targets align",
+  "native_touch": {
+    "report_count": 174,
+    "nearest_targets": {
+      "CENTER": {
+        "target": [
+          640,
+          400
+        ],
+        "reported": [
+          640,
+          400
+        ],
+        "report_number": 153,
+        "distance_pixels": 0.0
+      },
+      "UL": {
+        "target": [
+          90,
+          130
+        ],
+        "reported": [
+          84,
+          132
+        ],
+        "report_number": 162,
+        "distance_pixels": 6.3
+      },
+      "UR": {
+        "target": [
+          1190,
+          130
+        ],
+        "reported": [
+          1177,
+          146
+        ],
+        "report_number": 163,
+        "distance_pixels": 20.6
+      },
+      "LL": {
+        "target": [
+          90,
+          710
+        ],
+        "reported": [
+          88,
+          712
+        ],
+        "report_number": 38,
+        "distance_pixels": 2.8
+      },
+      "LR": {
+        "target": [
+          1190,
+          710
+        ],
+        "reported": [
+          1180,
+          707
+        ],
+        "report_number": 174,
+        "distance_pixels": 10.4
+      }
+    },
+    "all_ten_slots_released": true
+  },
+  "stock_recovered": true,
+  "environment_unchanged": true,
+  "evidence": [
+    "evidence/perrier-ram50-bridge-live-2026-11-09.txt",
+    "evidence/perrier-ram50-qt-fb0-2026-11-09.png",
+    "evidence/perrier-ram50-native-touch-qt-2026-11-09.log",
+    "evidence/perrier-ram50-native-touch-slot-state-2026-11-09.txt",
+    "evidence/perrier-ram50-dsi-dispc-live-2026-11-09.txt"
+  ]
+}

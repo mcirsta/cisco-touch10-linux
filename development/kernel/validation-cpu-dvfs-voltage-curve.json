@@ -1,0 +1,113 @@
+{
+  "validated_at": "2026-11-13T17:40:58.380155+00:00",
+  "status": "measured_three_point_ram_curve",
+  "fixed_cpu_mhz": 350,
+  "conditions": "Both CPUs online, one-second INA sampling in repeated idle and two-core load phases, 24 samples per frequency/mode/image; display not cycled",
+  "points": {
+    "0x28": {
+      "nominal_uv": 1202740,
+      "kernel": "6.18.48-perrier-ram114",
+      "peak_cpu_millicelsius": 63760,
+      "idle_likely_mpu_mw": 240.27,
+      "load_likely_mpu_mw": 405.75,
+      "idle_5v_channel_mw": 5567.91,
+      "load_5v_channel_mw": 5701.26
+    },
+    "0x24": {
+      "nominal_uv": 1152100,
+      "kernel": "6.18.48-perrier-ram116",
+      "peak_cpu_millicelsius": 63760,
+      "idle_likely_mpu_mw": 213.12,
+      "load_likely_mpu_mw": 357.7,
+      "idle_5v_channel_mw": 5536.04,
+      "load_5v_channel_mw": 5661.84
+    },
+    "0x20": {
+      "nominal_uv": 1101460,
+      "kernel": "6.18.48-perrier-ram115",
+      "peak_cpu_millicelsius": 63760,
+      "idle_likely_mpu_mw": 187.86,
+      "load_likely_mpu_mw": 313.81,
+      "idle_5v_channel_mw": 5503.33,
+      "load_5v_channel_mw": 5626.61
+    }
+  },
+  "reduction_vs_0x28": {
+    "0x24": {
+      "idle": {
+        "likely_mpu_mw": {
+          "delta_mw": 27.15,
+          "percent": 11.3,
+          "equivalent_joules_per_300_seconds": 8.15
+        },
+        "5v_channel_mw": {
+          "delta_mw": 31.87,
+          "percent": 0.57,
+          "equivalent_joules_per_300_seconds": 9.56
+        }
+      },
+      "load": {
+        "likely_mpu_mw": {
+          "delta_mw": 48.05,
+          "percent": 11.84,
+          "equivalent_joules_per_300_seconds": 14.42
+        },
+        "5v_channel_mw": {
+          "delta_mw": 39.42,
+          "percent": 0.69,
+          "equivalent_joules_per_300_seconds": 11.83
+        }
+      }
+    },
+    "0x20": {
+      "idle": {
+        "likely_mpu_mw": {
+          "delta_mw": 52.41,
+          "percent": 21.81,
+          "equivalent_joules_per_300_seconds": 15.72
+        },
+        "5v_channel_mw": {
+          "delta_mw": 64.58,
+          "percent": 1.16,
+          "equivalent_joules_per_300_seconds": 19.37
+        }
+      },
+      "load": {
+        "likely_mpu_mw": {
+          "delta_mw": 91.94,
+          "percent": 22.66,
+          "equivalent_joules_per_300_seconds": 27.58
+        },
+        "5v_channel_mw": {
+          "delta_mw": 74.65,
+          "percent": 1.31,
+          "equivalent_joules_per_300_seconds": 22.4
+        }
+      }
+    }
+  },
+  "interpretation": "Monitored likely MPU-rail and 5 V-channel power decreased monotonically at lower 350 MHz selectors. Equal-duration joule equivalents are calculated from mean-power differences, not direct energy integration or fixed-workload energy.",
+  "limits": [
+    "The rail mapping is from stock software and load response, not PCB net tracing.",
+    "The monitored 5 V channel is not proven to be whole-device input; rails may be nested.",
+    "Separate boots can differ in ambient temperature, startup state and CPU worker scheduling.",
+    "Only selector 0x20 had a five-minute two-core hold and paired schedutil sample; neither point has overnight or error-checked compute qualification.",
+    "The factory boot image and canonical CPU policy have not been changed."
+  ],
+  "evidence": {
+    "0x28": {
+      "power": "development/runs/20261113T170052Z-cpu-dvfs-power/result.json"
+    },
+    "0x24": {
+      "power": "development/runs/20261113T173500Z-cpu-dvfs-mid-power/result.json",
+      "fixed_rate": "development/runs/20261113T173426Z-cpu-dvfs-mid-trial/result.json",
+      "image_audit": "development/perrier-ramenv/cpu-dvfs-mid-trial/reviewed-image.json",
+      "recovery": "development/runs/20261113T173319Z-uboot-ram116-a247ae/result.json",
+      "postflight_cleanup": "development/runs/20261113T174033Z-p14-ram116-cleanup/result.json"
+    },
+    "0x20": {
+      "power": "development/runs/20261113T171730Z-cpu-dvfs-low-power/result.json",
+      "validation": "development/kernel/validation-cpu-dvfs-low-trial.json"
+    }
+  }
+}

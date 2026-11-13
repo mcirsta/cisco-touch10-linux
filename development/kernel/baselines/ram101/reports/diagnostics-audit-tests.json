@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "unsafe_mutations_rejected": [
+    "wrong PMIC variant",
+    "wrong PMIC interrupt",
+    "wrong ADC cell count",
+    "invented ADC supply",
+    "invented ADC GPIO",
+    "wrong PMU IRQ",
+    "wrong PMU family",
+    "unreviewed PMU secure access",
+    "CPU1 enabled",
+    "display clock changed",
+    "other SoC target enabled",
+    "regulator policy changed"
+  ]
+}

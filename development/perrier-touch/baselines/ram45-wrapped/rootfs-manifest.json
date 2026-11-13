@@ -1,0 +1,1404 @@
+{
+  "bin/[": {
+    "symlink": "busybox"
+  },
+  "bin/[[": {
+    "symlink": "busybox"
+  },
+  "bin/acpid": {
+    "symlink": "busybox"
+  },
+  "bin/add-shell": {
+    "symlink": "busybox"
+  },
+  "bin/addgroup": {
+    "symlink": "busybox"
+  },
+  "bin/adduser": {
+    "symlink": "busybox"
+  },
+  "bin/adjtimex": {
+    "symlink": "busybox"
+  },
+  "bin/arch": {
+    "symlink": "busybox"
+  },
+  "bin/arp": {
+    "symlink": "busybox"
+  },
+  "bin/arping": {
+    "symlink": "busybox"
+  },
+  "bin/ascii": {
+    "symlink": "busybox"
+  },
+  "bin/ash": {
+    "symlink": "busybox"
+  },
+  "bin/awk": {
+    "symlink": "busybox"
+  },
+  "bin/base32": {
+    "symlink": "busybox"
+  },
+  "bin/base64": {
+    "symlink": "busybox"
+  },
+  "bin/basename": {
+    "symlink": "busybox"
+  },
+  "bin/bc": {
+    "symlink": "busybox"
+  },
+  "bin/beep": {
+    "symlink": "busybox"
+  },
+  "bin/blkdiscard": {
+    "symlink": "busybox"
+  },
+  "bin/blkid": {
+    "symlink": "busybox"
+  },
+  "bin/blockdev": {
+    "symlink": "busybox"
+  },
+  "bin/bootchartd": {
+    "symlink": "busybox"
+  },
+  "bin/brctl": {
+    "symlink": "busybox"
+  },
+  "bin/bunzip2": {
+    "symlink": "busybox"
+  },
+  "bin/busybox": {
+    "sha256": "fbb121e62946a68893e7934f19198ce9b61d0d255a47354dec9ab4b0c8cd824d",
+    "bytes": 1398028
+  },
+  "bin/bzcat": {
+    "symlink": "busybox"
+  },
+  "bin/bzip2": {
+    "symlink": "busybox"
+  },
+  "bin/cal": {
+    "symlink": "busybox"
+  },
+  "bin/cat": {
+    "symlink": "busybox"
+  },
+  "bin/chat": {
+    "symlink": "busybox"
+  },
+  "bin/chattr": {
+    "symlink": "busybox"
+  },
+  "bin/chgrp": {
+    "symlink": "busybox"
+  },
+  "bin/chmod": {
+    "symlink": "busybox"
+  },
+  "bin/chown": {
+    "symlink": "busybox"
+  },
+  "bin/chpasswd": {
+    "symlink": "busybox"
+  },
+  "bin/chpst": {
+    "symlink": "busybox"
+  },
+  "bin/chroot": {
+    "symlink": "busybox"
+  },
+  "bin/chrt": {
+    "symlink": "busybox"
+  },
+  "bin/chvt": {
+    "symlink": "busybox"
+  },
+  "bin/cksum": {
+    "symlink": "busybox"
+  },
+  "bin/clear": {
+    "symlink": "busybox"
+  },
+  "bin/cmp": {
+    "symlink": "busybox"
+  },
+  "bin/comm": {
+    "symlink": "busybox"
+  },
+  "bin/conspy": {
+    "symlink": "busybox"
+  },
+  "bin/cp": {
+    "symlink": "busybox"
+  },
+  "bin/cpio": {
+    "symlink": "busybox"
+  },
+  "bin/crc32": {
+    "symlink": "busybox"
+  },
+  "bin/crond": {
+    "symlink": "busybox"
+  },
+  "bin/crontab": {
+    "symlink": "busybox"
+  },
+  "bin/cryptpw": {
+    "symlink": "busybox"
+  },
+  "bin/cttyhack": {
+    "symlink": "busybox"
+  },
+  "bin/cut": {
+    "symlink": "busybox"
+  },
+  "bin/date": {
+    "symlink": "busybox"
+  },
+  "bin/dc": {
+    "symlink": "busybox"
+  },
+  "bin/dd": {
+    "symlink": "busybox"
+  },
+  "bin/deallocvt": {
+    "symlink": "busybox"
+  },
+  "bin/delgroup": {
+    "symlink": "busybox"
+  },
+  "bin/deluser": {
+    "symlink": "busybox"
+  },
+  "bin/depmod": {
+    "symlink": "busybox"
+  },
+  "bin/devmem": {
+    "symlink": "busybox"
+  },
+  "bin/df": {
+    "symlink": "busybox"
+  },
+  "bin/dhcprelay": {
+    "symlink": "busybox"
+  },
+  "bin/diff": {
+    "symlink": "busybox"
+  },
+  "bin/dirname": {
+    "symlink": "busybox"
+  },
+  "bin/dmesg": {
+    "symlink": "busybox"
+  },
+  "bin/dnsd": {
+    "symlink": "busybox"
+  },
+  "bin/dnsdomainname": {
+    "symlink": "busybox"
+  },
+  "bin/dos2unix": {
+    "symlink": "busybox"
+  },
+  "bin/dpkg": {
+    "symlink": "busybox"
+  },
+  "bin/dpkg-deb": {
+    "symlink": "busybox"
+  },
+  "bin/du": {
+    "symlink": "busybox"
+  },
+  "bin/dumpkmap": {
+    "symlink": "busybox"
+  },
+  "bin/dumpleases": {
+    "symlink": "busybox"
+  },
+  "bin/echo": {
+    "symlink": "busybox"
+  },
+  "bin/ed": {
+    "symlink": "busybox"
+  },
+  "bin/egrep": {
+    "symlink": "busybox"
+  },
+  "bin/eject": {
+    "symlink": "busybox"
+  },
+  "bin/env": {
+    "symlink": "busybox"
+  },
+  "bin/envdir": {
+    "symlink": "busybox"
+  },
+  "bin/envuidgid": {
+    "symlink": "busybox"
+  },
+  "bin/ether-wake": {
+    "symlink": "busybox"
+  },
+  "bin/expand": {
+    "symlink": "busybox"
+  },
+  "bin/expr": {
+    "symlink": "busybox"
+  },
+  "bin/factor": {
+    "symlink": "busybox"
+  },
+  "bin/fakeidentd": {
+    "symlink": "busybox"
+  },
+  "bin/fallocate": {
+    "symlink": "busybox"
+  },
+  "bin/false": {
+    "symlink": "busybox"
+  },
+  "bin/fatattr": {
+    "symlink": "busybox"
+  },
+  "bin/fbset": {
+    "symlink": "busybox"
+  },
+  "bin/fbsplash": {
+    "symlink": "busybox"
+  },
+  "bin/fdflush": {
+    "symlink": "busybox"
+  },
+  "bin/fdformat": {
+    "symlink": "busybox"
+  },
+  "bin/fdisk": {
+    "symlink": "busybox"
+  },
+  "bin/fgconsole": {
+    "symlink": "busybox"
+  },
+  "bin/fgrep": {
+    "symlink": "busybox"
+  },
+  "bin/find": {
+    "symlink": "busybox"
+  },
+  "bin/findfs": {
+    "symlink": "busybox"
+  },
+  "bin/flock": {
+    "symlink": "busybox"
+  },
+  "bin/fold": {
+    "symlink": "busybox"
+  },
+  "bin/free": {
+    "symlink": "busybox"
+  },
+  "bin/freeramdisk": {
+    "symlink": "busybox"
+  },
+  "bin/fsck": {
+    "symlink": "busybox"
+  },
+  "bin/fsck.minix": {
+    "symlink": "busybox"
+  },
+  "bin/fsfreeze": {
+    "symlink": "busybox"
+  },
+  "bin/fstrim": {
+    "symlink": "busybox"
+  },
+  "bin/fsync": {
+    "symlink": "busybox"
+  },
+  "bin/ftpd": {
+    "symlink": "busybox"
+  },
+  "bin/ftpget": {
+    "symlink": "busybox"
+  },
+  "bin/ftpput": {
+    "symlink": "busybox"
+  },
+  "bin/fuser": {
+    "symlink": "busybox"
+  },
+  "bin/getfattr": {
+    "symlink": "busybox"
+  },
+  "bin/getopt": {
+    "symlink": "busybox"
+  },
+  "bin/getty": {
+    "symlink": "busybox"
+  },
+  "bin/grep": {
+    "symlink": "busybox"
+  },
+  "bin/groups": {
+    "symlink": "busybox"
+  },
+  "bin/gunzip": {
+    "symlink": "busybox"
+  },
+  "bin/gzip": {
+    "symlink": "busybox"
+  },
+  "bin/halt": {
+    "symlink": "busybox"
+  },
+  "bin/hd": {
+    "symlink": "busybox"
+  },
+  "bin/hdparm": {
+    "symlink": "busybox"
+  },
+  "bin/head": {
+    "symlink": "busybox"
+  },
+  "bin/hexdump": {
+    "symlink": "busybox"
+  },
+  "bin/hexedit": {
+    "symlink": "busybox"
+  },
+  "bin/hostid": {
+    "symlink": "busybox"
+  },
+  "bin/hostname": {
+    "symlink": "busybox"
+  },
+  "bin/httpd": {
+    "symlink": "busybox"
+  },
+  "bin/hush": {
+    "symlink": "busybox"
+  },
+  "bin/hwclock": {
+    "symlink": "busybox"
+  },
+  "bin/i2cdetect": {
+    "symlink": "busybox"
+  },
+  "bin/i2cdump": {
+    "symlink": "busybox"
+  },
+  "bin/i2cget": {
+    "symlink": "busybox"
+  },
+  "bin/i2cset": {
+    "symlink": "busybox"
+  },
+  "bin/i2ctransfer": {
+    "symlink": "busybox"
+  },
+  "bin/id": {
+    "symlink": "busybox"
+  },
+  "bin/ifconfig": {
+    "symlink": "busybox"
+  },
+  "bin/ifdown": {
+    "symlink": "busybox"
+  },
+  "bin/ifenslave": {
+    "symlink": "busybox"
+  },
+  "bin/ifplugd": {
+    "symlink": "busybox"
+  },
+  "bin/ifup": {
+    "symlink": "busybox"
+  },
+  "bin/inetd": {
+    "symlink": "busybox"
+  },
+  "bin/init": {
+    "symlink": "busybox"
+  },
+  "bin/insmod": {
+    "symlink": "busybox"
+  },
+  "bin/install": {
+    "symlink": "busybox"
+  },
+  "bin/ionice": {
+    "symlink": "busybox"
+  },
+  "bin/iostat": {
+    "symlink": "busybox"
+  },
+  "bin/ip": {
+    "symlink": "busybox"
+  },
+  "bin/ipaddr": {
+    "symlink": "busybox"
+  },
+  "bin/ipcalc": {
+    "symlink": "busybox"
+  },
+  "bin/ipcrm": {
+    "symlink": "busybox"
+  },
+  "bin/ipcs": {
+    "symlink": "busybox"
+  },
+  "bin/iplink": {
+    "symlink": "busybox"
+  },
+  "bin/ipneigh": {
+    "symlink": "busybox"
+  },
+  "bin/iproute": {
+    "symlink": "busybox"
+  },
+  "bin/iprule": {
+    "symlink": "busybox"
+  },
+  "bin/iptunnel": {
+    "symlink": "busybox"
+  },
+  "bin/kbd_mode": {
+    "symlink": "busybox"
+  },
+  "bin/kill": {
+    "symlink": "busybox"
+  },
+  "bin/killall": {
+    "symlink": "busybox"
+  },
+  "bin/killall5": {
+    "symlink": "busybox"
+  },
+  "bin/klogd": {
+    "symlink": "busybox"
+  },
+  "bin/last": {
+    "symlink": "busybox"
+  },
+  "bin/less": {
+    "symlink": "busybox"
+  },
+  "bin/link": {
+    "symlink": "busybox"
+  },
+  "bin/linux32": {
+    "symlink": "busybox"
+  },
+  "bin/linux64": {
+    "symlink": "busybox"
+  },
+  "bin/linuxrc": {
+    "symlink": "busybox"
+  },
+  "bin/ln": {
+    "symlink": "busybox"
+  },
+  "bin/loadfont": {
+    "symlink": "busybox"
+  },
+  "bin/loadkmap": {
+    "symlink": "busybox"
+  },
+  "bin/logger": {
+    "symlink": "busybox"
+  },
+  "bin/login": {
+    "symlink": "busybox"
+  },
+  "bin/logname": {
+    "symlink": "busybox"
+  },
+  "bin/logread": {
+    "symlink": "busybox"
+  },
+  "bin/losetup": {
+    "symlink": "busybox"
+  },
+  "bin/lpd": {
+    "symlink": "busybox"
+  },
+  "bin/lpq": {
+    "symlink": "busybox"
+  },
+  "bin/lpr": {
+    "symlink": "busybox"
+  },
+  "bin/ls": {
+    "symlink": "busybox"
+  },
+  "bin/lsattr": {
+    "symlink": "busybox"
+  },
+  "bin/lsmod": {
+    "symlink": "busybox"
+  },
+  "bin/lsof": {
+    "symlink": "busybox"
+  },
+  "bin/lspci": {
+    "symlink": "busybox"
+  },
+  "bin/lsscsi": {
+    "symlink": "busybox"
+  },
+  "bin/lsusb": {
+    "symlink": "busybox"
+  },
+  "bin/lzcat": {
+    "symlink": "busybox"
+  },
+  "bin/lzma": {
+    "symlink": "busybox"
+  },
+  "bin/lzop": {
+    "symlink": "busybox"
+  },
+  "bin/makedevs": {
+    "symlink": "busybox"
+  },
+  "bin/makemime": {
+    "symlink": "busybox"
+  },
+  "bin/man": {
+    "symlink": "busybox"
+  },
+  "bin/md5sum": {
+    "symlink": "busybox"
+  },
+  "bin/mdev": {
+    "symlink": "busybox"
+  },
+  "bin/mesg": {
+    "symlink": "busybox"
+  },
+  "bin/microcom": {
+    "symlink": "busybox"
+  },
+  "bin/mim": {
+    "symlink": "busybox"
+  },
+  "bin/mkdir": {
+    "symlink": "busybox"
+  },
+  "bin/mkdosfs": {
+    "symlink": "busybox"
+  },
+  "bin/mke2fs": {
+    "symlink": "busybox"
+  },
+  "bin/mkfifo": {
+    "symlink": "busybox"
+  },
+  "bin/mkfs.ext2": {
+    "symlink": "busybox"
+  },
+  "bin/mkfs.minix": {
+    "symlink": "busybox"
+  },
+  "bin/mkfs.vfat": {
+    "symlink": "busybox"
+  },
+  "bin/mknod": {
+    "symlink": "busybox"
+  },
+  "bin/mkpasswd": {
+    "symlink": "busybox"
+  },
+  "bin/mkswap": {
+    "symlink": "busybox"
+  },
+  "bin/mktemp": {
+    "symlink": "busybox"
+  },
+  "bin/modinfo": {
+    "symlink": "busybox"
+  },
+  "bin/modprobe": {
+    "symlink": "busybox"
+  },
+  "bin/more": {
+    "symlink": "busybox"
+  },
+  "bin/mount": {
+    "symlink": "busybox"
+  },
+  "bin/mountpoint": {
+    "symlink": "busybox"
+  },
+  "bin/mpstat": {
+    "symlink": "busybox"
+  },
+  "bin/mt": {
+    "symlink": "busybox"
+  },
+  "bin/mv": {
+    "symlink": "busybox"
+  },
+  "bin/nameif": {
+    "symlink": "busybox"
+  },
+  "bin/nanddump": {
+    "symlink": "busybox"
+  },
+  "bin/nandwrite": {
+    "symlink": "busybox"
+  },
+  "bin/nbd-client": {
+    "symlink": "busybox"
+  },
+  "bin/nc": {
+    "symlink": "busybox"
+  },
+  "bin/netstat": {
+    "symlink": "busybox"
+  },
+  "bin/nice": {
+    "symlink": "busybox"
+  },
+  "bin/nl": {
+    "symlink": "busybox"
+  },
+  "bin/nmeter": {
+    "symlink": "busybox"
+  },
+  "bin/nohup": {
+    "symlink": "busybox"
+  },
+  "bin/nologin": {
+    "symlink": "busybox"
+  },
+  "bin/nproc": {
+    "symlink": "busybox"
+  },
+  "bin/nsenter": {
+    "symlink": "busybox"
+  },
+  "bin/nslookup": {
+    "symlink": "busybox"
+  },
+  "bin/ntpd": {
+    "symlink": "busybox"
+  },
+  "bin/od": {
+    "symlink": "busybox"
+  },
+  "bin/openvt": {
+    "symlink": "busybox"
+  },
+  "bin/partprobe": {
+    "symlink": "busybox"
+  },
+  "bin/passwd": {
+    "symlink": "busybox"
+  },
+  "bin/paste": {
+    "symlink": "busybox"
+  },
+  "bin/patch": {
+    "symlink": "busybox"
+  },
+  "bin/pgrep": {
+    "symlink": "busybox"
+  },
+  "bin/pidof": {
+    "symlink": "busybox"
+  },
+  "bin/ping": {
+    "symlink": "busybox"
+  },
+  "bin/ping6": {
+    "symlink": "busybox"
+  },
+  "bin/pipe_progress": {
+    "symlink": "busybox"
+  },
+  "bin/pivot_root": {
+    "symlink": "busybox"
+  },
+  "bin/pkill": {
+    "symlink": "busybox"
+  },
+  "bin/pmap": {
+    "symlink": "busybox"
+  },
+  "bin/popmaildir": {
+    "symlink": "busybox"
+  },
+  "bin/poweroff": {
+    "symlink": "busybox"
+  },
+  "bin/powertop": {
+    "symlink": "busybox"
+  },
+  "bin/printenv": {
+    "symlink": "busybox"
+  },
+  "bin/printf": {
+    "symlink": "busybox"
+  },
+  "bin/ps": {
+    "symlink": "busybox"
+  },
+  "bin/pscan": {
+    "symlink": "busybox"
+  },
+  "bin/pstree": {
+    "symlink": "busybox"
+  },
+  "bin/pwd": {
+    "symlink": "busybox"
+  },
+  "bin/pwdx": {
+    "symlink": "busybox"
+  },
+  "bin/raidautorun": {
+    "symlink": "busybox"
+  },
+  "bin/rdate": {
+    "symlink": "busybox"
+  },
+  "bin/rdev": {
+    "symlink": "busybox"
+  },
+  "bin/readahead": {
+    "symlink": "busybox"
+  },
+  "bin/readlink": {
+    "symlink": "busybox"
+  },
+  "bin/readprofile": {
+    "symlink": "busybox"
+  },
+  "bin/realpath": {
+    "symlink": "busybox"
+  },
+  "bin/reboot": {
+    "symlink": "busybox"
+  },
+  "bin/reformime": {
+    "symlink": "busybox"
+  },
+  "bin/remove-shell": {
+    "symlink": "busybox"
+  },
+  "bin/renice": {
+    "symlink": "busybox"
+  },
+  "bin/reset": {
+    "symlink": "busybox"
+  },
+  "bin/resize": {
+    "symlink": "busybox"
+  },
+  "bin/resume": {
+    "symlink": "busybox"
+  },
+  "bin/rev": {
+    "symlink": "busybox"
+  },
+  "bin/rm": {
+    "symlink": "busybox"
+  },
+  "bin/rmdir": {
+    "symlink": "busybox"
+  },
+  "bin/rmmod": {
+    "symlink": "busybox"
+  },
+  "bin/route": {
+    "symlink": "busybox"
+  },
+  "bin/rpm": {
+    "symlink": "busybox"
+  },
+  "bin/rpm2cpio": {
+    "symlink": "busybox"
+  },
+  "bin/rtcwake": {
+    "symlink": "busybox"
+  },
+  "bin/run-init": {
+    "symlink": "busybox"
+  },
+  "bin/run-parts": {
+    "symlink": "busybox"
+  },
+  "bin/runlevel": {
+    "symlink": "busybox"
+  },
+  "bin/runsv": {
+    "symlink": "busybox"
+  },
+  "bin/runsvdir": {
+    "symlink": "busybox"
+  },
+  "bin/rx": {
+    "symlink": "busybox"
+  },
+  "bin/script": {
+    "symlink": "busybox"
+  },
+  "bin/scriptreplay": {
+    "symlink": "busybox"
+  },
+  "bin/sed": {
+    "symlink": "busybox"
+  },
+  "bin/seedrng": {
+    "symlink": "busybox"
+  },
+  "bin/sendmail": {
+    "symlink": "busybox"
+  },
+  "bin/seq": {
+    "symlink": "busybox"
+  },
+  "bin/setarch": {
+    "symlink": "busybox"
+  },
+  "bin/setconsole": {
+    "symlink": "busybox"
+  },
+  "bin/setfattr": {
+    "symlink": "busybox"
+  },
+  "bin/setfont": {
+    "symlink": "busybox"
+  },
+  "bin/setkeycodes": {
+    "symlink": "busybox"
+  },
+  "bin/setlogcons": {
+    "symlink": "busybox"
+  },
+  "bin/setpriv": {
+    "symlink": "busybox"
+  },
+  "bin/setserial": {
+    "symlink": "busybox"
+  },
+  "bin/setsid": {
+    "symlink": "busybox"
+  },
+  "bin/setuidgid": {
+    "symlink": "busybox"
+  },
+  "bin/sh": {
+    "symlink": "busybox"
+  },
+  "bin/sha1sum": {
+    "symlink": "busybox"
+  },
+  "bin/sha256sum": {
+    "symlink": "busybox"
+  },
+  "bin/sha3sum": {
+    "symlink": "busybox"
+  },
+  "bin/sha512sum": {
+    "symlink": "busybox"
+  },
+  "bin/showkey": {
+    "symlink": "busybox"
+  },
+  "bin/shred": {
+    "symlink": "busybox"
+  },
+  "bin/shuf": {
+    "symlink": "busybox"
+  },
+  "bin/slattach": {
+    "symlink": "busybox"
+  },
+  "bin/sleep": {
+    "symlink": "busybox"
+  },
+  "bin/smemcap": {
+    "symlink": "busybox"
+  },
+  "bin/softlimit": {
+    "symlink": "busybox"
+  },
+  "bin/sort": {
+    "symlink": "busybox"
+  },
+  "bin/split": {
+    "symlink": "busybox"
+  },
+  "bin/ssl_client": {
+    "symlink": "busybox"
+  },
+  "bin/start-stop-daemon": {
+    "symlink": "busybox"
+  },
+  "bin/stat": {
+    "symlink": "busybox"
+  },
+  "bin/strings": {
+    "symlink": "busybox"
+  },
+  "bin/stty": {
+    "symlink": "busybox"
+  },
+  "bin/su": {
+    "symlink": "busybox"
+  },
+  "bin/sulogin": {
+    "symlink": "busybox"
+  },
+  "bin/sum": {
+    "symlink": "busybox"
+  },
+  "bin/sv": {
+    "symlink": "busybox"
+  },
+  "bin/svc": {
+    "symlink": "busybox"
+  },
+  "bin/svlogd": {
+    "symlink": "busybox"
+  },
+  "bin/svok": {
+    "symlink": "busybox"
+  },
+  "bin/swapoff": {
+    "symlink": "busybox"
+  },
+  "bin/swapon": {
+    "symlink": "busybox"
+  },
+  "bin/switch_root": {
+    "symlink": "busybox"
+  },
+  "bin/sync": {
+    "symlink": "busybox"
+  },
+  "bin/sysctl": {
+    "symlink": "busybox"
+  },
+  "bin/syslogd": {
+    "symlink": "busybox"
+  },
+  "bin/tac": {
+    "symlink": "busybox"
+  },
+  "bin/tail": {
+    "symlink": "busybox"
+  },
+  "bin/tar": {
+    "symlink": "busybox"
+  },
+  "bin/taskset": {
+    "symlink": "busybox"
+  },
+  "bin/tcpsvd": {
+    "symlink": "busybox"
+  },
+  "bin/tee": {
+    "symlink": "busybox"
+  },
+  "bin/telnet": {
+    "symlink": "busybox"
+  },
+  "bin/telnetd": {
+    "symlink": "busybox"
+  },
+  "bin/test": {
+    "symlink": "busybox"
+  },
+  "bin/tftp": {
+    "symlink": "busybox"
+  },
+  "bin/tftpd": {
+    "symlink": "busybox"
+  },
+  "bin/time": {
+    "symlink": "busybox"
+  },
+  "bin/timeout": {
+    "symlink": "busybox"
+  },
+  "bin/top": {
+    "symlink": "busybox"
+  },
+  "bin/touch": {
+    "symlink": "busybox"
+  },
+  "bin/tr": {
+    "symlink": "busybox"
+  },
+  "bin/traceroute": {
+    "symlink": "busybox"
+  },
+  "bin/traceroute6": {
+    "symlink": "busybox"
+  },
+  "bin/tree": {
+    "symlink": "busybox"
+  },
+  "bin/true": {
+    "symlink": "busybox"
+  },
+  "bin/truncate": {
+    "symlink": "busybox"
+  },
+  "bin/ts": {
+    "symlink": "busybox"
+  },
+  "bin/tsort": {
+    "symlink": "busybox"
+  },
+  "bin/tty": {
+    "symlink": "busybox"
+  },
+  "bin/ttysize": {
+    "symlink": "busybox"
+  },
+  "bin/tunctl": {
+    "symlink": "busybox"
+  },
+  "bin/ubiattach": {
+    "symlink": "busybox"
+  },
+  "bin/ubidetach": {
+    "symlink": "busybox"
+  },
+  "bin/ubimkvol": {
+    "symlink": "busybox"
+  },
+  "bin/ubirename": {
+    "symlink": "busybox"
+  },
+  "bin/ubirmvol": {
+    "symlink": "busybox"
+  },
+  "bin/ubirsvol": {
+    "symlink": "busybox"
+  },
+  "bin/ubiupdatevol": {
+    "symlink": "busybox"
+  },
+  "bin/udhcpc": {
+    "symlink": "busybox"
+  },
+  "bin/udhcpc6": {
+    "symlink": "busybox"
+  },
+  "bin/udhcpd": {
+    "symlink": "busybox"
+  },
+  "bin/udpsvd": {
+    "symlink": "busybox"
+  },
+  "bin/uevent": {
+    "symlink": "busybox"
+  },
+  "bin/umount": {
+    "symlink": "busybox"
+  },
+  "bin/uname": {
+    "symlink": "busybox"
+  },
+  "bin/unexpand": {
+    "symlink": "busybox"
+  },
+  "bin/uniq": {
+    "symlink": "busybox"
+  },
+  "bin/unix2dos": {
+    "symlink": "busybox"
+  },
+  "bin/unlink": {
+    "symlink": "busybox"
+  },
+  "bin/unlzma": {
+    "symlink": "busybox"
+  },
+  "bin/unshare": {
+    "symlink": "busybox"
+  },
+  "bin/unxz": {
+    "symlink": "busybox"
+  },
+  "bin/unzip": {
+    "symlink": "busybox"
+  },
+  "bin/uptime": {
+    "symlink": "busybox"
+  },
+  "bin/users": {
+    "symlink": "busybox"
+  },
+  "bin/usleep": {
+    "symlink": "busybox"
+  },
+  "bin/uudecode": {
+    "symlink": "busybox"
+  },
+  "bin/uuencode": {
+    "symlink": "busybox"
+  },
+  "bin/vconfig": {
+    "symlink": "busybox"
+  },
+  "bin/vi": {
+    "symlink": "busybox"
+  },
+  "bin/vlock": {
+    "symlink": "busybox"
+  },
+  "bin/volname": {
+    "symlink": "busybox"
+  },
+  "bin/w": {
+    "symlink": "busybox"
+  },
+  "bin/wall": {
+    "symlink": "busybox"
+  },
+  "bin/watch": {
+    "symlink": "busybox"
+  },
+  "bin/wc": {
+    "symlink": "busybox"
+  },
+  "bin/wget": {
+    "symlink": "busybox"
+  },
+  "bin/which": {
+    "symlink": "busybox"
+  },
+  "bin/who": {
+    "symlink": "busybox"
+  },
+  "bin/whoami": {
+    "symlink": "busybox"
+  },
+  "bin/whois": {
+    "symlink": "busybox"
+  },
+  "bin/xargs": {
+    "symlink": "busybox"
+  },
+  "bin/xxd": {
+    "symlink": "busybox"
+  },
+  "bin/xz": {
+    "symlink": "busybox"
+  },
+  "bin/xzcat": {
+    "symlink": "busybox"
+  },
+  "bin/yes": {
+    "symlink": "busybox"
+  },
+  "bin/zcat": {
+    "symlink": "busybox"
+  },
+  "bin/zcip": {
+    "symlink": "busybox"
+  },
+  "etc/dropbear/ram_host_key": {
+    "sha256": "6a2006a54ee357d391e8c264ceb3290efe830b1dd138f67f38b42e13b09a2781",
+    "bytes": 140
+  },
+  "etc/group": {
+    "sha256": "7a696fcfba89a55a6d73fa1a03c7f071fad2141340027b17a25db249e26b9be8",
+    "bytes": 10
+  },
+  "etc/hosts": {
+    "sha256": "1cbda86ba519560c1f3a26b51a7d488d72212bf3c410dfe914e854cd70d6379f",
+    "bytes": 60
+  },
+  "etc/init.d/rcS": {
+    "sha256": "7394fd821f6c49f420fe09413610a54566082bf91d9e6403c3b74535ee88fa8e",
+    "bytes": 1433
+  },
+  "etc/inittab": {
+    "sha256": "41ccf60273d09af6a0a78462a82c1b4cff8df4146b7025cbfa912cac230c1bf6",
+    "bytes": 96
+  },
+  "etc/passwd": {
+    "sha256": "79492b90d473e2387338ef1518dfbceb9e3392ae5740235a6696621e42218efa",
+    "bytes": 30
+  },
+  "etc/profile": {
+    "sha256": "60346cc1c9417b468fd086d7453669d97d059dd51faeb640adfd0c1b579d68a4",
+    "bytes": 77
+  },
+  "etc/shadow": {
+    "sha256": "5dffe858d3df0b14106a1bae99da509d4820468fcbb134044627fced7c2534e7",
+    "bytes": 22
+  },
+  "etc/shells": {
+    "sha256": "35fa7f9244d299e08104d223b43e92d746dadb7d7b2d7df6281a60f675b0237d",
+    "bytes": 17
+  },
+  "init": {
+    "symlink": "bin/busybox"
+  },
+  "lib": {
+    "symlink": "qt/lib"
+  },
+  "qt/bin/perrier-touch-grid": {
+    "sha256": "f4473e28a8f53b2348331335e9eb82e98a85451db462a96f79b70988c44908ae",
+    "bytes": 22004
+  },
+  "qt/lib/fonts/DejaVuSans.ttf": {
+    "sha256": "6038a160b491e121c1f12c7bccb4a9c8730296e3adc1086a059404ed84b7451c",
+    "bytes": 759720
+  },
+  "qt/lib/ld-musl-armhf.so.1": {
+    "sha256": "cf8828d2e99bc6da0fb184f257dcd913fd9b028a485194f914b977088060b014",
+    "bytes": 702128
+  },
+  "qt/lib/libQt6Core.so.6": {
+    "sha256": "a82c2368092de92afb3e0bfc5c4d0e65f60b56e311062be74a2dd68773b132d1",
+    "bytes": 9329668
+  },
+  "qt/lib/libQt6Gui.so.6": {
+    "sha256": "8a18ef4a4e237dfaebe4a86dce2a5412d3b8db54d2493aca9927578ebe3d614f",
+    "bytes": 6320704
+  },
+  "qt/lib/libQt6Qml.so.6": {
+    "sha256": "8fcda6ff5a540e05fef1aa5c296c7d9afdcf56e48f6f33136ac574494e3d7eb4",
+    "bytes": 4141428
+  },
+  "qt/lib/libQt6QmlMeta.so.6": {
+    "sha256": "481da7714b7496477271185fb58e7fe1ec02922e7d41309bfce20507d502c216",
+    "bytes": 121296
+  },
+  "qt/lib/libQt6QmlModels.so.6": {
+    "sha256": "3fec67c83f59b61f3c7d1fadde00a3614e1ffc5f7fe8ee3eff2be8814553ed28",
+    "bytes": 855504
+  },
+  "qt/lib/libQt6QmlWorkerScript.so.6": {
+    "sha256": "5b0a9ff94a8e56f5ccb58f8b1f189e4a691e1f39ea32464690faa01baf267b1d",
+    "bytes": 59348
+  },
+  "qt/lib/libQt6Quick.so.6": {
+    "sha256": "89575582d8d7e814dcbe00aa78a2628119883e9cf7db4bd8e7440efd85176cd0",
+    "bytes": 5703932
+  },
+  "qt/lib/libatomic.so.1": {
+    "sha256": "993f682ddd430ec9824c56be692f7d08f17077de66c45964724ad68505e71ba6",
+    "bytes": 17700
+  },
+  "qt/lib/libc.so": {
+    "symlink": "ld-musl-armhf.so.1"
+  },
+  "qt/lib/libgcc_s.so.1": {
+    "sha256": "340ff5527cab2bd8741f76ce15cdaef97cc3bec776bda9428a4335a76859b0b2",
+    "bytes": 120344
+  },
+  "qt/lib/libstdc++.so.6": {
+    "sha256": "165dc059a5aa982a27fcb84d333bc5e3ddf2b79caadb0d1466dd80fcfc9bd8a4",
+    "bytes": 2068968
+  },
+  "qt/licenses/DejaVu.txt": {
+    "sha256": "7a083b136e64d064794c3419751e5c7dd10d2f64c108fe5ba161eae5e5958a93",
+    "bytes": 8816
+  },
+  "qt/plugins/platforms/libqlinuxfb.so": {
+    "sha256": "5a080428a4941216cf72f0bbe1f2da00aff8b982c0d258d7e847a23dd706b813",
+    "bytes": 178760
+  },
+  "qt/plugins/platforms/libqoffscreen.so": {
+    "sha256": "4606315d9eb01621ea83b07b11d4f575ab549185169357235b92a9be6f7b4774",
+    "bytes": 71180
+  },
+  "qt/qml/QML/qmldir": {
+    "sha256": "e7f96a2ecf537ff772872b3da26a77712c659c15328e77c5426e5d2f0d633114",
+    "bytes": 107
+  },
+  "qt/qml/QtQml/Models/libmodelsplugin.so": {
+    "sha256": "a84e0b4f72d5e1f30a8d7b837690c661360982bfc11dea616de4ff31d0f9d8c3",
+    "bytes": 9740
+  },
+  "qt/qml/QtQml/Models/qmldir": {
+    "sha256": "4abed3b5d84d4252f6bb292998a566b09a21ae4f2a435e6807cf7047fe14c58a",
+    "bytes": 213
+  },
+  "qt/qml/QtQml/WorkerScript/libworkerscriptplugin.so": {
+    "sha256": "8d64f86decfdbdad95268bb3927832585b21a82df06ef9d4387a15cbda4454a2",
+    "bytes": 9740
+  },
+  "qt/qml/QtQml/WorkerScript/qmldir": {
+    "sha256": "4ed1b6b0ad3980ae5c882f5c0a4eea8a84bcca35c300f0eec430b89cd30ff768",
+    "bytes": 243
+  },
+  "qt/qml/QtQml/libqmlplugin.so": {
+    "sha256": "5f99067fe911ecbf10d4f42d3bef2452551411d735470ae1e3e8906ed5560935",
+    "bytes": 9740
+  },
+  "qt/qml/QtQml/qmldir": {
+    "sha256": "ff1b83e0cfee28b7dfc809f2acf8d1281e31f037481e80570ad4d23badbc67e2",
+    "bytes": 242
+  },
+  "qt/qml/QtQuick/Window/libquickwindowplugin.so": {
+    "sha256": "32dd8ced321630e091873f458cf64dc0133dd8cdec6d2439deb6840ace7d5247",
+    "bytes": 9740
+  },
+  "qt/qml/QtQuick/Window/qmldir": {
+    "sha256": "c0509023b1bcce5f27262aa84f3a6016fb188971fecc58eea98b897a9aa42eb5",
+    "bytes": 205
+  },
+  "qt/qml/QtQuick/libqtquick2plugin.so": {
+    "sha256": "40926c235fdc6d81a59dccc732c65551e1e39ab95534619f4fbe36fc134ba190",
+    "bytes": 9740
+  },
+  "qt/qml/QtQuick/qmldir": {
+    "sha256": "c2fa2b26d9f8094c6eeb6ff924b18088ddcd512e133524e55b13fa3e5e70350b",
+    "bytes": 206
+  },
+  "root/.ssh/authorized_keys": {
+    "sha256": "0c80c4b9dd42a88a04c9e9dc4b86882edce7f88b19f0570552e270f1b4b14bcc",
+    "bytes": 235
+  },
+  "sbin/init": {
+    "symlink": "../bin/busybox"
+  },
+  "usr/bin/event-dump": {
+    "sha256": "e034d72313e5b1ec226979160533c8ce8578f1bbc87367e425ba64dcfa4f605c",
+    "bytes": 29864
+  },
+  "usr/bin/gdbserver": {
+    "sha256": "c96f8c3fd32e88f2790e0c673ccdb020e9978a4e2b79d60b1db471f77f953173",
+    "bytes": 538724
+  },
+  "usr/bin/qt-run": {
+    "sha256": "85aef7458bbf0a5579065716a9ba05dfa5b65461da57ea37653d631b85e1cdc7",
+    "bytes": 889
+  },
+  "usr/bin/scp": {
+    "sha256": "4769cafc14b239a546bd331aa8cfc72b20ad3de136c91011b46af8e34fb07443",
+    "bytes": 99372
+  },
+  "usr/bin/strace": {
+    "sha256": "ad86c16e1a9919036eed347793c1b6e7c0516932c10aa8e8d0f90a063a4851ee",
+    "bytes": 1185220
+  },
+  "usr/lib": {
+    "symlink": "../lib"
+  },
+  "usr/sbin/dropbear": {
+    "sha256": "46a20cd131f020e21e995dc3d0b8e4aee949472643d7c33b5936be71674c1ce6",
+    "bytes": 354148
+  },
+  "usr/sbin/dropbearkey": {
+    "sha256": "3db0e72407ac6da72c100432cc77c4be62f0d828485b5914e17f0d96d8248551",
+    "bytes": 197916
+  },
+  "usr/sbin/ram-guard": {
+    "sha256": "fa9d43b09f862aa687d809147b3cdc5ef7c19d75413136f1bc3488883728718e",
+    "bytes": 46252
+  }
+}

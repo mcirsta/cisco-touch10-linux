@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "device_run": false,
+  "source_sha256": "12145638316c7c6aa8aace43ea4a70347bd81027f31126f0e8f2ee773a0cbe8d",
+  "binary_sha256": "4579e0a1c39338f170d8fca2c08042f26584462f179cfc3e67af92f7751aa11d",
+  "binary_sha512": "b819b7dbdfc4d74dfa82064679f965d8da7c9afee0ffd7bb95e1a3bf2e5c4da8cf412b0713d94a356aec59f6dbb62e1219d5726af6aa1cca5f346f89c14417a1",
+  "binary_size": 45244,
+  "register_count": 31,
+  "page_base": "0x4a307000",
+  "highest_offset": "0xbac",
+  "read_only_open_and_mapping": true,
+  "qemu_no_device_open_was_read_only": true,
+  "device_writes": false
+}

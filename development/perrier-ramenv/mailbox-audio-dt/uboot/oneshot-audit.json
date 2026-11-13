@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "kernel": "6.18.48-perrier-ram104",
+  "manifest_sha256": "d3d550d1860d916c5d8ba1f9fe56338a946e839413240407ac2c071e419a5ec6",
+  "candidate_p8_sha256": "b377af0b24233c58c7f37bab4b69d702a6024c519f233c29fdd12807de8d9195",
+  "changed_environment_variables": [
+    "bootcmd"
+  ],
+  "watchdog_expiry_proof": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-watchdog/watchdog-proof.json",
+  "watchdog_expiry_proof_sha256": "3f23c890d5d390efa07fd63dd6c4231d0aa0fa0e6f84687e2b82e3a9203f36cf",
+  "ranges": [
+    [
+      2147483648,
+      2169174816,
+      "uncompressed kernel"
+    ],
+    [
+      2214592512,
+      2232228264,
+      "zImage"
+    ],
+    [
+      2197815296,
+      2197910271,
+      "board.dtb"
+    ]
+  ],
+  "factory_environment_saved_before_handoff": true,
+  "ram_kernel_emmc_readonly": true,
+  "peripherals_from_uboot_not_yet_proven": true
+}

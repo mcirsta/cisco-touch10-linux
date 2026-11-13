@@ -1,0 +1,281 @@
+{
+  "validated_at": "2026-11-12T12:12:38.107869+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram100",
+  "profile": "native-diagnostics",
+  "default_uboot_profile": true,
+  "details": {
+    "change": "Mainline TWL6032 PMIC ADC and Cortex-A9 cycle profiling/sampling",
+    "qualified_scope": {
+      "adc": "25 processed internal voltage readings across channels7/8/9/10/18 with25 EOC IRQs; OTP calibration preserved",
+      "pmu": "Cycle counting and overflow samples;50 samples with0 losses, approx699.5MHz count/running-time ratio"
+    },
+    "mainline_drivers_unmodified": true,
+    "hardware_changes": "One PMIC ADC child and existing upstream OMAP4460 PMU target enabled; perf/IIO configuration",
+    "kernel_or_rootfs_installed_as_persistent_target": false,
+    "display_cycles": 0,
+    "qt_restarts": 0,
+    "qt_pid_unchanged": "113",
+    "unchanged_supply_fields": 65,
+    "gpio_port": "0x11",
+    "general_pmu_counters": "Nine raw general events return0, as does stock instructions. Cause unresolved; not qualified.",
+    "legacy_clkdev_alias_warning": "Overlength PMU alias; did not prevent registration/cycle sampling. Cleanup remains separate.",
+    "warm_reset_adc_controls": "Three sensing enables persist across warm reset; exact stock values restored by guarded host postflight",
+    "postflight": {
+      "passed": true,
+      "helper_sha256": "921a877fcbb0b1f9a711d1c22d5b8db6cabf39df70c8cab96e400a3942cbc6e6",
+      "stock_boot_id": "ec165955-5fbd-4127-8817-edfc6c25a880",
+      "temporary_helper_removed": true,
+      "restored": {
+        "48:e4": "00",
+        "49:04": "04",
+        "49:06": "14"
+      },
+      "execution": "Authorized postflight function applied after the initial session identified retained sensing enables"
+    },
+    "authorization": "Owner explicitly authorized current cleanup and identical future ADC postflight",
+    "future_automation": "Runner checks approval and exact helper before another ADC boot, then invokes same guarded restoration after stock return",
+    "postflight_in_this_run": "The same function was applied after the session, following the explicit approval reply; no additional reboot was required",
+    "stock_postchecks": [
+      "Original ADC stable controls and16 trim bytes",
+      "83 ALSA controls, HFR selected, EP off",
+      "65 stock supply fields",
+      "Healthy Phoenix, correct factory p8",
+      "Temporary helpers removed"
+    ],
+    "supplemental_snapshot": "development/kernel/baselines/ram100-authorized-postflight",
+    "fallback": "speaker-audio ram99"
+  },
+  "recovery_mode": "hardware_expiry",
+  "recovery_elapsed_seconds": 155.0,
+  "stock_recovered": true,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "serial_markers": {
+    "factory_saved_before_handoff": true,
+    "candidate_kernel": true,
+    "mainline_watchdog_ready": true,
+    "ram_ssh_started": true
+  },
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram100/snapshot.json",
+    "sha256": "3d615be18bd05020f7a9684016eb957b18f333dd5af68d482160a10468dcaf7f"
+  },
+  "source_manifest": {
+    "path": "development/kernel/baselines/ram100/patches/manifest.json",
+    "sha256": "2c1c851906c94d0791ce47404899a39f9feaf0a49ca7c4b96108a214bf101d1c"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram100/reports/source-checks.json",
+    "sha256": "8bf39361ba0674b29ed73bee413a5cde195548fd8fdf3b8d56ab76c196731793"
+  },
+  "tests": {
+    "audio-audit-tests": {
+      "path": "development/kernel/baselines/ram100/reports/audio-audit-tests.json",
+      "sha256": "a070dd3eb83fa9d0995da84cb4d49a12404f47df84ad9f0dc351c97a921e80ab"
+    },
+    "aux-audit-tests": {
+      "path": "development/kernel/baselines/ram100/reports/aux-audit-tests.json",
+      "sha256": "711eb612ad4b802a5fbeb75dd9696b86f9027872e63fa7293822c17873441943"
+    },
+    "bridge-regmap-tests": {
+      "path": "development/kernel/baselines/ram100/reports/bridge-regmap-tests.json",
+      "sha256": "de5ab6625c121cee42fa9aae4e9998ade67c6fcf209461efa1cf256cff137429"
+    },
+    "bus-audit-tests": {
+      "path": "development/kernel/baselines/ram100/reports/bus-audit-tests.json",
+      "sha256": "de1a3289c0714aaef3717248aeaf3181b4d62b5ca146271862971560913d5b68"
+    },
+    "diagnostics-audit-tests": {
+      "path": "development/kernel/baselines/ram100/reports/diagnostics-audit-tests.json",
+      "sha256": "7f172cabafed46d2f90ce8d36942421e8ed94edb96b2b1e8602ad4af22b89c4c"
+    },
+    "dsi-null-tests": {
+      "path": "development/kernel/baselines/ram100/reports/dsi-null-tests.json",
+      "sha256": "099c03eb8bada5921d51dc7fec8fd2dee9d4daf88bd6d6dd8615a068c7a1851a"
+    },
+    "dsi-power-tests": {
+      "path": "development/kernel/baselines/ram100/reports/dsi-power-tests.json",
+      "sha256": "cfaa4dea48acfc48ba727ca86722d92e1885583c7dff4f2e27aa6c8ed4e590ce"
+    },
+    "dsi-timing-tests": {
+      "path": "development/kernel/baselines/ram100/reports/dsi-timing-tests.json",
+      "sha256": "f84046446b23c5beb9c5182529fc0a7d6bfec7c83eeb638bb8e1e42e4337cda7"
+    },
+    "dsi-vc-tests": {
+      "path": "development/kernel/baselines/ram100/reports/dsi-vc-tests.json",
+      "sha256": "01193e3455920bb0d63334a0447f67fa9e7122e6eef3105785769d928ad96185"
+    },
+    "led-audit-tests": {
+      "path": "development/kernel/baselines/ram100/reports/led-audit-tests.json",
+      "sha256": "188f2103991c35bdc5057c9772090f7ffc44b267623dd6358dc5d4375f600a81"
+    },
+    "pcf-shutdown-tests": {
+      "path": "development/kernel/baselines/ram100/reports/pcf-shutdown-tests.json",
+      "sha256": "f49e690d7cb609cf4a91232187ba54b55365169babf106657d005428df28b645"
+    },
+    "peripheral-audit-tests": {
+      "path": "development/kernel/baselines/ram100/reports/peripheral-audit-tests.json",
+      "sha256": "c12fb1bdccf5a12af7226e4e9fb5a6f5669003e83c6b200537651a07f3e0588b"
+    }
+  },
+  "image_review": {
+    "path": "development/perrier-ramenv/native-diagnostics/reviewed-image.json",
+    "sha256": "9266a9b913bb16604e9fc9a240260fdc20a4d10486100609c2d3f35b44c082ca"
+  },
+  "live_result": {
+    "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/result.json",
+    "sha256": "c7c2bb3eea954148ae9dee9d1bf209faa734ff6626100fccd98746b8380ee5f1"
+  },
+  "physical_confirmations": [],
+  "machine_checks": {
+    "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-final-checks.json",
+    "sha256": "711497298ab2be864c8ab480b8878035e75696fd422a50352af3650db173d953"
+  },
+  "evidence": {
+    "stock-audio-after.log": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/stock-audio-after.log",
+      "sha256": "631ffd045718e684f184e38196824c97129c51dc9cbaa6f641fbfc711dca0f7a"
+    },
+    "stock-audio-check-executed.py": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/stock-audio-check-executed.py",
+      "sha256": "82df2df9ff505a36ea60545e33f17a3e253dc4f1ca9d02938f9369669dd345d3"
+    },
+    "stock-audio-checks.json": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/stock-audio-checks.json",
+      "sha256": "c7a9b46284cfe9aedeac29ce2e8d26f19706ee6789bcb4837b4cdd27f3d153e2"
+    },
+    "diagnostics-adc-conversions.log": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-adc-conversions.log",
+      "sha256": "881e20f6750309a043ba1777521afa701ad89b37e5477c6545929340df53d1c7"
+    },
+    "diagnostics-adc-restore.log": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-adc-restore.log",
+      "sha256": "a0330872041173e65d768203368537e984528c4495ddfe3e818c683a299c9961"
+    },
+    "diagnostics-after.log": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-after.log",
+      "sha256": "afad003378cb40d565ef8b28695c385f2e7159a270907dc5cb5dea5fca66753d"
+    },
+    "diagnostics-authorized-postflight-snapshot.json": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-authorized-postflight-snapshot.json",
+      "sha256": "604f13dbe4b5cf49d932da8f9f6c3b19ed7439b4aa3582db905e6439ea5f9afb"
+    },
+    "diagnostics-before.log": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-before.log",
+      "sha256": "18b16384483675d14bb66a5037e643380a473d83637f136b342d0dd8bd2144ed"
+    },
+    "diagnostics-check-executed.py": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-check-executed.py",
+      "sha256": "21319c9702939e110659dc196db137a095681745acd909c488ceafaeaa573d0d"
+    },
+    "diagnostics-check-initial-failed.py": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-check-initial-failed.py",
+      "sha256": "40ffcd2d9202972329d0abf7e3bcdc3a0a68f50e0bbcf9fc658afe818dd545fc"
+    },
+    "diagnostics-checks.json": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-checks.json",
+      "sha256": "0d32eea51df6a969a233d13ec8eefc13d28da623dd20106f227803b5cec4f445"
+    },
+    "diagnostics-final-checks.json": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-final-checks.json",
+      "sha256": "711497298ab2be864c8ab480b8878035e75696fd422a50352af3650db173d953"
+    },
+    "diagnostics-final-state.log": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-final-state.log",
+      "sha256": "d927bfac2f228c3d8225bbfa18258d5196f5c040b383a3b44ecbb0710181e100"
+    },
+    "diagnostics-notes.md": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-notes.md",
+      "sha256": "12b4d1530aa296c0457905cc1414980775ba66e391e4db4f7776619d30dfc50d"
+    },
+    "diagnostics-perf.log": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-perf.log",
+      "sha256": "3270889cf14b9177e39758275901aaad7cc6109535f4df907f7ee658a9b777a3"
+    },
+    "diagnostics-plan.json": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-plan.json",
+      "sha256": "ab4766d2aa5f7ecf2727de13e19ac16d95f12e7ab265c981e44ad7a0a0ab277f"
+    },
+    "diagnostics-pmu-event-matrix.log": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-pmu-event-matrix.log",
+      "sha256": "726f02791517215cc83e4998440a8bca204786076d8e8ef7ca147e90ba12f0ae"
+    },
+    "diagnostics-pmu-matrix-executed.c": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-pmu-matrix-executed.c",
+      "sha256": "2e2960f063e76e8e30fc4a74cafdbc4afafa856704a2aa680775b1a2d6739efc"
+    },
+    "diagnostics-postflight-authorization.json": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-postflight-authorization.json",
+      "sha256": "68a6480859cdaf373d4983e7cd70a547a1600e1656b527be000820314c87cd2d"
+    },
+    "diagnostics-postflight-resolution.json": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-postflight-resolution.json",
+      "sha256": "e87b764695638ac545a2526cd56ea21febb0782cf5802f7e2bac3a6fed1eeed3"
+    },
+    "diagnostics-postflight-restore-adc-measurements": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-postflight-restore-adc-measurements",
+      "sha256": "921a877fcbb0b1f9a711d1c22d5b8db6cabf39df70c8cab96e400a3942cbc6e6"
+    },
+    "diagnostics-postflight-restore_adc_measurements.c": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-postflight-restore_adc_measurements.c",
+      "sha256": "b04ef7b417bfffc48e4a3884c99b818c9941be36cb77ad77ed7d45c39aa83d94"
+    },
+    "diagnostics-postflight-touch10_uboot.py": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-postflight-touch10_uboot.py",
+      "sha256": "fc08f397fef658a12049af30e97e43caa100623f05368f5a9b83f6dd9769fa99"
+    },
+    "diagnostics-qt-pid-after.log": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-qt-pid-after.log",
+      "sha256": "6df9d0a6ea8e120e383e708daf48c33d8f6d0f79b42bfc2a0fefbb2d092cadee"
+    },
+    "diagnostics-qt-pid.log": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-qt-pid.log",
+      "sha256": "6df9d0a6ea8e120e383e708daf48c33d8f6d0f79b42bfc2a0fefbb2d092cadee"
+    },
+    "diagnostics-staging-pruned.json": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-staging-pruned.json",
+      "sha256": "0f956e0d978059a615ed938d48b8dc61e5971b86600ee9de29b5fe99f848398c"
+    },
+    "diagnostics-stock-adc-pmu.log": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-stock-adc-pmu.log",
+      "sha256": "1ab658deb7df96b12f9a236a1c4004ccdf461f93e34f24426b1579147b2ee69b"
+    },
+    "diagnostics-stock-after.log": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-stock-after.log",
+      "sha256": "41eda54e2ead34413702794632670425cd0a4636396cc54d1c75ec5a109d0951"
+    },
+    "diagnostics-stock-before-restore-checks.json": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-stock-before-restore-checks.json",
+      "sha256": "d7750077043cfcc0bdd2d032d18fbc342d3941bd9b086e36f8224dc43d2de5db"
+    },
+    "diagnostics-stock-check-executed.py": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-stock-check-executed.py",
+      "sha256": "226cd69370632e81dfb288acf08a0b5e07e2b49ba0cdb73b21d12765688b44e0"
+    },
+    "diagnostics-stock-checks.json": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-stock-checks.json",
+      "sha256": "71a8aa5e5bad6cab33d79ea81ff52652bbe6d0df6f8361cddfc3146f46a2f2b5"
+    },
+    "diagnostics-stock-initial-failed.log": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-stock-initial-failed.log",
+      "sha256": "d7750077043cfcc0bdd2d032d18fbc342d3941bd9b086e36f8224dc43d2de5db"
+    },
+    "diagnostics-stock-perf-and-internal-adc.log": {
+      "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-stock-perf-and-internal-adc.log",
+      "sha256": "54aee1fa4e4d42ce8918c8e22bb116c2a2061248f61df7595c80c6b09c6e7bd3"
+    }
+  },
+  "fallback": {
+    "profile": "speaker-audio",
+    "kernel": "6.18.48-perrier-ram99",
+    "validation": {
+      "path": "development/kernel/validation-ram99.json",
+      "sha256": "03e4ee6c68c31feeb19a757f36b8aaa19e7bc8d81ebc17fda00cd4362f193909"
+    }
+  },
+  "parent_validation": {
+    "path": "development/kernel/validation-ram99.json",
+    "sha256": "03e4ee6c68c31feeb19a757f36b8aaa19e7bc8d81ebc17fda00cd4362f193909"
+  }
+}

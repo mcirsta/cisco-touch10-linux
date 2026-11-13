@@ -1,0 +1,69 @@
+{
+  "validated_at": "2026-11-10T11:46:31.741566+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram65",
+  "profile": "mainline-ram",
+  "default_uboot_profile": true,
+  "physical_baseline": {
+    "path": "development/kernel/working-baseline.json",
+    "sha256": "ed7a4714a71549469ebe1a899c908c16b716e27a4123f7b09d2648d23bef636b"
+  },
+  "image_review": {
+    "path": "development/perrier-ramenv/mainline-ram/reviewed-image.json",
+    "sha256": "c20fb987b4490b1a9151e4489582375aa1f1842b0154d82fdb7a0a3e193ef877"
+  },
+  "source_manifest": {
+    "path": "development/kernel/patches/manifest.json",
+    "sha256": "d3520691c1cca15525323cf172156fc3bbcbe5226a0d4ed5d89f7bcb632ca24f"
+  },
+  "source_checks": {
+    "path": "development/kernel/out/source-checks.json",
+    "sha256": "3a350e89b83a7e0263154c2befc1a036c22f46a8792d26a86026df0cc5e3f95b"
+  },
+  "source_tree_verification": {
+    "path": "development/kernel/out/source-tree-verification.json",
+    "sha256": "b51811a9e3f584c01392457926d568004c5d1b1d4bcce6463572a9dc5cb66474"
+  },
+  "driver_tests": {
+    "core": {
+      "path": "development/kernel/tests/out/test-core.log",
+      "sha256": "fac03a0d3f3fe4f26aef95d65a563b0ca2c0cc22d710dd865e812e5089ad80ae"
+    },
+    "i2c": {
+      "path": "development/kernel/tests/out/test-i2c.log",
+      "sha256": "ed2c81774fb93c269664d002fc90e918303b930d16809f7eddd878c13596d072"
+    }
+  },
+  "live_result": {
+    "path": "development/runs/20261110T114048Z-uboot-ram65-a64cc7/result.json",
+    "sha256": "79bbcc8a2bdfec5c3c5270a17457da834aa899e9b2adb3fa9375bddeb7fc92f1"
+  },
+  "live_diagnostics": {
+    "path": "development/runs/20261110T114048Z-uboot-ram65-a64cc7/cleaned-power-display-qt.log",
+    "sha256": "0143e6bd252266ae8fbedc966a620d8f530f4ceb68c2f684d541be2f27a2fb43"
+  },
+  "qt_reopen": {
+    "path": "development/runs/20261110T114048Z-uboot-ram65-a64cc7/qt-reopen.log",
+    "sha256": "cd9588a72ca286ddeb2bff42ac94031ae69316101b6c021cb4db6b5dd3648740"
+  },
+  "native_direct_touch_reports": 153,
+  "touch_bridge_used": false,
+  "qt_coordinate_compensation_used": false,
+  "dt_active_properties_identical_to_ram64": true,
+  "backlight_gpio151_gpio157_pwm_match_ram64": true,
+  "watchdog_expiry_recovery_seconds": 153.7,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "toolchain": {
+    "clang": "clang version 23.1.4",
+    "linker": "LLD 23.1.4 (compatible with GNU linkers)"
+  },
+  "archive_cleanup": {
+    "path": "development/archive/cleanup-2026-11-10.json",
+    "sha256": "749192f6098949e5e24ff3311be63607188fa36c38fdf017d3387e5ccd257267"
+  },
+  "limitations": [
+    "Mainline-style organization; not an upstream-submission approval",
+    "Board-specific display quirks and bring-up SoC bus layout remain",
+    "Complete-image physical power-removal test, production power management and SMP remain follow-ups"
+  ]
+}

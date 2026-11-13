@@ -1,0 +1,19 @@
+{
+  "reference_profile": "speaker-audio",
+  "reference_kernel": "6.18.48-perrier-ram99",
+  "pmu_target": "/ocp/target-module@54000000",
+  "pmu_compatible": "arm,cortex-a9-pmu",
+  "pmu_irqs": [0, 54, 4, 0, 55, 4],
+  "adc_compatible": "ti,twl6032-gpadc",
+  "adc_irq": 3,
+  "test_adc_channels": [7, 8, 9, 10, 18],
+  "expected_adc_probe_writes": {
+    "49:90": "02 (GPADC enable command)",
+    "49:04": "01 (VBUS measurement SET, preserves other bits)",
+    "49:06": "01 (ID measurement SET, preserves other bits)",
+    "48:e4": "07 (VBAT/backup/VAC measurement inputs)",
+    "49:d4,49:d7": "clear EOC mask bit 0x20; preserve other IRQ masks"
+  },
+  "pmic_regulators_enabled": false,
+  "new_gpio_or_voltage_control": false
+}

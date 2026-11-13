@@ -1,0 +1,61 @@
+{
+  "kernel": "linux-6.18.48",
+  "patches": [
+    {
+      "path": "drivers/clk/ti/clk-44xx.c",
+      "patch": "01-preserve-stock-clocks.patch",
+      "vanilla_sha256": "ae46c75153a6cd724eca54e2bde79aa0a8e7da6700e690f5bd1a88d109d103f9",
+      "patched_sha256": "c4b98cc950f98475d83e28ef1f7cc345762707da0b00f9fbfca6e75943aebffc",
+      "patch_sha256": "9e97b6144abbcdd489ba8279a890605b8ab010c873eeb94be4e4301ab9863392"
+    },
+    {
+      "path": "arch/arm/mach-omap2/io.c",
+      "patch": "02-avoid-stock-pmic-reinit.patch",
+      "vanilla_sha256": "75c79878568742ef8e2c384abd843d99e7643cb02ab09e222a085ee2f00b747f",
+      "patched_sha256": "ac8ccc39bd1848eedbfc3de81fea53ac5401489884a1ef53fbf9c9ef308250ad",
+      "patch_sha256": "375f1e3466bd91b38e6dc11b17052f23814370919f77f23fa2b6a236f80e0792"
+    },
+    {
+      "path": "drivers/mmc/core/block.c",
+      "patch": "03-force-readonly-emmc.patch",
+      "vanilla_sha256": "a671a8347246591a2589e10f6f25ca5d638b30d27430bb3528d484831b44bd42",
+      "patched_sha256": "de53e2e58c68d909b234910317c3ae498ba578a9ca1bd0c447ecc4031768c9f7",
+      "patch_sha256": "cc40fce2261e7a3cf9114c517ed7b9fa99a88788dbe31d37d76434d702f287fe"
+    },
+    {
+      "path": "drivers/gpu/drm/bridge/tc358775.c",
+      "patch": "04-tc358765-perrier.patch",
+      "vanilla_sha256": "044dea54bd62ccb0530469ef7a9f4be512694d7cb237b718812a42bdbd4d188e",
+      "patched_sha256": "a510ee56579066bd9025efb8eaf097fcbf1745c9e91d332a92d0906b243020c1",
+      "patch_sha256": "48d3466d7844b1f2e961163e1c439b03ec8ce81ae651f97aba8806a746f82d24"
+    },
+    {
+      "path": "drivers/gpu/drm/omapdrm/dss/pll.c",
+      "patch": "05-omap-dsi-pll.patch",
+      "vanilla_sha256": "0e6e65bf8a59dfda12cdc97fbf251f1f85ab2043f27a9895ba1e24068366ab9e",
+      "patched_sha256": "0e0942744c45a725f2f7b7f9f73cd30d798a6a27992096a44861c2df26acc94b",
+      "patch_sha256": "1fef322af3a31256641530b66dc52297cbd7aec7d71aabd6fb700779d94e0eff"
+    },
+    {
+      "path": "drivers/gpu/drm/omapdrm/dss/dsi.c",
+      "patch": "06-omap-dsi-timing.patch",
+      "vanilla_sha256": "bae8d0c962b2c0093fb474171638b4b6f09a94604df6fc670759b7b8a9c846f4",
+      "patched_sha256": "a9218ca56e9189180476abeff9461f560ee2a0beeb16c7daef7a4d4acfc3cdc0",
+      "patch_sha256": "6392c83c54d838837b280de2377056d8029576411a7f120a2460e7eb23bfd47a"
+    },
+    {
+      "path": "drivers/gpu/drm/omapdrm/dss/dispc.c",
+      "patch": "07-omap-dispc-polarity.patch",
+      "vanilla_sha256": "ef07998537447ade2b8407f400e35abe351a7463590f8110f7e893328f8dfbaa",
+      "patched_sha256": "4ee6b1c618a5159e0b63810354e2b514fdb7686258af35fbaf6b85c0ad101349",
+      "patch_sha256": "baf49399508c2cd2b81cce779f0ffe32393da9ed5b4b3ca1d3baa4fdcd079fd4"
+    },
+    {
+      "path": "drivers/gpu/drm/omapdrm/dss/dss.c",
+      "patch": "08-perrier-dispc-core-clock.patch",
+      "vanilla_sha256": "568b1e3a3e3d1abc004c52d5c80886569ce25f5b983952db2f443f2eb1ed9e2b",
+      "patched_sha256": "89e73fb872138538d42db1abfa8cef663a65a7177febdd37be884b02b494f8d3",
+      "patch_sha256": "76c818ee8330c9664be3746191b5807009010abd3b94d25313e249b7a8026a20"
+    }
+  ]
+}

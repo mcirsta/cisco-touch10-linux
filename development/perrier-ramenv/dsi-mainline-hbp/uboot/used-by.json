@@ -1,0 +1,5 @@
+{
+  "manifest_sha256": "49949a7cbd3a277eac3d468f7dc8699da3fd45f59703d66e8fcc8cc2169de0d5",
+  "run": "not run; superseded offline draft",
+  "reason": "Do not upload rejected reset order"
+}

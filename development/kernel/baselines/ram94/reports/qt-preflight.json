@@ -1,0 +1,9 @@
+{
+  "test": "QEMU Cortex-A9 Qt start and clean exit",
+  "observed_result": "passed; exit=0",
+  "recorded_at": "2026-11-11T20:45:05.999439+00:00",
+  "script": "development/perrier-qt/preflight_qemu.py",
+  "app_sha256": "95ec59484a68ac949db28bb757bfa4401e7178d4276da715dcc092e1a82fffd3",
+  "source_sha256": "a5270efb244d7e0b668f4f28df836ed11cfd750780fd86d6fcfcedf8222edcff",
+  "qml_sha256": "54b603e8eda1de6f1f43f547db9a94227ae1e9585b1028eca365f047cee2c7ec"
+}

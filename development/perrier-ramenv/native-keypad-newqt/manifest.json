@@ -1,0 +1,31 @@
+{
+  "kernel": "6.18.48-perrier-ram57",
+  "profile": "keypad-newqt",
+  "artifacts": {
+    "zImage": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-keypad-newqt/kernel-build/arch/arm/boot/zImage",
+      "sha256": "7fe2acd0b2d69d531e3e6e6f6ce4bd4626c3f55007647eeff4ecf40710ccd55a",
+      "size": 17005360
+    },
+    "board.dtb": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-keypad-newqt/board.dtb",
+      "sha256": "f7f14fb58bb7cafcbc294f8c3a4bdc0db37065597002d53ee5c219eb0308be84",
+      "size": 94402
+    },
+    "kexec": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier/kexec-legacy-fdt",
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6",
+      "size": 1660848
+    }
+  },
+  "rootfs_manifest_sha256": "299b952880f1eb8b5b191423cec384b50bed2147f0033288ffed0ce52e0154cc",
+  "initramfs_sha256": "478128875fc94fb213ce1ebf251e356b8f451a80dcbd8d4fa97c9d34756ae627",
+  "kernel_config_sha256": "0b07cf37ec98a9e81a023e86a65bf2661252dbf24c972ea83baabb2abc268b42",
+  "guard_sha256": "fa9d43b09f862aa687d809147b3cdc5ef7c19d75413136f1bc3488883728718e",
+  "patch_manifest_sha256": "e0110fb9e076a9795fae41ac8ca3e8fb11ee54b8dcd5c7359fc03d1993ac7abc",
+  "touch_patch_manifest_sha256": "df91ad935c8688a97ce62d405c4d2e305fa91204a5d370e582722b463d169af3",
+  "touch_dts_sha256": "0eb57094b7dac8e405f81623eeed046e9862b88c8f9df1fb6888d7f8a8a66c05",
+  "base_dts_sha256": "cc2b32252ca73a63a9548d7893756c0ce57aa995c199659caa19797f5108c27f",
+  "backlight_dts_sha256": "7ccdca06ce84d99607c575d18e6cada7933a134db20332e33ac93ca4bad0c2f7",
+  "keypad_dts_sha256": "b3c1515077656cd2f50e3100246bc253f946e1fd022e1b083cc52d89c1053b43"
+}

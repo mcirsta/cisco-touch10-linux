@@ -1,0 +1,829 @@
+// SPDX-License-Identifier: GPL-2.0-only
+// Perrier hardware description; tested with the separate RAM policy.
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/input/input.h>
+#include <dt-bindings/input/linux-event-codes.h>
+
+// Verified Perrier peripheral wiring and board-specific display settings.
+
+/ {
+
+
+	aliases {
+		serial0 = &perrier_uart;
+		mmc0 = &perrier_mmc2;
+		i2c1 = &perrier_i2c2;
+		i2c2 = &perrier_i2c3;
+		/delete-property/ i2c0;
+		/delete-property/ i2c3;
+		/delete-property/ serial1;
+		/delete-property/ serial2;
+		/delete-property/ serial3;
+		/delete-property/ mmc1;
+		/delete-property/ mmc2;
+		/delete-property/ mmc3;
+		/delete-property/ mmc4;
+	};
+	// Stock UART3 is already muxed and clocked at 48 MHz. No pad/GPIO writes.
+	perrier_uart: serial@48020000 {
+		compatible = "ti,omap4-uart";
+		reg = <0x48020000 0x100>;
+		interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-parent = <&gic>;
+		clock-frequency = <48000000>;
+	};
+
+	// Stock board data advertises OCR bit 0x20000 (2.9-3.0 V) for MMC2.
+	// This fixed-regulator declaration has no enable GPIO and cannot change
+	// the physical rail. The real board power sequence is still inherited.
+	perrier_emmc_vcc: regulator-emmc-vcc {
+		compatible = "regulator-fixed";
+		regulator-name = "perrier-emmc-vcc";
+		regulator-min-microvolt = <2950000>;
+		regulator-max-microvolt = <2950000>;
+		regulator-always-on;
+	};
+
+	// OMAP I2C3 is the stock display bridge bus at 0x48060000. Register
+	// only the controller; do not instantiate the bridge or issue transfers.
+	target-module@48060000 {
+		compatible = "ti,sysc-omap2", "ti,sysc";
+		reg = <0x48060000 0x8>, <0x48060010 0x8>, <0x48060090 0x8>;
+		reg-names = "rev", "sysc", "syss";
+		ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
+						 SYSC_OMAP2_ENAWAKEUP |
+						 SYSC_OMAP2_SOFTRESET |
+						 SYSC_OMAP2_AUTOIDLE)>;
+		ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+						<SYSC_IDLE_SMART>, <SYSC_IDLE_SMART_WKUP>;
+		ti,syss-mask = <1>;
+		clocks = <&l4_per_clkctrl OMAP4_I2C3_CLKCTRL 0>;
+		clock-names = "fck";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges = <0 0x48060000 0x1000>;
+
+		perrier_i2c3: i2c@0 {
+			compatible = "ti,omap4-i2c";
+			reg = <0 0x100>;
+			interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
+			clock-frequency = <100000>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+		};
+	};
+
+	// OMAP I2C2 is the stock touchscreen bus at 0x48072000. Probe only the
+	// controller: no child device, GPIO, pinmux or regulator is present.
+	target-module@48072000 {
+		compatible = "ti,sysc-omap2", "ti,sysc";
+		reg = <0x48072000 0x8>, <0x48072010 0x8>, <0x48072090 0x8>;
+		reg-names = "rev", "sysc", "syss";
+		ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
+						 SYSC_OMAP2_ENAWAKEUP |
+						 SYSC_OMAP2_SOFTRESET |
+						 SYSC_OMAP2_AUTOIDLE)>;
+		ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+						<SYSC_IDLE_SMART>, <SYSC_IDLE_SMART_WKUP>;
+		ti,syss-mask = <1>;
+		clocks = <&l4_per_clkctrl OMAP4_I2C2_CLKCTRL 0>;
+		clock-names = "fck";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges = <0 0x48072000 0x1000>;
+
+		perrier_i2c2: i2c@0 {
+			compatible = "ti,omap4-i2c";
+			reg = <0 0x100>;
+			interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
+			clock-frequency = <100000>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+		};
+	};
+
+	// MMC2 requires the OMAP system DMA controller in Linux 6.18.
+	target-module@4a056000 {
+		compatible = "ti,sysc-omap2", "ti,sysc";
+		reg = <0x4a056000 0x4>, <0x4a05602c 0x4>, <0x4a056028 0x4>;
+		reg-names = "rev", "sysc", "syss";
+		ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
+						 SYSC_OMAP2_EMUFREE |
+						 SYSC_OMAP2_SOFTRESET |
+						 SYSC_OMAP2_AUTOIDLE)>;
+		ti,sysc-midle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>, <SYSC_IDLE_SMART>;
+		ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>, <SYSC_IDLE_SMART>;
+		ti,syss-mask = <1>;
+		clocks = <&l3_dma_clkctrl OMAP4_DMA_SYSTEM_CLKCTRL 0>;
+		clock-names = "fck";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges = <0 0x4a056000 0x1000>;
+
+		perrier_sdma: dma-controller@0 {
+			compatible = "ti,omap4430-sdma", "ti,omap-sdma";
+			reg = <0 0x1000>;
+			interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
+						 <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
+						 <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
+						 <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
+			#dma-cells = <1>;
+			dma-channels = <32>;
+			dma-requests = <127>;
+		};
+	};
+
+	target-module@480b4000 {
+		compatible = "ti,sysc-omap4", "ti,sysc";
+		reg = <0x480b4000 0x4>, <0x480b4010 0x4>;
+		reg-names = "rev", "sysc";
+		ti,sysc-mask = <(SYSC_OMAP4_FREEEMU | SYSC_OMAP4_SOFTRESET)>;
+		ti,sysc-midle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+						 <SYSC_IDLE_SMART>, <SYSC_IDLE_SMART_WKUP>;
+		ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+						 <SYSC_IDLE_SMART>, <SYSC_IDLE_SMART_WKUP>;
+		clocks = <&l3_init_clkctrl OMAP4_MMC2_CLKCTRL 0>;
+		clock-names = "fck";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges = <0 0x480b4000 0x1000>;
+
+		perrier_mmc2: mmc@0 {
+			compatible = "ti,omap4-hsmmc";
+			reg = <0 0x400>;
+			interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
+			ti,needs-special-reset;
+			non-removable;
+			ti,non-removable;
+			bus-width = <8>;
+			max-frequency = <26000000>;
+			vmmc-supply = <&perrier_emmc_vcc>;
+			dmas = <&perrier_sdma 47>, <&perrier_sdma 48>;
+			dma-names = "tx", "rx";
+		};
+	};
+
+	// Only the OMAP USB host target is populated. Its port 1 connects to the
+	// board's already powered external PHY and SMSC95xx LAN chip. The stock
+	// GPIO/pad state is inherited across kexec; this DT makes no GPIO writes.
+	target-module@4a064000 {
+		compatible = "ti,sysc-omap4", "ti,sysc";
+		reg = <0x4a064000 0x4>, <0x4a064010 0x4>, <0x4a064014 0x4>;
+		reg-names = "rev", "sysc", "syss";
+		ti,sysc-mask = <SYSC_OMAP4_SOFTRESET>;
+		ti,sysc-midle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+						 <SYSC_IDLE_SMART>, <SYSC_IDLE_SMART_WKUP>;
+		ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+						 <SYSC_IDLE_SMART>, <SYSC_IDLE_SMART_WKUP>;
+		clocks = <&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 0>;
+		clock-names = "fck";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges = <0 0x4a064000 0x1000>;
+
+		usbhshost@0 {
+			compatible = "ti,usbhs-host";
+			reg = <0 0x800>;
+			num-ports = <2>;
+			port1-mode = "ehci-phy";
+			#address-cells = <1>;
+			#size-cells = <1>;
+			ranges = <0 0 0x1000>;
+			clocks = <&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 24>,
+					 <&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 25>,
+					 <&xclk60mhsp1_ck>, <&xclk60mhsp2_ck>,
+					 <&init_60m_fclk>,
+					 <&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 8>,
+					 <&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 9>,
+					 <&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 13>,
+					 <&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 14>,
+					 <&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 11>,
+					 <&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 12>;
+			clock-names = "utmi_p1_gfclk", "utmi_p2_gfclk",
+				      "refclk_60m_ext_p1", "refclk_60m_ext_p2",
+				      "refclk_60m_int",
+				      "usb_host_hs_utmi_p1_clk", "usb_host_hs_utmi_p2_clk",
+				      "usb_host_hs_hsic480m_p1_clk", "usb_host_hs_hsic480m_p2_clk",
+				      "usb_host_hs_hsic60m_p1_clk", "usb_host_hs_hsic60m_p2_clk";
+
+			usb@c00 {
+				compatible = "ti,ehci-omap";
+				reg = <0xc00 0x400>;
+				interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>;
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				ethernet@1 {
+					compatible = "usb424,9e00";
+					reg = <1>;
+					local-mac-address = [24 16 9d b6 77 bb];
+				};
+			};
+		};
+	};
+};
+
+// Native display stage. The logical regulators have no control GPIO and do
+// not change board voltages. Their names match the TC358765 supply pins;
+// stock kexec must leave those physical rails on for this stage to work.
+&{/} {
+	perrier_bridge_vddio: regulator-bridge-vddio {
+		compatible = "regulator-fixed";
+		regulator-name = "perrier-bridge-vddio-logic-only";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		regulator-always-on;
+	};
+	perrier_bridge_vdd: regulator-bridge-vdd {
+		compatible = "regulator-fixed";
+		regulator-name = "perrier-bridge-vdd-logic-only";
+		regulator-min-microvolt = <1200000>;
+		regulator-max-microvolt = <1200000>;
+		regulator-always-on;
+	};
+	// Stock DSI callbacks control this identified LCD 3.3 V switch.
+	perrier_panel_3v3: regulator-panel-3v3 {
+		compatible = "regulator-fixed";
+		regulator-name = "perrier-panel-3v3";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		gpio = <&perrier_gpio6 3 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+	};
+	target-module@48059000 {
+		compatible = "ti,sysc-omap2", "ti,sysc";
+		reg = <0x48059000 4>, <0x48059010 4>, <0x48059114 4>;
+		reg-names = "rev", "sysc", "syss";
+		ti,no-reset-on-init;
+		ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
+						 SYSC_OMAP2_SOFTRESET |
+						 SYSC_OMAP2_AUTOIDLE)>;
+		ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+						<SYSC_IDLE_SMART>, <SYSC_IDLE_SMART_WKUP>;
+		ti,syss-mask = <1>;
+		clocks = <&l4_per_clkctrl OMAP4_GPIO4_CLKCTRL 0>,
+				 <&l4_per_clkctrl OMAP4_GPIO4_CLKCTRL 8>;
+		clock-names = "fck", "dbclk";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges = <0 0x48059000 0x1000>;
+		perrier_gpio4: gpio@0 {
+			compatible = "ti,omap4-gpio";
+			reg = <0 0x200>;
+			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+	};
+	// Preserve the other GPIO6 outputs; only GPIO163 is claimed above.
+	target-module@4805d000 {
+		compatible = "ti,sysc-omap2", "ti,sysc";
+		reg = <0x4805d000 4>, <0x4805d010 4>, <0x4805d114 4>;
+		reg-names = "rev", "sysc", "syss";
+		ti,no-reset-on-init;
+		ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
+						 SYSC_OMAP2_SOFTRESET |
+						 SYSC_OMAP2_AUTOIDLE)>;
+		ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+						<SYSC_IDLE_SMART>, <SYSC_IDLE_SMART_WKUP>;
+		ti,syss-mask = <1>;
+		clocks = <&l4_per_clkctrl OMAP4_GPIO6_CLKCTRL 0>,
+				 <&l4_per_clkctrl OMAP4_GPIO6_CLKCTRL 8>;
+		clock-names = "fck", "dbclk";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges = <0 0x4805d000 0x1000>;
+		perrier_gpio6: gpio@0 {
+			compatible = "ti,omap4-gpio";
+			reg = <0 0x200>;
+			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+	};
+	target-module@58000000 {
+		compatible = "ti,sysc-omap2", "ti,sysc";
+		reg = <0x58000000 4>, <0x58000014 4>;
+		reg-names = "rev", "syss";
+		ti,syss-mask = <1>;
+		clocks = <&l3_dss_clkctrl OMAP4_DSS_CORE_CLKCTRL 0>,
+				 <&l3_dss_clkctrl OMAP4_DSS_CORE_CLKCTRL 9>,
+				 <&l3_dss_clkctrl OMAP4_DSS_CORE_CLKCTRL 10>,
+				 <&l3_dss_clkctrl OMAP4_DSS_CORE_CLKCTRL 11>;
+		clock-names = "fck", "hdmi_clk", "sys_clk", "tv_clk";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges = <0 0x58000000 0x1000000>;
+
+		perrier_dss: dss@0 {
+			compatible = "ti,omap4-dss";
+			reg = <0 0x80>;
+			clocks = <&l3_dss_clkctrl OMAP4_DSS_CORE_CLKCTRL 8>;
+			clock-names = "fck";
+			#address-cells = <1>;
+			#size-cells = <1>;
+			ranges = <0 0 0x1000000>;
+
+			target-module@1000 {
+				compatible = "ti,sysc-omap2", "ti,sysc";
+				reg = <0x1000 4>, <0x1010 4>, <0x1014 4>;
+				reg-names = "rev", "sysc", "syss";
+				ti,sysc-sidle = <SYSC_IDLE_FORCE>,
+					<SYSC_IDLE_NO>,
+					<SYSC_IDLE_SMART>;
+				ti,sysc-midle = <SYSC_IDLE_FORCE>,
+					<SYSC_IDLE_NO>,
+					<SYSC_IDLE_SMART>;
+				ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
+								 SYSC_OMAP2_ENAWAKEUP |
+								 SYSC_OMAP2_SOFTRESET |
+								 SYSC_OMAP2_AUTOIDLE)>;
+				ti,syss-mask = <1>;
+				clocks = <&l3_dss_clkctrl OMAP4_DSS_CORE_CLKCTRL 8>,
+						 <&l3_dss_clkctrl OMAP4_DSS_CORE_CLKCTRL 10>;
+				clock-names = "fck", "sys_clk";
+				#address-cells = <1>;
+				#size-cells = <1>;
+				ranges = <0 0x1000 0x1000>;
+				dispc@0 {
+					compatible = "ti,omap4-dispc";
+					reg = <0 0x1000>;
+					interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+					clocks = <&l3_dss_clkctrl OMAP4_DSS_CORE_CLKCTRL 8>;
+					clock-names = "fck";
+				};
+			};
+
+			target-module@4000 {
+				compatible = "ti,sysc-omap2", "ti,sysc";
+				reg = <0x4000 4>, <0x4010 4>, <0x4014 4>;
+				reg-names = "rev", "sysc", "syss";
+				ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+								<SYSC_IDLE_SMART>;
+				ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
+								 SYSC_OMAP2_ENAWAKEUP |
+								 SYSC_OMAP2_SOFTRESET |
+								 SYSC_OMAP2_AUTOIDLE)>;
+				ti,syss-mask = <1>;
+				#address-cells = <1>;
+				#size-cells = <1>;
+				ranges = <0 0x4000 0x1000>;
+				perrier_dsi1: encoder@0 {
+					compatible = "ti,omap4-dsi";
+					reg = <0 0x200>, <0x200 0x40>, <0x300 0x20>;
+					reg-names = "proto", "phy", "pll";
+					interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
+					clocks = <&l3_dss_clkctrl OMAP4_DSS_CORE_CLKCTRL 8>,
+						 <&l3_dss_clkctrl OMAP4_DSS_CORE_CLKCTRL 10>;
+					clock-names = "fck", "sys_clk";
+					#address-cells = <1>;
+					#size-cells = <0>;
+					port {
+						perrier_dsi_out: endpoint {
+							remote-endpoint = <&perrier_bridge_in>;
+							// Stock DSI_COMPLEXIO_CFG1 = 0x2a054321.
+							lanes = <0 1 2 3 4 5 6 7 8 9>;
+						};
+					};
+				};
+			};
+		};
+	};
+
+	perrier_panel: panel {
+		backlight = <&perrier_backlight>;
+		compatible = "panel-lvds";
+		data-mapping = "vesa-24";
+		power-supply = <&perrier_panel_3v3>;
+		// Approximate mechanical size; only timing and mapping are electrical.
+		width-mm = <217>;
+		height-mm = <136>;
+		panel-timing {
+			// Measured stock DISPC pck is 71,073,662 Hz; DRM uses kHz.
+			clock-frequency = <71074000>;
+			hactive = <1280>;
+			hfront-porch = <78>;
+			hback-porch = <79>;
+			hsync-len = <3>;
+			vactive = <800>;
+			vfront-porch = <12>;
+			vback-porch = <10>;
+			vsync-len = <1>;
+		};
+		port {
+			perrier_panel_in: endpoint {
+				remote-endpoint = <&perrier_bridge_out>;
+			};
+		};
+	};
+};
+
+&perrier_i2c3 {
+	bridge@f {
+		compatible = "toshiba,tc358765";
+		reg = <0x0f>;
+		vddio-supply = <&perrier_bridge_vddio>;
+		vdd-supply = <&perrier_bridge_vdd>;
+		// Stock GPIO102 is high in operation, low while reset is asserted.
+		reset-gpios = <&perrier_gpio4 6 GPIO_ACTIVE_LOW>;
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			port@0 {
+				reg = <0>;
+				perrier_bridge_in: endpoint {
+					remote-endpoint = <&perrier_dsi_out>;
+					data-lanes = <1 2 3 4>;
+				};
+			};
+			port@1 {
+				reg = <1>;
+				perrier_bridge_out: endpoint {
+					remote-endpoint = <&perrier_panel_in>;
+				};
+			};
+		};
+	};
+};
+
+
+
+// Cypress Gen4 controller and its dedicated interrupt/reset bank.
+
+&{/} {
+	// GPIO5 also holds reset/backlight pins. Preserve all stock output latches.
+	target-module@4805b000 {
+		compatible = "ti,sysc-omap2", "ti,sysc";
+		reg = <0x4805b000 4>, <0x4805b010 4>, <0x4805b114 4>;
+		reg-names = "rev", "sysc", "syss";
+		ti,no-reset-on-init;
+		ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
+						 SYSC_OMAP2_SOFTRESET |
+						 SYSC_OMAP2_AUTOIDLE)>;
+		ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+						<SYSC_IDLE_SMART>, <SYSC_IDLE_SMART_WKUP>;
+		ti,syss-mask = <1>;
+		clocks = <&l4_per_clkctrl OMAP4_GPIO5_CLKCTRL 0>,
+				 <&l4_per_clkctrl OMAP4_GPIO5_CLKCTRL 8>;
+		clock-names = "fck", "dbclk";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges = <0 0x4805b000 0x1000>;
+
+		perrier_gpio5: gpio@0 {
+			compatible = "ti,omap4-gpio";
+			reg = <0 0x200>;
+			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+	};
+};
+
+&perrier_i2c2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&perrier_touch_i2c_pins>;
+	touchscreen@67 {
+		compatible = "cisco,perrier-cyttsp4";
+		pinctrl-names = "default";
+		pinctrl-0 = <&perrier_touch_pins>;
+		reset-gpios = <&perrier_gpio5 13 GPIO_ACTIVE_LOW>;
+		vdd-supply = <&perrier_touch_5v>;
+		vddio-supply = <&perrier_touch_3v3>;
+		reg = <0x67>;
+		interrupt-parent = <&perrier_gpio5>;
+		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
+		touchscreen-size-x = <1280>;
+		touchscreen-size-y = <800>;
+	};
+};
+
+// Timer10 PWM, LCD power and backlight enable use standard drivers.
+
+&{/} {
+	target-module@48086000 {
+		compatible = "ti,sysc-omap2-timer", "ti,sysc";
+		reg = <0x48086000 4>, <0x48086010 4>, <0x48086014 4>;
+		reg-names = "rev", "sysc", "syss";
+		ti,no-reset-on-init;
+		ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
+						 SYSC_OMAP2_EMUFREE |
+						 SYSC_OMAP2_ENAWAKEUP |
+						 SYSC_OMAP2_SOFTRESET |
+						 SYSC_OMAP2_AUTOIDLE)>;
+		ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+						<SYSC_IDLE_SMART>;
+		ti,syss-mask = <1>;
+		clocks = <&l4_per_clkctrl OMAP4_TIMER10_CLKCTRL 0>;
+		clock-names = "fck";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges = <0 0x48086000 0x1000>;
+
+		perrier_timer10: timer@0 {
+			compatible = "ti,omap3430-timer";
+			reg = <0 0x80>;
+			clocks = <&l4_per_clkctrl OMAP4_TIMER10_CLKCTRL 24>,
+					 <&sys_clkin_ck>;
+			clock-names = "fck", "timer_sys_ck";
+			interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
+			ti,timer-pwm;
+		};
+	};
+
+	perrier_pwm10: pwm-backlight-timer {
+		compatible = "ti,omap-dmtimer-pwm";
+		ti,timers = <&perrier_timer10>;
+		#pwm-cells = <3>;
+	};
+
+	perrier_backlight: backlight {
+		compatible = "pwm-backlight";
+		pinctrl-names = "default";
+		pinctrl-0 = <&perrier_backlight_pwm_pin &perrier_backlight_enable_pin>;
+		power-supply = <&perrier_backlight_5v>;
+		enable-gpios = <&perrier_gpio5 23 GPIO_ACTIVE_HIGH>;
+		pwms = <&perrier_pwm10 0 50000 0>;
+		brightness-levels = <0 64 128 192 255>;
+		default-brightness-level = <4>;
+	};
+};
+
+
+
+// OMAP4 matrix keypad for the three front keys.
+// Keypad pinmux ownership is a remaining board-support follow-up.
+
+&{/} {
+	target-module@4a31c000 {
+		compatible = "ti,sysc-omap4", "ti,sysc";
+		reg = <0x4a31c000 4>, <0x4a31c010 4>, <0x4a31c014 4>;
+		reg-names = "rev", "sysc", "syss";
+		ti,no-reset-on-init;
+		ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
+						 SYSC_OMAP2_EMUFREE |
+						 SYSC_OMAP2_ENAWAKEUP |
+						 SYSC_OMAP2_SOFTRESET |
+						 SYSC_OMAP2_AUTOIDLE)>;
+		ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+						<SYSC_IDLE_SMART>;
+		ti,syss-mask = <1>;
+		clocks = <&l4_wkup_clkctrl OMAP4_KBD_CLKCTRL 0>;
+		clock-names = "fck";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges = <0 0x4a31c000 0x1000>;
+
+		perrier_keypad: keypad@0 {
+			compatible = "ti,omap4-keypad";
+			reg = <0 0x80>;
+			reg-names = "mpu";
+			interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
+			keypad,num-rows = <2>;
+			keypad,num-columns = <6>;
+			linux,keymap = <MATRIX_KEY(0, 4, KEY_VOLUMEDOWN)
+							MATRIX_KEY(1, 4, KEY_MUTE)
+							MATRIX_KEY(1, 5, KEY_VOLUMEUP)>;
+		};
+	};
+};
+
+// TMP102 board sensor and OMAP4460 MPU bandgap sensor.
+
+&perrier_i2c3 {
+	// Stock firmware binds tmp102 at I2C3 address 0x48. No supply, alert
+	// GPIO, or pinmux is specified; only its volatile conversion setup is
+	// changed by the mainline hwmon driver.
+	temperature-sensor@48 {
+		compatible = "ti,tmp102";
+		reg = <0x48>;
+		label = "Board";
+	};
+};
+
+&{/} {
+	// The generic /ocp bus remains disabled. Describe only GPIO3, which
+	// provides the bandgap TSHUT input, with the same no-reset pattern as
+	// the working GPIO4/5/6 modules. No pinctrl state or output is defined.
+	target-module@48057000 {
+		compatible = "ti,sysc-omap2", "ti,sysc";
+		reg = <0x48057000 4>, <0x48057010 4>, <0x48057114 4>;
+		reg-names = "rev", "sysc", "syss";
+		ti,no-reset-on-init;
+		ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
+						 SYSC_OMAP2_SOFTRESET |
+						 SYSC_OMAP2_AUTOIDLE)>;
+		ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+						<SYSC_IDLE_SMART>, <SYSC_IDLE_SMART_WKUP>;
+		ti,syss-mask = <1>;
+		clocks = <&l4_per_clkctrl OMAP4_GPIO3_CLKCTRL 0>,
+				 <&l4_per_clkctrl OMAP4_GPIO3_CLKCTRL 8>;
+		clock-names = "fck", "dbclk";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges = <0 0x48057000 0x1000>;
+		perrier_gpio3: gpio@0 {
+			compatible = "ti,omap4-gpio";
+			reg = <0 0x200>;
+			interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+		};
+	};
+
+	perrier_bandgap: bandgap@4a002260 {
+		compatible = "ti,omap4460-bandgap";
+		reg = <0x4a002260 0x4>, <0x4a00232c 0x4>, <0x4a002378 0x18>;
+		interrupts = <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>;
+		// Mainline requests GPIO86 as an input for over-temperature TSHUT.
+		gpios = <&perrier_gpio3 22 GPIO_ACTIVE_HIGH>;
+		#thermal-sensor-cells = <0>;
+	};
+};
+
+&{/thermal-zones} { status = "okay"; };
+&cpu_thermal {
+	thermal-sensors = <&perrier_bandgap>;
+	// CPU frequency scaling is intentionally disabled in RAM trials.
+	/delete-node/ cooling-maps;
+};
+
+// Cold-start recovery using the mainline OMAP WDT2 driver.
+
+&{/} {
+	// The legacy /ocp hierarchy stays disabled. Match the upstream OMAP4
+	// WDT2 target description at its physical address. Preserve a timer
+	// inherited through kexec until omap_wdt deliberately takes ownership.
+	target-module@4a314000 {
+		compatible = "ti,sysc-omap2", "ti,sysc";
+		reg = <0x4a314000 4>, <0x4a314010 4>, <0x4a314014 4>;
+		reg-names = "rev", "sysc", "syss";
+		ti,no-reset-on-init;
+		ti,no-idle-on-init;
+		ti,sysc-mask = <(SYSC_OMAP2_EMUFREE | SYSC_OMAP2_SOFTRESET)>;
+		ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+						<SYSC_IDLE_SMART>, <SYSC_IDLE_SMART_WKUP>;
+		ti,syss-mask = <1>;
+		clocks = <&l4_wkup_clkctrl OMAP4_WD_TIMER2_CLKCTRL 0>;
+		clock-names = "fck";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges = <0 0x4a314000 0x1000>;
+		watchdog@0 {
+			compatible = "ti,omap4-wdt", "ti,omap3-wdt";
+			reg = <0 0x80>;
+			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+			timeout-sec = <120>;
+		};
+	};
+};
+
+// Ethernet cold-start settings verified from this unit's stock board code
+// and pad/clock readback in perrier-stock-coldinit-gpio-clock-2026-11-10.txt.
+
+&{/} {
+	// The legacy /ocp pin controller is not populated. This controller owns
+	// only the explicitly requested board pads; it has no default state.
+	perrier_core_pins: pinctrl@4a100040 {
+		compatible = "pinctrl-single";
+		reg = <0x4a100040 0x196>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		#pinctrl-cells = <1>;
+		pinctrl-single,register-width = <16>;
+		pinctrl-single,function-mask = <0x7fff>;
+
+		perrier_ethernet_phy_pins: ethernet-phy-pins {
+				pinctrl-single,pins = <
+					// ULPI CLK, input/pulldown, mode 4
+					OMAP4_IOPAD(0x0c2, 0x010c)
+					OMAP4_IOPAD(0x0c4, 0x0004) // ULPI STP, output, mode 4
+					OMAP4_IOPAD(0x0c6, 0x010c) // ULPI DIR
+					OMAP4_IOPAD(0x0c8, 0x010c) // ULPI NXT
+					OMAP4_IOPAD(0x0ca, 0x010c) // ULPI DAT0
+					OMAP4_IOPAD(0x0cc, 0x010c) // ULPI DAT1
+					OMAP4_IOPAD(0x0ce, 0x010c) // ULPI DAT2
+					OMAP4_IOPAD(0x0d0, 0x010c) // ULPI DAT3
+					OMAP4_IOPAD(0x0d2, 0x010c) // ULPI DAT4
+					OMAP4_IOPAD(0x0d4, 0x010c) // ULPI DAT5
+					OMAP4_IOPAD(0x0d6, 0x010c) // ULPI DAT6
+					OMAP4_IOPAD(0x0d8, 0x010c) // ULPI DAT7
+					// GPIO110 USB PHY reset, output mode 3
+					OMAP4_IOPAD(0x0f6, 0x0003)
+					// FREF_CLK1_OUT, stock mode 0/pullup
+					OMAP4_IOPAD(0x19a, 0x0118)
+				>;
+		};
+
+		perrier_lan_reset_pin: lan-reset-pins {
+			pinctrl-single,pins = <OMAP4_IOPAD(0x162, 0x0003)>;
+		};
+	};
+
+	perrier_usb_phy: usb-phy {
+		compatible = "usb-nop-xceiv";
+		#phy-cells = <0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&perrier_ethernet_phy_pins>;
+		reset-gpios = <&perrier_gpio4 14 GPIO_ACTIVE_LOW>; // GPIO110, stock high = released
+		clocks = <&auxclk1_ck>;
+		clock-names = "main_clk";
+		clock-frequency = <19200000>;
+		// Select the same fixed 38.4 MHz parent as stock, then divide by 2.
+		// No shared DPLL is reprogrammed.
+		assigned-clocks = <&auxclk1_src_ck>;
+		assigned-clock-parents = <&sys_clkin_ck>;
+	};
+};
+
+&perrier_gpio5 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&perrier_lan_reset_pin>;
+	lan-reset-hog {
+		gpio-hog;
+		gpios = <30 GPIO_ACTIVE_HIGH>; // GPIO158, stock output high
+		output-high;
+		line-name = "lan-reset-released";
+	};
+};
+
+&{/target-module@4a064000/usbhshost@0/usb@c00} {
+	phys = <&perrier_usb_phy>;
+};
+
+// Stock perrier_init, idefix_touch_init and live stock pinmux readback.
+
+&perrier_core_pins {
+	perrier_backlight_5v_pin: backlight-5v-pin {
+		pinctrl-single,pins = <OMAP4_IOPAD(0x160, 0x0003)>;
+	};
+	perrier_backlight_pwm_pin: backlight-pwm-pin {
+		pinctrl-single,pins = <OMAP4_IOPAD(0x1d2, 0x0001)>;
+	};
+	perrier_backlight_enable_pin: backlight-enable-pin {
+		// Stock idefix_backlight_set_pad uses GPIO151, MCSPI4_CLK at 0x154.
+		// 0x156 in the historical inspector was MCSPI4_SIMO, a different pad.
+		pinctrl-single,pins = <OMAP4_IOPAD(0x154, 0x0003)>;
+	};
+	perrier_touch_5v_pin: touch-5v-pin {
+		pinctrl-single,pins = <OMAP4_IOPAD(0x112, 0x0003)>;
+	};
+	perrier_touch_3v3_pin: touch-3v3-pin {
+		pinctrl-single,pins = <OMAP4_IOPAD(0x114, 0x0003)>;
+	};
+	perrier_touch_pins: touch-pins {
+		pinctrl-single,pins = <
+			OMAP4_IOPAD(0x140, 0x0003) // GPIO141 reset output
+			OMAP4_IOPAD(0x142, 0x731b) // GPIO142 IRQ input/pull-up/off wake
+		>;
+	};
+	perrier_touch_i2c_pins: touch-i2c-pins {
+		pinctrl-single,pins = <
+			OMAP4_IOPAD(0x126, 0x0100)
+			OMAP4_IOPAD(0x128, 0x0100)
+		>;
+	};
+};
+
+&{/} {
+	perrier_backlight_5v: regulator-backlight-5v {
+		compatible = "regulator-fixed";
+		regulator-name = "perrier-backlight-5v";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&perrier_backlight_5v_pin>;
+		gpio = <&perrier_gpio5 29 GPIO_ACTIVE_HIGH>; // GPIO157 lcd_5v_enable
+		enable-active-high;
+		// Stock enables 5 V and waits 11 ms before programming timer10.
+		startup-delay-us = <11000>;
+	};
+	perrier_touch_5v: regulator-touch-5v {
+		compatible = "regulator-fixed";
+		regulator-name = "perrier-touch-5v";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&perrier_touch_5v_pin>;
+		gpio = <&perrier_gpio4 24 GPIO_ACTIVE_HIGH>; // stock tp_5v_en GPIO120
+		enable-active-high;
+	};
+	perrier_touch_3v3: regulator-touch-3v3 {
+		compatible = "regulator-fixed";
+		regulator-name = "perrier-touch-3v3";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&perrier_touch_3v3_pin>;
+		gpio = <&perrier_gpio4 25 GPIO_ACTIVE_HIGH>; // stock tp_3v3_en GPIO121
+		enable-active-high;
+	};
+};

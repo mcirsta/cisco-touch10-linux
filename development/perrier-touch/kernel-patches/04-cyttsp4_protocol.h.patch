@@ -1,0 +1,151 @@
+--- /dev/null
++++ b/drivers/input/touchscreen/cyttsp4_protocol.h
+@@ -0,0 +1,148 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/* Gen4 descriptors and records, following Linux v6.10 cyttsp4_core.[ch]. */
++#ifndef _CYTTSP4_PROTOCOL_H
++#define _CYTTSP4_PROTOCOL_H
++
++#include <linux/errno.h>
++#include <linux/types.h>
++
++#define CY4_MAP_SIZE 256
++#define CY4_MAX_CONTACTS 10
++#define CY4_FIELDS 7
++
++enum cy4_field_id { CY4_X, CY4_Y, CY4_PRESSURE, CY4_ID, CY4_EVENT,
++		    CY4_OBJECT, CY4_WIDTH };
++
++struct cy4_field {
++	u8 offset, bytes, shift, bits;
++};
++
++struct cy4_layout {
++	u16 max_x, max_y, product;
++	u8 fw_major, fw_minor;
++	u8 report_offset, status_offset, record_size, max_contacts;
++	u16 frame_size;
++	struct cy4_field fields[CY4_FIELDS];
++};
++
++struct cy4_contact {
++	u16 x, y, pressure, width;
++	u8 id;
++};
++
++static inline unsigned int cy4_be16(const u8 *p)
++{
++	return (unsigned int)p[0] << 8 | p[1];
++}
++
++static inline unsigned int cy4_field_value(const struct cy4_field *f,
++					   const u8 *record)
++{
++	unsigned int value = 0, i;
++
++	for (i = 0; i < f->bytes; i++)
++		value = value << 8 | record[f->offset + i];
++	return (value >> f->shift) & ((1U << f->bits) - 1);
++}
++
++static inline int cy4_parse_sysinfo(const u8 *data, size_t len,
++				  struct cy4_layout *layout)
++{
++	unsigned int map_size, cydata, test, panel, opcfg, ddata, mdata, i;
++	const u8 *op;
++
++	if (len < 16 || (data[0] & 0x7f) != 0x10)
++		return -EPROTO;
++	map_size = cy4_be16(data + 2);
++	cydata = cy4_be16(data + 4);
++	test = cy4_be16(data + 6);
++	panel = cy4_be16(data + 8);
++	opcfg = cy4_be16(data + 10);
++	ddata = cy4_be16(data + 12);
++	mdata = cy4_be16(data + 14);
++	if (map_size > len || map_size > CY4_MAP_SIZE || cydata < 16 ||
++	    cydata + 4 > test || test > panel || panel + 12 > opcfg ||
++	    opcfg + 23 > ddata || ddata > mdata || mdata > map_size)
++		return -EPROTO;
++	op = data + opcfg;
++	layout->product = cy4_be16(data + cydata);
++	layout->fw_major = data[cydata + 2];
++	layout->fw_minor = data[cydata + 3];
++	layout->max_x = cy4_be16(data + panel + 6) & 0x7fff;
++	layout->max_y = cy4_be16(data + panel + 8) & 0x7fff;
++	layout->report_offset = op[1];
++	layout->status_offset = op[5];
++	layout->max_contacts = op[7] & 0x1f;
++	layout->record_size = op[8] & 0x1f;
++	layout->frame_size = layout->status_offset + 1 +
++		layout->max_contacts * layout->record_size;
++	if (!layout->max_x || !layout->max_y || !layout->max_contacts ||
++	    layout->max_contacts > CY4_MAX_CONTACTS || !layout->record_size ||
++	    layout->report_offset < 1 || op[4] ||
++	    layout->status_offset != layout->report_offset + 2 ||
++	    layout->frame_size > CY4_MAP_SIZE ||
++	    cy4_be16(op + 2) != layout->frame_size - layout->report_offset)
++		return -EPROTO;
++	for (i = 0; i < CY4_FIELDS; i++) {
++		struct cy4_field *f = &layout->fields[i];
++
++		f->offset = op[9 + 2 * i] & 0x1f;
++		f->shift = op[9 + 2 * i] >> 5;
++		f->bits = op[10 + 2 * i];
++		f->bytes = (f->bits + 7) / 8;
++		if (f->bits > 16 || f->offset + f->bytes > layout->record_size ||
++		    (f->bytes > 1 && f->shift) ||
++		    (f->bytes == 1 && f->bits + f->shift > 8))
++			return -EPROTO;
++	}
++	if (!layout->fields[CY4_X].bits || !layout->fields[CY4_Y].bits ||
++	    !layout->fields[CY4_ID].bits || layout->fields[CY4_ID].bits > 5 ||
++	    layout->fields[CY4_EVENT].bits != 2 ||
++	    layout->fields[CY4_PRESSURE].bits > 8 ||
++	    layout->fields[CY4_WIDTH].bits > 8)
++		return -EPROTO;
++	return 0;
++}
++
++/* Validate the whole frame before publishing any contacts to input core. */
++static inline int cy4_parse_report(const struct cy4_layout *layout,
++				 const u8 *data, size_t len,
++				 struct cy4_contact *contacts)
++{
++	unsigned int count, i, active = 0, ids = 0;
++
++	if (len <= layout->status_offset || (data[0] & 0x7f))
++		return -EPROTO;
++	count = data[layout->status_offset] & 0x1f;
++	if (count > layout->max_contacts ||
++	    len < layout->status_offset + 1 + count * layout->record_size ||
++	    data[layout->report_offset] != 2 + count * layout->record_size ||
++	    (data[layout->report_offset + 1] & 0x20))
++		return -EPROTO;
++	/* A large-area/palm report releases the previous contacts. */
++	if (data[layout->status_offset] & 0x20)
++		return 0;
++	for (i = 0; i < count; i++) {
++		const u8 *p = data + layout->status_offset + 1 + i * layout->record_size;
++		unsigned int id = cy4_field_value(&layout->fields[CY4_ID], p);
++		struct cy4_contact *c = &contacts[active];
++
++		if (ids & (1U << id))
++			return -EPROTO;
++		ids |= 1U << id;
++		if (cy4_field_value(&layout->fields[CY4_EVENT], p) == 3)
++			continue;
++		if (cy4_field_value(&layout->fields[CY4_OBJECT], p))
++			return -EPROTO;
++		c->id = id;
++		c->x = cy4_field_value(&layout->fields[CY4_X], p);
++		c->y = cy4_field_value(&layout->fields[CY4_Y], p);
++		c->pressure = cy4_field_value(&layout->fields[CY4_PRESSURE], p);
++		c->width = cy4_field_value(&layout->fields[CY4_WIDTH], p);
++		if (c->x >= layout->max_x || c->y >= layout->max_y)
++			return -EPROTO;
++		active++;
++	}
++	return active;
++}
++#endif

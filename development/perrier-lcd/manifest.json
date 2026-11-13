@@ -1,0 +1,39 @@
+{
+  "kernel": "6.18.48-perrier-ram19",
+  "source_sha256": "5ebdadb10a4b5708fc6b1c457764a110bc49f8150cc3502c59b921ead8c6fc8c",
+  "source_signature_key": "647F28654894E3BD457199BE38DBBDC86092693E",
+  "files": {
+    "development/perrier-lcd/build/arch/arm/boot/zImage": {
+      "size": 3238080,
+      "sha256": "0017a5c3c31859c80edeae545b69659879cdd9bf91e1ea4cbf55780cce14d7df"
+    },
+    "development/perrier-lcd/build/vmlinux": {
+      "size": 7395212,
+      "sha256": "5b715484ffbac4fdb9e6e0a35659bdded9d6ac87f61ef63f22f1629cec0787c4"
+    },
+    "development/perrier-lcd/build/System.map": {
+      "size": 840580,
+      "sha256": "26da67974c01b773bf6f52da2924b82ee6e150cc22bc5c94a1e5df4b6974fbe4"
+    },
+    "development/perrier-lcd/build/.config": {
+      "size": 66510,
+      "sha256": "b00a65a9441bf9557085bff549263ca3d3b413e94c1c77ca09279addfdda5d2a"
+    },
+    "development/perrier-lcd/build/omap4-perrier-ram.dtb": {
+      "size": 88461,
+      "sha256": "285f5b850f4e4ab4d726880946f287cf987e770894556e394bcc47f11ea39e34"
+    },
+    "development/perrier-lcd/initramfs.cpio": {
+      "size": 2032632,
+      "sha256": "42c4d4186712e632cb65c17c8af2cc236de219bbb996174d59fdc48a1fadf62c"
+    },
+    "development/perrier-lcd/init": {
+      "size": 1112472,
+      "sha256": "fb7ed7b92b565f81797e6d68a4b3bc3b9ea97ab333d0cbf70ceab12cc5de7cbb"
+    },
+    "development/perrier-lcd/kms-probe": {
+      "size": 918624,
+      "sha256": "2f210db37560d2aeae56225975f401a130e3289df999e9d7c75d508aa312c733"
+    }
+  }
+}

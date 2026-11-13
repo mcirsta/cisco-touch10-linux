@@ -1,0 +1,53 @@
+{
+  "validated_at": "2026-11-13T11:28:38.609+00:00",
+  "status": "passed",
+  "profile": "thermal-policy",
+  "kernel": "6.18.48-perrier-ram110",
+  "scope": "One U-Boot RAM boot of frozen ram110 with only two CPU thermal trip values changed in the DTB",
+  "observations": {
+    "mainline_mpu_clock_hz": 700000000,
+    "cpu0_and_cpu1_online": true,
+    "cpu_passive_trip_millicelsius": 85000,
+    "cpu_critical_trip_millicelsius": 95000,
+    "idle_cpu_temperature_millicelsius": 54055,
+    "dual_core_load_seconds": 45,
+    "dual_core_load_peak_millicelsius": 61873,
+    "cpu_temperature_after_load_millicelsius": 58099,
+    "likely_mpu_ina_channel_millivolts": 1208,
+    "likely_core_ina_channel_millivolts": 1128,
+    "rails_stable_at_every_load_sample": true,
+    "watchdog_feeding_and_nowayout": true,
+    "emmc_readonly_in_ram": true,
+    "qt_started_without_display_cycle": true,
+    "factory_p8_restored_before_ram_userspace": true,
+    "factory_p8_restored_after_recovery": true,
+    "stock_kernel_and_phoenix_recovered": true,
+    "adc_postflight_passed": true
+  },
+  "limits": [
+    "This was one short boot and 45-second load, not a long-duration thermal or undervolt qualification.",
+    "The passive 85 C trip has no cooling map while CPUfreq is disabled; the critical 95 C trip requests shutdown.",
+    "No PMIC voltage transition, CPU frequency transition, thermal shutdown or hardware watchdog expiry was tested.",
+    "The INA channel-to-rail assignments remain high-confidence software evidence without physical net tracing."
+  ],
+  "recovery_elapsed_seconds": 36.7,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "candidate_unseeded_dtb_sha256": "9119d90b8595cddd74ff1e741103c5eb49aab22f2765c7ad223d20f27ee73e01",
+  "evidence": {
+    "runner_result": {
+      "path": "development/runs/20261113T112432Z-uboot-ram110-f442de/result.json",
+      "sha256": "c5ca5f087f681e8f41189aa6664eedc6432889864e1a78fcc0fecda77c315929"
+    },
+    "initial_observation": {
+      "path": "development/runs/20261113T112432Z-uboot-ram110-f442de/thermal-initial.log",
+      "sha256": "6a5a0b0fc8191ed5828809d927c0dc8ba0e4b242bc4659121fcbdd94436d8ce3"
+    },
+    "dual_core_load": {
+      "path": "development/runs/20261113T112432Z-uboot-ram110-f442de/thermal-load.log",
+      "sha256": "9e8c1a0a585e494e7f316b360cf50ec2067ccd80484b92ca0527887369b7e2be"
+    },
+    "offline_thermal_review": {
+      "path": "development/kernel/power/out/review.json"
+    }
+  }
+}

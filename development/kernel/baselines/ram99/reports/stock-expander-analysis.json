@@ -1,0 +1,29 @@
+{
+  "stock_kernel": "CE9.9.0 3.4.113+",
+  "board_info_records": [
+    "0xc074da18",
+    "0xc074db88"
+  ],
+  "address": 36,
+  "driver": "pcf8574",
+  "platform_data": [
+    {
+      "address": "0xc07ae060",
+      "gpio_base": 256,
+      "initial_low_latch_mask": 0,
+      "setup_callback": 0
+    },
+    {
+      "address": "0xc07aee94",
+      "gpio_base": 256,
+      "initial_low_latch_mask": 0,
+      "setup_callback": 0
+    }
+  ],
+  "driver_probe": "0xc021ab88",
+  "stock_probe_latch": "software shadow ~n_latch, no output writes before optional setup; setup is NULL",
+  "current_port_read": "0x11",
+  "port_read_does_not_establish_physical_pin_direction": true,
+  "mainline_probe_and_asis_reads": "read transactions only",
+  "new_shutdown_retention": "opt-in bool skips the generic all-high write; no reset GPIO, line hogs, direction, drive or bias changes"
+}

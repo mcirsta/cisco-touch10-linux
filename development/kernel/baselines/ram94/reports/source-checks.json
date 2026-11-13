@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "patch_style": {
+    "0001-dt-bindings-cyttsp4-perrier.patch": true,
+    "0002-input-restore-cyttsp4-dt.patch": true,
+    "0003-drm-omap-pll-search.patch": true,
+    "0004-drm-omap-dsi-host.patch": true,
+    "0005-drm-bridge-tc358765.patch": true,
+    "0007-arm-dts-cisco-perrier.patch": true,
+    "ram-only/0001-perrier-ram-safety.patch": true
+  },
+  "binding_schema_valid": true,
+  "actual_touch_node_schema_valid": true,
+  "actual_led_nodes_schema_valid": true,
+  "schema_tools": {
+    "dt-doc-validate": "/home/marius/ext_proj/touch10/development/kernel/.venv-dtschema/bin/dt-doc-validate",
+    "dt-mk-schema": "/home/marius/ext_proj/touch10/development/kernel/.venv-dtschema/bin/dt-mk-schema",
+    "dt-validate": "/home/marius/ext_proj/touch10/development/kernel/.venv-dtschema/bin/dt-validate"
+  },
+  "scope": "Perrier touchscreen binding/node and mainline GPIO LEDs; not full board schema",
+  "source_manifest_sha256": "c172b3a7521739b39145b4e5a930cf0f57e605a18b3c79da3ba0d55ec2ad399d",
+  "board_dtb_sha256": "8a45596111dbb04f732aca78edc2872b3e05b14ab6ef83992b6e5bfc34a63c43"
+}

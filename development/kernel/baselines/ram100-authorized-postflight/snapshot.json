@@ -1,0 +1,25 @@
+{
+  "purpose": "Authorized and verified ram100 ADC postflight supplement",
+  "kernel": "6.18.48-perrier-ram100",
+  "scope": "Exact three ADC sensing controls restored; same approved cleanup for future ADC RAM tests",
+  "original_source_snapshot_preserved": "baselines/ram100",
+  "initial_reviewed_postflight_preserved": "baselines/ram100-postflight",
+  "run": "development/runs/20261112T114853Z-uboot-ram100-ec4b18",
+  "files": {
+    "AGENTS.md": "ed3cd77f14a039c1998422073b03c2ccad2773ef09f2ccb8293338a650edc20f",
+    "tools/touch10_uboot.py": "ee6dcf8ca60e8a3eb17d33fc0447064e63075c271f8ca9bb874a47508f52a394",
+    "development/kernel/record_validation.py": "9cd0d4e7f0ecd58a38bfadc700aeded2753a1f0283c0d0f3cecf4fa3b67eda92",
+    "development/kernel/diagnostics/restore_adc_measurements.c": "b04ef7b417bfffc48e4a3884c99b818c9941be36cb77ad77ed7d45c39aa83d94",
+    "development/kernel/diagnostics/check_native_stock.py": "226cd69370632e81dfb288acf08a0b5e07e2b49ba0cdb73b21d12765688b44e0",
+    "development/kernel/diagnostics/check_native_diagnostics.py": "21319c9702939e110659dc196db137a095681745acd909c488ceafaeaa573d0d",
+    "development/kernel/diagnostics/pmu_event_matrix.c": "2e2960f063e76e8e30fc4a74cafdbc4afafa856704a2aa680775b1a2d6739efc",
+    "development/kernel/out/native-diagnostics/restore-adc-measurements": "921a877fcbb0b1f9a711d1c22d5b8db6cabf39df70c8cab96e400a3942cbc6e6",
+    "development/kernel/out/native-diagnostics/restore-offline-check.json": "802d6ad6149b656afd01586a068dccbd3840a1425bcad97d3e5ff8d5cc19101f",
+    "development/kernel/out/native-diagnostics/adc-postflight-authorization.json": "68a6480859cdaf373d4983e7cd70a547a1600e1656b527be000820314c87cd2d",
+    "development/kernel/out/native-diagnostics/postflight-resolution.json": "e87b764695638ac545a2526cd56ea21febb0782cf5802f7e2bac3a6fed1eeed3",
+    "verified-results/diagnostics-adc-restore.log": "a0330872041173e65d768203368537e984528c4495ddfe3e818c683a299c9961",
+    "verified-results/diagnostics-stock-checks.json": "71a8aa5e5bad6cab33d79ea81ff52652bbe6d0df6f8361cddfc3146f46a2f2b5",
+    "verified-results/stock-audio-checks.json": "c7a9b46284cfe9aedeac29ce2e8d26f19706ee6789bcb4837b4cdd27f3d153e2",
+    "verified-results/diagnostics-final-checks.json": "711497298ab2be864c8ab480b8878035e75696fd422a50352af3650db173d953"
+  }
+}

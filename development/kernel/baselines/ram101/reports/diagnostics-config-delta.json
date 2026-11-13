@@ -1,0 +1,38 @@
+{
+  "CONFIG_ARM_PMU": [
+    null,
+    "y"
+  ],
+  "CONFIG_ARM_V7_PMU": [
+    null,
+    "y"
+  ],
+  "CONFIG_HAVE_HW_BREAKPOINT": [
+    null,
+    "y"
+  ],
+  "CONFIG_HW_PERF_EVENTS": [
+    null,
+    "y"
+  ],
+  "CONFIG_IIO": [
+    null,
+    "y"
+  ],
+  "CONFIG_INITRAMFS_SOURCE": [
+    "\"/home/marius/ext_proj/touch10/development/perrier-ramenv/speaker-audio/initramfs.cpio\"",
+    "\"/home/marius/ext_proj/touch10/development/perrier-ramenv/native-diagnostics/initramfs.cpio\""
+  ],
+  "CONFIG_LOCALVERSION": [
+    "\"-perrier-ram99\"",
+    "\"-perrier-ram100\""
+  ],
+  "CONFIG_PERF_EVENTS": [
+    null,
+    "y"
+  ],
+  "CONFIG_TWL6030_GPADC": [
+    null,
+    "y"
+  ]
+}

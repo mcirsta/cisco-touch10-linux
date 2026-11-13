@@ -1,0 +1,5 @@
+0001-dt-bindings-cyttsp4-perrier.patch
+0002-input-restore-cyttsp4-dt.patch
+0003-drm-omap-perrier-display.patch
+0004-arm-dts-cisco-perrier.patch
+ram-only/0001-perrier-ram-safety.patch

@@ -1,0 +1,139 @@
+{
+  "kernel": "6.18.48-perrier-ram111",
+  "profile": "smps1-observe",
+  "artifacts": {
+    "zImage": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/smps1-observe/kernel-build/arch/arm/boot/zImage",
+      "size": 18028392,
+      "sha256": "0847f8faa057f286056c1d903947ca1e6c85e6640f0339694e4182490f4869f5"
+    },
+    "board.dtb": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/smps1-observe/board.dtb",
+      "size": 94978,
+      "sha256": "9da3b2094189c4307ce843d865cc0251f3f1a8c099159bc66cd4236a840d8f8b"
+    },
+    "kexec": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier/kexec-legacy-fdt",
+      "size": 1660848,
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6"
+    }
+  },
+  "inputs": {
+    "baseline_review": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/smp-boot-two/reviewed-image.json",
+      "sha256": "5dea6858644cc7c91cedcf8053a2e97696516946a6567373804ef83613bb9626"
+    },
+    "watchdog_proof": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-watchdog/watchdog-proof.json",
+      "sha256": "3f23c890d5d390efa07fd63dd6c4231d0aa0fa0e6f84687e2b82e3a9203f36cf"
+    },
+    "confirmed_baseline": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/validation-ram110-extended.json",
+      "sha256": "645ad032ced1a9cb6b55701683913fab234175c560ae6faf02d8430d99c294fa"
+    },
+    "qt_app_source": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/main.cpp",
+      "sha256": "9fc6e7f536174e021301d350c7fbe80abf2646fb51ed55af9fb6e4995ba38a55"
+    },
+    "qt_ui_source": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/Main.qml",
+      "sha256": "7e38de561b52f26b6aac8270ee0ec8d7567c1910e3fa5f1044d2f5cdf215b3b5"
+    },
+    "qt_audio_source": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/audio_backend.cpp",
+      "sha256": "96cdb2ea9e10570d0e33dd80ca27cddc5444acca0c1d9913695c2ab793338bef"
+    },
+    "qt_audio_header": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/audio_backend.h",
+      "sha256": "766e720d9a4d4e7fe9244dbef0b53a6b435a61019f4b2162ada8a7ca06aef936"
+    },
+    "qt_pcm_setup": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/pcm_setup.h",
+      "sha256": "ae553591dfbe272ee580041c1089964e703b5e1700268960ead3a276a55f3afa"
+    },
+    "alsa_config": {
+      "path": "/home/marius/ext_proj/touch10/development/audio/asound-mix.conf",
+      "sha256": "c0f0b990860bd7bd5b42dbef97b2a608e98a3d3e7cf42bbdd94891cbd6a6ed65"
+    },
+    "alsa_library": {
+      "path": "/home/marius/ext_proj/touch10/development/audio/shared-install/libasound-dmix.so.2",
+      "sha256": "e01c0a218e51b28af78f160758171582df1c560c5d6b0b2e4f2f4e6b0deb885a"
+    },
+    "alsa_build_script": {
+      "path": "/home/marius/ext_proj/touch10/development/audio/build_dmix_lib.py",
+      "sha256": "9bbf29ae888ec7879e5dbd8063e8335c6bc3ed7a059303887ee556a2eb895e4b"
+    },
+    "alsa_build_record": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/out/application-audio/dmix-build.json",
+      "sha256": "49b9a5a36dce8de307df1f6b075639ca80973dd4fed29000f1cbf572b6a74c81"
+    },
+    "alsa_live_record": {
+      "path": "/home/marius/ext_proj/touch10/development/audio/shared-playback.md",
+      "sha256": "56976baecdd31658301842afafb03a5a06121a9e1151cfbad4bec6a7544b5e0f"
+    },
+    "qt_runtime_manifest": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/runtime-manifest.json",
+      "sha256": "171e52d63cdf2903d5441d1ea491a59809ffd5b5dddc14166ba13f12ae5f4d34"
+    },
+    "dhcp_apply_script": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/network/dhcp-apply-route-dns.sh",
+      "sha256": "644b43fc60bbbed4979f487690e3dcd5896cae0fdf0517a70a7420d5f91938d3"
+    },
+    "dhcp_script_test": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/network/test_dhcp_apply.py",
+      "sha256": "606b11426f373fc54491b479131f6db0a5fa09ca691c7d62430234147b6f7112"
+    },
+    "test_lan_policy": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/network/isolated-dhcp-policy.json",
+      "sha256": "677f17b65fd2d8c478ae1fae9c5219a91c964b2e0e9278f1aef0225c887f800b"
+    },
+    "source_manifest": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/patches/manifest.json",
+      "sha256": "22c8edb7b0464e842e536c6ec3110a1f92af35092ff24dd94240993c296c17ba"
+    },
+    "ram_config": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/configs/perrier-ram111.config",
+      "sha256": "223d071f48327afd5ae74e2b912f04dde5f777f0a8289a5ff21e25952d854f01"
+    },
+    "boot_two_config_delta": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/configs/cpu1-boot-two-config-delta.json",
+      "sha256": "f2bf21886a24094cbe80d296275996cb4fa14cc37edf94c151598bdb0488b3fd"
+    },
+    "bus_policy": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/configs/bus-layout.json",
+      "sha256": "ec657b0890c3a1dd6491ba7e52605ac20e785aa3452151e61493f3c01de01a19"
+    },
+    "diagnostics_policy": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/configs/diagnostics-layout.json",
+      "sha256": "7c7c1a6d1ab218597cd2827edd8a54376280cf5e7c5972e554d7e92b75483035"
+    },
+    "hardware_dtsi": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/source/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier.dtsi",
+      "sha256": "edc09174b12bcb9fa0f172a1c38ea3f0b3231bcb8bd2c78de400c1925767c6b9"
+    },
+    "ram_dts": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/source/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier-ram.dts",
+      "sha256": "ceae3e009f5cfea0ffcbc5681f0fdf826a33740efdca517870022a7edcfc2287"
+    },
+    "mailbox_ram_dts": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/source/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier-mailbox-ram.dts",
+      "sha256": "397c96603e2d8442fce2bbd3eef5520ccfe1a3cec1f252e0ab3d7476ea5c5193"
+    }
+  },
+  "rootfs_manifest_sha256": "07593a02d5f5d59b9d85f4a2ea37a86aec3ef7e43edfe45773911794cde45774",
+  "initramfs_sha256": "fdc4ca878fc1524687d615327f29c3e9a199475ebc69bc401ca21cc464d6a7f4",
+  "kernel_config_sha256": "178fcc2d8114dfac692f1f81ca7ea30111052e18d4b5e2db8ec45a3ca5f0ff12",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "watchdog_backend": "linux-watchdog",
+  "passed": false,
+  "invalidated_reason": "Stock CTL-I2C read of 0x55 was zero while the rail was powered; this observer reads the wrong voltage-control interface and must not be booted.",
+  "live_tested": false,
+  "kernel_span_bytes": 22533800,
+  "changed_rootfs": [
+    "etc/init.d/rcS"
+  ],
+  "board_dtb_only_smps1_node": true,
+  "watchdog_proof_preserved": true,
+  "cpu1_boot_policy_identical_to_ram110": true,
+  "cpu_frequency_and_voltage_writes_disabled": true
+}

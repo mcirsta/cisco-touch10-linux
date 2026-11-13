@@ -1,0 +1,46 @@
+--- a/arch/arm/mach-omap2/omap_twl.c
++++ b/arch/arm/mach-omap2/omap_twl.c
+@@ -14,6 +14,7 @@
+ #include <linux/io.h>
+ #include <linux/kernel.h>
+ #include <linux/mfd/twl.h>
++#include <linux/of.h>
+ 
+ #include "soc.h"
+ #include "voltage.h"
+@@ -35,6 +36,12 @@
+ #define OMAP4_VDD_IVA_SR_CMD_REG	0x5C
+ #define OMAP4_VDD_CORE_SR_VOLT_REG	0x61
+ #define OMAP4_VDD_CORE_SR_CMD_REG	0x62
++
++/* TWL6032 routes the IVA rail through SMPS5 and CORE through SMPS2. */
++#define OMAP4_TWL6032_VDD_IVA_SR_VOLT_REG	0x49
++#define OMAP4_TWL6032_VDD_IVA_SR_CMD_REG	0x4A
++#define OMAP4_TWL6032_VDD_CORE_SR_VOLT_REG	0x5B
++#define OMAP4_TWL6032_VDD_CORE_SR_CMD_REG	0x5C
+ 
+ static bool is_offset_valid;
+ static u8 smps_offset;
+@@ -212,12 +219,22 @@
+ 
+ int __init omap4_twl_init(void)
+ {
++	struct device_node *twl6032;
+ 	struct voltagedomain *voltdm;
+ 
+ 	if (!cpu_is_omap44xx() ||
+ 	    of_find_compatible_node(NULL, NULL, "motorola,cpcap"))
+ 		return -ENODEV;
+ 
++	twl6032 = of_find_compatible_node(NULL, NULL, "ti,twl6032");
++	if (twl6032 && of_device_is_available(twl6032)) {
++		omap4_core_pmic.volt_reg_addr = OMAP4_TWL6032_VDD_CORE_SR_VOLT_REG;
++		omap4_core_pmic.cmd_reg_addr = OMAP4_TWL6032_VDD_CORE_SR_CMD_REG;
++		omap4_iva_pmic.volt_reg_addr = OMAP4_TWL6032_VDD_IVA_SR_VOLT_REG;
++		omap4_iva_pmic.cmd_reg_addr = OMAP4_TWL6032_VDD_IVA_SR_CMD_REG;
++	}
++	of_node_put(twl6032);
++
+ 	voltdm = voltdm_lookup("mpu");
+ 	omap_voltage_register_pmic(voltdm, &omap4_mpu_pmic);
+ 

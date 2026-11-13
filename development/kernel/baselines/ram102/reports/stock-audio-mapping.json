@@ -1,0 +1,41 @@
+{
+  "stock_kernel_sha256": "ba6d9c510b6c4fe864d1f29ccd32d5b36b081169e3b130125bc8d412af3b1e18",
+  "board_init": "0xc07226b4",
+  "platform_device": "0xc07aeb48",
+  "platform_data": "0xc07aeeb8",
+  "platform_data_hex": "fbc260c000020100000100000000000000f82401",
+  "model": "idefix",
+  "connected_features": {
+    "headset_channels": 0,
+    "handsfree_channels": 2,
+    "earpiece": 1,
+    "aux": 0,
+    "vibra": 0,
+    "abe": 1,
+    "dmic": 0,
+    "headset_mic": 0,
+    "main_mic": 0,
+    "sub_mic": 0,
+    "line_in": 0,
+    "jack_detection": 0
+  },
+  "mclk_hz": 19200000,
+  "codec": {
+    "address": "I2C1/0x4b",
+    "audpwron_gpio": 127,
+    "irq": 151,
+    "irq_gic_spi": 119,
+    "pdata": "0xc07ae5c4",
+    "pdata_hex": "7f000000c40100000000000010e67ac000000000",
+    "automatic_power_sequence": true,
+    "ready_timeout_ms": 144,
+    "vio_and_v2v1": "dummy regulators, confirmed live; no board supply mappings",
+    "clock32k": "stock already enabled; mainline provider index 1"
+  },
+  "runtime_route": "PDM_DL2 -> Handsfree Playback -> HFDAC Right -> HF Right PGA -> HF Right Driver -> HFR -> Ext Spk",
+  "limits": [
+    "Board flags identify HFR and EP as connected; their distinct physical acoustic outputs need live confirmation.",
+    "No microphones, headset jack or vibra to enable.",
+    "VIO electrical net is not identified by stock dummy-regulator data. Do not invent a programmable voltage supply."
+  ]
+}

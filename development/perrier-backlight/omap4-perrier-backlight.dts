@@ -1,0 +1,55 @@
+// SPDX-License-Identifier: GPL-2.0-only
+// RAM trial: hand timer10 PWM to mainline drivers while preserving the
+// inherited GPIO157 5 V enable and all stock pad mux settings.
+#include "../perrier-touch/omap4-perrier-touch.dts"
+
+&{/} {
+    target-module@48086000 {
+        compatible = "ti,sysc-omap2-timer", "ti,sysc";
+        reg = <0x48086000 4>, <0x48086010 4>, <0x48086014 4>;
+        reg-names = "rev", "sysc", "syss";
+        ti,no-reset-on-init;
+        ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
+                         SYSC_OMAP2_EMUFREE |
+                         SYSC_OMAP2_ENAWAKEUP |
+                         SYSC_OMAP2_SOFTRESET |
+                         SYSC_OMAP2_AUTOIDLE)>;
+        ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+                        <SYSC_IDLE_SMART>;
+        ti,syss-mask = <1>;
+        clocks = <&l4_per_clkctrl OMAP4_TIMER10_CLKCTRL 0>;
+        clock-names = "fck";
+        #address-cells = <1>;
+        #size-cells = <1>;
+        ranges = <0 0x48086000 0x1000>;
+
+        perrier_timer10: timer@0 {
+            compatible = "ti,omap3430-timer";
+            reg = <0 0x80>;
+            clocks = <&l4_per_clkctrl OMAP4_TIMER10_CLKCTRL 24>,
+                     <&sys_clkin_ck>;
+            clock-names = "fck", "timer_sys_ck";
+            interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
+            ti,timer-pwm;
+        };
+    };
+
+    perrier_pwm10: pwm-backlight-timer {
+        compatible = "ti,omap-dmtimer-pwm";
+        ti,timers = <&perrier_timer10>;
+        #pwm-cells = <3>;
+    };
+
+    perrier_backlight: backlight {
+        compatible = "pwm-backlight";
+        pwms = <&perrier_pwm10 0 50000 0>;
+        brightness-levels = <0 64 128 192 255>;
+        default-brightness-level = <4>;
+        // GPIO157 and the PWM output pad are inherited; no GPIO or
+        // pinctrl property is present in this RAM-only stage.
+    };
+};
+
+&perrier_panel {
+    backlight = <&perrier_backlight>;
+};

@@ -1,0 +1,328 @@
+{
+  "kernel": "6.18.48-perrier-ram79",
+  "profile": "dsi-mainline-hbp",
+  "artifacts": {
+    "zImage": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/dsi-mainline-hbp/kernel-build/arch/arm/boot/zImage",
+      "size": 17057440,
+      "sha256": "ee6e2b8d6a8c6588e22e3bcefc3dd91b0220381425d1b445bfe579517516df9d"
+    },
+    "board.dtb": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/dsi-mainline-hbp/board.dtb",
+      "size": 91634,
+      "sha256": "c1ca5fcaf8fa8137c1ed14b36168fca97f1d5545e162edb3487c8b8438155884"
+    },
+    "kexec": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier/kexec-legacy-fdt",
+      "size": 1660848,
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6"
+    }
+  },
+  "inputs": {
+    "baseline_review": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/dsi-standard-video/reviewed-image.json",
+      "sha256": "60cf3971d6e2ab99b293105cde80c6eb697d2c1280a6f21d8281d4c54b04bace"
+    },
+    "watchdog_proof": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-watchdog/watchdog-proof.json",
+      "sha256": "3f23c890d5d390efa07fd63dd6c4231d0aa0fa0e6f84687e2b82e3a9203f36cf"
+    },
+    "confirmed_baseline": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/validation-ram74.json",
+      "sha256": "24251baee1f067c1494d81abe2a83853a4bb5fcce0650277321fcd333631ed3f"
+    },
+    "source_manifest": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/patches/manifest.json",
+      "sha256": "6c06ac56fcf0e16e1fcb174519093ca3a724fe905557ee4dbe92adac5202178c"
+    },
+    "ram_config": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/configs/perrier-ram.config",
+      "sha256": "5a26a197294437211f417fc371dfc1d6d1909e55bb7f7fe1437a0f3cd3cdc9c8"
+    },
+    "bus_policy": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/configs/bus-layout.json",
+      "sha256": "65797ece8dec28d3608fd07d880f54c8a13f85f50f0893ff0c10122d1fceb2ba"
+    },
+    "hardware_dtsi": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/source/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier.dtsi",
+      "sha256": "179bd8ba3ac847ee1b3770a784b6c11e068c7a12474cfad6a8ba8e052d9abae8"
+    },
+    "ram_dts": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/source/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier-ram.dts",
+      "sha256": "f9b34676d41bd878121d8e144db98c90df9bf7d4de0b8c242f34b9bb3ffe68df"
+    }
+  },
+  "rootfs_manifest_sha256": "3d4ec76b84debcebe0fe02f2b36fcddeee0e49305a629c084b9ef4f863c1473b",
+  "initramfs_sha256": "52bdc8ae15c802d6dae640dd0fd679954551a19ddb88c4e3cbf3c5e38ffd6939",
+  "kernel_config_sha256": "60d6e8e727f91f23cca4fb5715f2ee8539bad6e2829a8793ee81f01d52f2c27a",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "watchdog_backend": "linux-watchdog",
+  "passed": true,
+  "kernel_span_bytes": 20820896,
+  "dt_audit": {
+    "passed": true,
+    "properties_compared": 406,
+    "physical_register_ranges_compared": 72,
+    "enabled_upstream_targets": [
+      "/ocp/interconnect@48000000/segment@0/target-module@20000",
+      "/ocp/interconnect@48000000/segment@0/target-module@57000",
+      "/ocp/interconnect@48000000/segment@0/target-module@59000",
+      "/ocp/interconnect@48000000/segment@0/target-module@5b000",
+      "/ocp/interconnect@48000000/segment@0/target-module@5d000",
+      "/ocp/interconnect@48000000/segment@0/target-module@60000",
+      "/ocp/interconnect@48000000/segment@0/target-module@72000",
+      "/ocp/interconnect@48000000/segment@0/target-module@86000",
+      "/ocp/interconnect@48000000/segment@0/target-module@b4000",
+      "/ocp/interconnect@4a000000/segment@0/target-module@2000",
+      "/ocp/interconnect@4a000000/segment@0/target-module@4000",
+      "/ocp/interconnect@4a000000/segment@0/target-module@56000",
+      "/ocp/interconnect@4a000000/segment@0/target-module@64000",
+      "/ocp/interconnect@4a000000/segment@0/target-module@8000",
+      "/ocp/interconnect@4a000000/segment@100000/target-module@0",
+      "/ocp/interconnect@4a300000/segment@0/target-module@4000",
+      "/ocp/interconnect@4a300000/segment@0/target-module@6000",
+      "/ocp/interconnect@4a300000/segment@0/target-module@a000",
+      "/ocp/interconnect@4a300000/segment@10000/target-module@4000",
+      "/ocp/interconnect@4a300000/segment@10000/target-module@8000",
+      "/ocp/interconnect@4a300000/segment@10000/target-module@c000",
+      "/ocp/target-module@58000000",
+      "/ocp/target-module@58000000/dss@0/target-module@1000",
+      "/ocp/target-module@58000000/dss@0/target-module@4000"
+    ],
+    "moved_nodes": [
+      [
+        "/serial@48020000",
+        "/ocp/interconnect@48000000/segment@0/target-module@20000/serial@0"
+      ],
+      [
+        "/target-module@48060000",
+        "/ocp/interconnect@48000000/segment@0/target-module@60000"
+      ],
+      [
+        "/target-module@48060000/i2c@0",
+        "/ocp/interconnect@48000000/segment@0/target-module@60000/i2c@0"
+      ],
+      [
+        "/target-module@48060000/i2c@0/bridge@f",
+        "/ocp/interconnect@48000000/segment@0/target-module@60000/i2c@0/bridge@f"
+      ],
+      [
+        "/target-module@48060000/i2c@0/bridge@f/ports",
+        "/ocp/interconnect@48000000/segment@0/target-module@60000/i2c@0/bridge@f/ports"
+      ],
+      [
+        "/target-module@48060000/i2c@0/bridge@f/ports/port@0",
+        "/ocp/interconnect@48000000/segment@0/target-module@60000/i2c@0/bridge@f/ports/port@0"
+      ],
+      [
+        "/target-module@48060000/i2c@0/bridge@f/ports/port@0/endpoint",
+        "/ocp/interconnect@48000000/segment@0/target-module@60000/i2c@0/bridge@f/ports/port@0/endpoint"
+      ],
+      [
+        "/target-module@48060000/i2c@0/bridge@f/ports/port@1",
+        "/ocp/interconnect@48000000/segment@0/target-module@60000/i2c@0/bridge@f/ports/port@1"
+      ],
+      [
+        "/target-module@48060000/i2c@0/bridge@f/ports/port@1/endpoint",
+        "/ocp/interconnect@48000000/segment@0/target-module@60000/i2c@0/bridge@f/ports/port@1/endpoint"
+      ],
+      [
+        "/target-module@48060000/i2c@0/temperature-sensor@48",
+        "/ocp/interconnect@48000000/segment@0/target-module@60000/i2c@0/temperature-sensor@48"
+      ],
+      [
+        "/target-module@48072000",
+        "/ocp/interconnect@48000000/segment@0/target-module@72000"
+      ],
+      [
+        "/target-module@48072000/i2c@0",
+        "/ocp/interconnect@48000000/segment@0/target-module@72000/i2c@0"
+      ],
+      [
+        "/target-module@48072000/i2c@0/touchscreen@67",
+        "/ocp/interconnect@48000000/segment@0/target-module@72000/i2c@0/touchscreen@67"
+      ],
+      [
+        "/target-module@4a056000",
+        "/ocp/interconnect@4a000000/segment@0/target-module@56000"
+      ],
+      [
+        "/target-module@4a056000/dma-controller@0",
+        "/ocp/interconnect@4a000000/segment@0/target-module@56000/dma-controller@0"
+      ],
+      [
+        "/target-module@480b4000",
+        "/ocp/interconnect@48000000/segment@0/target-module@b4000"
+      ],
+      [
+        "/target-module@480b4000/mmc@0",
+        "/ocp/interconnect@48000000/segment@0/target-module@b4000/mmc@0"
+      ],
+      [
+        "/target-module@4a064000",
+        "/ocp/interconnect@4a000000/segment@0/target-module@64000"
+      ],
+      [
+        "/target-module@4a064000/usbhshost@0",
+        "/ocp/interconnect@4a000000/segment@0/target-module@64000/usbhshost@0"
+      ],
+      [
+        "/target-module@4a064000/usbhshost@0/usb@c00",
+        "/ocp/interconnect@4a000000/segment@0/target-module@64000/usbhshost@0/usb@c00"
+      ],
+      [
+        "/target-module@4a064000/usbhshost@0/usb@c00/ethernet@1",
+        "/ocp/interconnect@4a000000/segment@0/target-module@64000/usbhshost@0/usb@c00/ethernet@1"
+      ],
+      [
+        "/target-module@48059000",
+        "/ocp/interconnect@48000000/segment@0/target-module@59000"
+      ],
+      [
+        "/target-module@48059000/gpio@0",
+        "/ocp/interconnect@48000000/segment@0/target-module@59000/gpio@0"
+      ],
+      [
+        "/target-module@4805d000",
+        "/ocp/interconnect@48000000/segment@0/target-module@5d000"
+      ],
+      [
+        "/target-module@4805d000/gpio@0",
+        "/ocp/interconnect@48000000/segment@0/target-module@5d000/gpio@0"
+      ],
+      [
+        "/target-module@58000000",
+        "/ocp/target-module@58000000"
+      ],
+      [
+        "/target-module@58000000/dss@0",
+        "/ocp/target-module@58000000/dss@0"
+      ],
+      [
+        "/target-module@58000000/dss@0/target-module@1000",
+        "/ocp/target-module@58000000/dss@0/target-module@1000"
+      ],
+      [
+        "/target-module@58000000/dss@0/target-module@1000/dispc@0",
+        "/ocp/target-module@58000000/dss@0/target-module@1000/dispc@0"
+      ],
+      [
+        "/target-module@58000000/dss@0/target-module@4000",
+        "/ocp/target-module@58000000/dss@0/target-module@4000"
+      ],
+      [
+        "/target-module@58000000/dss@0/target-module@4000/encoder@0",
+        "/ocp/target-module@58000000/dss@0/target-module@4000/encoder@0"
+      ],
+      [
+        "/target-module@58000000/dss@0/target-module@4000/encoder@0/port",
+        "/ocp/target-module@58000000/dss@0/target-module@4000/encoder@0/port"
+      ],
+      [
+        "/target-module@58000000/dss@0/target-module@4000/encoder@0/port/endpoint",
+        "/ocp/target-module@58000000/dss@0/target-module@4000/encoder@0/port/endpoint"
+      ],
+      [
+        "/target-module@4805b000",
+        "/ocp/interconnect@48000000/segment@0/target-module@5b000"
+      ],
+      [
+        "/target-module@4805b000/gpio@0",
+        "/ocp/interconnect@48000000/segment@0/target-module@5b000/gpio@0"
+      ],
+      [
+        "/target-module@4805b000/gpio@0/lan-reset-hog",
+        "/ocp/interconnect@48000000/segment@0/target-module@5b000/gpio@0/lan-reset-hog"
+      ],
+      [
+        "/target-module@48086000",
+        "/ocp/interconnect@48000000/segment@0/target-module@86000"
+      ],
+      [
+        "/target-module@48086000/timer@0",
+        "/ocp/interconnect@48000000/segment@0/target-module@86000/timer@0"
+      ],
+      [
+        "/target-module@4a31c000",
+        "/ocp/interconnect@4a300000/segment@10000/target-module@c000"
+      ],
+      [
+        "/target-module@4a31c000/keypad@0",
+        "/ocp/interconnect@4a300000/segment@10000/target-module@c000/keypad@0"
+      ],
+      [
+        "/target-module@48057000",
+        "/ocp/interconnect@48000000/segment@0/target-module@57000"
+      ],
+      [
+        "/target-module@48057000/gpio@0",
+        "/ocp/interconnect@48000000/segment@0/target-module@57000/gpio@0"
+      ],
+      [
+        "/bandgap@4a002260",
+        "/ocp/bandgap@4a002260"
+      ],
+      [
+        "/target-module@4a314000",
+        "/ocp/interconnect@4a300000/segment@10000/target-module@4000"
+      ],
+      [
+        "/target-module@4a314000/watchdog@0",
+        "/ocp/interconnect@4a300000/segment@10000/target-module@4000/wdt@0"
+      ],
+      [
+        "/pinctrl@4a100040",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40"
+      ],
+      [
+        "/pinctrl@4a100040/ethernet-phy-pins",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/ethernet-phy-pins"
+      ],
+      [
+        "/pinctrl@4a100040/lan-reset-pins",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/lan-reset-pins"
+      ],
+      [
+        "/pinctrl@4a100040/backlight-5v-pin",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/backlight-5v-pin"
+      ],
+      [
+        "/pinctrl@4a100040/backlight-pwm-pin",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/backlight-pwm-pin"
+      ],
+      [
+        "/pinctrl@4a100040/backlight-enable-pin",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/backlight-enable-pin"
+      ],
+      [
+        "/pinctrl@4a100040/touch-5v-pin",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/touch-5v-pin"
+      ],
+      [
+        "/pinctrl@4a100040/touch-3v3-pin",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/touch-3v3-pin"
+      ],
+      [
+        "/pinctrl@4a100040/touch-pins",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/touch-pins"
+      ],
+      [
+        "/pinctrl@4a100040/touch-i2c-pins",
+        "/ocp/interconnect@4a000000/segment@100000/target-module@0/pinmux@40/touch-i2c-pins"
+      ]
+    ],
+    "documented_soc_corrections": [
+      "Keypad parent uses the upstream OMAP2 SYSC layout"
+    ],
+    "gpio_regulator_pad_pwm_timing_properties_unchanged": true,
+    "ram_power_domain_policy_preserved": true,
+    "reference_dtb_sha256": "59bc433f7e0a9d9244114159f77bb630828b4c7b5c5a80f6ad9aa6ca9ce84eeb",
+    "candidate_dtb_sha256": "c1ca5fcaf8fa8137c1ed14b36168fca97f1d5545e162edb3487c8b8438155884"
+  },
+  "rootfs_changes": [
+    "etc/init.d/rcS"
+  ],
+  "sources_apply_to_pristine_linux": true,
+  "embedded_initramfs_verified": true,
+  "previous_physical_baseline": "/home/marius/ext_proj/touch10/development/kernel/working-baseline.json"
+}

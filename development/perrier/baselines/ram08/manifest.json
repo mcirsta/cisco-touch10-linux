@@ -1,0 +1,35 @@
+{
+  "kernel": "6.18.48-perrier-ram08",
+  "source_sha256": "5ebdadb10a4b5708fc6b1c457764a110bc49f8150cc3502c59b921ead8c6fc8c",
+  "source_signature_key": "647F28654894E3BD457199BE38DBBDC86092693E",
+  "files": {
+    "development/perrier/build/arch/arm/boot/zImage": {
+      "size": 2763344,
+      "sha256": "2980f62707ee247364cd8542f4918fe650cd537f6841fb96c8264b1f9bf7e480"
+    },
+    "development/perrier/build/vmlinux": {
+      "size": 6641780,
+      "sha256": "f9d647ee139c665ab2bde060eac49ccdcab35f2f0dd7e710597664de610171dd"
+    },
+    "development/perrier/build/System.map": {
+      "size": 781554,
+      "sha256": "71e2a88aaf0ff7ccd56205c8cda51c8eb73f6a01aec0039071a409ce45c7ae59"
+    },
+    "development/perrier/build/.config": {
+      "size": 62910,
+      "sha256": "d00bbd93a7cd1b4c3f35fac0b2cb9d4285ef5d2844580783e44b003dfd002c4f"
+    },
+    "development/perrier/build/omap4-perrier-ram.dtb": {
+      "size": 87761,
+      "sha256": "5af87e4a9a3d75bef9b9c85b4339278b397f61e989f380740e1109a094e4f4f2"
+    },
+    "development/perrier/initramfs.cpio": {
+      "size": 1048512,
+      "sha256": "c098b915892b2bb383d82dcd40257e11546f9d3b14bbba434a4d9f2c0a4d4878"
+    },
+    "development/perrier/init": {
+      "size": 1047096,
+      "sha256": "a7fa035ccac728958ffd6010ab6ed8c2a11e2e3a6d0359dbdc9509f90dba2aa0"
+    }
+  }
+}

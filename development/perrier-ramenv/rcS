@@ -1,0 +1,32 @@
+#!/bin/sh
+export PATH=/bin:/sbin:/usr/bin:/usr/sbin
+umask 077
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+mount -t devtmpfs devtmpfs /dev
+mkdir -p /dev/pts
+mount -t devpts -o mode=620 devpts /dev/pts
+mount -t tmpfs -o mode=755,size=16m tmpfs /run
+mount -t tmpfs -o mode=1777,size=192m tmpfs /tmp
+mount -t debugfs debugfs /sys/kernel/debug
+echo perrier-interactive-ram44 > /run/touch10-ram
+cat /proc/sys/kernel/random/boot_id > /run/touch10-ram-boot-id
+echo '4 4 1 7' > /proc/sys/kernel/printk
+echo '/tmp/core.%e.%p' > /proc/sys/kernel/core_pattern
+ulimit -c 65536
+/usr/sbin/ram-guard daemon > /run/guard.log 2>&1 &
+echo $! > /run/guard.pid
+ifconfig lo 127.0.0.1 up
+attempt=0
+while [ ! -d /sys/class/net/eth0 ] && [ "$attempt" -lt 15 ]; do
+    sleep 1
+    attempt=$((attempt+1))
+done
+ifconfig eth0 10.77.10.10 netmask 255.255.255.0 up
+/usr/sbin/dropbear -F -p 10.77.10.10:22 \
+    -r /etc/dropbear/ram_host_key > /run/ssh.log 2>&1 &
+echo $! > /run/ssh.pid
+/usr/bin/touch-uinput --interactive > /tmp/touch-raw.log 2>&1 &
+echo $! > /run/touch.pid
+echo 'PERRIER_RAM_SSH_STARTED ip=10.77.10.10 version=ram44'
+cat /run/guard.log

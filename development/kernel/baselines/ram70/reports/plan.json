@@ -1,0 +1,32 @@
+{
+  "fallback": {
+    "kernel": "ram69",
+    "profile": "display-pll-only"
+  },
+  "variants": {
+    "ram70": {
+      "profile": "display-onoff",
+      "onoff": 1,
+      "align": 0,
+      "expected_pol_freq1": "0x00020000"
+    },
+    "ram71": {
+      "profile": "display-align",
+      "onoff": 0,
+      "align": 1,
+      "expected_pol_freq1": "0x00040000"
+    }
+  },
+  "fixed": [
+    "N=19/M=211",
+    "all DT wiring, clocks, rails and panel timing",
+    "DSI and bridge source",
+    "mainline nowayout watchdog and guard"
+  ],
+  "live_sequence": [
+    "read initial bridge, DRM and clocks",
+    "blank for 2 seconds, unblank for 3 seconds, restart Qt",
+    "owner physical line/alignment observation",
+    "hardware watchdog expiry and exact stock p8 verification"
+  ]
+}

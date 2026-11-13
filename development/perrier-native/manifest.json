@@ -1,0 +1,60 @@
+{
+  "kernel": "6.18.48-perrier-ram43",
+  "source_sha256": "5ebdadb10a4b5708fc6b1c457764a110bc49f8150cc3502c59b921ead8c6fc8c",
+  "source_signature_key": "647F28654894E3BD457199BE38DBBDC86092693E",
+  "patch_manifest_sha256": "cd205e581caf9733185ed1e078c51733a456d2181a42d5bb326e379769e7d276",
+  "files": {
+    "development/perrier-native/build/arch/arm/boot/zImage": {
+      "size": 15838488,
+      "sha256": "8cba3ef3f6fa3ffb5db56740ba45e73e802c31963c66e26e132051622838793d"
+    },
+    "development/perrier-native/build/vmlinux": {
+      "size": 20501968,
+      "sha256": "4a6c6fa74cafb06f9d437d8d62d0acccbb2b0557e51bbd92ca4e5d0ba8737b15"
+    },
+    "development/perrier-native/build/System.map": {
+      "size": 918209,
+      "sha256": "87340d74765c8a5bd42af9916738b5160cbb0d95d0095c74e0bdd6a297a56659"
+    },
+    "development/perrier-native/build/.config": {
+      "size": 74487,
+      "sha256": "afb77c42ca23a793cfbd4bf186de82d7cdfb6068601aa12ed0bd01fba4fda559"
+    },
+    "development/perrier-native/build/omap4-perrier-ram.dtb": {
+      "size": 92409,
+      "sha256": "73444e693857d02d5fc134697349a83e22662572f1dc17725e2878f4b90253a0"
+    },
+    "development/perrier-native/initramfs.cpio": {
+      "size": 33757804,
+      "sha256": "ea5bffbab6d6fd119e8423cd97220540933fd9f6ceb505980e14b33473ccb49a"
+    },
+    "development/perrier-native/init": {
+      "size": 1133368,
+      "sha256": "b39a851fec41b56fe634142387aa3b344bebce533ea5d341bd30369105b9b9b1"
+    },
+    "development/perrier-native/kms-probe": {
+      "size": 918628,
+      "sha256": "e82442c9e99c1efc7bd5e10eeb292aeea11d3b50151c1d184ba9c20ae0883928"
+    },
+    "development/perrier-native/kms-pattern": {
+      "size": 1099548,
+      "sha256": "e856cf3981800823e7622b4e63e079f36c14cdcbc376171d5ef1cd3773374855"
+    },
+    "development/perrier-native/backlight-state": {
+      "size": 21384,
+      "sha256": "d18d90dc77c59afb2427409dc46f3aa1c534855cf24f31b2f392e049172468a9"
+    },
+    "development/perrier-native/touch-capture": {
+      "size": 21768,
+      "sha256": "d8c5cb3ab9f422363e0e2996c39e620dca365c48017eb4640606f6dba278772c"
+    },
+    "development/perrier-native/touch-uinput": {
+      "size": 23732,
+      "sha256": "674d0f8212b8cb08f8e2a28cb779d25aa006308900c0e70a5debd0130329ad72"
+    },
+    "development/perrier-qt/runtime-manifest.json": {
+      "size": 4086,
+      "sha256": "4ee8213a99620d8a4f5b4f60f6e8319c751eb48a2e4377ffafd626a0c3dab2b9"
+    }
+  }
+}

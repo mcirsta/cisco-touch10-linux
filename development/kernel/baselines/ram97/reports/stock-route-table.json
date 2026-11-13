@@ -1,0 +1,128 @@
+[
+  {
+    "address": "0xc0543268",
+    "sink": "Headset Stereophone",
+    "control": null,
+    "source": "HSOL"
+  },
+  {
+    "address": "0xc0543278",
+    "sink": "Headset Stereophone",
+    "control": null,
+    "source": "HSOR"
+  },
+  {
+    "address": "0xc0543288",
+    "sink": "Earphone Spk",
+    "control": null,
+    "source": "EP"
+  },
+  {
+    "address": "0xc0543298",
+    "sink": "Ext Spk",
+    "control": null,
+    "source": "HFL"
+  },
+  {
+    "address": "0xc05432a8",
+    "sink": "Ext Spk",
+    "control": null,
+    "source": "HFR"
+  },
+  {
+    "address": "0xc05432b8",
+    "sink": "Line Out",
+    "control": null,
+    "source": "AUXL"
+  },
+  {
+    "address": "0xc05432c8",
+    "sink": "Line Out",
+    "control": null,
+    "source": "AUXR"
+  },
+  {
+    "address": "0xc05432d8",
+    "sink": "Vibrator",
+    "control": null,
+    "source": "VIBRAL"
+  },
+  {
+    "address": "0xc05432e8",
+    "sink": "Vibrator",
+    "control": null,
+    "source": "VIBRAR"
+  },
+  {
+    "address": "0xc05432f8",
+    "sink": "HSMIC",
+    "control": null,
+    "source": "Headset Mic"
+  },
+  {
+    "address": "0xc0543308",
+    "sink": "Headset Mic",
+    "control": null,
+    "source": "Headset Mic Bias"
+  },
+  {
+    "address": "0xc0543318",
+    "sink": "MAINMIC",
+    "control": null,
+    "source": "Main Handset Mic"
+  },
+  {
+    "address": "0xc0543328",
+    "sink": "Main Handset Mic",
+    "control": null,
+    "source": "Main Mic Bias"
+  },
+  {
+    "address": "0xc0543338",
+    "sink": "SUBMIC",
+    "control": null,
+    "source": "Sub Handset Mic"
+  },
+  {
+    "address": "0xc0543348",
+    "sink": "Sub Handset Mic",
+    "control": null,
+    "source": "Main Mic Bias"
+  },
+  {
+    "address": "0xc0543358",
+    "sink": "AFML",
+    "control": null,
+    "source": "Line In"
+  },
+  {
+    "address": "0xc0543368",
+    "sink": "AFMR",
+    "control": null,
+    "source": "Line In"
+  },
+  {
+    "address": "0xc0543378",
+    "sink": "Headset Playback",
+    "control": null,
+    "source": "PDM_DL1"
+  },
+  {
+    "address": "0xc0543388",
+    "sink": "Handsfree Playback",
+    "control": null,
+    "source": "PDM_DL2"
+  },
+  {
+    "address": "0xc0543398",
+    "sink": "Vibra Playback",
+    "control": null,
+    "source": "PDM_VIB"
+  },
+  {
+    "address": "0xc05433a8",
+    "sink": "PDM_UL1",
+    "control": null,
+    "source": "PDM Capture"
+  }
+]

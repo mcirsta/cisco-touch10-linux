@@ -1,0 +1,13 @@
+# Room Navigator post-fix firmware access check, 2026-11-07
+
+## Official version and package
+
+Cisco's [RoomOS 26 release notes](https://roomos.cisco.com/doc/WhatsNew/ReleaseNotesRoomOS_26) list Room Navigator standalone platform `s53350` and package `s53350ce26_7_3_3.pkg` for RoomOS 26.7.3.3 (September 2026). The underlying [Cisco-maintained Markdown](https://raw.githubusercontent.com/cisco-ce/roomos.cisco.com/master/doc/WhatsNew/ReleaseNotesRoomOS_26.md) links the [Cisco Software download catalog](https://software.cisco.com/download/home/283611944?catid=280789323). The catalog itself now lists an even newer `s53350ce26_7_4_3.pkg` for RoomOS 26.7.4.3, dated 26 October 2026, size 413.08 MB, for standalone table and wall variants. The local sample is the earlier April 2026 cloud `bifrost.pkg`, revision `ce-26.5.0.50-44-gc49cadf5f59`.
+
+Cisco's [July 2026 RoomOS hardening advisory](https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-hardening-roomos-AqNMbEq) states that RoomOS 26.5.2.2 (on-premises) and June 2026 cloud 26.7.1.7 were the first fixed releases for its grouped vulnerability classes. The advisory gives broad CWE categories, including access control and input validation, without identifying the updater or symlink paths in this investigation. It does **not** establish that our specific findings are included in those fixes.
+
+## Access result
+
+I fetched the release-note Markdown successfully from Cisco's public GitHub repository and followed its exact catalog link. Direct command-line `GET` and `HEAD` requests returned HTTP `403 Access Denied` from `AkamaiGHost`, and the web retrieval tool could not open the catalog. The in-app browser did load the catalog. I navigated its visible product selector to **Collaboration Peripherals → Room Navigator → Room Navigator for Table → RoomOS 26.7.4.3**. The firmware row explicitly said **Login and Service Contract Required**. Clicking its Download button displayed a modal requiring Cisco login and a valid service contract associated with the account. No Cisco account or contract was available in this session. Searches for an official, direct URL for either newer package found only release-note filenames, not a downloadable binary. I did not guess timestamped Webex CDN paths, enumerate Cisco endpoints, or use third-party mirrors.
+
+No post-fix binary was downloaded or compared. The presence or absence of the specific `peripheral-swsync.service` `chown` path, `updatesw` control-file deletion, and other findings in 26.7.3.3/26.7.4.3 remains unknown. The decisive next comparison requires an official post-fix Room Navigator image from an authorized Cisco download channel.

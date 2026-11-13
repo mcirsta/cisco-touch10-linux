@@ -1,0 +1,11 @@
+{
+  "goal": "Explain and fix zero Cortex-A9 general PMU event counters",
+  "parent": "native-diagnostics ram100",
+  "stock_checks": "Live stock kallsyms and decompiled read/write/enable/start/reset routines at c0016f74..c00174a0, plus prior perf behavior",
+  "finding": "Stock resets/programs PMU normally but does not touch SDER. Mainline supports secure-reg-access only for kernels actually running Secure. Execution state is not yet established.",
+  "probe101": "Read SDER and CP14 DBGAUTHSTATUS with exact-opcode, SVC-only, PC-checked undefined-instruction hooks. Read PMCR normally. All hooks/handler/data restricted to init sections and unregistered before rootfs. No register writes.",
+  "guard": "Watchdog, U-Boot factory restore and host ADC postflight retained; read-only/unmounted eMMC; display and Qt inherited with no cycling",
+  "decision": "Use the existing secure-reg-access binding only if successful SDER read demonstrates Secure-state access; otherwise follow actual authentication/clock evidence. Do not assume or blindly set the property.",
+  "published_sources": "Exact OMAP4460 TRM and Cortex-A9 TRM PDFs, hashes recorded in documentation-manifest.json",
+  "fallback": "qualified ram100 remains the default until a fix is qualified"
+}

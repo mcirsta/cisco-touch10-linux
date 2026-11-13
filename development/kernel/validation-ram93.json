@@ -1,0 +1,164 @@
+{
+  "validated_at": "2026-11-11T20:19:31.047672+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram93",
+  "profile": "display-stop-fix",
+  "default_uboot_profile": true,
+  "details": {
+    "owner": "Clean and aligned; touch and brightness work",
+    "kernel": "ram93",
+    "change": "Leave VC_VIDEO disabled when stopping video; dedicated VC_CMD remains available",
+    "base": "Qualified ram91 with all temporary ram92 instrumentation removed",
+    "mainline_drivers": "DISPC and DSS remain pristine Linux6.18.48",
+    "display_cycles": 6,
+    "qt_restarts": 6,
+    "HS_TX_TIMEOUT_count": 0,
+    "host_display_errors": 0,
+    "blank_durations_ms": [
+      80.414,
+      82.733,
+      83.984,
+      83.283,
+      72.541,
+      72.418
+    ],
+    "bridge_counter_each_cycle": "c0800001",
+    "bridge_status_each_cycle": "00000002",
+    "reset_states_each_cycle": {
+      "blank": "lo",
+      "active": "hi"
+    },
+    "hardware_properties": "DT, voltages, pinmux, GPIO assignments, PWM, clock rates and analog PHY unchanged",
+    "patch_layout": "Seven subsystem patches; generic OMAP DSI separated from Toshiba bridge support; RAM safety separate",
+    "source_scope": {
+      "path": "development/kernel/out/display-finalization/ram93-source-scope.json",
+      "sha256": "f63d24ab5d86a3719285fc9ab0915266a1287a9f399c3f4b887414ea1e53e69a"
+    },
+    "schema_toolchain": {
+      "path": "development/kernel/out/display-finalization/schema-toolchain-20261111.json",
+      "sha256": "4aa3904d8c930bd1a8b44abfe9b469d4b155244e0918d11545a0724332590ce5"
+    },
+    "prior_timeout_evidence": {
+      "path": "development/kernel/out/display-finalization/ram92-finding.json",
+      "sha256": "d612fe010ec5bd5e020f1256a8acf7b0b1b5a67540fbfc2523ce9e66fa9681a7"
+    },
+    "limits": [
+      "Qualified on this Perrier RAM workflow; other OMAP panels not physically tested",
+      "Bridge latched startup status00000002/c0800001 remains; exact bit-level meaning not established",
+      "Production rail power-down, suspend and full-image physical power-removal qualification remain separate"
+    ],
+    "comparison": {
+      "path": "development/kernel/out/display-finalization/ram93-comparison.json",
+      "sha256": "6d4fe011e40ac6fff4ebb6870ce2f75be078518efcb79875802140617a6c5ae5"
+    }
+  },
+  "recovery_mode": "hardware_expiry",
+  "recovery_elapsed_seconds": 152.6,
+  "stock_recovered": true,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "serial_markers": {
+    "factory_saved_before_handoff": true,
+    "candidate_kernel": true,
+    "mainline_watchdog_ready": true,
+    "ram_ssh_started": true
+  },
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram93/snapshot.json",
+    "sha256": "043a6a9c5db8d29d26f4f95efc81a3c55b1fdc0ca484dfc40d9e76b72fc797c7"
+  },
+  "source_manifest": {
+    "path": "development/kernel/baselines/ram93/patches/manifest.json",
+    "sha256": "27c5c1044886b1e60aebcbd4a84651311ae6e4665fb9425c9a6c410d247d4f17"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram93/reports/source-checks.json",
+    "sha256": "072cd278acebe6b4c6b45d8be1c4bca7eff01857db119311fbdb36e7c42fb8cd"
+  },
+  "tests": {
+    "bridge-regmap-tests": {
+      "path": "development/kernel/baselines/ram93/reports/bridge-regmap-tests.json",
+      "sha256": "de5ab6625c121cee42fa9aae4e9998ade67c6fcf209461efa1cf256cff137429"
+    },
+    "bus-audit-tests": {
+      "path": "development/kernel/baselines/ram93/reports/bus-audit-tests.json",
+      "sha256": "de1a3289c0714aaef3717248aeaf3181b4d62b5ca146271862971560913d5b68"
+    },
+    "dsi-null-tests": {
+      "path": "development/kernel/baselines/ram93/reports/dsi-null-tests.json",
+      "sha256": "099c03eb8bada5921d51dc7fec8fd2dee9d4daf88bd6d6dd8615a068c7a1851a"
+    },
+    "dsi-power-tests": {
+      "path": "development/kernel/baselines/ram93/reports/dsi-power-tests.json",
+      "sha256": "cfaa4dea48acfc48ba727ca86722d92e1885583c7dff4f2e27aa6c8ed4e590ce"
+    },
+    "dsi-timing-tests": {
+      "path": "development/kernel/baselines/ram93/reports/dsi-timing-tests.json",
+      "sha256": "f84046446b23c5beb9c5182529fc0a7d6bfec7c83eeb638bb8e1e42e4337cda7"
+    },
+    "dsi-vc-tests": {
+      "path": "development/kernel/baselines/ram93/reports/dsi-vc-tests.json",
+      "sha256": "01193e3455920bb0d63334a0447f67fa9e7122e6eef3105785769d928ad96185"
+    }
+  },
+  "image_review": {
+    "path": "development/perrier-ramenv/display-stop-fix/reviewed-image.json",
+    "sha256": "b671763f6b7b9689a8dca2ae7250668d0af1be43548c33dae1f4304c197503b7"
+  },
+  "live_result": {
+    "path": "development/runs/20261111T200641Z-uboot-ram93-d31fbf/result.json",
+    "sha256": "999ee2c792c18a722457779683d115bafc0f6c881c30d052d685325b1f1b90be"
+  },
+  "physical_confirmations": [
+    {
+      "path": "development/runs/20261111T200641Z-uboot-ram93-d31fbf/final-physical-confirmation.json",
+      "sha256": "c96346bb9e72cbc8c9280b928bd56405659eed96ecbe353e860e7d74e699f2fe"
+    }
+  ],
+  "evidence": {
+    "initial-register-checks.json": {
+      "path": "development/runs/20261111T200641Z-uboot-ram93-d31fbf/initial-register-checks.json",
+      "sha256": "cc4c49d870188249d59ebe20b1808c1335adcd8b2e6d36d9e19b47acb49633ce"
+    },
+    "cycle-checks.json": {
+      "path": "development/runs/20261111T200641Z-uboot-ram93-d31fbf/cycle-checks.json",
+      "sha256": "19b4f451e2a0cd0c4b833e95049faa65d1e13c9fe0aec379803ae46f148d6591"
+    },
+    "initial-after.log": {
+      "path": "development/runs/20261111T200641Z-uboot-ram93-d31fbf/initial-after.log",
+      "sha256": "4f31b8e57e1e10e9c8d94fa88de9ad9fd9587cb1d37f9ad98519c813cb1a965b"
+    },
+    "confirmed-after.log": {
+      "path": "development/runs/20261111T200641Z-uboot-ram93-d31fbf/confirmed-after.log",
+      "sha256": "368daebb137720dd3cf2894c52d101a4cf3f4908fd94779cbca23c250d66e5f3"
+    },
+    "three-cycles-after.log": {
+      "path": "development/runs/20261111T200641Z-uboot-ram93-d31fbf/three-cycles-after.log",
+      "sha256": "910b30b7220cdadb1cb1140e92d7a8e6f00b8a98e399e1a91ce1853e04d4bfb8"
+    },
+    "confirmed-framebuffer.png": {
+      "path": "development/runs/20261111T200641Z-uboot-ram93-d31fbf/confirmed-framebuffer.png",
+      "sha256": "c8fd78b4ced4db03591f5bea206f40328d8bb0fdf35f8cf22b435473252eea88"
+    },
+    "three-cycles-framebuffer.png": {
+      "path": "development/runs/20261111T200641Z-uboot-ram93-d31fbf/three-cycles-framebuffer.png",
+      "sha256": "14b1471243c811bbfb1478363c3fe26bfca1e8c049df7b187c5d02faf583023c"
+    },
+    "initial-before.log": {
+      "path": "development/runs/20261111T200641Z-uboot-ram93-d31fbf/initial-before.log",
+      "sha256": "dbe4c366c1a4a85e5b783828dc54ff356735a0ccba532044eacd85a9aac8dbd8"
+    }
+  },
+  "fallback": {
+    "profile": "display-onoff",
+    "kernel": "6.18.48-perrier-ram70",
+    "validation": {
+      "path": "development/kernel/validation-ram70.json",
+      "sha256": "022ffac9182eafb9ea0368f66cbe6cd76049f88ea7ee8c864674457f5dfbc520"
+    }
+  },
+  "parent_validation": {
+    "path": "development/kernel/validation-ram91.json",
+    "sha256": "0758c0a8bf93dd797cbfaac5807bd958b87d7e5ab86b4db3b2cef2cd0c3d53c8"
+  }
+}

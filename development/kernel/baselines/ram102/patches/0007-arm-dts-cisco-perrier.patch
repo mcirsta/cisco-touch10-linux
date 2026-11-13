@@ -1,0 +1,792 @@
+diff --git a/arch/arm/boot/dts/ti/omap/Makefile b/arch/arm/boot/dts/ti/omap/Makefile
+--- a/arch/arm/boot/dts/ti/omap/Makefile
++++ b/arch/arm/boot/dts/ti/omap/Makefile
+@@ -68,6 +68,7 @@
+ 	omap3-thunder.dtb \
+ 	omap3-zoom3.dtb
+ dtb-$(CONFIG_ARCH_OMAP4) += \
++	omap4-cisco-perrier-ram.dtb \
+ 	omap4-droid-bionic-xt875.dtb \
+ 	omap4-droid4-xt894.dtb \
+ 	omap4-duovero-parlor.dtb \
+diff --git a/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier-ram.dts b/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier-ram.dts
+--- /dev/null
++++ b/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier-ram.dts
+@@ -0,0 +1,198 @@
++// SPDX-License-Identifier: GPL-2.0-only
++// RAM-only development policy on the normal OMAP interconnect hierarchy.
++/dts-v1/;
++#include "omap4460.dtsi"
++#include "omap4-cisco-perrier.dtsi"
++
++/ {
++	model = "Cisco Touch 10 Perrier RAM trial";
++	compatible = "cisco,perrier-ram", "ti,omap4460", "ti,omap4";
++	memory@80000000 {
++		device_type = "memory";
++		reg = <0x80000000 0x19000000>;
++	};
++	chosen {
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges;
++		stdout-path = "serial0:115200n8";
++	};
++};
++
++&cpu0 { /delete-property/ operating-points; };
++&{/cpus/cpu@1} { status = "disabled"; };
++&abb_mpu { status = "disabled"; };
++&abb_iva { status = "disabled"; };
++&{/local-timer@48240600} { status = "disabled"; };
++&cpu_thermal { /delete-node/ cooling-maps; };
++
++&perrier_panel_3v3 {
++	regulator-boot-on;
++	regulator-always-on;
++};
++&perrier_backlight_5v {
++	regulator-boot-on;
++	regulator-always-on;
++};
++
++// Retain the existing RAM power policy while migrating topology. Runtime
++// power-domain integration is a separate step; no PMIC driver is added.
++&{/ocp} { /delete-property/ power-domains; };
++&l4_cfg { /delete-property/ power-domains; };
++&l4_per { /delete-property/ power-domains; };
++&l4_wkup { /delete-property/ power-domains; };
++&{/ocp/target-module@58000000} { /delete-property/ power-domains; };
++
++// Do not probe unused peripherals merely because their parent buses are on.
++&{/ocp/interconnect@4a300000/segment@0/target-module@c000} { status = "disabled"; };
++&{/ocp/interconnect@4a300000/segment@10000/target-module@0} { status = "disabled"; };
++&{/ocp/interconnect@4a300000/segment@10000/target-module@e000} { status = "disabled"; };
++&{/ocp/interconnect@4a300000/segment@20000} { status = "disabled"; };
++&{/ocp/interconnect@4a000000/segment@0/target-module@58000} { status = "disabled"; };
++&{/ocp/interconnect@4a000000/segment@0/target-module@5e000} { status = "disabled"; };
++&{/ocp/interconnect@4a000000/segment@0/target-module@62000} { status = "disabled"; };
++&{/ocp/interconnect@4a000000/segment@0/target-module@66000} { status = "disabled"; };
++&{/ocp/interconnect@4a000000/segment@80000} { status = "disabled"; };
++&{/ocp/interconnect@4a000000/segment@100000/target-module@2000} { status = "disabled"; };
++&{/ocp/interconnect@4a000000/segment@100000/target-module@8000} { status = "disabled"; };
++&{/ocp/interconnect@4a000000/segment@100000/target-module@a000} { status = "disabled"; };
++&{/ocp/interconnect@4a000000/segment@180000} { status = "disabled"; };
++&{/ocp/interconnect@4a000000/segment@200000} { status = "disabled"; };
++&{/ocp/interconnect@4a000000/segment@280000} { status = "disabled"; };
++&{/ocp/interconnect@4a000000/segment@300000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@32000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@34000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@36000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@3e000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@40000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@55000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@6a000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@6c000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@6e000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@76000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@78000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@88000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@90000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@96000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@98000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@9a000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@9c000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@9e000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@a2000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@a4000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@a5000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@a8000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@ad000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@b0000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@b2000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@b8000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@ba000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@d1000} { status = "disabled"; };
++&{/ocp/interconnect@48000000/segment@0/target-module@d5000} { status = "disabled"; };
++&{/ocp/target-module@48210000} { status = "disabled"; };
++&l4_abe {
++	status = "okay";
++	/delete-property/ power-domains;
++};
++&{/ocp/target-module@50000000} { status = "disabled"; };
++&{/ocp/target-module@52000000} { status = "disabled"; };
++// Use the upstream OMAP4460 Cortex-A9 PMU/IRQ description. Retain the
++// development power-domain policy while enabling its debug clock branch.
++&{/ocp/target-module@54000000} {
++	status = "okay";
++	/delete-property/ power-domains;
++	ti,no-idle-on-init;
++};
++&{/ocp/target-module@55082000} { status = "disabled"; };
++&{/ocp/target-module@4012c000} { status = "disabled"; };
++&{/ocp/target-module@4e000000} { status = "disabled"; };
++&{/ocp/target-module@4c000000} { status = "disabled"; };
++&{/ocp/target-module@4d000000} { status = "disabled"; };
++&{/ocp/target-module@4b501000} { status = "disabled"; };
++&{/ocp/target-module@4b701000} { status = "disabled"; };
++&{/ocp/target-module@4b100000} { status = "disabled"; };
++&{/ocp/target-module@56000000} { status = "disabled"; };
++&{/ocp/target-module@58000000/dss@0/target-module@2000} { status = "disabled"; };
++&{/ocp/target-module@58000000/dss@0/target-module@3000} { status = "disabled"; };
++&{/ocp/target-module@58000000/dss@0/target-module@5000} { status = "disabled"; };
++&{/ocp/target-module@58000000/dss@0/target-module@6000} { status = "disabled"; };
++&{/ocp/target-module@5a000000} { status = "disabled"; };
++
++// These unused children share enabled control/USB/display target modules.
++&omap_control_usb2phy { status = "disabled"; };
++&omap_control_usbotg { status = "disabled"; };
++&omap4_padconf_global { status = "disabled"; };
++
++// Preserve the working output latches and active watchdog across handoff.
++&{/ocp/interconnect@48000000/segment@0/target-module@20000} {
++	ti,no-reset-on-init;
++	ti,no-idle-on-init;
++};
++&{/ocp/interconnect@48000000/segment@0/target-module@57000} {
++	ti,no-reset-on-init;
++};
++&{/ocp/interconnect@48000000/segment@0/target-module@59000} {
++	ti,no-reset-on-init;
++};
++&{/ocp/interconnect@48000000/segment@0/target-module@5b000} {
++	ti,no-reset-on-init;
++};
++&{/ocp/interconnect@48000000/segment@0/target-module@5d000} {
++	ti,no-reset-on-init;
++};
++&{/ocp/interconnect@4a300000/segment@10000/target-module@c000} {
++	ti,no-reset-on-init;
++};
++&{/ocp/interconnect@48000000/segment@0/target-module@86000} {
++	ti,no-reset-on-init;
++};
++&{/ocp/interconnect@4a300000/segment@10000/target-module@4000} {
++	ti,no-reset-on-init;
++	ti,no-idle-on-init;
++};
++&{/ocp/interconnect@4a300000/segment@0/target-module@4000} {
++	ti,no-reset-on-init;
++	ti,no-idle-on-init;
++};
++&{/ocp/interconnect@4a300000/segment@10000/target-module@8000} {
++	ti,no-reset-on-init;
++	ti,no-idle-on-init;
++};
++&{/ocp/interconnect@4a000000/segment@100000/target-module@0} {
++	ti,no-reset-on-init;
++	ti,no-idle-on-init;
++};
++&{/ocp/interconnect@4a000000/segment@0/target-module@2000} {
++	ti,no-reset-on-init;
++	ti,no-idle-on-init;
++};
++&{/ocp/interconnect@4a000000/segment@0/target-module@4000} {
++	ti,no-reset-on-init;
++	ti,no-idle-on-init;
++};
++&{/ocp/interconnect@4a000000/segment@0/target-module@8000} {
++	ti,no-reset-on-init;
++	ti,no-idle-on-init;
++};
++&{/ocp/interconnect@4a300000/segment@0/target-module@6000} {
++	ti,no-reset-on-init;
++	ti,no-idle-on-init;
++};
++&{/ocp/interconnect@4a300000/segment@0/target-module@a000} {
++	ti,no-reset-on-init;
++	ti,no-idle-on-init;
++};
++&{/ocp/interconnect@40100000/segment@0/target-module@22000} { status = "disabled"; };
++&{/ocp/interconnect@40100000/segment@0/target-module@24000} { status = "disabled"; };
++&{/ocp/interconnect@40100000/segment@0/target-module@26000} { status = "disabled"; };
++&{/ocp/interconnect@40100000/segment@0/target-module@28000} { status = "disabled"; };
++&{/ocp/interconnect@40100000/segment@0/target-module@2e000} { status = "disabled"; };
++&{/ocp/interconnect@40100000/segment@0/target-module@30000} { status = "disabled"; };
++&{/ocp/interconnect@40100000/segment@0/target-module@38000} { status = "disabled"; };
++&{/ocp/interconnect@40100000/segment@0/target-module@3a000} { status = "disabled"; };
++&{/ocp/interconnect@40100000/segment@0/target-module@3c000} { status = "disabled"; };
++&{/ocp/interconnect@40100000/segment@0/target-module@3e000} { status = "disabled"; };
++&{/ocp/interconnect@40100000/segment@0/target-module@80000} { status = "disabled"; };
++&{/ocp/interconnect@40100000/segment@0/target-module@a0000} { status = "disabled"; };
++&{/ocp/interconnect@40100000/segment@0/target-module@c0000} { status = "disabled"; };
++&{/ocp/interconnect@40100000/segment@0/target-module@f1000} { status = "disabled"; };
+diff --git a/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier.dtsi b/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier.dtsi
+--- /dev/null
++++ b/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier.dtsi
+@@ -0,0 +1,575 @@
++// SPDX-License-Identifier: GPL-2.0-only
++// Cisco Touch 10 / Perrier board wiring on the upstream OMAP4460 buses.
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/input/linux-event-codes.h>
++#include <dt-bindings/leds/common.h>
++
++/ {
++	aliases {
++		serial0 = &uart3;
++		mmc0 = &mmc2;
++		i2c0 = &i2c1;
++		i2c1 = &i2c2;
++		i2c2 = &i2c3;
++		i2c3 = &i2c4;
++		/delete-property/ serial1;
++		/delete-property/ serial2;
++		/delete-property/ serial3;
++		/delete-property/ mmc1;
++		/delete-property/ mmc2;
++		/delete-property/ mmc3;
++		/delete-property/ mmc4;
++	};
++
++	perrier_emmc_vcc: regulator-emmc-vcc {
++		compatible = "regulator-fixed";
++		regulator-name = "perrier-emmc-vcc";
++		regulator-min-microvolt = <2950000>;
++		regulator-max-microvolt = <2950000>;
++		regulator-always-on;
++	};
++
++	perrier_bridge_vddio: regulator-bridge-vddio {
++		compatible = "regulator-fixed";
++		regulator-name = "perrier-bridge-vddio-logic-only";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		regulator-always-on;
++	};
++
++	perrier_bridge_vdd: regulator-bridge-vdd {
++		compatible = "regulator-fixed";
++		regulator-name = "perrier-bridge-vdd-logic-only";
++		regulator-min-microvolt = <1200000>;
++		regulator-max-microvolt = <1200000>;
++		regulator-always-on;
++	};
++
++	perrier_panel_3v3: regulator-panel-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "perrier-panel-3v3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpio = <&gpio6 3 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
++	perrier_panel: panel {
++		backlight = <&perrier_backlight>;
++		compatible = "panel-lvds";
++		data-mapping = "vesa-24";
++		power-supply = <&perrier_panel_3v3>;
++		// Approximate mechanical size; only timing and mapping are electrical.
++		width-mm = <217>;
++		height-mm = <136>;
++		panel-timing {
++			// Measured stock DISPC pck is 71,073,662 Hz; DRM uses kHz.
++			clock-frequency = <71074000>;
++			hactive = <1280>;
++			hfront-porch = <78>;
++			hback-porch = <79>;
++			hsync-len = <3>;
++			vactive = <800>;
++			vfront-porch = <12>;
++			vback-porch = <10>;
++			vsync-len = <1>;
++		};
++		port {
++			perrier_panel_in: endpoint {
++				remote-endpoint = <&perrier_bridge_out>;
++			};
++		};
++	};
++
++	perrier_pwm10: pwm-backlight-timer {
++		compatible = "ti,omap-dmtimer-pwm";
++		ti,timers = <&timer10>;
++		#pwm-cells = <3>;
++	};
++
++	perrier_backlight: backlight {
++		compatible = "pwm-backlight";
++		pinctrl-names = "default";
++		pinctrl-0 = <&perrier_backlight_pwm_pin &perrier_backlight_enable_pin>;
++		power-supply = <&perrier_backlight_5v>;
++		enable-gpios = <&gpio5 23 GPIO_ACTIVE_HIGH>;
++		pwms = <&perrier_pwm10 0 50000 0>;
++		brightness-levels = <0 64 128 192 255>;
++		default-brightness-level = <4>;
++	};
++
++	perrier_usb_phy: usb-phy {
++		compatible = "usb-nop-xceiv";
++		#phy-cells = <0>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&perrier_ethernet_phy_pins>;
++		reset-gpios = <&gpio4 14 GPIO_ACTIVE_LOW>; // GPIO110, stock high = released
++		clocks = <&auxclk1_ck>;
++		clock-names = "main_clk";
++		clock-frequency = <19200000>;
++		// Select the same fixed 38.4 MHz parent as stock, then divide by 2.
++		// No shared DPLL is reprogrammed.
++		assigned-clocks = <&auxclk1_src_ck>;
++		assigned-clock-parents = <&sys_clkin_ck>;
++	};
++
++	perrier_backlight_5v: regulator-backlight-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "perrier-backlight-5v";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&perrier_backlight_5v_pin>;
++		gpio = <&gpio5 29 GPIO_ACTIVE_HIGH>; // GPIO157 lcd_5v_enable
++		enable-active-high;
++		// Stock enables 5 V and waits 11 ms before programming timer10.
++		startup-delay-us = <11000>;
++	};
++
++	perrier_touch_5v: regulator-touch-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "perrier-touch-5v";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&perrier_touch_5v_pin>;
++		gpio = <&gpio4 24 GPIO_ACTIVE_HIGH>; // stock tp_5v_en GPIO120
++		enable-active-high;
++	};
++
++	perrier_touch_3v3: regulator-touch-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "perrier-touch-3v3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&perrier_touch_3v3_pin>;
++		gpio = <&gpio4 25 GPIO_ACTIVE_HIGH>; // stock tp_3v3_en GPIO121
++		enable-active-high;
++	};
++
++	leds {
++		compatible = "gpio-leds";
++		pinctrl-names = "default";
++		pinctrl-0 = <&perrier_mute_led_pins>;
++
++		led-0 {
++			color = <LED_COLOR_ID_RED>;
++			function = LED_FUNCTION_MICMUTE;
++			gpios = <&gpio4 26 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++
++		led-1 {
++			color = <LED_COLOR_ID_GREEN>;
++			function = LED_FUNCTION_MICMUTE;
++			gpios = <&gpio4 23 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++	};
++
++	led-controller {
++		compatible = "pwm-leds";
++		led-0 {
++			color = <LED_COLOR_ID_WHITE>;
++			function = LED_FUNCTION_STATUS;
++			pwms = <&perrier_system_pwm 1 3906250>;
++			max-brightness = <255>;
++			default-state = "off";
++		};
++	};
++
++};
++
++&uart3 {
++	status = "okay";
++};
++
++&mmc2 {
++	status = "okay";
++	non-removable;
++	ti,non-removable;
++	bus-width = <8>;
++	max-frequency = <26000000>;
++	vmmc-supply = <&perrier_emmc_vcc>;
++};
++
++&i2c2 {
++	status = "okay";
++	clock-frequency = <100000>;
++};
++
++&i2c1 {
++	status = "okay";
++	clock-frequency = <400000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&perrier_pmic_i2c_pins>;
++
++	perrier_pmic: pmic@48 {
++		compatible = "ti,twl6032";
++		reg = <0x48>;
++		interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-controller;
++		#interrupt-cells = <1>;
++		#address-cells = <0>;
++		#clock-cells = <1>;
++
++		rtc {
++			compatible = "ti,twl4030-rtc";
++			interrupts = <11>;
++		};
++
++		gpadc {
++			compatible = "ti,twl6032-gpadc";
++			interrupts = <3>;
++			#io-channel-cells = <1>;
++		};
++
++		// Retain bootloader clocks and rails. Only the ordinary PWM child
++		// and ADC children are described; physical rails stay unmanaged.
++		perrier_system_pwm: pwm {
++			compatible = "ti,twl6030-pwm";
++			#pwm-cells = <2>;
++		};
++	};
++};
++
++&i2c4 {
++	status = "okay";
++	clock-frequency = <400000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&perrier_monitor_i2c_pins>;
++
++	gpio@24 {
++		compatible = "nxp,pcf8574";
++		reg = <0x24>;
++		retain-state-shutdown;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++
++	power-sensor@40 {
++		compatible = "ti,ina3221";
++		reg = <0x40>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++		input@0 {
++			reg = <0>;
++			shunt-resistor-micro-ohms = <10000>;
++			ti,summation-disable;
++		};
++		input@1 {
++			reg = <1>;
++			shunt-resistor-micro-ohms = <10000>;
++			ti,summation-disable;
++		};
++		input@2 {
++			reg = <2>;
++			shunt-resistor-micro-ohms = <10000>;
++			ti,summation-disable;
++		};
++	};
++
++	power-sensor@41 {
++		compatible = "ti,ina3221";
++		reg = <0x41>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++		input@0 {
++			reg = <0>;
++			shunt-resistor-micro-ohms = <10000>;
++			ti,summation-disable;
++		};
++		input@1 {
++			reg = <1>;
++			shunt-resistor-micro-ohms = <10000>;
++			ti,summation-disable;
++		};
++		input@2 {
++			reg = <2>;
++			shunt-resistor-micro-ohms = <10000>;
++			ti,summation-disable;
++		};
++	};
++
++	eeprom@54 {
++		compatible = "atmel,24c02";
++		reg = <0x54>;
++		read-only;
++	};
++};
++
++&i2c3 {
++	status = "okay";
++	clock-frequency = <100000>;
++};
++
++&i2c3 {
++	bridge@f {
++		compatible = "toshiba,tc358765";
++		reg = <0x0f>;
++		vddio-supply = <&perrier_bridge_vddio>;
++		vdd-supply = <&perrier_bridge_vdd>;
++		// Stock GPIO102 is high in operation, low while reset is asserted.
++		reset-gpios = <&gpio4 6 GPIO_ACTIVE_LOW>;
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			port@0 {
++				reg = <0>;
++				perrier_bridge_in: endpoint {
++					remote-endpoint = <&perrier_dsi_out>;
++					data-lanes = <1 2 3 4>;
++				};
++			};
++			port@1 {
++				reg = <1>;
++				perrier_bridge_out: endpoint {
++					remote-endpoint = <&perrier_panel_in>;
++				};
++			};
++		};
++	};
++};
++
++&i2c2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&perrier_touch_i2c_pins>;
++	touchscreen@67 {
++		compatible = "cisco,perrier-cyttsp4";
++		pinctrl-names = "default";
++		pinctrl-0 = <&perrier_touch_pins>;
++		reset-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
++		vdd-supply = <&perrier_touch_5v>;
++		vddio-supply = <&perrier_touch_3v3>;
++		reg = <0x67>;
++		interrupt-parent = <&gpio5>;
++		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
++		touchscreen-size-x = <1280>;
++		touchscreen-size-y = <800>;
++	};
++};
++
++&i2c3 {
++	// Stock firmware binds tmp102 at I2C3 address 0x48. No supply, alert
++	// GPIO, or pinmux is specified; only its volatile conversion setup is
++	// changed by the mainline hwmon driver.
++	temperature-sensor@48 {
++		compatible = "ti,tmp102";
++		reg = <0x48>;
++		label = "Board";
++	};
++};
++
++&usbhshost {
++	status = "okay";
++	num-ports = <2>;
++	port1-mode = "ehci-phy";
++	clocks = <&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 24>,
++		<&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 25>,
++		<&xclk60mhsp1_ck>, <&xclk60mhsp2_ck>,
++		<&init_60m_fclk>,
++		<&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 8>,
++		<&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 9>,
++		<&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 13>,
++		<&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 14>,
++		<&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 11>,
++		<&l3_init_clkctrl OMAP4_USB_HOST_HS_CLKCTRL 12>;
++	clock-names = "utmi_p1_gfclk", "utmi_p2_gfclk",
++		"refclk_60m_ext_p1", "refclk_60m_ext_p2",
++		"refclk_60m_int",
++		"usb_host_hs_utmi_p1_clk", "usb_host_hs_utmi_p2_clk",
++		"usb_host_hs_hsic480m_p1_clk", "usb_host_hs_hsic480m_p2_clk",
++		"usb_host_hs_hsic60m_p1_clk", "usb_host_hs_hsic60m_p2_clk";
++};
++
++&usbhsehci {
++	status = "okay";
++	phys = <&perrier_usb_phy>;
++	#address-cells = <1>;
++	#size-cells = <0>;
++	ethernet@1 {
++		compatible = "usb424,9e00";
++		reg = <1>;
++		local-mac-address = [24 16 9d b6 77 bb];
++	};
++};
++
++&usbhsohci {
++	status = "disabled";
++};
++
++&dss {
++	status = "okay";
++};
++
++&dsi1 {
++	status = "okay";
++	port {
++		perrier_dsi_out: endpoint {
++			remote-endpoint = <&perrier_bridge_in>;
++			// Stock DSI_COMPLEXIO_CFG1 = 0x2a054321.
++			lanes = <0 1 2 3 4 5 6 7 8 9>;
++		};
++	};
++};
++
++&keypad {
++	status = "okay";
++	keypad,num-rows = <2>;
++	keypad,num-columns = <6>;
++	linux,keymap = <MATRIX_KEY(0, 4, KEY_VOLUMEDOWN)
++		MATRIX_KEY(1, 4, KEY_MUTE)
++		MATRIX_KEY(1, 5, KEY_VOLUMEUP)>;
++};
++
++&timer10 {
++	status = "okay";
++};
++
++&wdt2 {
++	status = "okay";
++	timeout-sec = <120>;
++};
++
++&gpio5 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&perrier_lan_reset_pin>;
++	lan-reset-hog {
++		gpio-hog;
++		gpios = <30 GPIO_ACTIVE_HIGH>; // GPIO158, stock output high
++		output-high;
++		line-name = "lan-reset-released";
++	};
++};
++
++&omap4_pmx_core {
++	perrier_pmic_i2c_pins: pmic-i2c-pins {
++		pinctrl-single,pins = <
++			OMAP4_IOPAD(0x122, 0x0118)
++			OMAP4_IOPAD(0x124, 0x0118)
++		>;
++	};
++	perrier_monitor_i2c_pins: monitor-i2c-pins {
++		pinctrl-single,pins = <
++			OMAP4_IOPAD(0x12e, 0x0100)
++			OMAP4_IOPAD(0x130, 0x0100)
++		>;
++	};
++	perrier_ethernet_phy_pins: ethernet-phy-pins {
++		pinctrl-single,pins = <
++		// ULPI CLK, input/pulldown, mode 4
++			OMAP4_IOPAD(0x0c2, 0x010c)
++			OMAP4_IOPAD(0x0c4, 0x0004) // ULPI STP, output, mode 4
++			OMAP4_IOPAD(0x0c6, 0x010c) // ULPI DIR
++			OMAP4_IOPAD(0x0c8, 0x010c) // ULPI NXT
++			OMAP4_IOPAD(0x0ca, 0x010c) // ULPI DAT0
++			OMAP4_IOPAD(0x0cc, 0x010c) // ULPI DAT1
++			OMAP4_IOPAD(0x0ce, 0x010c) // ULPI DAT2
++			OMAP4_IOPAD(0x0d0, 0x010c) // ULPI DAT3
++			OMAP4_IOPAD(0x0d2, 0x010c) // ULPI DAT4
++			OMAP4_IOPAD(0x0d4, 0x010c) // ULPI DAT5
++			OMAP4_IOPAD(0x0d6, 0x010c) // ULPI DAT6
++			OMAP4_IOPAD(0x0d8, 0x010c) // ULPI DAT7
++		// GPIO110 USB PHY reset, output mode 3
++			OMAP4_IOPAD(0x0f6, 0x0003)
++		// FREF_CLK1_OUT, stock mode 0/pullup
++			OMAP4_IOPAD(0x19a, 0x0118)
++		>;
++	};
++	perrier_lan_reset_pin: lan-reset-pins {
++		pinctrl-single,pins = <OMAP4_IOPAD(0x162, 0x0003)>;
++	};
++	perrier_backlight_5v_pin: backlight-5v-pin {
++		pinctrl-single,pins = <OMAP4_IOPAD(0x160, 0x0003)>;
++	};
++	perrier_backlight_pwm_pin: backlight-pwm-pin {
++		pinctrl-single,pins = <OMAP4_IOPAD(0x1d2, 0x0001)>;
++	};
++	perrier_backlight_enable_pin: backlight-enable-pin {
++		// Stock idefix_backlight_set_pad uses GPIO151, MCSPI4_CLK at 0x154.
++		// 0x156 in the historical inspector was MCSPI4_SIMO, a different pad.
++		pinctrl-single,pins = <OMAP4_IOPAD(0x154, 0x0003)>;
++	};
++	perrier_touch_5v_pin: touch-5v-pin {
++		pinctrl-single,pins = <OMAP4_IOPAD(0x112, 0x0003)>;
++	};
++	perrier_mute_led_pins: mute-led-pins {
++		pinctrl-single,pins = <
++			OMAP4_IOPAD(0x110, 0x000b) // GPIO119, stock output/pull-down
++			OMAP4_IOPAD(0x116, 0x000b) // GPIO122, stock output/pull-down
++		>;
++	};
++	perrier_touch_3v3_pin: touch-3v3-pin {
++		pinctrl-single,pins = <OMAP4_IOPAD(0x114, 0x0003)>;
++	};
++	perrier_touch_pins: touch-pins {
++		pinctrl-single,pins = <
++			OMAP4_IOPAD(0x140, 0x0003) // GPIO141 reset output
++			OMAP4_IOPAD(0x142, 0x731b) // GPIO142 IRQ input/pull-up/off wake
++		>;
++	};
++	perrier_touch_i2c_pins: touch-i2c-pins {
++		pinctrl-single,pins = <
++			OMAP4_IOPAD(0x126, 0x0100)
++			OMAP4_IOPAD(0x128, 0x0100)
++		>;
++	};
++};
++
++// Stock Perrier: HFR and EP connected; microphones and jack absent.
++/ {
++	sound {
++		compatible = "ti,abe-twl6040";
++		ti,model = "Cisco Touch 10 Perrier";
++		ti,mclk-freq = <19200000>;
++		ti,mcpdm = <&mcpdm>;
++		ti,twl6040 = <&perrier_audio>;
++		ti,audio-routing = "Ext Spk", "HFR", "Earphone Spk", "EP";
++	};
++};
++
++&i2c1 {
++	perrier_audio: audio-codec@4b {
++		compatible = "ti,twl6040";
++		reg = <0x4b>;
++		#clock-cells = <0>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&perrier_audio_control_pins>;
++		interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
++		ti,audpwron-gpios = <&gpio4 31 GPIO_ACTIVE_HIGH>;
++		clocks = <&perrier_pmic 1>;
++		clock-names = "clk32k";
++		// Stock uses dummy vio/v2v1 supplies. Keep inherited physical
++		// rails unmanaged; do not invent regulator voltage programming.
++	};
++};
++
++&omap4_pmx_core {
++	perrier_audio_control_pins: audio-control-pins {
++		pinctrl-single,pins = <
++			0x0e0 0x0003 // GPIO127 AUDPWRON, stock pad 0x120
++			0x160 0xc118 // sys_nirq2, stock pad 0x1a0
++		>;
++	};
++	perrier_mcpdm_pins: mcpdm-pins {
++		pinctrl-single,pins = <
++			0x0c6 0x0100 // UL data, stock pad 0x106
++			0x0c8 0x0108 // DL data, stock pad 0x108
++			0x0ca 0x0118 // frame, stock pad 0x10a
++			0x0cc 0x0108 // loopback clock, stock pad 0x10c
++			0x0ce 0x0108 // external clock, stock pad 0x10e
++		>;
++	};
++};
++
++&mcpdm_module {
++	pinctrl-names = "default";
++	pinctrl-0 = <&perrier_mcpdm_pins>;
++	status = "okay";
++};
++&mcpdm {
++	clocks = <&perrier_audio>;
++	clock-names = "pdmclk";
++};

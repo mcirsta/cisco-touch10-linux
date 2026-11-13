@@ -1,0 +1,19 @@
+{
+  "profile": "rtc-gpio",
+  "kernel": "6.18.48-perrier-ram96",
+  "fallback": "peripherals",
+  "parent": "validation-ram95.json",
+  "scope": ["TWL RTC counter and bounded alarm IRQ", "PCF8574 GPIO provider and as-is reads", "TWL6032 32 kHz clock providers", "read-only stock audio mapping"],
+  "display_cycles": 0,
+  "qt_restarts": 0,
+  "safety": {
+    "gpio": "Probe and ASIS flags=0 reads perform no latch writes. Required retain-state-shutdown prevents all-high shutdown write. No direction, bias, drive, reset or output consumers.",
+    "rtc": "HCTOSYS, SYSTOHC and RTC NVMEM disabled. Calendar time is not set. One five-second alarm test backs up and restores cached alarm plus exact alarm/IRQ bytes.",
+    "clocks": "Unmodified CLK_TWL probe registers clk32kg/clk32kaudio. CLK_IGNORE_UNUSED, no consumers/assigned clocks and no prepare/enable/rate test. Compare PMIC clock registers and zero CCF use counts.",
+    "power": "No regulator, charger, ADC, power-off or audio driver enabled. Retain ram95 voltage and GPIO policy.",
+    "recovery": "Existing one-shot U-Boot, exact factory p8 restoration, unchanged watchdog and read-only eMMC"
+  },
+  "evidence": ["stock-rtc-gpio-clocks.log", "stock-expander-analysis.json", "stock-alsa-controls.log", "stock-audio-pads-gpio-clock-index.log"],
+  "checks": ["RTC progression", "alarm poll IRQ and restoration", "raw port equals native GPIO-v2 as-is read", "GPIO/clock/rail registers preserved", "clock API registrations/rates and zero consumers", "read-only framebuffer capture", "hardware watchdog return to stock"],
+  "deferred": ["unmapped GPIO output functions", "audio playback and physical endpoint routing", "production power management", "SMP", "SGX"]
+}

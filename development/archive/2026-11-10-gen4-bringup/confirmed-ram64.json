@@ -1,0 +1,15 @@
+{
+  "kernel": "6.18.48-perrier-ram64",
+  "owner_confirmation": "everything works as it should now",
+  "display_visible_and_aligned": true,
+  "native_gen4_touch_verified": true,
+  "brightness_slider_verified": true,
+  "boot_path": "installed MLO/U-Boot, software reset, no kexec",
+  "hardware_expiry_verified": true,
+  "recovery_elapsed_seconds": 154.4,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "result": "/home/marius/ext_proj/touch10/development/runs/20261110T110048Z-uboot-ram64-f04270/result.json",
+  "result_sha256": "f9d9a80292ed688bcfbe3b2644ce543c0484f8a53007506208cc9d32005bde8f",
+  "events": "/home/marius/ext_proj/touch10/development/runs/20261110T110048Z-uboot-ram64-f04270/confirmed-touch-qt.log",
+  "events_sha256": "ee541dfa2fd67b09d49e55b0823d47ab0fc8bf0b190b72cd80f236813b78583a"
+}

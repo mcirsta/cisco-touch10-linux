@@ -1,0 +1,111 @@
+diff --git a/drivers/regulator/twl6030-regulator.c b/drivers/regulator/twl6030-regulator.c
+--- a/drivers/regulator/twl6030-regulator.c
++++ b/drivers/regulator/twl6030-regulator.c
+@@ -81,6 +81,7 @@
+ #define TWL6030_SMPS_MULT		0xB3
+ #define SMPS_MULTOFFSET_SMPS4	BIT(0)
+ #define SMPS_MULTOFFSET_VIO	BIT(1)
++#define SMPS_MULTOFFSET_SMPS1	BIT(3)
+ #define SMPS_MULTOFFSET_SMPS3	BIT(6)
+ 
+ static inline int
+@@ -500,6 +501,42 @@
+ 	.get_status		= twl6030reg_get_status,
+ };
+ 
++/*
++ * SMPS1 is controlled by the OMAP voltage controller.  The ordinary TWL6032
++ * SMPS3/SMPS4/VIO selector table does not describe this rail.  Report its
++ * programmed voltage without offering a second writer for the MPU supply.
++ * The offset bit and conversion match the older OMAP TWL6030 VC callbacks.
++ */
++static int twl6032smps1_get_voltage(struct regulator_dev *rdev)
++{
++	struct twlreg_info *info = rdev_get_drvdata(rdev);
++	u8 offset;
++	int selector, ret;
++
++	selector = twlreg_read(info, TWL_MODULE_PM_RECEIVER,
++			       VREG_VOLTAGE_SMPS);
++	if (selector < 0)
++		return selector;
++	if (!selector)
++		return 0;
++	if (selector == 58)
++		return 1350000;
++	if (selector > 57)
++		return -EINVAL;
++
++	ret = twl_i2c_read_u8(TWL_MODULE_PM_RECEIVER, &offset,
++			      TWL6030_SMPS_OFFSET);
++	if (ret < 0)
++		return ret;
++
++	return (offset & SMPS_MULTOFFSET_SMPS1 ? 709000 : 607700) +
++		12660 * (selector - 1);
++}
++
++static const struct regulator_ops twl6032smps1_readonly_ops = {
++	.get_voltage = twl6032smps1_get_voltage,
++};
++
+ /*----------------------------------------------------------------------*/
+ static const struct linear_range twl6030ldo_linear_range[] = {
+ 	REGULATOR_LINEAR_RANGE(0, 0, 0, 0),
+@@ -579,6 +616,19 @@
+ 		.owner = THIS_MODULE, \
+ 		}, \
+ 	}
++
++static const struct twlreg_info TWL6032_INFO_SMPS1 = {
++	/* 0x30 PM_RECEIVER base + 0x21 bank + 4 = 0x55 VCORE1 voltage. */
++	.base = 0x21,
++	.features = TWL6032_SUBCLASS,
++	.desc = {
++		.name = "SMPS1",
++		.id = TWL6032_REG_SMPS1,
++		.ops = &twl6032smps1_readonly_ops,
++		.type = REGULATOR_VOLTAGE,
++		.owner = THIS_MODULE,
++	},
++};
+ 
+ /* VUSBCP is managed *only* by the USB subchip */
+ /* 6030 REG with base as PMC Slave Misc : 0x0030 */
+@@ -668,6 +718,7 @@
+ 	TWLFIXED_OF_MATCH("ti,twl6030-v1v8", V1V8),
+ 	TWLFIXED_OF_MATCH("ti,twl6030-v2v1", V2V1),
+ 	TWLSMPS_OF_MATCH("ti,twl6032-smps3", SMPS3),
++	TWL6032_OF_MATCH("ti,twl6032-smps1", SMPS1),
+ 	TWLSMPS_OF_MATCH("ti,twl6032-smps4", SMPS4),
+ 	TWLSMPS_OF_MATCH("ti,twl6032-vio", VIO),
+ 	{},
+@@ -702,10 +753,15 @@
+ 	 * this driver and the chip itself can actually do.
+ 	 */
+ 	c = &initdata->constraints;
+-	c->valid_modes_mask &= REGULATOR_MODE_NORMAL | REGULATOR_MODE_STANDBY;
+-	c->valid_ops_mask &= REGULATOR_CHANGE_VOLTAGE
++	if (id == TWL6032_REG_SMPS1) {
++		c->valid_modes_mask = 0;
++		c->valid_ops_mask = 0;
++	} else {
++		c->valid_modes_mask &= REGULATOR_MODE_NORMAL | REGULATOR_MODE_STANDBY;
++		c->valid_ops_mask &= REGULATOR_CHANGE_VOLTAGE
+ 				| REGULATOR_CHANGE_MODE
+ 				| REGULATOR_CHANGE_STATUS;
++	}
+ 
+ 	switch (id) {
+ 	case TWL6032_REG_SMPS3:
+diff --git a/include/linux/mfd/twl.h b/include/linux/mfd/twl.h
+--- a/include/linux/mfd/twl.h
++++ b/include/linux/mfd/twl.h
+@@ -781,6 +781,7 @@
+ #define TWL6032_REG_SMPS3	58
+ #define TWL6032_REG_SMPS4	59
+ #define TWL6032_REG_VIO		60
++#define TWL6032_REG_SMPS1	61
+ 
+ 
+ #endif /* End of __TWL4030_H */

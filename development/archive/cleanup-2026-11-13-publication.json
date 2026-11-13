@@ -1,0 +1,945 @@
+{
+  "date": "2026-11-13",
+  "request": "Remove every source-built binary except the two latest builds.",
+  "retained_profiles": [
+    {
+      "path": "development/perrier-ramenv/cpu-dvfs-low-trial",
+      "kernel": "6.18.48-perrier-ram115"
+    },
+    {
+      "path": "development/perrier-ramenv/cpu-dvfs-mid-trial",
+      "kernel": "6.18.48-perrier-ram116"
+    }
+  ],
+  "retained_latest_build_trees_verified_unchanged": true,
+  "removed_files": 300498,
+  "removed_logical_bytes": 31574083135,
+  "groups": {
+    "analysis/bootrom/__pycache__": {
+      "files": 5,
+      "bytes": 19083
+    },
+    "analysis/key-search-2026-11-08/aes-schedule-scan": {
+      "files": 1,
+      "bytes": 16576
+    },
+    "development/archive/2026-11-10-gen4-bringup": {
+      "files": 11659,
+      "bytes": 1239992481
+    },
+    "development/archive/2026-11-12-pmu": {
+      "files": 5,
+      "bytes": 52470190
+    },
+    "development/audio/__pycache__": {
+      "files": 4,
+      "bytes": 26160
+    },
+    "development/audio/app-build": {
+      "files": 405,
+      "bytes": 4585356
+    },
+    "development/audio/app-install": {
+      "files": 3,
+      "bytes": 674412
+    },
+    "development/audio/build": {
+      "files": 27,
+      "bytes": 810190
+    },
+    "development/audio/quiet-hfr-4ch.wav": {
+      "files": 1,
+      "bytes": 1536044
+    },
+    "development/audio/quiet96-ep-4ch.wav": {
+      "files": 1,
+      "bytes": 3072044
+    },
+    "development/audio/quiet96-hfr-4ch.wav": {
+      "files": 1,
+      "bytes": 3072044
+    },
+    "development/audio/shared-build": {
+      "files": 294,
+      "bytes": 4116140
+    },
+    "development/audio/shared-install": {
+      "files": 4,
+      "bytes": 1264216
+    },
+    "development/audio/silence-4ch.wav": {
+      "files": 1,
+      "bytes": 2304044
+    },
+    "development/audio/silence88200-4ch.wav": {
+      "files": 1,
+      "bytes": 2822444
+    },
+    "development/audio/silence96-4ch.wav": {
+      "files": 1,
+      "bytes": 4608044
+    },
+    "development/cache/zig-global": {
+      "files": 2798,
+      "bytes": 21070840
+    },
+    "development/cache/zig-local": {
+      "files": 99,
+      "bytes": 2206744
+    },
+    "development/kernel/__pycache__": {
+      "files": 37,
+      "bytes": 366163
+    },
+    "development/kernel/baselines": {
+      "files": 46,
+      "bytes": 74828099
+    },
+    "development/kernel/diagnostics": {
+      "files": 12,
+      "bytes": 197733
+    },
+    "development/kernel/out": {
+      "files": 1773,
+      "bytes": 286541015
+    },
+    "development/kernel/power": {
+      "files": 43,
+      "bytes": 1385898
+    },
+    "development/kernel/tests": {
+      "files": 10,
+      "bytes": 16447854
+    },
+    "development/kernel/work": {
+      "files": 1,
+      "bytes": 856
+    },
+    "development/kexec-tools/bin": {
+      "files": 1,
+      "bytes": 16208
+    },
+    "development/kexec-tools/build": {
+      "files": 2,
+      "bytes": 2717084
+    },
+    "development/kexec-tools/kexec": {
+      "files": 40,
+      "bytes": 600056
+    },
+    "development/kexec-tools/libutil.a": {
+      "files": 1,
+      "bytes": 135836
+    },
+    "development/kexec-tools/purgatory": {
+      "files": 6,
+      "bytes": 127548
+    },
+    "development/kexec-tools/util_lib": {
+      "files": 3,
+      "bytes": 135168
+    },
+    "development/kexec-tools/vmcore-dmesg": {
+      "files": 1,
+      "bytes": 6856
+    },
+    "development/perrier-backlight/__pycache__": {
+      "files": 1,
+      "bytes": 13809
+    },
+    "development/perrier-cold-ethernet/__pycache__": {
+      "files": 2,
+      "bytes": 26443
+    },
+    "development/perrier-coldboot/__pycache__": {
+      "files": 4,
+      "bytes": 39629
+    },
+    "development/perrier-coldboot/board.dtb": {
+      "files": 1,
+      "bytes": 85634
+    },
+    "development/perrier-coldboot/init": {
+      "files": 1,
+      "bytes": 952388
+    },
+    "development/perrier-coldboot/initramfs.cpio": {
+      "files": 1,
+      "bytes": 953220
+    },
+    "development/perrier-coldboot/kernel-build": {
+      "files": 2264,
+      "bytes": 83047187
+    },
+    "development/perrier-coldboot/oneshot-p8.bin": {
+      "files": 1,
+      "bytes": 262144
+    },
+    "development/perrier-keypad/__pycache__": {
+      "files": 1,
+      "bytes": 10842
+    },
+    "development/perrier-lcd/__pycache__": {
+      "files": 3,
+      "bytes": 30008
+    },
+    "development/perrier-lcd/baselines": {
+      "files": 16,
+      "bytes": 24197792
+    },
+    "development/perrier-lcd/build": {
+      "files": 1545,
+      "bytes": 73035683
+    },
+    "development/perrier-lcd/init": {
+      "files": 1,
+      "bytes": 1112472
+    },
+    "development/perrier-lcd/initramfs.cpio": {
+      "files": 1,
+      "bytes": 2032632
+    },
+    "development/perrier-lcd/kms-probe": {
+      "files": 1,
+      "bytes": 918624
+    },
+    "development/perrier-native/__pycache__": {
+      "files": 4,
+      "bytes": 48880
+    },
+    "development/perrier-native/backlight-state": {
+      "files": 1,
+      "bytes": 21384
+    },
+    "development/perrier-native/baselines": {
+      "files": 118,
+      "bytes": 202277216
+    },
+    "development/perrier-native/build": {
+      "files": 1639,
+      "bytes": 228400799
+    },
+    "development/perrier-native/init": {
+      "files": 1,
+      "bytes": 1133368
+    },
+    "development/perrier-native/initramfs.cpio": {
+      "files": 1,
+      "bytes": 33757804
+    },
+    "development/perrier-native/kms-pattern": {
+      "files": 1,
+      "bytes": 1099548
+    },
+    "development/perrier-native/kms-probe": {
+      "files": 1,
+      "bytes": 918628
+    },
+    "development/perrier-native/stock-analysis": {
+      "files": 4,
+      "bytes": 106152
+    },
+    "development/perrier-native/touch-capture": {
+      "files": 1,
+      "bytes": 21768
+    },
+    "development/perrier-native/touch-uinput": {
+      "files": 1,
+      "bytes": 23732
+    },
+    "development/perrier-qt/__pycache__": {
+      "files": 3,
+      "bytes": 11871
+    },
+    "development/perrier-qt/build-arm": {
+      "files": 13,
+      "bytes": 198476
+    },
+    "development/perrier-qt/build-arm-a9": {
+      "files": 13,
+      "bytes": 226276
+    },
+    "development/perrier-qt/build-arm-a9-local": {
+      "files": 14,
+      "bytes": 474011
+    },
+    "development/perrier-qt/build-host": {
+      "files": 13,
+      "bytes": 1626997
+    },
+    "development/perrier-qt/build-local-qtbase": {
+      "files": 2999,
+      "bytes": 93173886
+    },
+    "development/perrier-qt/build-local-qtdeclarative": {
+      "files": 6276,
+      "bytes": 370932479
+    },
+    "development/perrier-qt/build-qtbase": {
+      "files": 2999,
+      "bytes": 91039053
+    },
+    "development/perrier-qt/build-qtdeclarative": {
+      "files": 6276,
+      "bytes": 365581369
+    },
+    "development/perrier-qt/qt-arm": {
+      "files": 199,
+      "bytes": 127890016
+    },
+    "development/perrier-qt/runtime": {
+      "files": 21,
+      "bytes": 30312050
+    },
+    "development/perrier-ramenv/application-audio": {
+      "files": 4254,
+      "bytes": 427148996
+    },
+    "development/perrier-ramenv/baselines": {
+      "files": 4,
+      "bytes": 18785705
+    },
+    "development/perrier-ramenv/board.dtb": {
+      "files": 1,
+      "bytes": 92409
+    },
+    "development/perrier-ramenv/bridge-clock-order": {
+      "files": 3886,
+      "bytes": 411981597
+    },
+    "development/perrier-ramenv/bridge-regmap": {
+      "files": 3886,
+      "bytes": 411980754
+    },
+    "development/perrier-ramenv/bridge-reset": {
+      "files": 3886,
+      "bytes": 411980384
+    },
+    "development/perrier-ramenv/cold-ethernet": {
+      "files": 3882,
+      "bytes": 409353098
+    },
+    "development/perrier-ramenv/cpu-dvfs-trial": {
+      "files": 4524,
+      "bytes": 451378746
+    },
+    "development/perrier-ramenv/cpu-m2-smp-safe": {
+      "files": 4522,
+      "bytes": 451232773
+    },
+    "development/perrier-ramenv/cpu-m2-trial": {
+      "files": 4530,
+      "bytes": 451774535
+    },
+    "development/perrier-ramenv/display-align": {
+      "files": 3886,
+      "bytes": 411982515
+    },
+    "development/perrier-ramenv/display-core-fck": {
+      "files": 3886,
+      "bytes": 411981138
+    },
+    "development/perrier-ramenv/display-dispc": {
+      "files": 3886,
+      "bytes": 411983495
+    },
+    "development/perrier-ramenv/display-hbp": {
+      "files": 3886,
+      "bytes": 411982391
+    },
+    "development/perrier-ramenv/display-mainline-sync": {
+      "files": 3886,
+      "bytes": 411981230
+    },
+    "development/perrier-ramenv/display-onoff": {
+      "files": 3886,
+      "bytes": 411982362
+    },
+    "development/perrier-ramenv/display-pads": {
+      "files": 3886,
+      "bytes": 411979599
+    },
+    "development/perrier-ramenv/display-pll": {
+      "files": 3886,
+      "bytes": 411982926
+    },
+    "development/perrier-ramenv/display-pll-only": {
+      "files": 3886,
+      "bytes": 411982500
+    },
+    "development/perrier-ramenv/display-porches": {
+      "files": 3886,
+      "bytes": 411982628
+    },
+    "development/perrier-ramenv/display-stop-fix": {
+      "files": 3886,
+      "bytes": 411981343
+    },
+    "development/perrier-ramenv/display-stop-trace": {
+      "files": 3886,
+      "bytes": 412008309
+    },
+    "development/perrier-ramenv/display-sync-align": {
+      "files": 3886,
+      "bytes": 411979709
+    },
+    "development/perrier-ramenv/dsi-command-clock": {
+      "files": 3886,
+      "bytes": 411974290
+    },
+    "development/perrier-ramenv/dsi-exact-lines": {
+      "files": 3886,
+      "bytes": 411974991
+    },
+    "development/perrier-ramenv/dsi-hsync": {
+      "files": 3886,
+      "bytes": 411982065
+    },
+    "development/perrier-ramenv/dsi-late-video": {
+      "files": 3886,
+      "bytes": 411975120
+    },
+    "development/perrier-ramenv/dsi-mainline-hbp": {
+      "files": 3886,
+      "bytes": 411980816
+    },
+    "development/perrier-ramenv/dsi-mainline-pads": {
+      "files": 3884,
+      "bytes": 411626723
+    },
+    "development/perrier-ramenv/dsi-mainline-porches": {
+      "files": 3886,
+      "bytes": 411981118
+    },
+    "development/perrier-ramenv/dsi-standard-video": {
+      "files": 3886,
+      "bytes": 411975447
+    },
+    "development/perrier-ramenv/event-dump": {
+      "files": 1,
+      "bytes": 48512
+    },
+    "development/perrier-ramenv/gen4-touch": {
+      "files": 3884,
+      "bytes": 411897744
+    },
+    "development/perrier-ramenv/initramfs.cpio": {
+      "files": 1,
+      "bytes": 34480660
+    },
+    "development/perrier-ramenv/kernel-build": {
+      "files": 3369,
+      "bytes": 337580863
+    },
+    "development/perrier-ramenv/mailbox-audio": {
+      "files": 4390,
+      "bytes": 431084062
+    },
+    "development/perrier-ramenv/mailbox-audio-dt": {
+      "files": 4390,
+      "bytes": 431086082
+    },
+    "development/perrier-ramenv/mainline-bus": {
+      "files": 3886,
+      "bytes": 411980896
+    },
+    "development/perrier-ramenv/mainline-ram": {
+      "files": 3884,
+      "bytes": 411897159
+    },
+    "development/perrier-ramenv/native-audio": {
+      "files": 4252,
+      "bytes": 422252279
+    },
+    "development/perrier-ramenv/native-backlight": {
+      "files": 3814,
+      "bytes": 406226709
+    },
+    "development/perrier-ramenv/native-diagnostics": {
+      "files": 4378,
+      "bytes": 430365028
+    },
+    "development/perrier-ramenv/native-keypad": {
+      "files": 3820,
+      "bytes": 406448369
+    },
+    "development/perrier-ramenv/native-keypad-newqt": {
+      "files": 3820,
+      "bytes": 406560963
+    },
+    "development/perrier-ramenv/native-leds": {
+      "files": 3894,
+      "bytes": 412432397
+    },
+    "development/perrier-ramenv/native-smp": {
+      "files": 3854,
+      "bytes": 414578016
+    },
+    "development/perrier-ramenv/native-smp-nosmp": {
+      "files": 3854,
+      "bytes": 414577925
+    },
+    "development/perrier-ramenv/native-smp-onecpu": {
+      "files": 3854,
+      "bytes": 414578087
+    },
+    "development/perrier-ramenv/native-smp-sync": {
+      "files": 3854,
+      "bytes": 414578176
+    },
+    "development/perrier-ramenv/native-thermal": {
+      "files": 3866,
+      "bytes": 408012850
+    },
+    "development/perrier-ramenv/native-touch": {
+      "files": 3808,
+      "bytes": 405734969
+    },
+    "development/perrier-ramenv/native-watchdog": {
+      "files": 3875,
+      "bytes": 408768240
+    },
+    "development/perrier-ramenv/network-dhcp": {
+      "files": 4466,
+      "bytes": 439526190
+    },
+    "development/perrier-ramenv/network-dualstack": {
+      "files": 4466,
+      "bytes": 439524945
+    },
+    "development/perrier-ramenv/network-route-dns": {
+      "files": 4466,
+      "bytes": 439533683
+    },
+    "development/perrier-ramenv/peripherals": {
+      "files": 3922,
+      "bytes": 414178579
+    },
+    "development/perrier-ramenv/pmu-probe": {
+      "files": 4378,
+      "bytes": 430368191
+    },
+    "development/perrier-ramenv/pmu-selftest": {
+      "files": 4378,
+      "bytes": 430368983
+    },
+    "development/perrier-ramenv/ram-guard": {
+      "files": 1,
+      "bytes": 78860
+    },
+    "development/perrier-ramenv/rootfs": {
+      "files": 434,
+      "bytes": 33647862
+    },
+    "development/perrier-ramenv/rtc-gpio": {
+      "files": 3940,
+      "bytes": 415397343
+    },
+    "development/perrier-ramenv/smp-boot-two": {
+      "files": 4508,
+      "bytes": 450289020
+    },
+    "development/perrier-ramenv/smp-hotplug": {
+      "files": 4508,
+      "bytes": 450287808
+    },
+    "development/perrier-ramenv/smp-uboot-nosmp": {
+      "files": 4506,
+      "bytes": 449986660
+    },
+    "development/perrier-ramenv/smps1-observe": {
+      "files": 4520,
+      "bytes": 451129526
+    },
+    "development/perrier-ramenv/sources": {
+      "files": 1592,
+      "bytes": 18750940
+    },
+    "development/perrier-ramenv/speaker-audio": {
+      "files": 4254,
+      "bytes": 427175625
+    },
+    "development/perrier-ramenv/thermal-policy": {
+      "files": 2,
+      "bytes": 357115
+    },
+    "development/perrier-ramenv/touch-uinput": {
+      "files": 1,
+      "bytes": 57764
+    },
+    "development/perrier-simpledrm/__pycache__": {
+      "files": 3,
+      "bytes": 30708
+    },
+    "development/perrier-simpledrm/baselines": {
+      "files": 16,
+      "bytes": 24197792
+    },
+    "development/perrier-simpledrm/build": {
+      "files": 1545,
+      "bytes": 73026065
+    },
+    "development/perrier-simpledrm/init": {
+      "files": 1,
+      "bytes": 1109632
+    },
+    "development/perrier-simpledrm/initramfs.cpio": {
+      "files": 1,
+      "bytes": 2029804
+    },
+    "development/perrier-simpledrm/kms-probe": {
+      "files": 1,
+      "bytes": 918636
+    },
+    "development/perrier-smp/__pycache__": {
+      "files": 7,
+      "bytes": 48512
+    },
+    "development/perrier-smp/qemu-ram108-archive": {
+      "files": 4898,
+      "bytes": 1259920547
+    },
+    "development/perrier-smp/qemu-ram56-archive": {
+      "files": 4898,
+      "bytes": 1255367485
+    },
+    "development/perrier-touch/baselines": {
+      "files": 8,
+      "bytes": 68326508
+    },
+    "development/perrier-touch/read-sysinfo": {
+      "files": 1,
+      "bytes": 45152
+    },
+    "development/perrier-touch/test-protocol": {
+      "files": 1,
+      "bytes": 2076256
+    },
+    "development/perrier-watchdog/__pycache__": {
+      "files": 4,
+      "bytes": 67578
+    },
+    "development/perrier/__pycache__": {
+      "files": 2,
+      "bytes": 25143
+    },
+    "development/perrier/baselines": {
+      "files": 39,
+      "bytes": 48160323
+    },
+    "development/perrier/build": {
+      "files": 1509,
+      "bytes": 65758961
+    },
+    "development/perrier/init": {
+      "files": 1,
+      "bytes": 1064644
+    },
+    "development/perrier/initramfs.cpio": {
+      "files": 1,
+      "bytes": 1066060
+    },
+    "development/perrier/kexec-legacy-fdt": {
+      "files": 1,
+      "bytes": 1660848
+    },
+    "development/perrier/preliminary.dtb": {
+      "files": 1,
+      "bytes": 85634
+    },
+    "development/perrier/read_timer_clock": {
+      "files": 1,
+      "bytes": 939500
+    },
+    "development/perrier/sgx-port": {
+      "files": 1616,
+      "bytes": 61974757
+    },
+    "development/ram/arm-watchdog": {
+      "files": 1,
+      "bytes": 941332
+    },
+    "development/ram/kexec-qualified": {
+      "files": 1,
+      "bytes": 1658708
+    },
+    "development/ram/kexec-stall.elf": {
+      "files": 1,
+      "bytes": 33616
+    },
+    "development/ram/kexec-stall.zImage": {
+      "files": 1,
+      "bytes": 144
+    },
+    "development/reference/ti-sgx-km-1.17": {
+      "files": 49,
+      "bytes": 1320668
+    },
+    "development/runs/20261110T132640Z-uboot-ram71-e8e44b": {
+      "files": 2,
+      "bytes": 353863
+    },
+    "development/runs/20261110T140258Z-uboot-ram72-8d777b": {
+      "files": 2,
+      "bytes": 353863
+    },
+    "development/runs/20261110T140908Z-uboot-ram73-81c03c": {
+      "files": 2,
+      "bytes": 353863
+    },
+    "development/runs/20261110T142257Z-uboot-ram74-f6fc0d": {
+      "files": 2,
+      "bytes": 353863
+    },
+    "development/runs/20261110T180334Z-uboot-ram75-b1d852": {
+      "files": 2,
+      "bytes": 353863
+    },
+    "development/runs/20261110T181907Z-uboot-ram76-2e9d0d": {
+      "files": 2,
+      "bytes": 353863
+    },
+    "development/runs/20261110T183125Z-uboot-ram77-7a8f26": {
+      "files": 2,
+      "bytes": 353863
+    },
+    "development/runs/20261110T184429Z-uboot-ram78-428e0e": {
+      "files": 2,
+      "bytes": 353863
+    },
+    "development/runs/20261110T191332Z-uboot-ram85-4a0ea6": {
+      "files": 2,
+      "bytes": 353863
+    },
+    "development/runs/20261110T192939Z-uboot-ram86-8f7bd3": {
+      "files": 2,
+      "bytes": 353863
+    },
+    "development/runs/20261110T194821Z-uboot-ram87-d0c6dd": {
+      "files": 2,
+      "bytes": 353863
+    },
+    "development/runs/20261110T201848Z-uboot-ram88-82b644": {
+      "files": 2,
+      "bytes": 353863
+    },
+    "development/runs/20261110T202544Z-uboot-ram89-867f87": {
+      "files": 2,
+      "bytes": 353863
+    },
+    "development/runs/20261110T210242Z-uboot-ram90-c4899e": {
+      "files": 2,
+      "bytes": 353863
+    },
+    "development/runs/20261110T211118Z-uboot-ram91-9245c4": {
+      "files": 2,
+      "bytes": 353863
+    },
+    "development/runs/20261110T211837Z-uboot-ram92-7c3f29": {
+      "files": 2,
+      "bytes": 353863
+    },
+    "development/runs/20261111T200641Z-uboot-ram93-d31fbf": {
+      "files": 2,
+      "bytes": 353863
+    },
+    "development/runs/20261111T204541Z-uboot-ram94-9dd971": {
+      "files": 2,
+      "bytes": 354220
+    },
+    "development/runs/20261111T214229Z-uboot-ram95-6af671": {
+      "files": 2,
+      "bytes": 355674
+    },
+    "development/runs/20261112T094548Z-uboot-ram96-0df43b": {
+      "files": 2,
+      "bytes": 355864
+    },
+    "development/runs/20261112T102852Z-uboot-ram97-4a52f1": {
+      "files": 2,
+      "bytes": 356817
+    },
+    "development/runs/20261112T111512Z-uboot-ram98-dc6330": {
+      "files": 2,
+      "bytes": 356817
+    },
+    "development/runs/20261112T112823Z-uboot-ram99-c29ec2": {
+      "files": 2,
+      "bytes": 356817
+    },
+    "development/runs/20261112T114853Z-uboot-ram100-ec4b18": {
+      "files": 3,
+      "bytes": 401779
+    },
+    "development/runs/20261112T123410Z-uboot-ram101-c54db3": {
+      "files": 2,
+      "bytes": 356891
+    },
+    "development/runs/20261112T124954Z-uboot-ram102-d8fc19": {
+      "files": 2,
+      "bytes": 356891
+    },
+    "development/runs/20261112T141303Z-uboot-ram104-9d19fd": {
+      "files": 2,
+      "bytes": 357119
+    },
+    "development/runs/20261112T144631Z-uboot-ram105-72df51": {
+      "files": 2,
+      "bytes": 357119
+    },
+    "development/runs/20261112T151440Z-uboot-ram106-76ffce": {
+      "files": 1,
+      "bytes": 94975
+    },
+    "development/runs/20261112T152105Z-uboot-ram106-34efcd": {
+      "files": 2,
+      "bytes": 357119
+    },
+    "development/runs/20261112T154108Z-uboot-ram107-80e01b": {
+      "files": 2,
+      "bytes": 357119
+    },
+    "evidence/apple-tv2-usb-host-2026-11-08/__pycache__": {
+      "files": 1,
+      "bytes": 4319
+    },
+    "evidence/bootrom-handoff-poll-2026-11-08/clear.bin": {
+      "files": 1,
+      "bytes": 16284
+    },
+    "evidence/bootrom-handoff-poll-2026-11-08/set.bin": {
+      "files": 1,
+      "bytes": 16284
+    },
+    "evidence/bootrom-speedup-poll-2026-11-07/pass.bin": {
+      "files": 1,
+      "bytes": 16284
+    },
+    "evidence/bootrom-speedup-poll-2026-11-07/stall.bin": {
+      "files": 1,
+      "bytes": 16284
+    },
+    "evidence/uboot-bootz-probe-2026-11-07/unsigned-nop-variant-zImage.bin": {
+      "files": 1,
+      "bytes": 3724288
+    },
+    "evidence/uboot-console-candidate-2026-11-07/candidate-not-flashed.bin": {
+      "files": 1,
+      "bytes": 262144
+    },
+    "tools/__pycache__/backup_readonly.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 10609
+    },
+    "tools/__pycache__/build_console_env_candidate.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 9350
+    },
+    "tools/__pycache__/capture_stock_touch.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 4725
+    },
+    "tools/__pycache__/check_rom_mlo_key.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 3693
+    },
+    "tools/__pycache__/offline_deleted_scan.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 31521
+    },
+    "tools/__pycache__/pairing_codec_root_probe.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 9623
+    },
+    "tools/__pycache__/pairing_initial_capture.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 6878
+    },
+    "tools/__pycache__/pairing_session_capture.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 8106
+    },
+    "tools/__pycache__/pairing_tls_observe.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 8109
+    },
+    "tools/__pycache__/rom_speedup_poll_probe.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 18087
+    },
+    "tools/__pycache__/serial_probe.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 5729
+    },
+    "tools/__pycache__/ssdp_discovery_probe.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 17957
+    },
+    "tools/__pycache__/test_touch10_dev.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 13131
+    },
+    "tools/__pycache__/test_touch10_ram_identity.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 3459
+    },
+    "tools/__pycache__/test_touch10_uboot.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 3555
+    },
+    "tools/__pycache__/touch10_dev.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 68145
+    },
+    "tools/__pycache__/touch10_ram.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 29537
+    },
+    "tools/__pycache__/touch10_root_shell.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 4124
+    },
+    "tools/__pycache__/touch10_uboot.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 34636
+    },
+    "tools/__pycache__/touch10_upgrade_probe_server.cpython-314.pyc": {
+      "files": 1,
+      "bytes": 14129
+    },
+    "tools/omap_rom_get_id_now": {
+      "files": 1,
+      "bytes": 17168
+    },
+    "tools/omap_rom_identify": {
+      "files": 1,
+      "bytes": 17688
+    },
+    "tools/omap_rom_signed_mlo_probe": {
+      "files": 1,
+      "bytes": 35296
+    },
+    "tools/omap_rom_unsigned_probe": {
+      "files": 1,
+      "bytes": 17392
+    },
+    "tools/omap_rom_usb_reset_probe": {
+      "files": 1,
+      "bytes": 22208
+    }
+  },
+  "changed_files_skipped": [],
+  "preserved": [
+    "source and configuration",
+    "documentation and validation records",
+    "unique device captures and backups",
+    "external input archives and toolchains",
+    "original upstream test fixtures and vendor blobs"
+  ],
+  "rebuild_requirement": "Older image chains, compiled userspace and the ADC postflight helper must be rebuilt from retained source before use.",
+  "post_cleanup_residual_pass": {
+    "files_removed": 74,
+    "bytes_removed": 952951558,
+    "scope": "Old compressed initramfs build payloads and standalone energy-test executables."
+  }
+}

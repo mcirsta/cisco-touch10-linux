@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "stock": {
+    "hostname": "SEP24169DB677BB",
+    "uid": "0",
+    "kernel": "3.4.113+",
+    "arch": "armv7l",
+    "boot_id": "ec165955-5fbd-4127-8817-edfc6c25a880",
+    "uptime": "621.30",
+    "factory_app": "running",
+    "kexec_path": "",
+    "kexec_loaded": "0",
+    "watchdog": "present"
+  },
+  "adc_stable_control_differences": {},
+  "adc_otp_trim_preserved": true,
+  "volatile_selector_and_conversion_status_excluded": true,
+  "temporary_helper_removed": true,
+  "helper_sha256": "3a7fe83f4d2fbc3e9346e73c4dbbe86af159bf68e1a38f5554795f4cccc96acd",
+  "executed_script_sha256": "226cd69370632e81dfb288acf08a0b5e07e2b49ba0cdb73b21d12765688b44e0"
+}

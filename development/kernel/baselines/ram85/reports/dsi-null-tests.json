@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "cases": 7,
+  "source": "/home/marius/ext_proj/touch10/development/kernel/source/drivers/gpu/drm/omapdrm/dss/dsi.c",
+  "sanitizers": [
+    "address",
+    "undefined"
+  ],
+  "source_sha256": "2ecc5e4cca2e1e591f1bf3694316bfebcdf392fc4bdd3e8155c8533aa26904ae",
+  "output": "PASS: NULL avoids unsolicited BTA, honors speed/ACK flags, and propagates send/sync failures; generic writes unchanged"
+}

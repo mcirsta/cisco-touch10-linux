@@ -1,0 +1,104 @@
+{
+  "kernel": "6.18.48-perrier-ram99",
+  "profile": "speaker-audio",
+  "artifacts": {
+    "zImage": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/speaker-audio/kernel-build/arch/arm/boot/zImage",
+      "size": 17533984,
+      "sha256": "049be7d7bc39b413dc4f8c3dfe2249c2c4ed0e8c3c65ce30fe346a3cff0912df"
+    },
+    "board.dtb": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/speaker-audio/board.dtb",
+      "size": 94588,
+      "sha256": "3f01b97ba18d434b46c2575214bd17613eec3fd300a58f5f38d14d112071ab26"
+    },
+    "kexec": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier/kexec-legacy-fdt",
+      "size": 1660848,
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6"
+    }
+  },
+  "inputs": {
+    "baseline_review": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-audio/reviewed-image.json",
+      "sha256": "51639b76af366d8daa7055732cf9a8067860798ee9e32aa889c482a948338790"
+    },
+    "watchdog_proof": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-watchdog/watchdog-proof.json",
+      "sha256": "3f23c890d5d390efa07fd63dd6c4231d0aa0fa0e6f84687e2b82e3a9203f36cf"
+    },
+    "confirmed_baseline": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/validation-ram97.json",
+      "sha256": "abecb4647db4401d75c9ef1b001dec834e9abcfe24e1e79309c9514f5747aac6"
+    },
+    "qt_app_source": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/main.cpp",
+      "sha256": "9fc6e7f536174e021301d350c7fbe80abf2646fb51ed55af9fb6e4995ba38a55"
+    },
+    "qt_ui_source": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/Main.qml",
+      "sha256": "7e38de561b52f26b6aac8270ee0ec8d7567c1910e3fa5f1044d2f5cdf215b3b5"
+    },
+    "qt_audio_source": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/audio_backend.cpp",
+      "sha256": "96cdb2ea9e10570d0e33dd80ca27cddc5444acca0c1d9913695c2ab793338bef"
+    },
+    "qt_audio_header": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/audio_backend.h",
+      "sha256": "766e720d9a4d4e7fe9244dbef0b53a6b435a61019f4b2162ada8a7ca06aef936"
+    },
+    "qt_pcm_setup": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/app/pcm_setup.h",
+      "sha256": "ae553591dfbe272ee580041c1089964e703b5e1700268960ead3a276a55f3afa"
+    },
+    "alsa_manifest": {
+      "path": "/home/marius/ext_proj/touch10/development/audio/application-manifest.json",
+      "sha256": "1fdcbe85b41b8b3e1e30687506e0b1c8bf09685ce6f03b755a5b0472651ff39d"
+    },
+    "alsa_config": {
+      "path": "/home/marius/ext_proj/touch10/development/audio/asound.conf",
+      "sha256": "b07629d177b6bdbb8f60b674f0476410c174b62f0990364883c4cf21764a5b3c"
+    },
+    "alsa_build_script": {
+      "path": "/home/marius/ext_proj/touch10/development/audio/build_application_audio.py",
+      "sha256": "9a7a5557e8db8f31530ddd64a3c25e9b4d0d2859689da007106e2eb259f5c160"
+    },
+    "conversion_test": {
+      "path": "/home/marius/ext_proj/touch10/development/audio/test_conversion.py",
+      "sha256": "bc4964513afac8493735d2afdd5fba770e53099ca49063634a0531b1af4107a7"
+    },
+    "conversion_checks": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/out/application-audio/conversion-checks.json",
+      "sha256": "9145ac205217ad0fa15f33de50a806cd4ff622757cad933c78a5e59366b07569"
+    },
+    "qt_runtime_manifest": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-qt/runtime-manifest.json",
+      "sha256": "171e52d63cdf2903d5441d1ea491a59809ffd5b5dddc14166ba13f12ae5f4d34"
+    },
+    "source_manifest": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/patches/manifest.json",
+      "sha256": "b636c4d1088d4a1671cb1b782c9b61cd8b30081bf4eac43c7362373f67e8cc7b"
+    },
+    "ram_config": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/configs/perrier-ram.config",
+      "sha256": "32e7929896a746ac53a79c9e6278af64cf5b6f2139dbccf29c4a94c6abd1bbb4"
+    },
+    "bus_policy": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/configs/bus-layout.json",
+      "sha256": "ec657b0890c3a1dd6491ba7e52605ac20e785aa3452151e61493f3c01de01a19"
+    },
+    "hardware_dtsi": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/source/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier.dtsi",
+      "sha256": "fc6b845ecd45e80dd8c11d3e76a68255939705901f11891a081134b9083a25e1"
+    },
+    "ram_dts": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/source/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier-ram.dts",
+      "sha256": "c2a75bec113256fdce5586139a32f3da98dce72f9cdea152179bf8f2c586b4e0"
+    }
+  },
+  "rootfs_manifest_sha256": "77bb480db3015c8246af0925f87ed02c170ac98bf98eb0e6919c985a12c44f9f",
+  "initramfs_sha256": "f6a5d1f3ff7ddd26d404be6ace4838a411fbffc98683a5e074dc9612f4c971a2",
+  "kernel_config_sha256": "29a85c51a8c4e90fe6057de8d44c2ee20bee66c744442a88c0779fef9a35e2d8",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "watchdog_backend": "linux-watchdog"
+}

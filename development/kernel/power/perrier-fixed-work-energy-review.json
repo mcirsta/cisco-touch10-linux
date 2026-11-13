@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "device_run": false,
+  "source_sha256": "2328784535e1ab4d9745459bbf7e68666cb4d0f524a1e0b8afb22f4b45c65f30",
+  "arm_sha256": "f609c6287bf4eecaff0e3629635c4fd1bd95ccee9099e629c942ec9a8d8bef20",
+  "native_sha256": "14f7d715f8bf003d6502d672d78a7837c3a39e1343800813515bd3fe7aeef233",
+  "arm_bytes": 133520,
+  "read_only_sensors": true,
+  "two_pinned_workers": true,
+  "temperature_abort_millicelsius": 75000,
+  "maximum_sample_count": 1000,
+  "sample_interval_ms": 200,
+  "cross_architecture_reference": "REF 100000 46f5ec59 bb10fc4c"
+}

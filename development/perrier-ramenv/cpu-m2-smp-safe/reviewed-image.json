@@ -1,0 +1,68 @@
+{
+  "kernel": "6.18.48-perrier-ram113",
+  "profile": "cpu-m2-smp-safe",
+  "artifacts": {
+    "zImage": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/cpu-m2-smp-safe/kernel-build/arch/arm/boot/zImage",
+      "size": 18038216,
+      "sha256": "f01b6b0e45871681e03a5cf31463e47cdbe921a2f78838159001f3d274e22ce4"
+    },
+    "board.dtb": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/cpu-m2-smp-safe/board.dtb",
+      "size": 95144,
+      "sha256": "edcb4a2177fa35c42c03559df55520047a389044c7bea063a87d452c5df70a07"
+    }
+  },
+  "inputs": {
+    "base_review": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/cpu-m2-trial/reviewed-image.json",
+      "sha256": "e9ee432e5ff004eb164cca9a0130e7e14f9a8e5644ddd59b74ecdeaa40a3a79f"
+    },
+    "base_manifest": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/cpu-m2-trial/manifest.json",
+      "sha256": "075dd30769dd232736323984a9208c927b177613afda060f2866ace5696d2747"
+    },
+    "cpu_m2_validation": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/validation-cpu-m2-trial.json",
+      "sha256": "0adce37dea241ee03da91b87f41c1f6935a99ddf43de00409461f0dc6b926f1a"
+    },
+    "watchdog_proof": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-watchdog/watchdog-proof.json",
+      "sha256": "3f23c890d5d390efa07fd63dd6c4231d0aa0fa0e6f84687e2b82e3a9203f36cf"
+    },
+    "source_manifest": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/patches/manifest.json",
+      "sha256": "51116a3015f9f4a615e8916b7292a4b03c82e0c59fd3fd34d807493e962d835b"
+    }
+  },
+  "rootfs_manifest_sha256": "6627104f9e74dfd75157feb366a33d7b3e25a14563ad27988652f94e3187d1c0",
+  "initramfs_sha256": "17c42d3d55138268f2e99404ea98534259698f86235a2e58362cd7594645fbe8",
+  "kernel_config_sha256": "e3eab8bbacb4795b2d8b77f1d9cfa68800cb8088039a55e53191201079a96d03",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "watchdog_backend": "linux-watchdog",
+  "voltage_policy": "fixed inherited MLO rails; no CPU supply or regulator transition",
+  "live_tested": false,
+  "passed": true,
+  "kernel_span_bytes": 22550184,
+  "changed_rootfs": [
+    "etc/init.d/rcS"
+  ],
+  "changed_config": [
+    "CONFIG_CMDLINE",
+    "CONFIG_CPU_FREQ_GOV_ATTR_SET",
+    "CONFIG_CPU_FREQ_GOV_SCHEDUTIL",
+    "CONFIG_GENERIC_IRQ_MIGRATION",
+    "CONFIG_HOTPLUG_CORE_SYNC",
+    "CONFIG_HOTPLUG_CORE_SYNC_DEAD",
+    "CONFIG_HOTPLUG_CPU",
+    "CONFIG_INITRAMFS_SOURCE",
+    "CONFIG_LOCALVERSION"
+  ],
+  "board_dtb_identical_to_ram112": true,
+  "two_cpus_boot_enabled": true,
+  "runtime_cpu_hotplug_disabled": true,
+  "schedutil_available_but_not_default": true,
+  "watchdog_proof_preserved": true,
+  "stock_boot_fallback_preserved": true,
+  "voltage_control_enabled": false
+}

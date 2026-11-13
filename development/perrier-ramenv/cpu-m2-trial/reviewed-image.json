@@ -1,0 +1,89 @@
+{
+  "kernel": "6.18.48-perrier-ram112",
+  "profile": "cpu-m2-trial",
+  "artifacts": {
+    "zImage": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/cpu-m2-trial/kernel-build/arch/arm/boot/zImage",
+      "size": 18041456,
+      "sha256": "0a9d15334cc9dad403ff43775800377860252750f34979541b36b0daf1a9786b"
+    },
+    "board.dtb": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/cpu-m2-trial/board.dtb",
+      "size": 95144,
+      "sha256": "edcb4a2177fa35c42c03559df55520047a389044c7bea063a87d452c5df70a07"
+    }
+  },
+  "inputs": {
+    "base_review": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/smp-boot-two/reviewed-image.json",
+      "sha256": "5dea6858644cc7c91cedcf8053a2e97696516946a6567373804ef83613bb9626"
+    },
+    "base_manifest": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/smp-boot-two/manifest.json",
+      "sha256": "259b72c7859837c7588a3b0b7f62a3fca7f7de46ba90561d7eb9a13568469739"
+    },
+    "watchdog_proof": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-watchdog/watchdog-proof.json",
+      "sha256": "3f23c890d5d390efa07fd63dd6c4231d0aa0fa0e6f84687e2b82e3a9203f36cf"
+    },
+    "candidate_dts": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/power/omap4-cisco-perrier-cpu-m2-ram.dts",
+      "sha256": "bcedd05cc1113a93ac9ccc0af86124aa4c6d86876f31cb98160fa198c3ce0939"
+    },
+    "thermal_dts": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/power/omap4-cisco-perrier-thermal-ram.dts",
+      "sha256": "44fecd45915e0d91fa99c7ee48e659f381f3e7e8ef4307de0e84d498712e5042"
+    },
+    "board_dtsi": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/source/arch/arm/boot/dts/ti/omap/omap4-cisco-perrier.dtsi",
+      "sha256": "c4160b6992f4743ae152f118256783b20b18d5b38240b448ceebc9ec100db1ab"
+    },
+    "source_manifest": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/patches/manifest.json",
+      "sha256": "51116a3015f9f4a615e8916b7292a4b03c82e0c59fd3fd34d807493e962d835b"
+    }
+  },
+  "rootfs_manifest_sha256": "263489b9f602461f95c78e51daebaec88aeaa7a31327d76cef7dd3e87751be26",
+  "initramfs_sha256": "2963c2ef5593c1164beae6b9854baa458ac70c48f13bcbe2a6dfdf536692fb46",
+  "kernel_config_sha256": "e5d223015217e4cf54c621cd7f3d76be0ad4e0d405585fc4448a992ae260505b",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "watchdog_backend": "linux-watchdog",
+  "voltage_policy": "fixed inherited MLO rails; no CPU supply or regulator transition",
+  "live_tested": false,
+  "passed": true,
+  "kernel_span_bytes": 22566568,
+  "changed_rootfs": [
+    "etc/init.d/rcS"
+  ],
+  "changed_config": [
+    "CONFIG_CMDLINE",
+    "CONFIG_CPUFREQ_DT",
+    "CONFIG_CPUFREQ_DT_PLATDEV",
+    "CONFIG_CPU_FREQ",
+    "CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE",
+    "CONFIG_CPU_FREQ_GOV_PERFORMANCE",
+    "CONFIG_CPU_FREQ_GOV_USERSPACE",
+    "CONFIG_CPU_FREQ_STAT",
+    "CONFIG_INITRAMFS_SOURCE",
+    "CONFIG_LOCALVERSION"
+  ],
+  "dtb_audit": {
+    "base_dtb_sha256": "9119d90b8595cddd74ff1e741103c5eb49aab22f2765c7ad223d20f27ee73e01",
+    "candidate_dtb_sha256": "edcb4a2177fa35c42c03559df55520047a389044c7bea063a87d452c5df70a07",
+    "added_nodes": [
+      "/opp-table-cpu",
+      "/opp-table-cpu/opp-350000000",
+      "/opp-table-cpu/opp-700000000"
+    ],
+    "cpu_clock": "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_mpu_m2_ck@170",
+    "opp_hz": [
+      350000000,
+      700000000
+    ],
+    "voltage_control": false
+  },
+  "thermal_trip_preserved": true,
+  "watchdog_proof_preserved": true,
+  "stock_boot_fallback_preserved": true,
+  "voltage_control_enabled": false
+}

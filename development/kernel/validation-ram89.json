@@ -1,0 +1,134 @@
+{
+  "validated_at": "2026-11-10T21:02:39.224701+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram89",
+  "profile": "display-sync-align",
+  "default_uboot_profile": false,
+  "details": {
+    "owner": "Clean and aligned; touch and brightness work",
+    "kernel": "ram89",
+    "change": "Remove DISPC override entirely; compile pristine mainline dispc.c with ALIGN1 and ONOFF1",
+    "pol_freq_lcd": "0x00060000",
+    "core_source": "Retain qualified DSI PLL1:1 for this ALIGN-only control",
+    "timing": "Mainline DSI HBP59/HFP58 and DISPC event porches1/78/81; external bridge/panel unchanged",
+    "display_cycles": 3,
+    "bridge_counter_each_cycle": "c0800001",
+    "bridge_status_each_cycle": "00000002",
+    "reset_states_each_cycle": {
+      "blank": "lo",
+      "active": "hi"
+    },
+    "host_shutdown_limit": "Existing host HS_TX_TIMEOUT still occurs inside some blanking calls",
+    "hardware_properties": "DT, voltages, pinmux, GPIO assignments, PWM and analog PHY unchanged",
+    "checkpoint": "Default remains ram85; ram70 fallback preserved"
+  },
+  "recovery_mode": "hardware_expiry",
+  "recovery_elapsed_seconds": 153.8,
+  "stock_recovered": true,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "serial_markers": {
+    "factory_saved_before_handoff": true,
+    "candidate_kernel": true,
+    "mainline_watchdog_ready": true,
+    "ram_ssh_started": true
+  },
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram89/snapshot.json",
+    "sha256": "a111a9a26909b4630cbcd9d320c824a2a7f389b2d1857ea561f3a155559c91cf"
+  },
+  "source_manifest": {
+    "path": "development/kernel/baselines/ram89/patches/manifest.json",
+    "sha256": "462508966e8b8d2e6fc02271a91955d75c91ee81a0e23f60547def0b4dd5f312"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram89/reports/source-checks.json",
+    "sha256": "2486f03309189d33a33bf59031cd0ab0a5868b93cd29a9207185ba7e37b2030c"
+  },
+  "tests": {
+    "bridge-regmap-tests": {
+      "path": "development/kernel/baselines/ram89/reports/bridge-regmap-tests.json",
+      "sha256": "de5ab6625c121cee42fa9aae4e9998ade67c6fcf209461efa1cf256cff137429"
+    },
+    "bus-audit-tests": {
+      "path": "development/kernel/baselines/ram89/reports/bus-audit-tests.json",
+      "sha256": "de1a3289c0714aaef3717248aeaf3181b4d62b5ca146271862971560913d5b68"
+    },
+    "dsi-null-tests": {
+      "path": "development/kernel/baselines/ram89/reports/dsi-null-tests.json",
+      "sha256": "b72246795dcb446df0646c56a1c5f3ea306d398d5f4cd56978f9943fc02ec9c4"
+    },
+    "dsi-power-tests": {
+      "path": "development/kernel/baselines/ram89/reports/dsi-power-tests.json",
+      "sha256": "4de7258d6f97f4b6216688e4523d7c5a946663e82acf7663cc50cdcc4927e473"
+    },
+    "dsi-timing-tests": {
+      "path": "development/kernel/baselines/ram89/reports/dsi-timing-tests.json",
+      "sha256": "247080def4b048f6b05684cffd025ed4ee06452651ea9b20d5b3744eff12fdb6"
+    },
+    "dsi-vc-tests": {
+      "path": "development/kernel/baselines/ram89/reports/dsi-vc-tests.json",
+      "sha256": "285b10c202ad19af13cfd9ee65a66f9fb2e346bde41d27462d0d4b91ff68cb56"
+    }
+  },
+  "image_review": {
+    "path": "development/perrier-ramenv/display-sync-align/reviewed-image.json",
+    "sha256": "c1e7118475aff4917cceb88c3b4a97995c48d796365304a00978cd8c4930469b"
+  },
+  "live_result": {
+    "path": "development/runs/20261110T202544Z-uboot-ram89-867f87/result.json",
+    "sha256": "396b39ff87603bb375fb0e919a2819cf6af885f4f1d0970f7604507a386871c4"
+  },
+  "physical_confirmations": [
+    {
+      "path": "development/runs/20261110T202544Z-uboot-ram89-867f87/final-physical-confirmation.json",
+      "sha256": "52d3a4e76346d1511fc07161644e63ad31a7b0f761d16f8cf9fdb802e86ee9ae"
+    }
+  ],
+  "evidence": {
+    "initial-register-checks.json": {
+      "path": "development/runs/20261110T202544Z-uboot-ram89-867f87/initial-register-checks.json",
+      "sha256": "57c7422ba68c2c2a1272f246604555de7627a843e0b69d5ba7eae2c6f8d75e3b"
+    },
+    "cycle-checks.json": {
+      "path": "development/runs/20261110T202544Z-uboot-ram89-867f87/cycle-checks.json",
+      "sha256": "b8dd7c688bacd7cb31fb7cfeb800330eb2b1bb29f9b9eb35b34139b242b0217a"
+    },
+    "initial-after.log": {
+      "path": "development/runs/20261110T202544Z-uboot-ram89-867f87/initial-after.log",
+      "sha256": "f0a08ecd8d91156dd361faaa5e4a4e365d5955f2bfca7a4ed2fe56d61101cf71"
+    },
+    "confirmed-after.log": {
+      "path": "development/runs/20261110T202544Z-uboot-ram89-867f87/confirmed-after.log",
+      "sha256": "778b8a46a4d9d175fb801fcae36fa5d00f0e0df37548a018c756d4fe21d29f19"
+    },
+    "three-cycles-after.log": {
+      "path": "development/runs/20261110T202544Z-uboot-ram89-867f87/three-cycles-after.log",
+      "sha256": "e30630f908bfaa37a2ea551ce5b594de4f5dea9935d90edf45a9b1828c67f10a"
+    },
+    "confirmed-framebuffer.png": {
+      "path": "development/runs/20261110T202544Z-uboot-ram89-867f87/confirmed-framebuffer.png",
+      "sha256": "69cde9af426b440534f5ebdb98af248bba1c0cc1e9ae6f593435d6c0817e4d5b"
+    },
+    "three-cycles-framebuffer.png": {
+      "path": "development/runs/20261110T202544Z-uboot-ram89-867f87/three-cycles-framebuffer.png",
+      "sha256": "6eba0888d8f2aa80cf46ba0696613a41a443d596929149b0447907ebef9e8183"
+    },
+    "initial-before.log": {
+      "path": "development/runs/20261110T202544Z-uboot-ram89-867f87/initial-before.log",
+      "sha256": "13b1dd08f33ee155d5631e753483652d469bf9dda9774929519c7782f36cd9af"
+    }
+  },
+  "fallback": {
+    "profile": "display-onoff",
+    "kernel": "6.18.48-perrier-ram70",
+    "validation": {
+      "path": "development/kernel/validation-ram70.json",
+      "sha256": "022ffac9182eafb9ea0368f66cbe6cd76049f88ea7ee8c864674457f5dfbc520"
+    }
+  },
+  "parent_validation": {
+    "path": "development/kernel/validation-ram88.json",
+    "sha256": "ee4bd882388d3401dc11afaa92af9f06aaecc0eb30e0e9ace5359d93e92c9d3d"
+  }
+}

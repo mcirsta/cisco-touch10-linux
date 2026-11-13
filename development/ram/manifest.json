@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-08",
+  "kexec_source": "https://git.kernel.org/pub/scm/utils/kernel/kexec/kexec-tools.git",
+  "kexec_commit": "0fd0d8e9ea975696fdc05ad267a65f3efd415612",
+  "zig": "0.15.2",
+  "clang": "23.1.4",
+  "target": "arm-linux-musleabihf cortex_a9 static",
+  "files": {
+    "development/kexec-tools/build/sbin/kexec": {
+      "size": 1658708,
+      "sha256": "bff8fcd8dfd508fef0b15edac2df950e406bbd4f7021b5c89007a44a0cfdcfcd"
+    },
+    "development/ram/arm-watchdog": {
+      "size": 941332,
+      "sha256": "49adc4446015e2f92159bb1f3443eb3d43ca9c6d7cd09587e3211cc37a1ecf0a"
+    },
+    "development/ram/kexec-stall.zImage": {
+      "size": 144,
+      "sha256": "d9ac364c699d89b1656b6835be22955a7f0acc16164058458dcc6acd2cf1fae3"
+    },
+    "development/stock-kernel/ce990-zImage": {
+      "size": 3724288,
+      "sha256": "88d7702ce52dbe2aa4e9e8634737654b5e49eb10e6e42e34f3c491494e9d6a8e"
+    },
+    "development/stock-kernel/ce990-Image.bin": {
+      "size": 8228940,
+      "sha256": "ba6d9c510b6c4fe864d1f29ccd32d5b36b081169e3b130125bc8d412af3b1e18"
+    },
+    "development/stock-kernel/ce990-initramfs.cpio.gz": {
+      "size": 20582014,
+      "sha256": "8d442f2fb6107d73b8f08188070dbfb7cae3708092b8bfa3c4a3b6fe490cc36b"
+    },
+    "evidence/ce990-atags-2026-11-08.bin": {
+      "size": 276,
+      "sha256": "dd1cb00cef5d98ae3f045332eea9a77f32248481594c9a6a60ec3d1620c3c7b2"
+    }
+  }
+}

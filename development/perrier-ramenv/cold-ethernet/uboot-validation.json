@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "result": "/home/marius/ext_proj/touch10/development/runs/20261110T095300Z-uboot-ram60-fd525f/result.json",
+  "result_sha256": "f81cfc743aafb8d94bef6bf8c99c3861055e073a73b4213a6b8db9886b1f19fc",
+  "runtime_evidence": "/home/marius/ext_proj/touch10/development/runs/20261110T095300Z-uboot-ram60-fd525f/ethernet-live-check.log",
+  "runtime_evidence_sha256": "4746b1da66a024d679ff25a673dd743d301db5205bae376d3f1cde591febea97",
+  "boot_path": "software reset through MLO/U-Boot; no kexec",
+  "ethernet_ssh_verified": true,
+  "selected_pad_values_verified": 15,
+  "phy_clock_hz": 19200000,
+  "hardware_expiry_verified": true,
+  "recovery_elapsed_seconds": 151.6,
+  "factory_environment_restored": true,
+  "qt_started": false,
+  "cold_touch_verified": false,
+  "physical_lcd_verified": false,
+  "physical_power_cycle": false
+}

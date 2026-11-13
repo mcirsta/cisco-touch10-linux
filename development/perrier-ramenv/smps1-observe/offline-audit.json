@@ -1,0 +1,20 @@
+{
+  "offline_audit_passed": false,
+  "invalidated_reason": "The SMPS1 selector read uses CTL-I2C, not the OMAP SmartReflex voltage-control path.",
+  "live_tested": false,
+  "kernel": "6.18.48-perrier-ram111",
+  "kernel_span_bytes": 22533800,
+  "config_delta": [
+    "CONFIG_INITRAMFS_SOURCE",
+    "CONFIG_LOCALVERSION",
+    "CONFIG_REGULATOR_TWL4030"
+  ],
+  "rootfs_delta": [
+    "etc/init.d/rcS"
+  ],
+  "dtb_delta": [
+    "regulator-smps1"
+  ],
+  "watchdog_guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "manifest_sha256": "21e1bb8b96000f286bf4d1bc442573dc773a07391bed0f900829c3308c320687"
+}

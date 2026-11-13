@@ -1,0 +1,26 @@
+{
+  "tc358775.c": {
+    "source_archive": "development/sources/linux-6.18.48.tar.xz",
+    "path": "drivers/gpu/drm/bridge/tc358775.c",
+    "sha256": "044dea54bd62ccb0530469ef7a9f4be512694d7cb237b718812a42bdbd4d188e",
+    "upstream_diff_lines": 49
+  },
+  "dispc.c": {
+    "source_archive": "development/sources/linux-6.18.48.tar.xz",
+    "path": "drivers/gpu/drm/omapdrm/dss/dispc.c",
+    "sha256": "ef07998537447ade2b8407f400e35abe351a7463590f8110f7e893328f8dfbaa",
+    "upstream_diff_lines": 21
+  },
+  "dsi.c": {
+    "source_archive": "development/sources/linux-6.18.48.tar.xz",
+    "path": "drivers/gpu/drm/omapdrm/dss/dsi.c",
+    "sha256": "bae8d0c962b2c0093fb474171638b4b6f09a94604df6fc670759b7b8a9c846f4",
+    "upstream_diff_lines": 1055
+  },
+  "pll.c": {
+    "source_archive": "development/sources/linux-6.18.48.tar.xz",
+    "path": "drivers/gpu/drm/omapdrm/dss/pll.c",
+    "sha256": "0e6e65bf8a59dfda12cdc97fbf251f1f85ab2043f27a9895ba1e24068366ab9e",
+    "upstream_diff_lines": 0
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "perrier_sder_read_insn": {
+    "address": "0xc060b8fc",
+    "opcode": "0xee117f31",
+    "fault_hook_mask_matches": true
+  },
+  "perrier_auth_read_insn": {
+    "address": "0xc060b900",
+    "opcode": "0xee174ede",
+    "fault_hook_mask_matches": true
+  }
+}

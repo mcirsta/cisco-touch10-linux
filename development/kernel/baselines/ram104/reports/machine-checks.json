@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "kernel": "6.18.48-perrier-ram104",
+  "boot_id": "e5ae7d4c-b005-4ba0-85eb-3bfa30b1f01e",
+  "provider_bindings": [
+    "4a0f4000.mailbox:omap-mailbox",
+    "4a0f6000.spinlock:omap_hwspinlock"
+  ],
+  "providers_runtime_suspended": true,
+  "remoteproc_not_started": true,
+  "emmc_readonly_and_unmounted": true,
+  "qt_pid_stable": true,
+  "watchdog_feeding": true,
+  "packaged_two_client_dmix_passed": true,
+  "no_display_reset_or_qt_restart_performed": true,
+  "stock_recovered_and_adc_postflight_passed": true
+}

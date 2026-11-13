@@ -1,0 +1,52 @@
+{
+  "kernel": "6.18.48-perrier-ram38",
+  "source_sha256": "5ebdadb10a4b5708fc6b1c457764a110bc49f8150cc3502c59b921ead8c6fc8c",
+  "source_signature_key": "647F28654894E3BD457199BE38DBBDC86092693E",
+  "patch_manifest_sha256": "69c3fe2bc8cce3b20e97e527650840aa845112c355f877a827f3c3446684b86a",
+  "files": {
+    "development/perrier-native/build/arch/arm/boot/zImage": {
+      "size": 3753864,
+      "sha256": "80334a8e8ba33f64c9bbc94ff2467208f085f6aaacfec43eb54bb71e36703119"
+    },
+    "development/perrier-native/build/vmlinux": {
+      "size": 8174320,
+      "sha256": "b7602c6180a8768c37888766c5f289bdde9d6bc8402ebb0df796ea6af3913608"
+    },
+    "development/perrier-native/build/System.map": {
+      "size": 898694,
+      "sha256": "99401fb7cc84d2e592193dca3e1fca5774f67fac3e4ce2755362bb4e5c2fb0b2"
+    },
+    "development/perrier-native/build/.config": {
+      "size": 72375,
+      "sha256": "4e5e3ed9237debcd24f532cf990ac6e393b95f099f8f99e81e40c2f72fae704c"
+    },
+    "development/perrier-native/build/omap4-perrier-ram.dtb": {
+      "size": 92409,
+      "sha256": "73444e693857d02d5fc134697349a83e22662572f1dc17725e2878f4b90253a0"
+    },
+    "development/perrier-native/initramfs.cpio": {
+      "size": 3154832,
+      "sha256": "3d9693518253b2fff4d82d30011d74486a4b9b27e23a894ef793a999ac546774"
+    },
+    "development/perrier-native/init": {
+      "size": 1108764,
+      "sha256": "b120bb163d5ad07d039d3a39a6d288f795ae35df243307e57ea5d981a9b20189"
+    },
+    "development/perrier-native/kms-probe": {
+      "size": 918628,
+      "sha256": "e82442c9e99c1efc7bd5e10eeb292aeea11d3b50151c1d184ba9c20ae0883928"
+    },
+    "development/perrier-native/kms-pattern": {
+      "size": 1082392,
+      "sha256": "d81d698d56101f4910ce710924ad73dbaa8e75b50c195172fba2c01b732068a4"
+    },
+    "development/perrier-native/backlight-state": {
+      "size": 21384,
+      "sha256": "d18d90dc77c59afb2427409dc46f3aa1c534855cf24f31b2f392e049172468a9"
+    },
+    "development/perrier-native/touch-capture": {
+      "size": 21752,
+      "sha256": "df8c5524f6b92e60904c665ea2317d7cd7883113778dbe4eda79a79d559ca378"
+    }
+  }
+}

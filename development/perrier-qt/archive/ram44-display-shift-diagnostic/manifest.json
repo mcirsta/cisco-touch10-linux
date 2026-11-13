@@ -1,0 +1,11 @@
+{
+  "purpose": "Archived diagnostic scene rotation and movable center target; the verified fix is now in the OMAP DSS kernel clock selection. Do not use this runner as the active device controller.",
+  "files": {
+    "development/perrier-qt/app/Main.qml": "0f6a4cfb65a0007e1e9aee7083e1fc20fa8568010056d215975f115321cee370",
+    "development/perrier-qt/app/main.cpp": "c6e9adb0a95dbe32d51ec4ba01fb2a164c2802656893c416010d8df872161df5",
+    "tools/touch10_ram.py": "3ec1269963b95b79c8b0b42275171ccba18fd7a8c2586e43228b5d3ab0caaeda"
+  },
+  "confirmed_run": "development/runs/20261109T140725Z-interactive-172d37",
+  "user_observation": "Everything aligns",
+  "qt_shift_during_confirmation": 0
+}

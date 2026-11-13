@@ -1,0 +1,134 @@
+{
+  "validated_at": "2026-11-10T21:18:34.616570+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram91",
+  "profile": "display-mainline-sync",
+  "default_uboot_profile": false,
+  "details": {
+    "owner": "Clean and aligned; touch and brightness work",
+    "kernel": "ram91",
+    "change": "Combined pristine upstream DISPC and DSS, with no source overrides for either driver",
+    "DISPC_POL_FREQ_LCD": "0x00060000",
+    "DSS_CONTROL": "0x00000003",
+    "timing": "Upstream porch allocation, external bridge/panel timing and DSI/pixel clocks unchanged",
+    "display_cycles": 3,
+    "bridge_counter_each_cycle": "c0800001",
+    "bridge_status_each_cycle": "00000002",
+    "reset_states_each_cycle": {
+      "blank": "lo",
+      "active": "hi"
+    },
+    "host_shutdown_limit": "HS_TX_TIMEOUT persists during some blank calls; diagnostic phase trace is next",
+    "hardware_properties": "DT, voltages, pinmux, GPIO assignments, PWM and analog PHY unchanged",
+    "checkpoint": "Default remains ram85 until shutdown investigation completes; ram70 fallback preserved"
+  },
+  "recovery_mode": "hardware_expiry",
+  "recovery_elapsed_seconds": 152.7,
+  "stock_recovered": true,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "serial_markers": {
+    "factory_saved_before_handoff": true,
+    "candidate_kernel": true,
+    "mainline_watchdog_ready": true,
+    "ram_ssh_started": true
+  },
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram91/snapshot.json",
+    "sha256": "92db6993614a26877055a7fc9598be56554df5543bd67565866dc8bdd3b5620f"
+  },
+  "source_manifest": {
+    "path": "development/kernel/baselines/ram91/patches/manifest.json",
+    "sha256": "4c169ce06ad22d703e5496b263b4c7d4e3ac29cf5a8155485cac4abfc30108d9"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram91/reports/source-checks.json",
+    "sha256": "464969ea900cbb049c2e5abf60293e112691ab7a5dc6147856d95b9737e950da"
+  },
+  "tests": {
+    "bridge-regmap-tests": {
+      "path": "development/kernel/baselines/ram91/reports/bridge-regmap-tests.json",
+      "sha256": "de5ab6625c121cee42fa9aae4e9998ade67c6fcf209461efa1cf256cff137429"
+    },
+    "bus-audit-tests": {
+      "path": "development/kernel/baselines/ram91/reports/bus-audit-tests.json",
+      "sha256": "de1a3289c0714aaef3717248aeaf3181b4d62b5ca146271862971560913d5b68"
+    },
+    "dsi-null-tests": {
+      "path": "development/kernel/baselines/ram91/reports/dsi-null-tests.json",
+      "sha256": "b72246795dcb446df0646c56a1c5f3ea306d398d5f4cd56978f9943fc02ec9c4"
+    },
+    "dsi-power-tests": {
+      "path": "development/kernel/baselines/ram91/reports/dsi-power-tests.json",
+      "sha256": "4de7258d6f97f4b6216688e4523d7c5a946663e82acf7663cc50cdcc4927e473"
+    },
+    "dsi-timing-tests": {
+      "path": "development/kernel/baselines/ram91/reports/dsi-timing-tests.json",
+      "sha256": "247080def4b048f6b05684cffd025ed4ee06452651ea9b20d5b3744eff12fdb6"
+    },
+    "dsi-vc-tests": {
+      "path": "development/kernel/baselines/ram91/reports/dsi-vc-tests.json",
+      "sha256": "285b10c202ad19af13cfd9ee65a66f9fb2e346bde41d27462d0d4b91ff68cb56"
+    }
+  },
+  "image_review": {
+    "path": "development/perrier-ramenv/display-mainline-sync/reviewed-image.json",
+    "sha256": "0ffeb4dc32abd34fd9c552b3a2bc29dbcdb606f224856a216f264c97ff916e88"
+  },
+  "live_result": {
+    "path": "development/runs/20261110T211118Z-uboot-ram91-9245c4/result.json",
+    "sha256": "e61106fe21c1439facacc44a3ab4b1cab7d975c5258ba31fb5101337594b9bc1"
+  },
+  "physical_confirmations": [
+    {
+      "path": "development/runs/20261110T211118Z-uboot-ram91-9245c4/final-physical-confirmation.json",
+      "sha256": "88fc88107aa9dedd8c758c02cea15d5b5a1df3f84f4985aafac5bb2c5984089f"
+    }
+  ],
+  "evidence": {
+    "initial-register-checks.json": {
+      "path": "development/runs/20261110T211118Z-uboot-ram91-9245c4/initial-register-checks.json",
+      "sha256": "c21762274abdadd7034f21cab3406cb762ea599e1ad10f35e48c019dfa56e549"
+    },
+    "cycle-checks.json": {
+      "path": "development/runs/20261110T211118Z-uboot-ram91-9245c4/cycle-checks.json",
+      "sha256": "b8dd7c688bacd7cb31fb7cfeb800330eb2b1bb29f9b9eb35b34139b242b0217a"
+    },
+    "initial-after.log": {
+      "path": "development/runs/20261110T211118Z-uboot-ram91-9245c4/initial-after.log",
+      "sha256": "29ee6ab456bef2e653dc9a71dd71c7cd6b9f749aa7e151438f31af4ed2a484d1"
+    },
+    "confirmed-after.log": {
+      "path": "development/runs/20261110T211118Z-uboot-ram91-9245c4/confirmed-after.log",
+      "sha256": "5bb34f337602db73b7e84c3984a54957596baedeeb462038b9b3f4cf405388ab"
+    },
+    "three-cycles-after.log": {
+      "path": "development/runs/20261110T211118Z-uboot-ram91-9245c4/three-cycles-after.log",
+      "sha256": "219c5e30df9ce24bb937abc0882a6d015c701308eb19b28344849f125da7183f"
+    },
+    "confirmed-framebuffer.png": {
+      "path": "development/runs/20261110T211118Z-uboot-ram91-9245c4/confirmed-framebuffer.png",
+      "sha256": "3f6786586c098cdc72b8fdb5813fd8246093780fdcd0f938e8950d12aa1fd473"
+    },
+    "three-cycles-framebuffer.png": {
+      "path": "development/runs/20261110T211118Z-uboot-ram91-9245c4/three-cycles-framebuffer.png",
+      "sha256": "6eba0888d8f2aa80cf46ba0696613a41a443d596929149b0447907ebef9e8183"
+    },
+    "initial-before.log": {
+      "path": "development/runs/20261110T211118Z-uboot-ram91-9245c4/initial-before.log",
+      "sha256": "19a4a01339a961b9a75c23b37f08923293fdb39e2d0d88af331887c477d0c86d"
+    }
+  },
+  "fallback": {
+    "profile": "display-onoff",
+    "kernel": "6.18.48-perrier-ram70",
+    "validation": {
+      "path": "development/kernel/validation-ram70.json",
+      "sha256": "022ffac9182eafb9ea0368f66cbe6cd76049f88ea7ee8c864674457f5dfbc520"
+    }
+  },
+  "parent_validation": {
+    "path": "development/kernel/validation-ram89.json",
+    "sha256": "8fe5f2260eea7dc96f8704e38ae2345da4bcf13c3cbffe6e5d2a9b7107fccfdb"
+  }
+}

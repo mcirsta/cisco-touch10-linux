@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "unsafe_mutations_rejected": [
+    "EEPROM writable",
+    "EEPROM wrong address",
+    "incorrect shunt",
+    "summation enabled",
+    "power controller enabled",
+    "PMIC clock initialization",
+    "unused PWM channel selected",
+    "wrong PWM period",
+    "white LED on at boot",
+    "changed bus pullup",
+    "changed display timing",
+    "changed supply voltage",
+    "CPU1 accidentally enabled"
+  ]
+}

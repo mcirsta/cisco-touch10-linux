@@ -1,0 +1,40 @@
+{
+  "kernel": "linux-6.18.48",
+  "patches": [
+    {
+      "path": "drivers/input/touchscreen/Kconfig",
+      "patch": "01-Kconfig.patch",
+      "vanilla_sha256": "bf03db99b0af02915f107064044e00234fedd36cc66a21cf98b80b23a8f1801e",
+      "patched_sha256": "bf821374b67bae2637f3c1adc6b53c12cf90b9cbcdd69b3780b40da352ebe634",
+      "patch_sha256": "884f4e957f05e2c0232e6b66d38a5e743100e7e611ab2e1f68fb164205729c2e"
+    },
+    {
+      "path": "drivers/input/touchscreen/Makefile",
+      "patch": "02-Makefile.patch",
+      "vanilla_sha256": "3015b84e184bdf4656dbdb28d372be5f775fc3abaae3629b676287d34ed1cf98",
+      "patched_sha256": "16734d71fa1725ec7cb4086d3d076b36e8fa9d7a868153dc7d4c75ab26694bbf",
+      "patch_sha256": "15f94ebafb8668777a451e6770a1aa329b48dfc4ab0e7fff9e12b7f5388bca14"
+    },
+    {
+      "path": "drivers/input/touchscreen/cyttsp4.c",
+      "patch": "03-cyttsp4.c.patch",
+      "vanilla_sha256": null,
+      "patched_sha256": "5efa5b8b0d292908a8e3b36ceb95ffdd0b50f30642aba8abe042d48a13afeb4e",
+      "patch_sha256": "e23e502b24dc29f4b52cba32d42865a4ee228ee717c42fa1763589b538f73a02"
+    },
+    {
+      "path": "drivers/input/touchscreen/cyttsp4_protocol.h",
+      "patch": "04-cyttsp4_protocol.h.patch",
+      "vanilla_sha256": null,
+      "patched_sha256": "d7e2870bc33eb506ea52091b2e0303d7e88c8f5b7e90ac5ae344820c8aca0792",
+      "patch_sha256": "b947387c6150ce68df39d4886473ff235fe41d9252420c9ceaa177a351aacd09"
+    },
+    {
+      "path": "Documentation/devicetree/bindings/input/touchscreen/cisco,perrier-cyttsp4.yaml",
+      "patch": "05-cisco,perrier-cyttsp4.yaml.patch",
+      "vanilla_sha256": null,
+      "patched_sha256": "d01acf9341dad92f723c744ce4230be31b38b073018f1cfdf5eac6c601d14ffd",
+      "patch_sha256": "753196b2cd61517513505d076ecfd2aac8c471a66e35ecb229b2486dbeb07144"
+    }
+  ]
+}

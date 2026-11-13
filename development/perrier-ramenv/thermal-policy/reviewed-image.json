@@ -1,0 +1,22 @@
+{
+  "kernel": "6.18.48-perrier-ram110",
+  "profile": "thermal-policy",
+  "artifacts": {
+    "zImage": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/smp-boot-two/kernel-build/arch/arm/boot/zImage",
+      "size": 18024728,
+      "sha256": "96149c53cc1e435bab823bd18cee2006609fddfea9e14eb0356d6ad5bf79e7bb"
+    },
+    "board.dtb": {
+      "path": "/home/marius/ext_proj/touch10/development/kernel/power/out/board.dtb",
+      "size": 94886,
+      "sha256": "9119d90b8595cddd74ff1e741103c5eb49aab22f2765c7ad223d20f27ee73e01"
+    }
+  },
+  "base_review_sha256": "5dea6858644cc7c91cedcf8053a2e97696516946a6567373804ef83613bb9626",
+  "thermal_review_sha256": "e8ebd4825be7164e10432fcd7f6ca990e86b15b36849e1416043b42e4c826cb1",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "kernel_span_bytes": 22501032,
+  "passed": true,
+  "live_tested": false
+}

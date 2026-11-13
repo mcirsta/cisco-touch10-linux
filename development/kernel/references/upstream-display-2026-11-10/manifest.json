@@ -1,0 +1,21 @@
+{
+  "commit": "b3dfbde62cf1981c4638939c159dfd087b7a72e9",
+  "files": {
+    "tc358775.c": {
+      "source": "https://raw.githubusercontent.com/torvalds/linux/b3dfbde62cf1981c4638939c159dfd087b7a72e9/drivers/gpu/drm/bridge/tc358775.c",
+      "sha256": "77c2660cab4c220d912c033939c6ceab75ec8a6f078077f5d6658c8a8b9cae6f"
+    },
+    "dsi.c": {
+      "source": "https://raw.githubusercontent.com/torvalds/linux/b3dfbde62cf1981c4638939c159dfd087b7a72e9/drivers/gpu/drm/omapdrm/dss/dsi.c",
+      "sha256": "d3b38c316fce87d8e811675fef406406c851a629dad55317ba34a7975b2521ba"
+    },
+    "dispc.c": {
+      "source": "https://raw.githubusercontent.com/torvalds/linux/b3dfbde62cf1981c4638939c159dfd087b7a72e9/drivers/gpu/drm/omapdrm/dss/dispc.c",
+      "sha256": "fe7e64fd4cfec536d90cc0746ea834c1a61d3d24db1d2beaa84b301cef57f874"
+    },
+    "pll.c": {
+      "source": "https://raw.githubusercontent.com/torvalds/linux/b3dfbde62cf1981c4638939c159dfd087b7a72e9/drivers/gpu/drm/omapdrm/dss/pll.c",
+      "sha256": "0e6e65bf8a59dfda12cdc97fbf251f1f85ab2043f27a9895ba1e24068366ab9e"
+    }
+  }
+}

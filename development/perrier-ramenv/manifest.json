@@ -1,0 +1,25 @@
+{
+  "kernel": "6.18.48-perrier-ram44",
+  "artifacts": {
+    "zImage": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/kernel-build/arch/arm/boot/zImage",
+      "sha256": "1bd325b7b2260a26ed558bf9e8f7f21ff1b158c20fa29208a50584337e89c89f",
+      "size": 17002248
+    },
+    "board.dtb": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/board.dtb",
+      "sha256": "73444e693857d02d5fc134697349a83e22662572f1dc17725e2878f4b90253a0",
+      "size": 92409
+    },
+    "kexec": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier/kexec-legacy-fdt",
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6",
+      "size": 1660848
+    }
+  },
+  "rootfs_manifest_sha256": "75193d6053ecacaea92a6737210f1ca57a4df6249aab8799eb7d1f81a8fb0b06",
+  "initramfs_sha256": "9b2e41cce452642235c84b70ef691ac49628f4bacdd2799e384ab0676ad8d99c",
+  "kernel_config_sha256": "367b382b0951fe3f8dd8f4c8b0b66ea5449e1b7cad90f34d20fd4064359c7fff",
+  "guard_sha256": "fa9d43b09f862aa687d809147b3cdc5ef7c19d75413136f1bc3488883728718e",
+  "patch_manifest_sha256": "cd205e581caf9733185ed1e078c51733a456d2181a42d5bb326e379769e7d276"
+}

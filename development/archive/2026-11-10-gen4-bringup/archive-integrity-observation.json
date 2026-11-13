@@ -1,0 +1,12 @@
+{
+  "image": "ram64, rejected before device staging",
+  "file": "qt/lib/libQt6Qml.so.6",
+  "byte_offset_in_file": 2679779,
+  "expected_byte": "e0",
+  "packed_byte": "e4",
+  "source_sha256": "8fcda6ff5a540e05fef1aa5c296c7d9afdcf56e48f6f33136ac574494e3d7eb4",
+  "rejected_archive_sha256": "4c043a48e120f8d2a18c4434c8a392a55ca97a64bd4765ddcf3d6c2ce9f80627",
+  "independent_repack_sha256": "1f6ff0ca5c4e42b9c74e737869010f35f2d11c0e5f24c650238ffd79e3221b5b",
+  "independent_repack_count": 2,
+  "cause": "not established"
+}

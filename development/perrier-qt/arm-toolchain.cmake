@@ -1,0 +1,18 @@
+set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_PROCESSOR arm)
+set(_tc "${CMAKE_CURRENT_LIST_DIR}/sources/armv7-eabihf--musl--stable-2026.08-1")
+set(CMAKE_C_COMPILER "${_tc}/bin/arm-buildroot-linux-musleabihf-gcc")
+set(CMAKE_CXX_COMPILER "${_tc}/bin/arm-buildroot-linux-musleabihf-g++")
+set(CMAKE_SYSROOT "${_tc}/arm-buildroot-linux-musleabihf/sysroot")
+set(ENV{PKG_CONFIG_SYSROOT_DIR} "${CMAKE_SYSROOT}")
+set(ENV{PKG_CONFIG_LIBDIR} "${CMAKE_SYSROOT}/usr/lib/pkgconfig:${CMAKE_SYSROOT}/usr/share/pkgconfig")
+set(ENV{PKG_CONFIG_PATH} "")
+# OMAP4460 Cortex-A9 has NEON and VFPv3, but lacks the VFPv4 instructions
+# selected by Mija's Cortex-A7 toolchain file.
+set(CMAKE_C_FLAGS_INIT "-mcpu=cortex-a9 -mfpu=neon -mfloat-abi=hard")
+set(CMAKE_CXX_FLAGS_INIT "-mcpu=cortex-a9 -mfpu=neon -mfloat-abi=hard")
+set(CMAKE_FIND_ROOT_PATH "${CMAKE_SYSROOT}" "${CMAKE_CURRENT_LIST_DIR}/qt-arm")
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)

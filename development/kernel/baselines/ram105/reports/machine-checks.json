@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "kernel": "6.18.48-perrier-ram105",
+  "boot_id": "9bdb2819-ed49-4719-8a90-bc13f672bd83",
+  "stock_mac_and_ipv6_link_local_matched": true,
+  "ipv6_loopback_and_host_link_local_ping_passed": true,
+  "bounded_dhcp_lease_observed_without_address_change": true,
+  "host_time_set_in_volatile_system_clock_only": true,
+  "emmc_readonly_and_unmounted": true,
+  "qt_pid_stable": true,
+  "watchdog_feeding": true,
+  "no_display_reset_or_qt_restart_performed": true,
+  "stock_recovered_and_adc_postflight_passed": true
+}

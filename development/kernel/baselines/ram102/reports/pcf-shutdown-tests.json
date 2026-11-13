@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "source_sha256": "977a4d91be7635a0d6a141de9e46187f446b9172cd2eb28c085ddca241c56729",
+  "eight_bit_retained_latch_states": 256,
+  "sixteen_bit_retained_latch_states": 5,
+  "unchanged_default_shutdowns": 2,
+  "asan_ubsan": true,
+  "leak_detection": "Disabled: no heap allocation in fixture; sandbox restricts ptrace"
+}

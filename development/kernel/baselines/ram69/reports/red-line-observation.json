@@ -1,0 +1,66 @@
+{
+  "status": "unqualified",
+  "owner_observation": "red vertical line near the right edge",
+  "photo": ".codex-attachments/c457b5cb-aa45-42b1-ac37-f3aa33c0939c/caa99ef4-a377-4355-b796-f0aa80d82f85/1000166397.jpg",
+  "framebuffer_line_absent": true,
+  "touch_reports_at_capture": 0,
+  "normal_pll_n": 19,
+  "normal_pll_m": 211,
+  "output_rates_match_forced_n38": true,
+  "cause": "The combined DISPC ONOFF/ALIGN removal is implicated: ram67 and ram68 showed a red column after the same display cycle, while ram66 and ram69 with POL_FREQ1=0 were physically confirmed clean. N=19/M=211 is qualified with the retained DISPC policy. Individual sync bits are not yet isolated.",
+  "evidence": {
+    "development/runs/20261110T123004Z-uboot-ram68-6b3c40/red-line-framebuffer.raw": "985c1a8435d9d6fa12be9d301261ffaa2f02216a60d9c2cfc32229f280237377",
+    "development/runs/20261110T123004Z-uboot-ram68-6b3c40/red-line-framebuffer.png": "b41edb06866e72cafa079a8dad5bc92b98d2c7361731c056bbb2ccb851638831",
+    "development/runs/20261110T123004Z-uboot-ram68-6b3c40/red-line-diagnostics.log": "e1e544fb9f73211bcb6e06c8e80cf880a9df3c02251e6b0964e486fbde695c6b"
+  },
+  "n38_matched_cycle_observation": "The red line is still there",
+  "control_run": "development/runs/20261110T123838Z-uboot-ram67-c9f1d0",
+  "ram66_control": {
+    "run": "development/runs/20261110T124941Z-uboot-ram66-a3d68d",
+    "before_cycle_owner_observation": "all nice and clean now",
+    "after_cycle_owner_observation": "all fine",
+    "line_absent_before_and_after_cycle": true,
+    "evidence": {
+      "development/runs/20261110T124941Z-uboot-ram66-a3d68d/before-cycle.log": "9d4dfa5b32cb8fcb2013ed3336403038c6bb4f588e3ef676649784df02e5aa4f",
+      "development/runs/20261110T124941Z-uboot-ram66-a3d68d/bridge-before-cycle.log": "672fd0da3a2bd645d551c407943e3281e64779386a1b0fb8e8a2717ad1d6dbd6",
+      "development/runs/20261110T124941Z-uboot-ram66-a3d68d/display-cycle.log": "ea627177c41470a39ebd9dc6a54c452623cb8d3424c73dff925c1517b68a2a96",
+      "development/runs/20261110T124941Z-uboot-ram66-a3d68d/qt-reopen.log": "6279f8c5144ea8d4ff572dd7ae720746a1ab8370dea48bb5c6e06fcf0e36903e",
+      "development/runs/20261110T124941Z-uboot-ram66-a3d68d/result.json": "a867f610ec749dbda926cfa54682c29a2550c921ba4c15a03900c15165231bf0"
+    },
+    "stock_recovered": true,
+    "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad"
+  },
+  "ram68_reproducibility": {
+    "original_sha256": "7f0b027a2c32b5311c8dcc1544091bd11170cb1885a8e24b1c193dc34eeee5b0",
+    "independent_rebuild_sha256": "7f0b027a2c32b5311c8dcc1544091bd11170cb1885a8e24b1c193dc34eeee5b0",
+    "byte_identical": true,
+    "build_identity": "empty version number, fixed timestamp, matching the original image"
+  },
+  "ram69_pll_only_control": {
+    "owner_confirmation": "everything is fine",
+    "scope": "post blank/unblank and Qt restart; clean aligned grid, native touch, brightness slider",
+    "kernel": "6.18.48-perrier-ram69",
+    "native_touch_reports": 165,
+    "brightness_levels_observed": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "pll_n": 19,
+    "pll_m": 211,
+    "dispc_pol_freq1": "0x00000000",
+    "before_cycle": {
+      "path": "development/runs/20261110T130421Z-uboot-ram69-c110ef/before-cycle.log",
+      "sha256": "f19ba552ddd3ea7395cc19f26a63f4dd264a352cd7ba14e85fe43aae3f74d59c"
+    },
+    "display_cycle": {
+      "path": "development/runs/20261110T130421Z-uboot-ram69-c110ef/display-cycle.log",
+      "sha256": "8e2a73c102c16a7f94ff90710bb6e262065f11d5b17efe37cc59dce0a530f744"
+    },
+    "live_diagnostics": {
+      "path": "development/runs/20261110T130421Z-uboot-ram69-c110ef/qualified-live.log",
+      "sha256": "51dc3ef0e71c8ffb28c6b4faa9d9b351bbf116c93f7a1ffe971b7619ac933fad"
+    }
+  }
+}

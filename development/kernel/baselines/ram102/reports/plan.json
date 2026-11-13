@@ -1,0 +1,36 @@
+{
+  "profile": "native-audio",
+  "kernel": "6.18.48-perrier-ram97",
+  "fallback": "rtc-gpio",
+  "stock_mapping": "stock-audio-mapping.json",
+  "display_cycles": 0,
+  "qt_restarts": 0,
+  "scope": [
+    "TWL6040 automatic power with GPIO127 and ready IRQ",
+    "mainline TWL6040 clock and McPDM/DMA/ALSA",
+    "Perrier HFR and EP routes only"
+  ],
+  "driver_change": "Generic machine driver uses required DT audio-routing rather than adding all generic routes too",
+  "supplies": "Keep stock dummy vio/v2v1 consumers and inherited physical rails; no regulator programming",
+  "checks": [
+    "native card and mixer inventory",
+    "minimum-gain zero PCM with DMA pointer progression",
+    "only mapped HFR output for bounded quiet tone if PCM succeeds",
+    "sampled PMIC rail and expander comparison",
+    "hardware watchdog recovery and post-stock checks"
+  ],
+  "audio_level_policy": {
+    "initial_gain": "minimum before selecting HF DAC",
+    "tone_seconds": 2,
+    "max_hf_volume_control": 14,
+    "hfr_only": true,
+    "earpiece_playback_not_yet_qualified": true
+  },
+  "unchanged": [
+    "display and touch code/timing",
+    "Qt application",
+    "RTC/calendar",
+    "GPIO expander latches",
+    "watchdog and read-only storage policy"
+  ]
+}

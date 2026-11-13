@@ -1,0 +1,68 @@
+{
+  "kernel": "6.18.48-perrier-ram61",
+  "profile": "gen4-touch",
+  "artifacts": {
+    "zImage": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/gen4-touch/kernel-build/arch/arm/boot/zImage",
+      "size": 17058096,
+      "sha256": "9d3fbf4d522d8a79018d11dfeb1347365a7ebb5f57216e657471d2b9c2513cf7"
+    },
+    "board.dtb": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/gen4-touch/board.dtb",
+      "size": 97079,
+      "sha256": "9bf01e258b0a1d59ae82e282396414002d364b7e441e1dad0fdf50cdcd4c54b8"
+    },
+    "kexec": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier/kexec-legacy-fdt",
+      "size": 1660848,
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6"
+    }
+  },
+  "inputs": {
+    "baseline_review": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/cold-ethernet/reviewed-image.json",
+      "sha256": "9831b9c4f16186326a1ea1b139a7c688ddb267e9a4df6a0b2877f65ffe9131c5"
+    },
+    "watchdog_proof": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/native-watchdog/watchdog-proof.json",
+      "sha256": "3f23c890d5d390efa07fd63dd6c4231d0aa0fa0e6f84687e2b82e3a9203f36cf"
+    },
+    "touch_dts": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-gen4/omap4-perrier-gen4.dts",
+      "sha256": "280240df38240fb664dce91c040f30dbcb25ad4f76c4d59ec3537d38e1071b9a"
+    },
+    "stock_touch_gpio_pad": {
+      "path": "/home/marius/ext_proj/touch10/evidence/perrier-stock-touch-power-mux-2026-11-10.txt",
+      "sha256": "cfd83c468647b20761abdb8b9fa9fad1dadbc4d9ef6a07c3354ee30cd1a758dc"
+    },
+    "gen4_reference": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-gen4/reference/manifest.json",
+      "sha256": "3d0fd744d4efc18815300db4649da9f3e90f378a8f3634de400286bf3f947b87"
+    },
+    "gen4_core": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-gen4/cyttsp4_core.c",
+      "sha256": "3f3b9b5b645a466908956931143bd100d11c5f581cd0fa1e07769c5ff3d8e392"
+    },
+    "gen4_header": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-gen4/cyttsp4_core.h",
+      "sha256": "bc0eb8a176be96336b473f1d3b66450e21fe7342e6e2f45a786f989f5bb7265d"
+    },
+    "gen4_i2c": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-gen4/cyttsp4_i2c.c",
+      "sha256": "a873dcc954c638521831122c286f4080153a29bb6772c1476dea17205cc1441d"
+    },
+    "regulator_source": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-gen4/linux-source/drivers/regulator/fixed.c",
+      "sha256": "f691182b3832402cacd2aa32c77bcec85e2b3c18d69ef018a4e52da6882f11b3"
+    },
+    "gpio_source": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-gen4/linux-source/drivers/gpio/gpio-omap.c",
+      "sha256": "9b6a74bac6a292e3abcf2ca0570f238cf497001e1d75806ce7f14b9a8e6b91c5"
+    }
+  },
+  "rootfs_manifest_sha256": "173eada89b906e83811698b3d8cc0f784019a066d72e91c4370578d1f904282f",
+  "initramfs_sha256": "c1511e08ecb5988bd6813428ad4af4a8906dc480544a3758bf9092acbe33a8b6",
+  "kernel_config_sha256": "23880e4eb9a5bb6ede20f67386f9ed7e8a7267df31d3a30b6065aa7b5de854a1",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "watchdog_backend": "linux-watchdog"
+}

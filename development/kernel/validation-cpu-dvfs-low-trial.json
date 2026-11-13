@@ -1,0 +1,115 @@
+{
+  "validated_at": "2026-11-13T17:29:41.054749+00:00",
+  "status": "passed_bounded_ram_test",
+  "profile": "cpu-dvfs-low-trial",
+  "kernel": "6.18.48-perrier-ram115",
+  "scope": "Mainline cpufreq-dt/OPP with Perrier VC bypass at 350 MHz/1.10146 V and 700 MHz/1.2154 V; two CPUs online; U-Boot RAM boot, watchdog recovery, no display cycling",
+  "observations": {
+    "short_350mhz_low_voltage_probe_selectors": [
+      "0x24",
+      "0x20"
+    ],
+    "fixed_frequency_mhz": [
+      700,
+      350,
+      700
+    ],
+    "fixed_selector_hex": [
+      "29",
+      "20",
+      "29"
+    ],
+    "fixed_regulator_nominal_microvolts": [
+      1215400,
+      1101460,
+      1215400
+    ],
+    "fixed_low_measured_ina_millivolts": 1104,
+    "fixed_350mhz_two_core_load_seconds": 20,
+    "fixed_load_sampled_cpu_temperature_millicelsius": 58099,
+    "extended_350mhz_two_core_load_seconds": 300,
+    "extended_load_samples": 31,
+    "extended_load_peak_cpu_temperature_millicelsius": 59716,
+    "extended_load_likely_mpu_millivolts_range": [
+      1096,
+      1104
+    ],
+    "extended_load_likely_mpu_milliamps_range": [
+      208,
+      364
+    ],
+    "power_sample_count_per_image": 96,
+    "power_peak_cpu_temperature_millicelsius": 63760,
+    "350mhz_voltage_power_comparison": {
+      "idle": {
+        "3-0041:channel1": {
+          "350mhz_1p20274v_mw": 240.27,
+          "350mhz_1p10146v_mw": 187.86,
+          "cross_boot_reduction_mw": 52.41,
+          "cross_boot_reduction_percent": 21.81,
+          "five_minute_equivalent_joules_saved": 15.72,
+          "same_boot_700mhz_1p2154v_mw": 402.42,
+          "same_boot_700_minus_350_mw": 214.56
+        },
+        "3-0040:channel3": {
+          "350mhz_1p20274v_mw": 5567.91,
+          "350mhz_1p10146v_mw": 5503.33,
+          "cross_boot_reduction_mw": 64.58,
+          "cross_boot_reduction_percent": 1.16,
+          "five_minute_equivalent_joules_saved": 19.37,
+          "same_boot_700mhz_1p2154v_mw": 5819.51,
+          "same_boot_700_minus_350_mw": 316.18
+        }
+      },
+      "load": {
+        "3-0041:channel1": {
+          "350mhz_1p20274v_mw": 405.75,
+          "350mhz_1p10146v_mw": 313.81,
+          "cross_boot_reduction_mw": 91.94,
+          "cross_boot_reduction_percent": 22.66,
+          "five_minute_equivalent_joules_saved": 27.58,
+          "same_boot_700mhz_1p2154v_mw": 851.19,
+          "same_boot_700_minus_350_mw": 537.38
+        },
+        "3-0040:channel3": {
+          "350mhz_1p20274v_mw": 5701.26,
+          "350mhz_1p10146v_mw": 5626.61,
+          "cross_boot_reduction_mw": 74.65,
+          "cross_boot_reduction_percent": 1.31,
+          "five_minute_equivalent_joules_saved": 22.4,
+          "same_boot_700mhz_1p2154v_mw": 6143.23,
+          "same_boot_700_minus_350_mw": 516.62
+        }
+      }
+    },
+    "schedutil_idle_before_stable_low_samples": 181,
+    "schedutil_idle_after_stable_low_samples": 184,
+    "schedutil_loaded_stable_high_samples": 200,
+    "schedutil_samples_per_phase": 200,
+    "hardware_700_mhz_with_stable_low_vc_selector_samples": 0,
+    "both_ram_sessions_stock_recovered": true,
+    "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+    "adc_postflight_passed_both_sessions": true
+  },
+  "interpretation": "The low selector reduced monitored MPU-rail power by about 22% at the same 350 MHz point in separate guarded runs. The 5 V monitor fell by about 1.2-1.3%. Fixed-duration joule equivalents are calculated from mean power, not direct energy integration. The paired dynamic sampler found no stable low VC selector around a 700 MHz hardware-clock read.",
+  "limits": [
+    "INA channel 3-0041:1 is a likely MPU rail from stock software and load response, without PCB net confirmation.",
+    "The 3-0040:3 5 V channel is not verified as whole-device input; rails may be nested and must not be summed.",
+    "Cross-boot power differences include ambient, temperature, workload scheduling and measurement uncertainty.",
+    "Five minutes of loaded operation does not establish overnight or worst-case temperature stability.",
+    "Sequential sysfs fields can straddle a frequency/voltage transition; the sampler brackets the hardware clock with VC reads.",
+    "CPU hotplug, generic OMAP PM/AVS, persistent installation and full thermal cooling remain unqualified."
+  ],
+  "evidence": {
+    "image_audit": "development/perrier-ramenv/cpu-dvfs-low-trial/reviewed-image.json",
+    "baseline_validation": "development/kernel/validation-cpu-dvfs-trial.json",
+    "short_low_probe": "development/runs/20261113T170316Z-mpu-low-selectors/result.json",
+    "baseline_power": "development/runs/20261113T170052Z-cpu-dvfs-power/result.json",
+    "fixed_rate_test": "development/runs/20261113T171335Z-cpu-dvfs-low-trial/result.json",
+    "low_power": "development/runs/20261113T171730Z-cpu-dvfs-low-power/result.json",
+    "extended_load": "development/runs/20261113T171954Z-cpu-dvfs-low-endurance/result.json",
+    "hardware_clock_sampler": "development/runs/20261113T172509Z-cpu-dvfs-low-sampler/result.json",
+    "first_recovery": "development/runs/20261113T171227Z-uboot-ram115-86a4a6/result.json",
+    "second_recovery": "development/runs/20261113T171624Z-uboot-ram115-ba3e74/result.json"
+  }
+}

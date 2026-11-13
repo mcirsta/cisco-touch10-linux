@@ -1,0 +1,281 @@
+{
+  "passed": true,
+  "platform_nodes": [
+    {
+      "path": "/",
+      "compatible": "cisco,perrier-ram,ti,omap4460,ti,omap4,"
+    },
+    {
+      "path": "/chosen",
+      "compatible": ""
+    },
+    {
+      "path": "/aliases",
+      "compatible": ""
+    },
+    {
+      "path": "/cpus",
+      "compatible": ""
+    },
+    {
+      "path": "/cpus/cpu@0",
+      "compatible": "arm,cortex-a9,"
+    },
+    {
+      "path": "/sram@40304000",
+      "compatible": "mmio-sram,"
+    },
+    {
+      "path": "/interrupt-controller@48241000",
+      "compatible": "arm,cortex-a9-gic,"
+    },
+    {
+      "path": "/cache-controller@48242000",
+      "compatible": "arm,pl310-cache,"
+    },
+    {
+      "path": "/interrupt-controller@48281000",
+      "compatible": "ti,omap4-wugen-mpu,"
+    },
+    {
+      "path": "/memory@80000000",
+      "compatible": ""
+    },
+    {
+      "path": "/serial@48020000",
+      "compatible": "ti,omap4-uart,"
+    },
+    {
+      "path": "/regulator-emmc-vcc",
+      "compatible": "regulator-fixed,"
+    },
+    {
+      "path": "/target-module@48060000",
+      "compatible": "ti,sysc-omap2,ti,sysc,"
+    },
+    {
+      "path": "/target-module@48060000/i2c@0",
+      "compatible": "ti,omap4-i2c,"
+    },
+    {
+      "path": "/target-module@48072000",
+      "compatible": "ti,sysc-omap2,ti,sysc,"
+    },
+    {
+      "path": "/target-module@48072000/i2c@0",
+      "compatible": "ti,omap4-i2c,"
+    },
+    {
+      "path": "/target-module@4a056000",
+      "compatible": "ti,sysc-omap2,ti,sysc,"
+    },
+    {
+      "path": "/target-module@4a056000/dma-controller@0",
+      "compatible": "ti,omap4430-sdma,ti,omap-sdma,"
+    },
+    {
+      "path": "/target-module@480b4000",
+      "compatible": "ti,sysc-omap4,ti,sysc,"
+    },
+    {
+      "path": "/target-module@480b4000/mmc@0",
+      "compatible": "ti,omap4-hsmmc,"
+    },
+    {
+      "path": "/target-module@4a064000",
+      "compatible": "ti,sysc-omap4,ti,sysc,"
+    },
+    {
+      "path": "/target-module@4a064000/usbhshost@0",
+      "compatible": "ti,usbhs-host,"
+    },
+    {
+      "path": "/target-module@4a064000/usbhshost@0/usb@c00",
+      "compatible": "ti,ehci-omap,"
+    },
+    {
+      "path": "/target-module@4a064000/usbhshost@0/usb@c00/ethernet@1",
+      "compatible": "usb424,9e00,"
+    }
+  ],
+  "early_clock_provider_count": 147,
+  "early_clock_providers": [
+    "/ocp/interconnect@4a300000/segment@0/target-module@6000/prm@0/clocks/sys_clkin_ck@110",
+    "/ocp/interconnect@4a300000/segment@0/target-module@6000/prm@0/clocks/abe_dpll_bypass_clk_mux_ck@108",
+    "/ocp/interconnect@4a300000/segment@0/target-module@6000/prm@0/clocks/abe_dpll_refclk_mux_ck@10c",
+    "/ocp/interconnect@4a300000/segment@0/target-module@6000/prm@0/clocks/dbgclk_mux_ck",
+    "/ocp/interconnect@4a300000/segment@0/target-module@6000/prm@0/clocks/l4_wkup_clk_mux_ck@108",
+    "/ocp/interconnect@4a300000/segment@0/target-module@6000/prm@0/clocks/syc_clk_div_ck@100",
+    "/ocp/interconnect@4a300000/segment@0/target-module@6000/prm@0/clocks/usim_ck@1858",
+    "/ocp/interconnect@4a300000/segment@0/target-module@6000/prm@0/clocks/usim_fclk@1858",
+    "/ocp/interconnect@4a300000/segment@0/target-module@6000/prm@0/clocks/trace_clk_div_ck",
+    "/ocp/interconnect@4a300000/segment@0/target-module@6000/prm@0/clocks/div_ts_ck@1888",
+    "/ocp/interconnect@4a300000/segment@0/target-module@6000/prm@0/clocks/bandgap_ts_fclk@1888",
+    "/ocp/interconnect@4a300000/segment@0/target-module@6000/prm@0/l4_wkup_cm@1800/clk@20",
+    "/ocp/interconnect@4a300000/segment@0/target-module@6000/prm@0/emu_sys_cm@1a00/clk@20",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk0_src_gate_ck@310",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk0_src_mux_ck@310",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk0_src_ck",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk0_ck@310",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk1_src_gate_ck@314",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk1_src_mux_ck@314",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk1_src_ck",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk1_ck@314",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk2_src_gate_ck@318",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk2_src_mux_ck@318",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk2_src_ck",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk2_ck@318",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk3_src_gate_ck@31c",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk3_src_mux_ck@31c",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk3_src_ck",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk3_ck@31c",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk4_src_gate_ck@320",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk4_src_mux_ck@320",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk4_src_ck",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk4_ck@320",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk5_src_gate_ck@324",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk5_src_mux_ck@324",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk5_src_ck",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclk5_ck@324",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclkreq0_ck@210",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclkreq1_ck@214",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclkreq2_ck@218",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclkreq3_ck@21c",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclkreq4_ck@220",
+    "/ocp/interconnect@4a300000/segment@0/target-module@a000/scrm@0/clocks/auxclkreq5_ck@224",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/extalt_clkin_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/pad_clks_src_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/pad_clks_ck@108",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/pad_slimbus_core_clks_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/secure_32k_clk_src_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/slimbus_src_clk",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/slimbus_clk@108",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/sys_32k_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/virt_12000000_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/virt_13000000_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/virt_16800000_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/virt_19200000_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/virt_26000000_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/virt_27000000_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/virt_38400000_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/tie_low_clock_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/utmi_phy_clkout_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/xclk60mhsp1_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/xclk60mhsp2_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/xclk60motg_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_abe_ck@1e0",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_abe_x2_ck@1f0",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_abe_m2x2_ck@1f0",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/abe_24m_fclk",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/abe_clk@108",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_abe_m3x2_ck@1f4",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/core_hsd_byp_clk_mux_ck@12c",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_core_ck@120",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_core_x2_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_core_m6x2_ck@140",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_core_m2_ck@130",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/ddrphy_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_core_m5x2_ck@13c",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/div_core_ck@100",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/div_iva_hs_clk@1dc",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/div_mpu_hs_clk@19c",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_core_m4x2_ck@138",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dll_clk_div_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_abe_m2_ck@1f0",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_core_m3x2_gate_ck@134",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_core_m3x2_div_ck@134",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_core_m3x2_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_core_m7x2_ck@144",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/iva_hsd_byp_clk_mux_ck@1ac",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_iva_ck@1a0",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_iva_x2_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_iva_m4x2_ck@1b8",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_iva_m5x2_ck@1bc",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_mpu_ck@160",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dpll_mpu_m2_ck@170",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/per_hs_clk_div_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/usb_hs_clk_div_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/l3_div_ck@100",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/l4_div_ck@100",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/lp_clk_div_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/mpu_periphclk",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/ocp_abe_iclk@528",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/per_abe_24m_fclk",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/clocks/dummy_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/mpuss_cm@300/clk@20",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/tesla_cm@400/clk@20",
+    "/ocp/interconnect@4a000000/segment@0/target-module@4000/cm1@0/abe_cm@500/clk@20",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/per_hsd_byp_clk_mux_ck@14c",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/dpll_per_ck@140",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/dpll_per_m2_ck@150",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/dpll_per_x2_ck@150",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/dpll_per_m2x2_ck@150",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/dpll_per_m3x2_gate_ck@154",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/dpll_per_m3x2_div_ck@154",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/dpll_per_m3x2_ck",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/dpll_per_m4x2_ck@158",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/dpll_per_m5x2_ck@15c",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/dpll_per_m6x2_ck@160",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/dpll_per_m7x2_ck@164",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/dpll_usb_ck@180",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/dpll_usb_clkdcoldo_ck@1b4",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/dpll_usb_m2_ck@190",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/ducati_clk_mux_ck@100",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/func_12m_fclk",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/func_24m_clk",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/func_24mc_fclk",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/func_48m_fclk@108",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/func_48mc_fclk",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/func_64m_fclk@108",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/func_96m_fclk@108",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/init_60m_fclk@104",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/per_abe_nc_fclk@108",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clocks/usb_phy_cm_clk32k@640",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/l4_ao_cm@600/clk@20",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/l3_1_cm@700/clk@20",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/l3_2_cm@800/clk@20",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/ducati_cm@900/clk@20",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/l3_dma_cm@a00/clk@20",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/l3_emif_cm@b00/clk@20",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/d2d_cm@c00/clk@20",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/l4_cfg_cm@d00/clk@20",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/l3_instr_cm@e00/clk@20",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/ivahd_cm@f00/clk@20",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/iss_cm@1000/clk@20",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/l3_dss_cm@1100/clk@20",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/l3_gfx_cm@1200/clk@20",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/l3_init_cm@1300/clk@20",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clock@1400/clock@20",
+    "/ocp/interconnect@4a000000/segment@0/target-module@8000/cm2@0/clock@1400/clock@1a0"
+  ],
+  "watchdog_parent_and_child_disabled": true,
+  "memory_start": 2147483648,
+  "memory_size": 419430400,
+  "kexec_image_reservation": 33554432,
+  "kernel": "6.18.48-perrier-ram10",
+  "early_initializers": [
+    "OMAP4 clock metadata (USB/ABE PLL changes skipped)",
+    "OMAP timer1 and counter32k",
+    "GIC/wakeupgen/L2 secure init",
+    "single OMAP EHCI controller, SMSC95xx USB Ethernet",
+    "OMAP SDMA and MMC2 eMMC with board-gated read-only block access",
+    "ext4 mount with ro,noload for stock base volume",
+    "three read-only loop mounts of stock gzip SquashFS images with xattrs",
+    "OMAP I2C2 and I2C3 adapters only, with no child devices or bus transactions"
+  ],
+  "artifacts": {
+    "zImage": {
+      "size": 2765024,
+      "sha256": "e6ecd8d38ba6b82bd756579a9da1f5c5c95f44da5559ee88ded1df528021d83b"
+    },
+    "board.dtb": {
+      "size": 88234,
+      "sha256": "453f49bf8ff7b9dc192c7696a44d8577573fb996fc54e69b808d9ebb448dce22"
+    },
+    "kexec": {
+      "size": 1660848,
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6"
+    }
+  },
+  "decompressed_kernel_bss_end": 2153216136
+}

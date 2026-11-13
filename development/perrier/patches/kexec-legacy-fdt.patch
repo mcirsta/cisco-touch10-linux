@@ -1,0 +1,32 @@
+--- a/kexec/arch/arm/kexec-zImage-arm.c
++++ b/kexec/arch/arm/kexec-zImage-arm.c
+@@ -933,5 +933,29 @@
+ 
+ 	info->entry = (void*)kernel_base;
+ 
++	/* Cisco 3.4 machine_kexec fixes r2 at entry-0x7000. Supply FDT explicitly.
++	 * Opt-in and Perrier-only; trampoline touches no peripheral or storage.
++	 */
++	if (getenv("TOUCH10_LEGACY_ARM_FDT")) {
++		uint32_t *trampoline;
++		unsigned long address;
++		if (!dtb_file || use_atags ||
++		    fdt_node_check_compatible(dtb_buf, 0, "cisco,perrier-ram"))
++			die("Legacy FDT trampoline requires the Perrier RAM DTB\n");
++		address = locate_hole(info, 16, page_size,
++			dtb_offset + dtb_length + page_size, ULONG_MAX, INT_MAX);
++		if (address == ULONG_MAX)
++			return -1;
++		trampoline = xmalloc(16);
++		trampoline[0] = cpu_to_le32(0xe59f2000); /* ldr r2,[pc] -> word 2 */
++		trampoline[1] = cpu_to_le32(0xe59ff000); /* ldr pc,[pc] -> word 3 */
++		trampoline[2] = cpu_to_le32(dtb_offset);
++		trampoline[3] = cpu_to_le32(kernel_base);
++		add_segment(info, trampoline, 16, address, 16);
++		info->entry = (void *)address;
++		fprintf(stderr, "PERRIER_FDT_TRAMPOLINE entry=%08lx dtb=%08lx kernel=%08lx\n",
++			address, (unsigned long)dtb_offset, kernel_base);
++		print_segments(stderr, info);
++	}
+ 	return 0;
+ }

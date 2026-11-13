@@ -1,0 +1,20 @@
+{
+  "Documentation/devicetree/bindings/input/touchscreen/cisco,perrier-cyttsp4.yaml": "080bf31350dc0164b988a3e10a6e77262f3e0184e97ddfc44d53c0edc98bdfa1",
+  "arch/arm/boot/dts/ti/omap/Makefile": "0fb5cd6b211554250972277b4f2bb9357742b7b6a43860d33f5b6af6aab233f3",
+  "arch/arm/boot/dts/ti/omap/omap4-cisco-perrier-ram.dts": "9962c57419f18b815097607978f338db49a1150f2226404c900fe32e3036bf64",
+  "arch/arm/boot/dts/ti/omap/omap4-cisco-perrier.dtsi": "6a1ca4a5ff876cf31e4a2b921a3b024c8610554744af7e3bb47ccaa0f45ed62f",
+  "arch/arm/mach-omap2/io.c": "ac8ccc39bd1848eedbfc3de81fea53ac5401489884a1ef53fbf9c9ef308250ad",
+  "drivers/clk/ti/clk-44xx.c": "c4b98cc950f98475d83e28ef1f7cc345762707da0b00f9fbfca6e75943aebffc",
+  "drivers/gpu/drm/bridge/tc358775.c": "ae6a99b301cc9d15a2c60207a48a5d32c72d286ab3b1a8b589322718bd014f8b",
+  "drivers/gpu/drm/omapdrm/dss/dispc.c": "4ee6b1c618a5159e0b63810354e2b514fdb7686258af35fbaf6b85c0ad101349",
+  "drivers/gpu/drm/omapdrm/dss/dsi.c": "7ba77f2a37c64a99527c30ab0ae058d41aa4647657d44a695c02a7dee10de180",
+  "drivers/gpu/drm/omapdrm/dss/dsi.h": "a1a110506217b8fb3a10004ac1efb4961110eb4f3a58fda3aad747a3c0e5d8e0",
+  "drivers/gpu/drm/omapdrm/dss/dss.c": "89e73fb872138538d42db1abfa8cef663a65a7177febdd37be884b02b494f8d3",
+  "drivers/gpu/drm/omapdrm/dss/pll.c": "0e0942744c45a725f2f7b7f9f73cd30d798a6a27992096a44861c2df26acc94b",
+  "drivers/input/touchscreen/Kconfig": "ac2b0fac661b6c3c4d753dc5a6b0f385e5d0851cca1ad582ddbc893ae37bf4e9",
+  "drivers/input/touchscreen/Makefile": "b1f88233d227b5635d9a853e2509d2cfe6f410408a8b8476c11a33a563fe8f17",
+  "drivers/input/touchscreen/cyttsp4_core.c": "6387695a66455346de89f9d66894bb1c291e371b688042de171ef5c4b02d3e0e",
+  "drivers/input/touchscreen/cyttsp4_core.h": "bc0eb8a176be96336b473f1d3b66450e21fe7342e6e2f45a786f989f5bb7265d",
+  "drivers/input/touchscreen/cyttsp4_i2c.c": "0010d6a1dbddb81e8aa5801191ae34ec913e47f755be343a74cf5423a2256ab6",
+  "drivers/mmc/core/block.c": "de53e2e58c68d909b234910317c3ae498ba578a9ca1bd0c447ecc4031768c9f7"
+}

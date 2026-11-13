@@ -1,0 +1,97 @@
+{
+  "command": "interactive-ram",
+  "status": "passed",
+  "started": "2026-11-09T11:11:42.125+00:00",
+  "host_pid": 323015,
+  "directory": "/home/marius/ext_proj/touch10/development/runs/20261109T111142Z-interactive-19a338",
+  "guard_sha256": "fa9d43b09f862aa687d809147b3cdc5ef7c19d75413136f1bc3488883728718e",
+  "proof_run": true,
+  "artifacts": {
+    "zImage": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/kernel-build/arch/arm/boot/zImage",
+      "sha256": "edea0afe9afd1658a0426fbb08c4532de559f4370a11389b940216ca9174e2c9",
+      "size": 16998520
+    },
+    "board.dtb": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier-ramenv/board.dtb",
+      "sha256": "73444e693857d02d5fc134697349a83e22662572f1dc17725e2878f4b90253a0",
+      "size": 92409
+    },
+    "kexec": {
+      "path": "/home/marius/ext_proj/touch10/development/perrier/kexec-legacy-fdt",
+      "sha256": "29885039c61ae9c938bbe133ff5a099deb8f83738cfe632987ac392d0f09b6f6",
+      "size": 1660848
+    }
+  },
+  "before": {
+    "hostname": "SEP24169DB677BB",
+    "uid": "0",
+    "kernel": "3.4.113+",
+    "arch": "armv7l",
+    "boot_id": "6887d4a0-fa4b-4112-9d61-f24a9abf4e9e",
+    "uptime": "113.04",
+    "factory_app": "running",
+    "kexec_path": "",
+    "kexec_loaded": "0",
+    "watchdog": "present"
+  },
+  "environment_before": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "display_handoff": {
+    "buffers": [
+      "7ec78000",
+      "7f060000",
+      "7f448000"
+    ],
+    "active": "7f060000",
+    "attributes": "0e004099",
+    "control": "00000309"
+  },
+  "watchdog_close_proof": "/home/marius/ext_proj/touch10/development/runs/20261108T084041Z-watchdog-close-recovery-1ea650/result.json",
+  "kexec_watchdog_proof": "/home/marius/ext_proj/touch10/development/runs/20261108T084207Z-kexec-watchdog-52a644/result.json",
+  "ram_stage": "/tmp/touch10-dev-af7723f8189e4bf0a0a3b03ae88c6c68",
+  "ram": {
+    "marker": "perrier-interactive-ram44",
+    "kernel": "6.18.48-perrier-ram44",
+    "boot_id": "9327050f-99f6-4fec-ba13-dfd0990b7a4f",
+    "guard": {
+      "pid": 43,
+      "state": "feeding",
+      "monotonic": 63.002,
+      "lease_deadline": 92.378,
+      "pings": 13,
+      "counter": 4291035465,
+      "load": 4291035136,
+      "timeout_seconds": 120
+    }
+  },
+  "ready_at": "2026-11-09T11:13:03.764+00:00",
+  "hold_minutes": 120,
+  "last_guard": {
+    "pid": 43,
+    "state": "feeding",
+    "monotonic": 185.613,
+    "lease_deadline": 237.804,
+    "pings": 37,
+    "counter": 4291035466,
+    "load": 4291035136,
+    "timeout_seconds": 120
+  },
+  "last_lease_at": "2026-11-09T11:15:06.555+00:00",
+  "recovery_reason": "hardware_expiry",
+  "recovery_started": "2026-11-09T11:15:16.556+00:00",
+  "after": {
+    "hostname": "SEP24169DB677BB",
+    "uid": "0",
+    "kernel": "3.4.113+",
+    "arch": "armv7l",
+    "boot_id": "66dc7225-9278-4c77-8e09-631cd845eaf6",
+    "uptime": "32.57",
+    "factory_app": "running",
+    "kexec_path": "",
+    "kexec_loaded": "0",
+    "watchdog": "present"
+  },
+  "recovery_elapsed_seconds": 153.6,
+  "environment_after": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "stock_recovered": true
+}

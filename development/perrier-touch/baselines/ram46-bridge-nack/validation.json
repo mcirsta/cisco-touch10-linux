@@ -1,0 +1,38 @@
+{
+  "status": "bridge_pre_enable_i2c_nack",
+  "run": "development/runs/20261109T164851Z-interactive-948315",
+  "files": {
+    "zImage": {
+      "sha256": "c90b1d2fa4ced7ceecfe36b800ba5ae4c514164a9958de4f36572c7351efac99",
+      "size": 16988520
+    },
+    "board.dtb": {
+      "sha256": "188bb5ea211215468762867ff1e2905497ffd9fd77102643019695286fb7200b",
+      "size": 93071
+    },
+    "kernel.config": {
+      "sha256": "615e4eb7ac5dfdfbae7e7e5034c422918d4edb655f2bad47138fcb6200192252",
+      "size": 77491
+    },
+    "manifest.json": {
+      "sha256": "c3f975c07867431803309bc91934ed1cc130e1091aa7ac463f25598295f1eb9b",
+      "size": 1521
+    },
+    "reviewed-image.json": {
+      "sha256": "ac25bf78b919e4ea7aa7e4caf0767b580921f09747c4144c2a7ecb87ed6c60e8",
+      "size": 2279
+    },
+    "rootfs-manifest.json": {
+      "sha256": "a44bdd675a7d77e99b4f3621ec3358eb6fca2e569e95bd65249c6cefc466fb8b",
+      "size": 25692
+    },
+    "touch-patches.json": {
+      "sha256": "df91ad935c8688a97ce62d405c4d2e305fa91204a5d370e582722b463d169af3",
+      "size": 1817
+    },
+    "base-patches.json": {
+      "sha256": "5f7716be4c97820e79e1d63b5679d7d9c388ea2bf243428551ee320e47ae05ac",
+      "size": 3096
+    }
+  }
+}

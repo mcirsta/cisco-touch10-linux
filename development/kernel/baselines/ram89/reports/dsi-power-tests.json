@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "cycles": 2,
+  "sanitizers": [
+    "address",
+    "undefined"
+  ],
+  "source_sha256": "61c47390b3d18bec3cd5ce4f9d6f378e2a1b9647f2f7d00351bcff9b27618ab6",
+  "bridge_source_sha256": "4b8826b98aeb0a38e564feae279d7e658e99fa68fa37ca20b8036f965e818380",
+  "output": "PASS: two real callback cycles follow PHY -> reset release -> HS -> I2C -> video; stop video -> reset -> PHY off"
+}

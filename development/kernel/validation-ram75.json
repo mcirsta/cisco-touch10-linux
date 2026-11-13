@@ -1,0 +1,89 @@
+{
+  "validated_at": "2026-11-10T18:19:03.842271+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram75",
+  "profile": "dsi-exact-lines",
+  "default_uboot_profile": false,
+  "owner_confirmation": "Clean and aligned; touch and brightness work",
+  "manual_display_cycles": 3,
+  "qt_restarts": 3,
+  "change": "Replace board-specific line rounding and rounded-Hz tolerance with exact common-DCO divisor alignment and panel line-rate bounds",
+  "programmed_timing_equal_to_ram74": true,
+  "registers_compared": 386,
+  "only_initial_difference": "Current DISPC scan-line counter",
+  "native_touch_reports_in_final_log": 147,
+  "backlight_levels_exercised": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "bridge_counter_static_across_cycles": "0xc0800001",
+  "bridge_status_interpretation": "Latched startup status unchanged; bit-level meaning still unresolved",
+  "dtb_byte_identical_to_ram70": true,
+  "gpio_pad_supply_pwm_timing_unchanged": true,
+  "watchdog_expiry_recovery_seconds": 150.5,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "stock_recovered": true,
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram75/snapshot.json",
+    "sha256": "bd55a096ebd4562d06b51794cb8a21e2defe93d793d9a33b671bb63eb5b33292"
+  },
+  "source_manifest": {
+    "path": "development/kernel/baselines/ram75/patches/manifest.json",
+    "sha256": "ead3ac2079576dcb2d3ec51a1c00ea4f335da06a2ab9faaa2aaac0d09c628eae"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram75/reports/source-checks.json",
+    "sha256": "45f2f6a76c9b1e74836e8a124101e319eca0c762973a81774ba10cb8c69a227e"
+  },
+  "timing_regression_tests": {
+    "path": "development/kernel/baselines/ram75/reports/dsi-timing-tests.json",
+    "sha256": "c1e75fdddb03c52bb2192ea6456ff5ec00d14becdc1ef2327e31d082d567ec96"
+  },
+  "image_review": {
+    "path": "development/perrier-ramenv/dsi-exact-lines/reviewed-image.json",
+    "sha256": "23ce86b9937d94954eae8ceb6a900dcc342e1a0f0a69f60d69d3f89776ef4f5f"
+  },
+  "physical_confirmation": {
+    "path": "development/runs/20261110T180334Z-uboot-ram75-b1d852/physical-confirmation.json",
+    "sha256": "9f2e6ce5c9e88093af8979745d0cdb8d1a02ade96629ef8011de441f8122ffde"
+  },
+  "live_result": {
+    "path": "development/runs/20261110T180334Z-uboot-ram75-b1d852/result.json",
+    "sha256": "2f732aeb4f3c451583ed99f24edd33fd6505c6595dedb573a92b21b18d3d12a8"
+  },
+  "live_diagnostics": {
+    "path": "development/runs/20261110T180334Z-uboot-ram75-b1d852/confirmed-after.log",
+    "sha256": "5e3bf0600e84e3779f0c946915b7f8b28fb0c348dd9c9abdf0cbb9482c220c23"
+  },
+  "framebuffer_screenshot": {
+    "path": "development/runs/20261110T180334Z-uboot-ram75-b1d852/confirmed-framebuffer.png",
+    "sha256": "43dd7d7484a6b7048904584c5adf147edc6d32064a107086d5b704fcde542573"
+  },
+  "cycle_diagnostics": {
+    "path": "development/runs/20261110T180334Z-uboot-ram75-b1d852/three-cycles-after.log",
+    "sha256": "eaf498eaa56c23bc352aadb22de1cb39d0f43551eb2fa7cbb8aa0b72c5a34a75"
+  },
+  "register_comparison": {
+    "path": "development/kernel/out/display-finalization/register-comparison-ram74-ram75.json",
+    "sha256": "fd9118b2e7cfe7b54d0fca3f563504fc88a06903ce04adcbf71ec6fb74cda571"
+  },
+  "parent_validation": {
+    "path": "development/kernel/validation-ram74.json",
+    "sha256": "24251baee1f067c1494d81abe2a83853a4bb5fcce0650277321fcd333631ed3f"
+  },
+  "fallback": {
+    "profile": "display-onoff",
+    "kernel": "6.18.48-perrier-ram70",
+    "validation": {
+      "path": "development/kernel/validation-ram70.json",
+      "sha256": "022ffac9182eafb9ea0368f66cbe6cd76049f88ea7ee8c864674457f5dfbc520"
+    }
+  },
+  "limits": [
+    "Other porch, pad/source and bridge quirks remain separate work",
+    "Full-image physical power-removal and production power management remain pending"
+  ]
+}

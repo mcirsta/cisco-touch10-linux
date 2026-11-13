@@ -1,0 +1,9 @@
+// SPDX-License-Identifier: GPL-2.0-only
+// RAM-only trial: make the stock OMAP4460 second CPU visible to mainline SMP.
+// CPU frequency scaling, idle states, PMIC programming, and board pins stay
+// disabled or unchanged from the tested ram52 image.
+#include "../perrier-keypad/omap4-perrier-keypad.dts"
+
+&{/cpus/cpu@1} {
+    status = "okay";
+};

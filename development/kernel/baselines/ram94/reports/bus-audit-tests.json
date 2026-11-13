@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "unchanged_candidate_accepted": true,
+  "unsafe_changes_rejected": [
+    "wrong GPIO bank",
+    "wrong GPIO offset",
+    "wrong GPIO polarity",
+    "wrong touch IRQ",
+    "wrong pad mux",
+    "changed voltage",
+    "changed panel timing",
+    "changed watchdog timeout",
+    "lost watchdog reset protection",
+    "new unused target enabled"
+  ]
+}

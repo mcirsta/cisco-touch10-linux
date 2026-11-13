@@ -1,0 +1,379 @@
+{
+  "validated_at": "2026-11-12T10:50:32.528911+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram97",
+  "profile": "native-audio",
+  "default_uboot_profile": true,
+  "details": {
+    "change": "Native mainline TWL6040/McPDM speaker playback using stock Perrier wiring",
+    "qualified_scope": "HFR internal-speaker playback, native codec/clock/DMA/ALSA support; EP acoustic output remains unqualified",
+    "stock_mapping": {
+      "board": "Perrier init at 0xc07226b4; data at 0xc07aeeb8",
+      "codec_address": "I2C1/0x4b",
+      "codec_id": "0x4b",
+      "revision": "0x02",
+      "power_gpio": 127,
+      "irq_gic_spi": 119,
+      "stock_mclk_frequency_hz": 19200000,
+      "vio_and_v2v1": "Dummy regulators, as verified in live stock. Inherited physical rails remain unmanaged.",
+      "pmic_audio_clock": "CLK32KAUDIO, PMIC clock provider index 1",
+      "active_route": "PDM_DL2 -> HFDAC Right -> HFR -> Ext Spk",
+      "stock_click_service": "alsafifo: mono 48000 Hz S16_LE",
+      "physical_speaker_count": "Not established by mono software routing; no external accessories connected"
+    },
+    "upstream_audio_drivers_unmodified": [
+      "TWL6040 MFD",
+      "TWL6040 codec",
+      "TWL6040 PDM clock",
+      "TWL6032 clock provider",
+      "OMAP McPDM",
+      "OMAP SDMA/ALSA PCM"
+    ],
+    "generic_machine_driver_change": "Use the already-required DT route table without injecting every generic endpoint route",
+    "new_enabled_soc_target": "upstream McPDM only; other ABE siblings explicitly disabled",
+    "physical_confirmation": {
+      "hfr_internal_speaker": true,
+      "ep_generic_codec_output": false,
+      "ep_note": "Stock flag enables EP but owner knows only built-in speaker(s). Silent PCM, DAPM and DAC/amp activation passed. No audible sound at minimum or modest gain. No physical earpiece is inferred."
+    },
+    "native_pcm": {
+      "formats_tested": [
+        "S32_LE"
+      ],
+      "rates_tested_hz": [
+        88200,
+        96000
+      ],
+      "measured_dma_rates": {
+        "requested_88200": 88123.81554703422,
+        "requested_96000": 96023.58570415888
+      },
+      "channels_tested": 4,
+      "hfr_slot": 3,
+      "direct_48000_rejected_as_advertised": true,
+      "normal_48khz_application_audio": "Needs standard userspace resampling and mono/stereo-to-HFR channel mapping"
+    },
+    "stock_abe_dsp_features_reproduced": false,
+    "qt_audio_volume_and_mute_still_simulated": true,
+    "65_sampled_pmic_rail_fields_unchanged_from_ram95_and_through_all_audio_tests": true,
+    "pmic_clock_registers_preserved": "0xbc..0xc1: 00 01 01 00 01 01",
+    "gpio_expander_port_preserved": "0x11",
+    "no_pmic_regulator_voltage_programming": true,
+    "all_test_controls_restored": true,
+    "display_source_and_existing_non_audio_wiring_preserved": true,
+    "qt_binary_unchanged_from_ram96": true,
+    "display_cycles": 0,
+    "qt_restarts": 0,
+    "qt_pid": "113",
+    "combined_ram_boots": 1,
+    "negative_dt_mutations_rejected": 58,
+    "stock_postchecks": {
+      "passed": true,
+      "stock": {
+        "hostname": "SEP24169DB677BB",
+        "uid": "0",
+        "kernel": "3.4.113+",
+        "arch": "armv7l",
+        "boot_id": "18bc8c53-a81c-4cdb-b1c9-505fbc22ba42",
+        "uptime": "54.38",
+        "factory_app": "running",
+        "kexec_path": "",
+        "kexec_loaded": "0",
+        "watchdog": "present"
+      },
+      "stock_audio_controls": 83,
+      "stock_hfr_route_selected": true,
+      "stock_ep_route_disabled": true,
+      "all_65_sampled_pmic_rail_fields_match_stock_baseline": true,
+      "codec_id_and_revision": [
+        "0x4b",
+        "0x02"
+      ],
+      "gpio_port": "0x11",
+      "temporary_helpers_removed": true,
+      "helper_sha256": {
+        "audio-read": "7838260dc029418c2a9d0729615ade44afda09ac7f163d64f897433591c5a4f5",
+        "peripheral-read": "c80c922bb12f3c4390f066a61f9c754d06e90863e059e7b7bd049d267e615e9a",
+        "alsa-controls-read": "7478cac1297cbee693026cf143f68327aa2c91d97e48a1731b3e8046cff60d5b"
+      },
+      "executed_script_sha256": "51f79f9230e628385a5e606fa29f2ef475cabd240f0545f521e3eaf8c1b892e3"
+    },
+    "staging_cleanup": "Only the obsolete ram62 staged zImage was removed after full SHA verification against its preserved PC archive; stock files and fallbacks preserved",
+    "limitations": [
+      "EP physical output/wiring not confirmed",
+      "Only low-level speaker playback tested; full gain/distortion/pitch characterization remains",
+      "Qt/normal application resampling and channel mapping pending",
+      "Production audio power management pending",
+      "SMP deferred; SGX parked"
+    ]
+  },
+  "recovery_mode": "hardware_expiry",
+  "recovery_elapsed_seconds": 150.6,
+  "stock_recovered": true,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "serial_markers": {
+    "factory_saved_before_handoff": true,
+    "candidate_kernel": true,
+    "mainline_watchdog_ready": true,
+    "ram_ssh_started": true
+  },
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram97/snapshot.json",
+    "sha256": "ae394e6f9faaa9cc722281d691d9bc76f9c90bda665dfe43d504612b9d9230c3"
+  },
+  "source_manifest": {
+    "path": "development/kernel/baselines/ram97/patches/manifest.json",
+    "sha256": "b636c4d1088d4a1671cb1b782c9b61cd8b30081bf4eac43c7362373f67e8cc7b"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram97/reports/source-checks.json",
+    "sha256": "971f8963d45458d3449828c24e0df5e862ca4225b52060b0a2ed2d1b081d3884"
+  },
+  "tests": {
+    "audio-audit-tests": {
+      "path": "development/kernel/baselines/ram97/reports/audio-audit-tests.json",
+      "sha256": "a070dd3eb83fa9d0995da84cb4d49a12404f47df84ad9f0dc351c97a921e80ab"
+    },
+    "aux-audit-tests": {
+      "path": "development/kernel/baselines/ram97/reports/aux-audit-tests.json",
+      "sha256": "711eb612ad4b802a5fbeb75dd9696b86f9027872e63fa7293822c17873441943"
+    },
+    "bridge-regmap-tests": {
+      "path": "development/kernel/baselines/ram97/reports/bridge-regmap-tests.json",
+      "sha256": "de5ab6625c121cee42fa9aae4e9998ade67c6fcf209461efa1cf256cff137429"
+    },
+    "bus-audit-tests": {
+      "path": "development/kernel/baselines/ram97/reports/bus-audit-tests.json",
+      "sha256": "de1a3289c0714aaef3717248aeaf3181b4d62b5ca146271862971560913d5b68"
+    },
+    "dsi-null-tests": {
+      "path": "development/kernel/baselines/ram97/reports/dsi-null-tests.json",
+      "sha256": "099c03eb8bada5921d51dc7fec8fd2dee9d4daf88bd6d6dd8615a068c7a1851a"
+    },
+    "dsi-power-tests": {
+      "path": "development/kernel/baselines/ram97/reports/dsi-power-tests.json",
+      "sha256": "cfaa4dea48acfc48ba727ca86722d92e1885583c7dff4f2e27aa6c8ed4e590ce"
+    },
+    "dsi-timing-tests": {
+      "path": "development/kernel/baselines/ram97/reports/dsi-timing-tests.json",
+      "sha256": "f84046446b23c5beb9c5182529fc0a7d6bfec7c83eeb638bb8e1e42e4337cda7"
+    },
+    "dsi-vc-tests": {
+      "path": "development/kernel/baselines/ram97/reports/dsi-vc-tests.json",
+      "sha256": "01193e3455920bb0d63334a0447f67fa9e7122e6eef3105785769d928ad96185"
+    },
+    "led-audit-tests": {
+      "path": "development/kernel/baselines/ram97/reports/led-audit-tests.json",
+      "sha256": "188f2103991c35bdc5057c9772090f7ffc44b267623dd6358dc5d4375f600a81"
+    },
+    "pcf-shutdown-tests": {
+      "path": "development/kernel/baselines/ram97/reports/pcf-shutdown-tests.json",
+      "sha256": "f49e690d7cb609cf4a91232187ba54b55365169babf106657d005428df28b645"
+    },
+    "peripheral-audit-tests": {
+      "path": "development/kernel/baselines/ram97/reports/peripheral-audit-tests.json",
+      "sha256": "c12fb1bdccf5a12af7226e4e9fb5a6f5669003e83c6b200537651a07f3e0588b"
+    }
+  },
+  "image_review": {
+    "path": "development/perrier-ramenv/native-audio/reviewed-image.json",
+    "sha256": "51639b76af366d8daa7055732cf9a8067860798ee9e32aa889c482a948338790"
+  },
+  "live_result": {
+    "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/result.json",
+    "sha256": "3042ebbd1a139333b01cd79c141969a06a0f651b8904aa6bd75f4ffe093e604b"
+  },
+  "physical_confirmations": [
+    {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-ep-physical-confirmation.json",
+      "sha256": "2abad51a217477029f3e72893ca0438b53d128473809b762063943455aebb95a"
+    },
+    {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-physical-confirmation.json",
+      "sha256": "5e153b84d3003a7c830081bd2bd8bef53c236f85352887472f98ded29c962188"
+    }
+  ],
+  "machine_checks": {
+    "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-checks.json",
+    "sha256": "8ac0e605ca4f4fcecfc22f6bd04e2e85deb64e40bb5a8bd7ac7e268bb91bde66"
+  },
+  "evidence": {
+    "audio-48000-audio-before.log": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-48000-audio-before.log",
+      "sha256": "e1e840536c64925e11bb7dd9271965e9f6851168be5a37ff4f525919326171ba"
+    },
+    "audio-48000-audio-silence.log": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-48000-audio-silence.log",
+      "sha256": "8fa2c844811f9b75b0c6a875fb03e45fae1a8fa9e3aa8afd99d0bc7898cd83d2"
+    },
+    "audio-48000-check-audio-executed.py": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-48000-check-audio-executed.py",
+      "sha256": "980b9a7b8c57d58d84231b78230b8644d7b1b2a425e1fe684bb9561a48bacc07"
+    },
+    "audio-after-silence.log": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-after-silence.log",
+      "sha256": "7eb9504c3746a54bdfb8e3739266fdac114ead4918a34cfbe85e4b735855b208"
+    },
+    "audio-before.log": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-before.log",
+      "sha256": "800cf96973ddb274d83344a627d112864f9338919c7ed79933fd1ee1d28a1def"
+    },
+    "audio-checks.json": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-checks.json",
+      "sha256": "8ac0e605ca4f4fcecfc22f6bd04e2e85deb64e40bb5a8bd7ac7e268bb91bde66"
+    },
+    "audio-ep-checks.json": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-ep-checks.json",
+      "sha256": "1d8856206666b00d89e5c87032421865fbff60e6dcad9ecfc1e4df7f9d995185"
+    },
+    "audio-ep-gain-checks.json": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-ep-gain-checks.json",
+      "sha256": "2b3f646daab00be35bcb132e549a2bf338dc91bd5be2b838a94db4b27bc8ba20"
+    },
+    "audio-ep-gain-executed.sh": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-ep-gain-executed.sh",
+      "sha256": "d9fde7ea840cb1f7132a65ad9b865efddea14e57454e3be21cac5db51ea5e9b0"
+    },
+    "audio-ep-gain.log": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-ep-gain.log",
+      "sha256": "81f1ef9e01070a603585cf00e219a57cb2ed1d67f333fefa89538becd4ecd7c0"
+    },
+    "audio-ep-physical-confirmation.json": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-ep-physical-confirmation.json",
+      "sha256": "2abad51a217477029f3e72893ca0438b53d128473809b762063943455aebb95a"
+    },
+    "audio-ep-repeat-checks.json": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-ep-repeat-checks.json",
+      "sha256": "7ab812bef7d501401bac07b791c3510792f601c4c74f2774a40a35d409923a0a"
+    },
+    "audio-ep-repeat-executed.sh": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-ep-repeat-executed.sh",
+      "sha256": "74d3b8d3e13bc7a86e4af4d8178f14b492d391f3f2321061c81392cba7c6493f"
+    },
+    "audio-ep-repeat.log": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-ep-repeat.log",
+      "sha256": "645ee3d8ab22bdac05ccff0896e64d9a294d764d20f2749489a7034b2581a384"
+    },
+    "audio-ep-silence-executed.sh": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-ep-silence-executed.sh",
+      "sha256": "acb98a24a936b8ffecaf764fbb16b27ac2c8feea2aaeca3cf8771c5ae26a724b"
+    },
+    "audio-ep-silence.log": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-ep-silence.log",
+      "sha256": "cf7543886853eccdd6cf1f1f5224db05576d407be50c6b6c8338532f2e88c6f8"
+    },
+    "audio-ep-tone-executed.sh": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-ep-tone-executed.sh",
+      "sha256": "0c55b06f584fe1a7d168ea6966ad4a5c5670b96dd7e61b834bf29f0e7739cb4a"
+    },
+    "audio-ep-tones.log": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-ep-tones.log",
+      "sha256": "ee359a6e14e5cb3efb1a5364be890c8f245433a8814acdb3850fe4d0d20a9df8"
+    },
+    "audio-ep-waveform.json": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-ep-waveform.json",
+      "sha256": "b615f26d3cd34833fe4007704c1e240a7978d372a1f83c6b698de3931383e143"
+    },
+    "audio-final.log": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-final.log",
+      "sha256": "37473870906db833add277b79d4d74863411f171e5948f98d065a970ad468247"
+    },
+    "audio-native-registers.log": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-native-registers.log",
+      "sha256": "64bb9004a20be5e05b18471d8a7e859adcca9b3dc573e4dabc83efdb6baeec8e"
+    },
+    "audio-physical-confirmation.json": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-physical-confirmation.json",
+      "sha256": "5e153b84d3003a7c830081bd2bd8bef53c236f85352887472f98ded29c962188"
+    },
+    "audio-power-checks.json": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-power-checks.json",
+      "sha256": "a095b959147ce03ce46c55183ee02863e1c8ccd368a6ca7afa5c0804b27bb7d7"
+    },
+    "audio-qt-pid-after.log": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-qt-pid-after.log",
+      "sha256": "6df9d0a6ea8e120e383e708daf48c33d8f6d0f79b42bfc2a0fefbb2d092cadee"
+    },
+    "audio-qt-pid-before.log": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-qt-pid-before.log",
+      "sha256": "6df9d0a6ea8e120e383e708daf48c33d8f6d0f79b42bfc2a0fefbb2d092cadee"
+    },
+    "audio-rate-checks.json": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-rate-checks.json",
+      "sha256": "1713974685312d164e8cc7c38164430eeb34c91af1add8b8ee4d36f96a2f8b14"
+    },
+    "audio-read-source.c": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-read-source.c",
+      "sha256": "64e0150807bfa864557b20752fc5edea3e7c7e5854099a84c62ee244e3859a31"
+    },
+    "audio-silence.log": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-silence.log",
+      "sha256": "926aba0ac3c92ef402206bef85711d5785d6a8cc7bb098a91b2d596e38d70f4d"
+    },
+    "audio-tone-checks.json": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-tone-checks.json",
+      "sha256": "f6b33709fc2f5bbeea7625a946771060a226184aea62086cea345367aef3ac20"
+    },
+    "audio-tone-executed.sh": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-tone-executed.sh",
+      "sha256": "464e88062b1c08358ae885b2f62917117fcc6940acccb3d4474fc8dc16d85858"
+    },
+    "audio-tones.log": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-tones.log",
+      "sha256": "7900f794b831b47b670a03b60d81c6ace98f3ac03edd04901b98353f527cabd7"
+    },
+    "audio-tools-executed-manifest.json": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio-tools-executed-manifest.json",
+      "sha256": "a42f9d36d4796b0ee4e76ebec8fc6ae2c09058e845deb42a3e16e3a97deeb26f"
+    },
+    "audio88200-executed.sh": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio88200-executed.sh",
+      "sha256": "d07236736a200aa92aebfcb64deb04ad02476781b99f819ad11124b1bced3f5b"
+    },
+    "audio88200.log": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/audio88200.log",
+      "sha256": "e834b7d9e85e36b918ffcf94380d94099bcedba13b0f7478e8ac06f063df3be8"
+    },
+    "ep-active-route.log": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/ep-active-route.log",
+      "sha256": "3076f38328448e4581e7802905f4b09a9521aef385b63ed335d581e4ca017489"
+    },
+    "stock-audio-after.log": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/stock-audio-after.log",
+      "sha256": "9f265a3371d7efdf1fcab69e5f21dbb504b0a33af6ee9d7b835ac77973034226"
+    },
+    "stock-audio-alsafifo-main.c": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/stock-audio-alsafifo-main.c",
+      "sha256": "765b4b51c92057f82a67656f38fc32ad35858df083cf712dd935a52ae934ede1"
+    },
+    "stock-audio-check-executed.py": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/stock-audio-check-executed.py",
+      "sha256": "51f79f9230e628385a5e606fa29f2ef475cabd240f0545f521e3eaf8c1b892e3"
+    },
+    "stock-audio-checks.json": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/stock-audio-checks.json",
+      "sha256": "2a9bccb43a73be1754d3b325ab934c511decfa279ed64dcb5e6bff8cab70b7f2"
+    },
+    "stock-audio-interpretation.json": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/stock-audio-interpretation.json",
+      "sha256": "41ea7a2aff8fa0193587c820d5f6b046261845cb1b24f9029f43962eba28c0d7"
+    },
+    "stock-audio-mapping.json": {
+      "path": "development/runs/20261112T102852Z-uboot-ram97-4a52f1/stock-audio-mapping.json",
+      "sha256": "d8c4bf0af7f58e14ec5327352e8d4e74d50c983f6ba7a6edf90bc722eb13cfa1"
+    }
+  },
+  "fallback": {
+    "profile": "rtc-gpio",
+    "kernel": "6.18.48-perrier-ram96",
+    "validation": {
+      "path": "development/kernel/validation-ram96.json",
+      "sha256": "98eeb7a4338030eb738d4d37e819ccce9133dea20440cfef08c295a99f85e708"
+    }
+  },
+  "parent_validation": {
+    "path": "development/kernel/validation-ram96.json",
+    "sha256": "98eeb7a4338030eb738d4d37e819ccce9133dea20440cfef08c295a99f85e708"
+  }
+}

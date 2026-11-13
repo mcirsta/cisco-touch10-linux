@@ -1,0 +1,63 @@
+// SPDX-License-Identifier: GPL-2.0-only
+// RAM trial: stock TMP102 board sensor and OMAP4460 MPU bandgap sensor.
+#include "../perrier-keypad/omap4-perrier-keypad.dts"
+
+&perrier_i2c3 {
+    // Stock firmware binds tmp102 at I2C3 address 0x48. No supply, alert
+    // GPIO, or pinmux is specified; only its volatile conversion setup is
+    // changed by the mainline hwmon driver.
+    temperature-sensor@48 {
+        compatible = "ti,tmp102";
+        reg = <0x48>;
+        label = "Board";
+    };
+};
+
+&{/} {
+    // The generic /ocp bus remains disabled. Describe only GPIO3, which
+    // provides the bandgap TSHUT input, with the same no-reset pattern as
+    // the working GPIO4/5/6 modules. No pinctrl state or output is defined.
+    target-module@48057000 {
+        compatible = "ti,sysc-omap2", "ti,sysc";
+        reg = <0x48057000 4>, <0x48057010 4>, <0x48057114 4>;
+        reg-names = "rev", "sysc", "syss";
+        ti,no-reset-on-init;
+        ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
+                         SYSC_OMAP2_SOFTRESET |
+                         SYSC_OMAP2_AUTOIDLE)>;
+        ti,sysc-sidle = <SYSC_IDLE_FORCE>, <SYSC_IDLE_NO>,
+                        <SYSC_IDLE_SMART>, <SYSC_IDLE_SMART_WKUP>;
+        ti,syss-mask = <1>;
+        clocks = <&l4_per_clkctrl OMAP4_GPIO3_CLKCTRL 0>,
+                 <&l4_per_clkctrl OMAP4_GPIO3_CLKCTRL 8>;
+        clock-names = "fck", "dbclk";
+        #address-cells = <1>;
+        #size-cells = <1>;
+        ranges = <0 0x48057000 0x1000>;
+        perrier_gpio3: gpio@0 {
+            compatible = "ti,omap4-gpio";
+            reg = <0 0x200>;
+            interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+            gpio-controller;
+            #gpio-cells = <2>;
+            interrupt-controller;
+            #interrupt-cells = <2>;
+        };
+    };
+
+    perrier_bandgap: bandgap@4a002260 {
+        compatible = "ti,omap4460-bandgap";
+        reg = <0x4a002260 0x4>, <0x4a00232c 0x4>, <0x4a002378 0x18>;
+        interrupts = <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>;
+        // Mainline requests GPIO86 as an input for over-temperature TSHUT.
+        gpios = <&perrier_gpio3 22 GPIO_ACTIVE_HIGH>;
+        #thermal-sensor-cells = <0>;
+    };
+};
+
+&{/thermal-zones} { status = "okay"; };
+&cpu_thermal {
+    thermal-sensors = <&perrier_bandgap>;
+    // CPU frequency scaling is intentionally disabled in RAM trials.
+    /delete-node/ cooling-maps;
+};

@@ -1,0 +1,10 @@
+0001-dt-bindings-cyttsp4-perrier.patch
+0002-input-restore-cyttsp4-dt.patch
+0003-drm-omap-pll-search.patch
+0004-drm-omap-dsi-host.patch
+0005-drm-bridge-tc358765.patch
+0007-arm-dts-cisco-perrier.patch
+0008-dt-bindings-twl-irq.patch
+0009-dt-bindings-pcf-retain-state.patch
+0010-gpio-pcf857x-retain-state.patch
+ram-only/0001-perrier-ram-safety.patch

@@ -1,0 +1,83 @@
+{
+  "validated_at": "2026-11-12T18:37:37.143+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram110",
+  "profile": "smp-boot-two",
+  "scope": "Second, extended U-Boot RAM run of the unchanged two-core kernel",
+  "default_uboot_profile": false,
+  "observations": {
+    "dual_core": "Both CPUs online through 351 seconds; CPU1-pinned SHA256 ran for 20 seconds with CPU1 user ticks increasing 414 to 2363",
+    "thermal": "CPU thermal samples reached at most 60.255 C during CPU1 load and returned to 55.672 C",
+    "watchdog": "Linux nowayout 120-second watchdog stayed feeding; pings reached at least 69",
+    "ethernet": "Direct Ethernet remained up; isolated DHCP 10.77.10.10/24 and rescue 10.77.10.11/24 both present; DHCP server advertises no router or DNS",
+    "audio": "Two concurrent packaged 48 kHz silent ALSA streams exited zero in 9.23 seconds",
+    "peripherals": "INA3221 voltage/current rows, TMP102 and CPU temperature, LED classes, RTC, OMAP mailbox and hardware spinlock remained readable/bound; board EEPROM SHA256 matched the ram95 record",
+    "qt": "Same Qt PID 129 throughout recorded observations; no display cycle or Qt restart requested",
+    "storage": "eMMC remained read-only and unmounted",
+    "recovery": "Requested reboot restored stock Linux, Phoenix, exact factory p8 and approved ADC postflight in 36.7 seconds"
+  },
+  "limits": [
+    "This is a roughly six-minute RAM run, not a long-term soak or production power-management qualification.",
+    "DNS and router options were not delivered because the isolated DHCP server intentionally advertises neither.",
+    "No display cycling or human touch/brightness interaction was requested in this regression.",
+    "CPU frequency, voltage and suspend policy remain disabled or unqualified."
+  ],
+  "stock_recovered": true,
+  "recovery_elapsed_seconds": 36.7,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "adc_postflight": true,
+  "parent_validation": {
+    "path": "development/kernel/validation-ram110.json",
+    "sha256": "0c9bb61fc38b0defe433d5dbccd5d0621b29bab2f2cdc08ab94fd14127c5a183"
+  },
+  "evidence": {
+    "result.json": {
+      "path": "development/runs/20261112T183007Z-uboot-ram110-0b1bed/result.json",
+      "sha256": "b17d01efee7b4fe61bcaa0f24dbb716c297b8fe51deff5706803870fc52448cf"
+    },
+    "serial.raw": {
+      "path": "development/runs/20261112T183007Z-uboot-ram110-0b1bed/serial.raw",
+      "sha256": "d98b7c4fe1f33b1f8ade1131bc01eeb80c59eb06a912c4ede1bdee3853399495"
+    },
+    "ram-diagnostics.log": {
+      "path": "development/runs/20261112T183007Z-uboot-ram110-0b1bed/ram-diagnostics.log",
+      "sha256": "2b098b280bb94ffb46aa4b682a27d18510b2e0d052230c785502b2b523033d38"
+    },
+    "qt-start.log": {
+      "path": "development/runs/20261112T183007Z-uboot-ram110-0b1bed/qt-start.log",
+      "sha256": "fa1daceb4992935d7648bdaf113099ed4df01f14a0e586e50d77384363d2a919"
+    },
+    "extended-baseline.log": {
+      "path": "development/runs/20261112T183007Z-uboot-ram110-0b1bed/extended-baseline.log",
+      "sha256": "de51cc8808ce6e2c4f8fbfa84098ca4d60c283efbf1b8d85db32ddc9498dd59b"
+    },
+    "extended-audio.json": {
+      "path": "development/runs/20261112T183007Z-uboot-ram110-0b1bed/extended-audio.json",
+      "sha256": "64ebc19d1b20abf0950611784ca67656c10e1ef8c5148104e8a6aedef7dbe6f0"
+    },
+    "cpu1-load.log": {
+      "path": "development/runs/20261112T183007Z-uboot-ram110-0b1bed/cpu1-load.log",
+      "sha256": "e298731dc279cce17ce1103510ca320c304341e843db1faed404c64307d8679b"
+    },
+    "extended-peripherals.log": {
+      "path": "development/runs/20261112T183007Z-uboot-ram110-0b1bed/extended-peripherals.log",
+      "sha256": "4912fea12a126a951c8252a0695b67d43fdc33434e99d3412e205cb9cb1c8c9e"
+    },
+    "extended-network.log": {
+      "path": "development/runs/20261112T183007Z-uboot-ram110-0b1bed/extended-network.log",
+      "sha256": "6432208509f506a6f43bf74720277b4fa0837443fcfe7d343eaeec938765ae36"
+    },
+    "extended-midpoint.log": {
+      "path": "development/runs/20261112T183007Z-uboot-ram110-0b1bed/extended-midpoint.log",
+      "sha256": "884e82740430a72da731e604e31b31389351866caa35690902b3ca472fec2628"
+    },
+    "diagnostics-adc-restore.log": {
+      "path": "development/runs/20261112T183007Z-uboot-ram110-0b1bed/diagnostics-adc-restore.log",
+      "sha256": "a0330872041173e65d768203368537e984528c4495ddfe3e818c683a299c9961"
+    },
+    "extended-eeprom-observation.json": {
+      "path": "development/runs/20261112T183007Z-uboot-ram110-0b1bed/extended-eeprom-observation.json",
+      "sha256": "418d2f0accfa916098164b57789adfaaa3474362b4c89a97f6aa9fb52afeaa66"
+    }
+  }
+}

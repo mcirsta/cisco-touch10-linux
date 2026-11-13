@@ -1,0 +1,167 @@
+{
+  "validated_at": "2026-11-11T20:54:50.746161+00:00",
+  "status": "passed",
+  "kernel": "6.18.48-perrier-ram94",
+  "profile": "native-leds",
+  "default_uboot_profile": true,
+  "details": {
+    "change": "Two native mute indicator LEDs using unmodified mainline gpio-leds and DT",
+    "stock_evidence": [
+      "evidence/perrier-stock-mute-led-static-2026-11-11.json",
+      "evidence/perrier-stock-mute-led-pads-2026-11-11.txt"
+    ],
+    "hardware_changes": {
+      "gpio122": "red, active-high",
+      "gpio119": "green, active-high",
+      "pad_values": "0x116/0x110 both 0x000b",
+      "boot_state": "both off"
+    },
+    "kernel_driver_changes": false,
+    "existing_ram93_hardware_properties_unchanged": true,
+    "led_gpio_states_checked": [
+      "red",
+      "off",
+      "green",
+      "off"
+    ],
+    "other_gpio_lines_preserved": 11,
+    "qt_exit_restores_leds": true,
+    "physical_mute_presses": 20,
+    "qt_led_states_verified": 21,
+    "volume_key_repeat_events": 45,
+    "owner_confirmed": {
+      "red": true,
+      "green": true,
+      "display": true,
+      "touch": true,
+      "brightness": true
+    },
+    "display_blank_unblank_qt_cycles": 1,
+    "display_errors": 0,
+    "qt_audio_volume_still_simulated": true,
+    "post_snapshot_host_diagnostic_correction": "leds-diagnostic-correction.json",
+    "new_peripheral_probe_writes": "Only the two reviewed SoC LED GPIO outputs; PMIC/expander/audio not enabled",
+    "next_work": "System PMIC PWM LED, read-only board EEPROM, power monitoring, audio and production power management; SMP/SGX remain deferred"
+  },
+  "recovery_mode": "hardware_expiry",
+  "recovery_elapsed_seconds": 153.8,
+  "stock_recovered": true,
+  "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+  "guard_sha256": "7b98f7d64dbf44e212a22f671d4b33158e70a37d8d9afd6250e1f1cf73625a16",
+  "serial_markers": {
+    "factory_saved_before_handoff": true,
+    "candidate_kernel": true,
+    "mainline_watchdog_ready": true,
+    "ram_ssh_started": true
+  },
+  "source_snapshot": {
+    "path": "development/kernel/baselines/ram94/snapshot.json",
+    "sha256": "0f72b41e9c031c4963191a1782e29ebfd45c69e8a3db3359ec65a2a15c2f5261"
+  },
+  "source_manifest": {
+    "path": "development/kernel/baselines/ram94/patches/manifest.json",
+    "sha256": "c172b3a7521739b39145b4e5a930cf0f57e605a18b3c79da3ba0d55ec2ad399d"
+  },
+  "source_checks": {
+    "path": "development/kernel/baselines/ram94/reports/source-checks.json",
+    "sha256": "655634bd77859974fabd135ec592b2967245ae6cdca2d534a1b4c4c6d3e45da3"
+  },
+  "tests": {
+    "bridge-regmap-tests": {
+      "path": "development/kernel/baselines/ram94/reports/bridge-regmap-tests.json",
+      "sha256": "de5ab6625c121cee42fa9aae4e9998ade67c6fcf209461efa1cf256cff137429"
+    },
+    "bus-audit-tests": {
+      "path": "development/kernel/baselines/ram94/reports/bus-audit-tests.json",
+      "sha256": "de1a3289c0714aaef3717248aeaf3181b4d62b5ca146271862971560913d5b68"
+    },
+    "dsi-null-tests": {
+      "path": "development/kernel/baselines/ram94/reports/dsi-null-tests.json",
+      "sha256": "099c03eb8bada5921d51dc7fec8fd2dee9d4daf88bd6d6dd8615a068c7a1851a"
+    },
+    "dsi-power-tests": {
+      "path": "development/kernel/baselines/ram94/reports/dsi-power-tests.json",
+      "sha256": "cfaa4dea48acfc48ba727ca86722d92e1885583c7dff4f2e27aa6c8ed4e590ce"
+    },
+    "dsi-timing-tests": {
+      "path": "development/kernel/baselines/ram94/reports/dsi-timing-tests.json",
+      "sha256": "f84046446b23c5beb9c5182529fc0a7d6bfec7c83eeb638bb8e1e42e4337cda7"
+    },
+    "dsi-vc-tests": {
+      "path": "development/kernel/baselines/ram94/reports/dsi-vc-tests.json",
+      "sha256": "01193e3455920bb0d63334a0447f67fa9e7122e6eef3105785769d928ad96185"
+    },
+    "led-audit-tests": {
+      "path": "development/kernel/baselines/ram94/reports/led-audit-tests.json",
+      "sha256": "188f2103991c35bdc5057c9772090f7ffc44b267623dd6358dc5d4375f600a81"
+    }
+  },
+  "image_review": {
+    "path": "development/perrier-ramenv/native-leds/reviewed-image.json",
+    "sha256": "a87efd6fee62e5ccd5501c0b3254e222daa459a7864573fb90007ba563014ba6"
+  },
+  "live_result": {
+    "path": "development/runs/20261111T204541Z-uboot-ram94-9dd971/result.json",
+    "sha256": "2370a997b2be71bb8786cd8335ea7047db8a7cfccdfbb82a54d3c0a687d61689"
+  },
+  "physical_confirmations": [
+    {
+      "path": "development/runs/20261111T204541Z-uboot-ram94-9dd971/leds-physical-confirmation.json",
+      "sha256": "ef5b106e8f79ed5140928506d8fcae567e1713ad65fcc2bfabd69e39e17fbf17"
+    }
+  ],
+  "evidence": {
+    "confirmed-after.log": {
+      "path": "development/runs/20261111T204541Z-uboot-ram94-9dd971/confirmed-after.log",
+      "sha256": "c817949d528c3f413ed09cf2733b141059f34129f32744d76a50cb7256f8ee5b"
+    },
+    "confirmed-framebuffer.png": {
+      "path": "development/runs/20261111T204541Z-uboot-ram94-9dd971/confirmed-framebuffer.png",
+      "sha256": "852008e3851b2fb3e9dea082c0a18fc5084758850f36b397916258f61ab082b5"
+    },
+    "leds-checks.json": {
+      "path": "development/runs/20261111T204541Z-uboot-ram94-9dd971/leds-checks.json",
+      "sha256": "ffe7f6a73656c6a31e0470362f7e34a0463b5557066948478dd3f4e2685a61fc"
+    },
+    "check-leds-executed.py": {
+      "path": "development/runs/20261111T204541Z-uboot-ram94-9dd971/check-leds-executed.py",
+      "sha256": "f5a245d442d3660d722c7b45f006cd627fd10eedd112e68bb058f4df6d2982ce"
+    },
+    "leds-diagnostic-correction.json": {
+      "path": "development/runs/20261111T204541Z-uboot-ram94-9dd971/leds-diagnostic-correction.json",
+      "sha256": "999381bdf7735e86c231e45e6dda1232c021f7832b9549b07d9b5ad05699de19"
+    },
+    "leds-confirmed.log": {
+      "path": "development/runs/20261111T204541Z-uboot-ram94-9dd971/leds-confirmed.log",
+      "sha256": "8bece8bb5f2520957b25bca27839c857e2e64402fbcf823c084ecf7ef807e787"
+    },
+    "leds-before.log": {
+      "path": "development/runs/20261111T204541Z-uboot-ram94-9dd971/leds-before.log",
+      "sha256": "d2fa6f64fc53287b330ed5f84a434fb85113171e7c17fa9b60c0e00675965743"
+    },
+    "leds-red.log": {
+      "path": "development/runs/20261111T204541Z-uboot-ram94-9dd971/leds-red.log",
+      "sha256": "7a1de042a06ddaf9b7a408543f3916f7b348ef8f551292056006c921f1ebdfee"
+    },
+    "leds-green.log": {
+      "path": "development/runs/20261111T204541Z-uboot-ram94-9dd971/leds-green.log",
+      "sha256": "8a04927045797c238dbb9f3cbfa4d3cc55a9556d892c45ba798a4b97d7b71927"
+    },
+    "leds-final-off.log": {
+      "path": "development/runs/20261111T204541Z-uboot-ram94-9dd971/leds-final-off.log",
+      "sha256": "d2fa6f64fc53287b330ed5f84a434fb85113171e7c17fa9b60c0e00675965743"
+    }
+  },
+  "fallback": {
+    "profile": "display-stop-fix",
+    "kernel": "6.18.48-perrier-ram93",
+    "validation": {
+      "path": "development/kernel/validation-ram93.json",
+      "sha256": "ead02c05f84baad36ea28c160718e46ba7b427f8e83d7d49054cc0bddcc4aac3"
+    }
+  },
+  "parent_validation": {
+    "path": "development/kernel/validation-ram93.json",
+    "sha256": "ead02c05f84baad36ea28c160718e46ba7b427f8e83d7d49054cc0bddcc4aac3"
+  }
+}

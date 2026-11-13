@@ -1,0 +1,12 @@
+[
+  "c0016f74 t armv7pmu_read_counter",
+  "c0016ff8 t armv7pmu_write_counter",
+  "c0017078 t armv7pmu_start",
+  "c00170d0 t armv7pmu_stop",
+  "c0017124 t armv7pmu_set_event_filter",
+  "c00171ec t armv7pmu_enable_event",
+  "c00173ac t armv7pmu_disable_event",
+  "c00174a0 t armv7pmu_reset",
+  "c00179e0 t armv7pmu_get_event_idx",
+  "c0017fc8 t armv7pmu_handle_irq"
+]

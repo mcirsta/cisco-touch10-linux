@@ -1,0 +1,21 @@
+{
+  "fallback": {
+    "kernel": "ram70",
+    "profile": "display-onoff",
+    "validation_sha256": "022ffac9182eafb9ea0368f66cbe6cd76049f88ea7ee8c864674457f5dfbc520"
+  },
+  "ram72": {
+    "profile": "dsi-hsync",
+    "change": "Use mainline VP_HSYNC_POL=1 with active-high DISPC HSYNC",
+    "expected_dsi_ctrl": "0x00eaee9f",
+    "expected_pol_freq1": "0x00020000"
+  },
+  "fixed": [
+    "all DT properties, supplies, GPIOs, pinmux and PWM",
+    "PLL N=19/M=211 and panel timing",
+    "ALIGN=0, ONOFF=1",
+    "bridge register programming and reset",
+    "mainline nowayout watchdog and guard"
+  ],
+  "next_review": "Separate DSI PHY pre-enable from early video-mode setup; use ordinary enable/disable paths if the bounded test works"
+}

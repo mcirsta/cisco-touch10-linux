@@ -1,0 +1,74 @@
+{
+  "validated_at": "2026-11-13T14:39:45.895+00:00",
+  "status": "partial",
+  "profile": "cpu-m2-trial",
+  "kernel": "6.18.48-perrier-ram112",
+  "scope": "One U-Boot RAM boot; bounded idle, single-core load, and two-core load at fixed inherited rail voltage",
+  "clock_transition": {
+    "passed": true,
+    "frequencies_khz": [
+      700000,
+      350000,
+      700000
+    ],
+    "parent_dpll_hz": 700000000,
+    "m2_hz_at_low": 350000000,
+    "mpuss_hz_at_low": 350000000,
+    "cpu_temperature_range_c": [
+      56.751,
+      63.086
+    ],
+    "single_worker_likely_mpu_current_ma": {
+      "700_mhz": 600,
+      "350_mhz": 316
+    },
+    "likely_mpu_voltage_mv_range": [
+      1200,
+      1208
+    ],
+    "two_core_350_mhz_load_seconds": 10,
+    "cpu1_online_during_two_core_load": true
+  },
+  "hotplug_cleanup": {
+    "passed": false,
+    "event": "CPU1 offlining immediately after two-core load caused a kernel panic",
+    "fault": "pwrdm_get_valid_lp_state() via omap4_hotplug_cpu() dereferenced a NULL CPU1 powerdomain pointer",
+    "cause": "The RAM board policy skips omap2_common_pm_late_init(), and thus omap4_mpuss_init(), while CPU hotplug remains enabled.",
+    "rebooted_to_stock": true
+  },
+  "recovery": {
+    "factory_kernel": "3.4.113+",
+    "factory_app_running": true,
+    "factory_p8_sha256": "f0fefd27f1ca21360dfe437919e03c5a6ee4c119df3e6070301a8f3879d181ad",
+    "adc_postflight_passed": true,
+    "watchdog_feeding_before_panic": true
+  },
+  "limits": [
+    "The two-core 350 MHz run lasted only ten seconds; no long-duration stability or workload-energy qualification was performed.",
+    "The measured current difference is one INA snapshot at fixed voltage, not a whole-device power comparison.",
+    "The likely MPU channel assignment follows software evidence; no PCB net was measured.",
+    "Voltage scaling, automatic governor, CPU1 hotplug, and higher OPPs remain unqualified."
+  ],
+  "evidence": {
+    "runner": {
+      "path": "development/runs/20261113T143415Z-uboot-ram112-2950e7/result.json",
+      "sha256": "3c6f97e9db7132922a915cf77b4995300060ae4e9420d660cebd916547d951c6"
+    },
+    "idle": {
+      "path": "development/runs/20261113T143534Z-cpu-m2-clock-only/result.json",
+      "sha256": "3aa5c00a428920adf3559cb29f5399a531743d5b475afbb36a4e29c65d5bba50"
+    },
+    "load": {
+      "path": "development/runs/20261113T143738Z-cpu-m2-load/stdout.log",
+      "sha256": "70581759e6eb420f51a8f9bfa37ea6346bb26c19dcab16e6511cf1831bc2ceac"
+    },
+    "two_core": {
+      "path": "development/runs/20261113T143848Z-cpu-m2-smp/stdout.log",
+      "sha256": "c980521a52628962ed25517cc9e23f878b1956eba7baddb4f905f93334f5b647"
+    },
+    "serial": {
+      "path": "development/runs/20261113T143415Z-uboot-ram112-2950e7/serial.log",
+      "sha256": "5e0a7478d0b579ad79d5ef42bc2c65aca4a636da70e982c2c70d9961e4020ee7"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "kernel": "6.18.48-perrier-ram100",
+  "boot_id": "3e602e1e-4fcc-4586-8d87-870010b62611",
+  "qualified": [
+    "TWL6032 internal ADC conversions and end-of-conversion interrupts",
+    "Cortex-A9 cycle counter and overflow sampling"
+  ],
+  "limitations": [
+    "General PMU event counters read zero; cause unresolved"
+  ],
+  "hardware_checks": {
+    "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-checks.json",
+    "sha256": "0d32eea51df6a969a233d13ec8eefc13d28da623dd20106f227803b5cec4f445"
+  },
+  "stock_adc_checks": {
+    "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-stock-checks.json",
+    "sha256": "71a8aa5e5bad6cab33d79ea81ff52652bbe6d0df6f8361cddfc3146f46a2f2b5"
+  },
+  "stock_audio_power_checks": {
+    "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/stock-audio-checks.json",
+    "sha256": "c7a9b46284cfe9aedeac29ce2e8d26f19706ee6789bcb4837b4cdd27f3d153e2"
+  },
+  "adc_postflight": {
+    "passed": true,
+    "helper_sha256": "921a877fcbb0b1f9a711d1c22d5b8db6cabf39df70c8cab96e400a3942cbc6e6",
+    "stock_boot_id": "ec165955-5fbd-4127-8817-edfc6c25a880",
+    "temporary_helper_removed": true,
+    "restored": {
+      "48:e4": "00",
+      "49:04": "04",
+      "49:06": "14"
+    },
+    "execution": "Authorized postflight function applied after the initial session identified retained sensing enables"
+  },
+  "postflight_authorization": {
+    "path": "development/runs/20261112T114853Z-uboot-ram100-ec4b18/diagnostics-postflight-authorization.json",
+    "sha256": "68a6480859cdaf373d4983e7cd70a547a1600e1656b527be000820314c87cd2d"
+  },
+  "preboot_postflight_dependency_check_passed": true,
+  "display_cycles": 0,
+  "qt_restarts": 0
+}
