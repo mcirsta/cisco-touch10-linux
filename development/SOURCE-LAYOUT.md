@@ -14,6 +14,13 @@ One compressed copy of each existing pinned upstream archive is retained
 locally; duplicate expanded trees, installed runtimes and compiler caches
 have been removed.
 
+Future full builds perform this cleanup automatically after their audits.
+They stage work under `standalone/out/.work/`, preserve unpublished source
+changes under `source-preservation/auto/`, promote a compact image and retain
+two successful bundles. Failed builds preserve changes and diagnostics before
+removing partial compiler output. See the [build guide](standalone/README.md#automatic-cleanup-and-retention)
+for recovery commands, runner deferral and the explicit debugging opt-out.
+
 ## Preserved unpublished changes
 
 Local recovery records are under `development/source-preservation/2026-11-13/`.
@@ -70,7 +77,7 @@ paths; use Git history or the local source snapshots to recover those versions.
 
 ## Two retained image bundles
 
-Only the final ram116 and ram117 image sets are retained:
+The two retained image sets at consolidation were ram116 and ram117:
 
 - `development/standalone/out/ram116/`
 - `development/standalone/out/ram117/`
@@ -90,3 +97,4 @@ local and preserved. The standing ADC authorization JSON remains at its
 documented runtime path. Its exact approved helper is retained with ram117;
 the original runtime path links to that copy, so a repeated trial does not
 require keeping or re-extracting a compiler just for recovery cleanup.
+Automatic retention rehomes that exact approved helper when its bundle ages out.

@@ -2,6 +2,17 @@
 
 - When building with Ninja, use its default parallelism. Do not pass a fixed
   job count or set `CMAKE_BUILD_PARALLEL_LEVEL` unless the user requests it.
+- Full image builds must use `development/standalone/lifecycle.py`: hold
+  `build_lock`, compile in `development/standalone/out/.work/`, audit the
+  fresh image, then call `finalize_build` to keep only two compact successful
+  bundles. On failure call `cleanup_failed`. New profile builders must follow
+  this policy too; do not use older image binaries as build inputs.
+- Preserve unpublished source changes with `preservation.py` before deleting
+  temporary trees. If preservation fails or a RAM runner is active, defer
+  cleanup and keep the work. Preserve backups, firmware originals, access
+  files and unique evidence. Keep one copy of pinned upstream archives and
+  leave external input caches alone. `--keep-work` is an explicit debugging
+  opt-out, never the default.
 - Use `ssh -F /home/marius/ext_proj/touch10/access/ssh_config touch10` for
   Touch 10 device access. This key-based root SSH connection was verified
   after a device reboot.

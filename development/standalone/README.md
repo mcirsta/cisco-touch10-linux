@@ -69,13 +69,55 @@ The default output directory is `development/standalone/out/ram116/`:
 | `logs/` | Userspace build logs |
 | `kernel-build.log` | Kernel compilation log |
 
-`--output PATH` selects another output directory. Build outputs stay out of
-Git; source files, templates and configuration remain versioned.
+`--output development/standalone/out/NAME` selects another retained bundle.
+Build outputs stay out of Git; source files, templates and configuration
+remain versioned.
 
 Local source-tree consolidation and the two compact retained image bundles
 are documented in [the source layout](../SOURCE-LAYOUT.md). Expanded inputs
 and compiler intermediates can be recreated; unpublished source deltas are
 preserved separately before those trees are removed.
+
+## Automatic cleanup and retention
+
+Normal builds compile in an isolated directory under `out/.work/`. The
+previous successful image stays available throughout compilation. After all
+stages and image audits pass, the builder promotes a compact final bundle,
+keeps the latest two successful bundles, and removes expanded upstream
+sources, installed runtimes, compiler output and managed build caches.
+Rebuilding the same bundle replaces that version after its new audit passes.
+Original pinned source archives and an external `--cache` are retained.
+
+Before deleting a source tree, cleanup saves and verifies its differences
+from upstream, including unpublished edits, additions, deletions, modes and
+links. Git checkouts also preserve local commits, staging and untracked or
+ignored source. Unknown additions are preserved conservatively. Known
+compiler output is discarded. Recovery records and unique logs/configuration
+stay private under `development/source-preservation/auto/`; the cleanup
+result prints the exact location.
+
+Restore a saved tree into a new directory with:
+
+```sh
+python3 development/standalone/preservation.py restore \
+  development/source-preservation/auto/RUN/TREE/manifest.json \
+  --destination /tmp/recovered-source
+```
+
+The saved record needs the project's retained pinned archive or source
+bundle. Back up the preservation directory together with the original archives.
+
+A failed build saves source changes and diagnostics, removes partial build
+products, and leaves the two successful bundles intact. Cleanup defers if a
+RAM runner is active, a source changes during preservation, or verification
+fails; its report explains why and keeps the original work. A later full
+build retries pending cleanup. Device backups, firmware originals, access
+keys and unique evidence are outside the cleanup targets. The authorized ADC
+postflight helper moves to a surviving bundle before its old bundle is removed.
+
+For debugging, `--keep-work --output /tmp/touch10-debug` explicitly retains
+expanded sources and intermediate output. This opts out of automatic cleanup
+and retention for that run; choose a separate directory from retained images.
 
 ## Optional SSH access
 
@@ -127,6 +169,9 @@ python3 development/standalone/build.py --stage kernel
 Later stages require the earlier stages' fresh results. Stage resume is a
 development convenience; it is not a new clean-clone verification. Pass
 `--authorized-key` again when resuming `rootfs` if SSH should be enabled.
+An unfinished staged build keeps its temporary work until the kernel stage
+passes or a stage fails. Starting again with `--stage inputs` or a full build
+preserves and cleans abandoned work before beginning a new build.
 
 ## Host validation
 
@@ -136,6 +181,12 @@ All 27 standalone tests and 16 existing host tests passed. Both the staged
 and packaged Qt app passed Cortex-A9 QEMU start/exit checks, and the fresh
 kernel passed its static image audit. Optional SSH key/host-key generation
 was also exercised without a device connection.
+
+The cleanup implementation separately passed 71 standalone tests and 16
+host-tool tests in an isolated source-only checkout. These fixtures cover
+success/failure cleanup, source reconstruction, two-bundle rotation, active
+runner deferral, concurrent edits and recovery-helper migration. This check
+did not compile a new full image or contact a device.
 
 Run the standalone builder tests and the existing host-tool tests with:
 

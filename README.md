@@ -13,6 +13,8 @@ python3 development/standalone/build.py
 The [standalone build guide](development/standalone/README.md) lists host
 dependencies, optional SSH access and output paths. This builds the complete
 image from source without earlier project binaries or private device files.
+After its audits, it automatically preserves unpublished source changes,
+removes temporary sources and build caches, and keeps two compact image bundles.
 
 Compact ram116 and ram117 image bundles are retained locally
 under `development/standalone/out/`. Duplicate source trees and build caches

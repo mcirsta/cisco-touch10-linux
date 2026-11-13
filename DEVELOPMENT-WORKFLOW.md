@@ -5,6 +5,8 @@ For a complete ram116 build from a clean clone, use
 [standalone guide](development/standalone/README.md) covers dependencies and
 host validation. The incremental builders and device procedures below are
 historical workflows with additional prerequisites.
+Normal standalone builds automatically preserve source changes, clean their
+temporary inputs and outputs, and retain two audited compact bundles.
 
 After source consolidation, compact ram116 and ram117 image bundles remain
 under `development/standalone/out/`. Historical expanded source trees and

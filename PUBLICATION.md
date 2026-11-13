@@ -98,8 +98,10 @@ Historical incremental generators, including
 original staged experiments and retain their historical prerequisites. Use
 the standalone entry point for a complete ram116 build.
 
-At the owner's request, local cleanup deletes source-built binary outputs
-except the two newest complete profile directories:
+Normal standalone builds now preserve unpublished changes and clean temporary
+source trees, compiler output and managed caches automatically after auditing.
+Only the two newest complete profile bundles are retained. The local bundles
+at consolidation were:
 
 | Retained local profile | Kernel identity |
 | --- | --- |
